@@ -62,7 +62,7 @@ Aside from these areas of help another method is to search the internet for furt
 Look up the documentation for `lm` . What does this function do? Can you run some examples of this function? What inputs does it take? What outputs does it return?
 
 ```{r}
-
+?lm
 ```
 
 ## Useful functions
@@ -121,12 +121,12 @@ na_if(1:5, 5:1) # when x == y, replace the value in x with NA
 
 ### EXERCISE
 
-Where the value in the vector below is positive, take the square. Where it is negative, substitute in `NA`.
+Where the value in the vector below is positive, take the square root. Where it is negative, substitute in `NA`.
 
 ```{r}
 y <- c(4, -1, 3, 6, -7, 10, 20)
 
-
+ifelse(y > 0, y^0.5, NA)
 ```
 
 ### EXERCISE
@@ -138,7 +138,7 @@ Remember: break this into parts. Start with computing the mean of x, then use th
 ```{r}
 y <- c(4, 6, 5, 7, 3, 6, 4, 5, 3, 6, 6, 5, 6, 7, 6, 4, 6, 5, 7, 5)
 
-
+ifelse(y >= mean(y), "tall", "short")
 ```
 
 ### %in%
@@ -181,7 +181,10 @@ table(evp$evanston)
 Select the rows from the `evp` data below where the vehicle make is one of FIAT, DATS, GEO, JAGU, or PEUG
 
 ```{r}
+evp <- read.csv("data/ev_police_jan.csv")
+View(evp)
 
+evp[evp$vehicle_make %in% c("FIAT", "DATS", "GEO", "JAGU", "PEUG"),]
 ```
 
 ### paste
@@ -213,12 +216,10 @@ paste0("John", "Oliver")
 You can also paste the elements of two or more vectors together:
 
 ```{r}
-salutation <- c("Dear")
 first_names <- c("John", "Kate", "Tyler", "Jordan")
-last_names <- c("Lee", "Sharma", "Smith")
+last_names <- c("Lee", "Sharma", "Smith", "Rodriguez")
 
 paste(first_names, last_names, sep=" ")
-paste(salutation, first_names, sep=" ")
 ```
 
 If you provide a vector of characters, you can also use the `collapse` argument, which places whatever you provide for `collapse` between the characters of the vector:
@@ -239,7 +240,7 @@ paste0(state.name[1:5], sep = ", and ") # will not work as intended
 ```
 
 ```{r}
-
+paste(state.abb, state.region, sep=": ")
 ```
 
 ### seq and seq_along
@@ -273,16 +274,12 @@ Use the `seq()` function to select every 5th row from `state.x77` (it's a matrix
 Things you need to figure out: how do you know what the sequence should go to? How do you use the result of seq() to then select the rows?
 
 ```{r}
-
+state.x77[seq(1, nrow(state.x77), 5),]
 ```
 
 ### Piping with `|>`
 
-Pipes are a powerful tool for clearly expressing a sequence of multiple operations. You can learn more about them in the Tidyverse workshop we offer, however R 4.1.0 introduced a native pipe operator `|>`. By default, the pipe passes the object on its left-hand side to the first argument (input) of the function on the right-hand side.
-
-```{r}
-x |> log() |> round(). |> log() |> sin()
-```
+Pipes are a powerful tool for clearly expressing a sequence of multiple operations. You will learn more about them in the Tidyverse workshop, however R 4.1.0 introduced a native pipe operator `|>`. By default, the pipe passes the object on its left-hand side to the first argument of the function on the right-hand side.
 
 ```{r}
 evp <- read.csv("data/ev_police_jan.csv")
@@ -315,7 +312,8 @@ sort(unique(evp$vehicle_make))
 ```
 
 ```{r}
-
+evp$vehicle_make |> unique()
+evp$vehicle_make |> unique() |> sort()
 ```
 
 ## Changing data types
@@ -365,7 +363,13 @@ as.logical("Vaccines cause autism") # Should be FALSE
 -   The functions `is.logical`, `is.numeric` and `is.character` can be used to check if a variable is a `logical`, `numeric` or `character`, respectively. What type of object do they return?
 
 ```{r}
+as.logical(0)                   # Should be FALSE
+as.logical(1)                   # Should be TRUE
+as.logical(500)                 # Should be TRUE
 
+as.character(c(2,3,4))          # "2" "3" "4"
+
+class(is.logical(0)).           # "logical"
 ```
 
 ## Factors
@@ -472,9 +476,9 @@ levels(smoke2)
 Convert the vector below to a factor. Set the levels in an intentional order.
 
 ```{r}
-directions <- c("east", "west", "east", "south", "north", "north", "west", "north", "east", "northwestern")
+directions <- c("east", "west", "east", "south", "north", "north", "west", "north", "east")
 
-
+factor(directions, levels = c("north", "east", "south", "west"))
 ```
 
 ### EXERCISE
@@ -482,7 +486,10 @@ directions <- c("east", "west", "east", "south", "north", "north", "west", "nort
 Using the `evp` dataset, and convert the columns `subject_race` and `subject_sex` into factors.
 
 ```{r}
+evp$subject_race <- factor(evp$subject_race)
+evp$subject_sex <- factor(evp$subject_sex)
 
+str(evp)
 ```
 
 ### EXERCISE
@@ -490,5 +497,9 @@ Using the `evp` dataset, and convert the columns `subject_race` and `subject_sex
 Using the `evp` dataset, convert the column `search_basis` to a factor. Then recode all `NA` values into "invalid".
 
 ```{r}
+evp$search_basis <- factor(evp$search_basis)
+evp$search_basis <- addNA(evp$search_basis)
+levels(evp$search_basis)[3] <- "invalid"
 
+evp$search_basis
 ```
