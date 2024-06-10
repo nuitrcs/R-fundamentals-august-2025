@@ -527,7 +527,7 @@ month_info[c(1, 3), ]
 Using the Northwestern degree data set from above: select rows 2 through 5, and columns 1 through 2
 
 ```{r}
-degrees[2:5, 1:3]
+degrees[2:5, 1:2]
 ```
 
 Challenge: look up the `seq()` function in the Help. Use it to select every other row from the degree data.
@@ -1013,7 +1013,7 @@ What percentage of Toyota drivers are male? What percentage of drivers in the da
 100 * nrow(evp[evp$subject_sex=="female" & evp$vehicle_make=="TOYT",]) / nrow(evp[evp$subject_sex=="female",])
 
 # percentage of Toyota drivers that are male
-100 * nrow(evp[evp$subject_sex=="female" & evp$vehicle_make=="TOYT",]) / nrow(evp[evp$vehicle_make=="TOYT",])
+100 * nrow(evp[evp$subject_sex=="male" & evp$vehicle_make=="TOYT",]) / nrow(evp[evp$vehicle_make=="TOYT",])
 
 # percentage of drivers that are male
 100 * nrow(evp[evp$subject_sex=="male",]) / nrow(evp)
