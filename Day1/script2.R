@@ -49,7 +49,7 @@ F
 # missing: replaces any individual value
 NA
 
-# invalid: only used by itself
+# invalid: only used by itself // undefined value
 NULL
 
 
