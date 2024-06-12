@@ -325,6 +325,8 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
        caption="Midwest Demographics")
 ```
 
+Let's try new colors and also change the size of the points:
+
 ```{r}
 ggplot(midwest, aes(x=area, y=poptotal)) + 
   geom_point(col="steelblue", size=3) +   # Set static color and size for points
@@ -339,7 +341,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 ## EXERCISE
 
-Change the color to red and transparency (alpha) of the points to 0.5 by setting parameters within `geom_point` for `penguin_plot`
+Change the color to red and transparency (alpha) of the points to 0.5 by setting parameters within `geom_point` for `penguin_plot`.
 
 ```{r}
 
@@ -347,12 +349,11 @@ Change the color to red and transparency (alpha) of the points to 0.5 by setting
 
 ### Change the Color To Reflect Categories in Another Column
 
-Suppose if we want the color to change based on another column in the source dataset (`midwest`), it must be specified inside the `aes()` function.
+If we want the color to change based on another column in the source dataset (`midwest`), it must be specified inside the `aes()` function.
 
 ```{r}
 gg <- ggplot(midwest, aes(x=area, y=poptotal)) + 
-  geom_point(aes(col=state), size=2) +  # Set color to vary based on state categories.
-  
+  geom_point(aes(col=state), size=2) +  # Vary color based on state categories.
   geom_smooth(method="lm", col="firebrick", linewidth=2) + 
   coord_cartesian(xlim=c(0, 0.1), ylim=c(0, 1000000)) + 
   labs(title="Area Vs Population", 
@@ -363,7 +364,7 @@ gg <- ggplot(midwest, aes(x=area, y=poptotal)) +
 gg
 ```
 
-Now each point is colored based on the `state` it belongs because of `aes(col=state)`. Not just color, but `size`, `shape`, `stroke` (thickness of boundary) and `fill` (fill color) can be used to discriminate groupings.
+Now each point is colored based on the `state` it belongs to because of `aes(col=state)`. Not just color, but `size`, `shape`, `stroke` (thickness of boundary), and `fill` (fill color) can be used to discriminate groupings.
 
 As an added benefit, the legend is added automatically. If needed, it can be removed by setting the `legend.position` to `None` from within a `theme()` function.
 
@@ -398,15 +399,17 @@ library(RColorBrewer)
 head(brewer.pal.info, 10)  # show 10 palettes
 ```
 
+When selecting colors for your visualizations, in addition to other factors, it's important to consider [friendly colors for people with color vision deficiency](https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together).
+
 ## EXERCISE
 
-Change the color of the points according to the species column for `penguin_plot`
+Change the color of the points according to the species column for `penguin_plot`:
 
 ```{r}
 
 ```
 
-Note - You can also do this by setting `group` in `aes` , and setting the aesthetics for `geom_point` separately. This is useful if you want to plot multiple geoms in a plot (eg scatter points and a regression line).
+Note - You can also change the color of the points according to the species by setting `group` in `aes` , and setting the aesthetics for `geom_point` separately. This is useful if you want to plot multiple geoms in a plot (e.g. scatter points and a regression line).
 
 ```{r}
 
@@ -414,7 +417,7 @@ Note - You can also do this by setting `group` in `aes` , and setting the aesthe
 
 # Themes
 
-Now suppose, we want to make the graph more elegant. Let's use themes to clean up the background.
+Let's make the graph more elegant! Let's use themes to clean up the background.
 
 I like using the `theme_pubr()` from the `{ggpubr}` package:
 
@@ -435,7 +438,7 @@ ggplot(data=penguins,
 
 Themes can be [customized](https://rpubs.com/mclaire19/ggplot2-custom-themes) to every detail - the [possibilities](https://ggplot2.tidyverse.org/reference/theme.html) are endless!
 
-The [`{ggsci}`](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html) package offers a collection of high-quality color palettes inspired by colors used in scientific journals, data visualization libraries, science fiction movies, and TV shows. But there are several in-built themes in ggplot that you can use:
+The [`{ggsci}`](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html) package offers a collection of high-quality color palettes inspired by colors used in scientific journals, data visualization libraries, science fiction movies, and TV shows. But there are several built-in themes in ggplot that you can use:
 
 ```{r}
 ggplot(data=penguins, 
@@ -452,7 +455,7 @@ ggplot(data=penguins,
 
 ## Fonts
 
-Themes are extremely versatile. For example, theme options let you change the axis font styles using custom inputs:
+Themes are extremely versatile. For example, you change the axis font styles using custom inputs:
 
 ```{r}
 ggplot(data=penguins, 
@@ -467,11 +470,15 @@ ggplot(data=penguins,
                                     family="Comic Sans MS")) 
 ```
 
-Notice how the theme custom input over-rides the defaults set in `theme_classic()` . The order of layering matters. The last passed input will be retained.
+Notice how the theme custom input overrides the defaults set in `theme_classic()` .
+
+Remember that the order of layering matters! The last passed input will be retained.
 
 ## EXERCISE
 
-Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) to `penguin_plot` Remember, if you are using a new package, first install and load that package to access the themes inside it.
+Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) to `penguin_plot`. 
+
+Reminder: if you are using a new package, first install and load that package to access the themes inside it.
 
 ```{r}
 
@@ -479,7 +486,7 @@ Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) t
 
 # Separating by Facets
 
-The graph above still looks quite messy. Maybe we want to separate out the three species into individual panels.
+The graph above still looks quite messy. Maybe we want to separate out the three species into individual panels:
 
 ```{r}
 ggplot(data=penguins, 
@@ -517,7 +524,6 @@ ggplot(data=penguins,
   facet_grid(~species + island) +
   labs(x = "Flipper length (mm)", y = "Body mass (g)", title = "Penguins Data") +
   theme_classic() 
-  
 ```
 
 ## EXERCISE
@@ -566,7 +572,7 @@ Let's create another fictional plot first:
 ```{r}
 library(ggpubr)
 set.seed(1234)
-wdata = data.frame(sex = factor(rep(c("F", "M"), each=200)), 
+wdata <- data.frame(sex = factor(rep(c("F", "M"), each=200)), 
                    weight = c(rnorm(200, 55), rnorm(200, 58)))
 
 plot_new <- ggdensity(wdata, 
@@ -579,27 +585,23 @@ plot_new <- ggdensity(wdata,
 plot_new
 ```
 
-Using the packages `{grid}` and `{gridExtra}`:
+Now let's put the plots together using the packages `{grid}` and `{gridExtra}`:
 
 ```{r}
 # arrange plot p and plot_new
 library(gridExtra)
 library(grid)
 
-plot_panel <- grid.arrange(p, plot_new, ncol=2)
-plot_panel
+grid.arrange(p, plot_new, ncol=2)
 
-plot_panel <- grid.arrange(p, plot_new, nrow=2)
-plot_panel
+grid.arrange(p, plot_new, nrow=2)
 ```
 
 You can create very [complicated layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html) if needed. You can also use the `{patchwork}` package to same effect.
 
-## 
-
 # PRACTICE EXERCISES
 
-Several of these exercises will require you to Google or look up the documentation especially for custom theme inputs.
+Several of these exercises will require you to Google or look up the documentation, especially for custom theme inputs.
 
 Load in the data set below:
 
