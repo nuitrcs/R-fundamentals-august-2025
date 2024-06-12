@@ -95,7 +95,7 @@ Type some math equations in the console. Lacking inspiration? What's the square 
 ## File paths
 
 -   You can use the Files tab to access the files on your computer
--   **Absolute paths** always start with the root directory and provide the full path to the file or directory. For example, the absolute path to the home directory of a user named "ritika" would be "/home/ritika".
+-   **Absolute paths** always start with the root directory and provide the full path to the file or directory. For example, the absolute path to the home directory of a user named "john" would be "/home/john".
 -   On the other hand, a **relative path** is a path to a file or directory that is relative to the current directory.
 
 ## Working directory
@@ -113,7 +113,7 @@ Whenever you refer to a file with a *relative path* it will look for it in the w
 
 ### EXERCISE
 
-Set the working directory for your RStudio session to `R-bootcamp-summer-Chicago-2023`. Use either a console command or the GUI options.
+Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder). Use either a console command or the GUI options.
 
 ```{r}
 
@@ -127,7 +127,7 @@ To make a project you would click File \> New Project, then follow the prompts. 
 
 ### EXERCISE
 
-Check that you are currently working within the `R-bootcamp-summer-Chicago-2023` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
+Check that you are currently working within the ``` R-``fundamentals-summer-workshop ``` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
 
 ```{r}
 
@@ -1060,7 +1060,7 @@ aggregate(penguins$bill_length_mm,  # data to compute on
           na.rm=TRUE)   # additional arguments to the function
 ```
 
-We could also use the formula syntax, which we'll learn more about on day 3. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
+We could also use the formula syntax. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
 
 ```{r}
 aggregate(bill_length_mm ~ species + island,

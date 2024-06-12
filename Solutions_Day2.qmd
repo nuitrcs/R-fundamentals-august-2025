@@ -112,10 +112,10 @@ Whenever you refer to a file with a *relative path* it will look for it in the w
 
 ### EXERCISE
 
-Set the working directory for your RStudio session to `R-bootcamp-summer-Chicago-2023`. Use either a console command or the GUI options.
+Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder). Use either a console command or the GUI options.
 
 ```{r}
-setwd("R-bootcamp-summer-Chicago-2023")
+setwd("R-fundamentals-summer-workshop")
 ```
 
 ## RStudio Projects
@@ -126,7 +126,7 @@ To make a project you would click File \> New Project, then follow the prompts. 
 
 ### EXERCISE
 
-Check that you are currently working within the `R-bootcamp-summer-Chicago-2023` Project. If not, open the relevant .RProj file in a new RStudio session.
+Check that you are currently working within the `R-``fundamentals-summer-workshop` Project. If not, open the relevant .RProj file in a new RStudio session.
 
 ```{r}
 getwd()
@@ -675,6 +675,12 @@ complete.cases(penguins)
 penguins[complete.cases(penguins),] ## effectively drops rows with any missing values
 ```
 
+The function `na.omit()` can be used to shorten the above calls, it directly returns the subset of data with complete cases.
+
+```{r}
+na.omit(penguins) # is the same as code chunk above
+```
+
 ## EXERCISE
 
 How many missing values in `penguins$bill_depth_mm`?
@@ -1070,7 +1076,7 @@ aggregate(penguins$bill_length_mm,  # data to compute on
           na.rm=TRUE)   # additional arguments to the function
 ```
 
-We could also use the formula syntax, which we'll learn more about on day 3. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
+We could also use the formula syntax. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
 
 ```{r}
 aggregate(bill_length_mm ~ species + island,

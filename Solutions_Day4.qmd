@@ -21,7 +21,9 @@ Often, plotting your data will be much more informative than summary statistics 
 
 ## Installing `{ggplot2}`
 
-First, install and load the *ggplot2* package in your workspace.
+Here is a handy [cheat sheet for ggplot2](https://statsandr.com/blog/files/ggplot2-cheatsheet.pdf)! Most users rely on the cheat-sheet because it is often difficult to remember the exact syntax and options.
+
+Install and load the *ggplot2* package in your workspace as below.
 
 ```{r}
 # install.packages("ggplot2")
@@ -234,6 +236,8 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 ```
 
 Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
+
+Scales maps from the data-points to the aesthetics, it does not delete data-points, rather it zooms in similar to `coord_cartesian()` .
 
 ## EXERCISE
 
