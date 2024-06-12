@@ -56,7 +56,7 @@ Typically, to build or describe any visualization with one or more dimensions, w
 
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics:
 
--   `{ggplot}` works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the `ggplot()` itself or can be supplied to respective geoms.
+-   `{ggplot}` works with dataframes and not individual vectors. All the data needed to make the plot is typically contained within the dataframe supplied to the `ggplot()` function itself or can be supplied to respective geoms.
 
 -   The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the `ggplot()` function
 
@@ -67,7 +67,6 @@ Let's initialize a basic ggplot based on the midwest dataset:
 ```{r}
 # Setup
 options(scipen=999)  # turn off scientific notation like 1e+06
-library(ggplot2)
 
 data("midwest", package = "ggplot2")  # load the data (part of the ggplot2 package)
 
@@ -79,7 +78,7 @@ View(midwest)
 ggplot(midwest, aes(x=area, y=poptotal))  # area and poptotal are columns in 'midwest'
 ```
 
-A blank ggplot is drawn. Even though the `x` and `y` are specified, there are no points or lines in it. This is because, ggplot doesn't assume that you meant a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y axis. I haven't explicitly asked it to draw any points.
+A blank ggplot is drawn. Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y. I haven't explicitly asked it to draw any points.
 
 Also note that `aes()` function is used to specify the X and Y axes. That's because, any information that is part of the source dataframe has to be specified inside the `aes()` function.
 
@@ -92,9 +91,9 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
   geom_point()
 ```
 
-Notice how layering works with the + operator.
+Notice how layering works with the + operator (not %>%).
 
-We got a basic scatterplot, where each point represents a county. However, it lacks some basic components such as the plot title, meaningful axis labels etc. Moreover most of the points are concentrated on the bottom portion of the plot, which is not so nice. You will see how to rectify these in upcoming steps.
+We got a basic scatterplot, where each point represents a county. However, it lacks some basic components such as the plot title, meaningful axis labels, etc. Moreover, most of the points are concentrated on the bottom portion of the plot, which is not so helpful. You will see how to rectify these in upcoming steps.
 
 ## Using geoms to make other plot types
 
@@ -176,7 +175,7 @@ The X and Y axis limits can be controlled in 3 ways.
 
 This will change the lines of best fit or smoothing lines as compared to the original data.
 
-This can be done by `xlim()` and `ylim()`. You can pass a numeric vector of length 2 (with max and min values) or just the max and min values itself.
+This can be done by `xlim()` and `ylim()`. You can pass a numeric vector of length 2 (with max and min values) or just the max and min values themselves.
 
 ```{r}
 g <- ggplot(midwest, aes(x=area, y=poptotal)) + 
@@ -196,7 +195,7 @@ Did you notice that the line of best fit became more horizontal compared to the 
 
 ### **Method 2**: Zooming In
 
-The other method is to change the X and Y axis limits by zooming in to the region of interest *without* deleting the points. This is done using `coord_cartesian()`.
+The other method to adjust the X and Y axis is to zoom in to the region of interest *without* deleting the points. This is done using `coord_cartesian()`.
 
 Let's store this plot as `g1`.
 
@@ -209,14 +208,14 @@ g <- ggplot(midwest, aes(x=area, y=poptotal)) +
 # As a result, the line of best fit is the same as the original plot.
 g1 <- g + 
   coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000))  # zooms in
-plot(g1)
+g1
 ```
 
 Since all points were considered, the line of best fit did not change.
 
 ### **Method 3**: Using the scales layer
 
-Scales in *ggplot2* control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work, but understanding scales and learning how to manipulate them will give you much more control. To get an in-depth understanding of how scales work in *ggplot2* see [this](https://ggplot2-book.org/scales-guides).
+Scales in *ggplot2* control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work, but understanding scales and learning how to manipulate them will give you much more control. To get an in-depth understanding of how scales work in *ggplot2* see [this book chapter on scales and guides](https://ggplot2-book.org/scales-guides).
 
 An important property of *ggplot2* is the principle that every aesthetic in your plot is associated with exactly one scale. For instance, when you write this:
 
@@ -242,11 +241,12 @@ scale_plot <- ggplot(midwest, aes(x=area, y=poptotal)) +
   scale_x_continuous(limits=c(0, 0.1)) + 
   scale_y_continuous(limits=c(0, 1000000)) +
   geom_smooth(method="lm")
+scale_plot
 ```
 
-Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
-
 Scales maps from the data-points to the aesthetics, it does not delete data-points, rather it zooms in similar to `coord_cartesian()` .
+
+Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
 
 ## EXERCISE
 
@@ -258,7 +258,7 @@ Limit the flipper length to values between 180 and 220 in `penguin_plot` without
 
 ## Change the Title and Axis Labels
 
-I have stored this as `g1`. Let's add the plot title and labels for X and Y axis. This can be done in one go using the `labs()` function with `title`, `x` and `y` arguments. Another option is to use the `ggtitle()`, `xlab()` and `ylab()`.
+Let's continue with our previous scatterplot of the midwest data and add the plot title and labels for the X and Y axis. This can be done in one go using the `labs()` function with `title`, `x`, and `y` arguments. Another option is to use `ggtitle()`, `xlab()`, and `ylab()`.
 
 ```{r}
 g <- ggplot(midwest, aes(x=area, y=poptotal)) + 
@@ -285,7 +285,7 @@ g1 +
   ylab("Population")
 ```
 
-Excellent! So here is the full function call.
+Excellent! So here is the full function call:
 
 ```{r}
 ggplot(midwest, aes(x=area, y=poptotal)) + 
@@ -301,7 +301,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 ## EXERCISE
 
-Add suitable axis labels and titles to `penguin_plot`
+Add suitable axis labels and titles to `penguin_plot`.
 
 ```{r}
 
