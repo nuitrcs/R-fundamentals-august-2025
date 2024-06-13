@@ -1,0 +1,589 @@
+---
+output:
+  html_document:
+    df_print: paged
+    code_download: TRUE
+    toc: true
+    toc_depth: 1
+editor_options:
+  chunk_output_type: console
+---
+
+## Data Wrangling Bonus Pack!
+
+## More useful functions
+
+### rep
+
+`rep()` replicates the values in `x`.
+
+```{r}
+rep(1:4, times = 2)
+```
+
+```{r}
+rep(1:4, each = 3)  
+```
+
+```{r}
+rep(1:4, length.out = 5) 
+```
+
+### EXERCISE 1
+
+Create a vector whose length matches the length of `x` and fill it with alternating 1's and 0's
+
+```{r}
+x <- c(6, 6, 4, 3, 9, 4, 7, 5, 1, 6)
+
+```
+
+### Loops with for
+
+A for-loop is one of the main control-flow constructs of the R programming language. It is used to iterate over a collection of objects, such as a vector, a list, a matrix, or a dataframe, and apply the same set of operations on each item of a given data structure. We use for-loops to keep our code clean and avoid unnecessary repetition of a code block.
+
+The basic syntax of a for-loop in R is the following:
+
+```         
+for (variable in sequence) {
+    expression
+}
+```
+
+```{r}
+for (i in 1:10) {
+  print(i)
+}
+```
+
+Something important to keep in mind, operations inside the loop are not automatically printed to the console.
+
+```{r}
+for (i in 1:10) {
+  i # executes without printing to console
+}
+i # value still changes
+```
+
+```{r}
+for (month in month.name) {
+  print(month)
+}
+```
+
+```{r}
+for (month in month.name) {
+  print(paste(month, "2023", sep=" "))
+}
+```
+
+You can also combine for loops with conditional statements:
+
+```{r}
+for (i in 1:5) {
+  if(i%%2==0) print(i)
+}
+```
+
+```{r}
+for (i in 1:5) {
+  if(i%%2==0) print(i) else print("indivisble")
+}
+```
+
+### EXERCISE 2
+
+Write a for loop that iterates over the list below and prints "I can pet it!" if the element is not `NA` .
+
+Hint: look up the `is.na` function with R help.
+
+```{r}
+animals <- c("cat", "dog", NA, "panda", "koala", "rabbit")
+
+```
+
+### EXERCISE 3
+
+Now modify your loop above to print "Animal: I can pet it!" (eg: "cat: I can pet it!")
+
+```{r}
+
+```
+
+## Dates
+
+Data describing dates and times can be complex, not least because it is written in so many different formats. 1 April 2020 can be written as `2020-04-01`, `20/04/01`, `200401`, `1/4 2020`, `4/1/20`, `1 Apr 20`, and a myriad of other ways. 5 past 6 in the evening can be written as `18:05` or `6.05 pm`. In addition to this ambiguity, time zones, daylight saving time, leap years and even leap seconds make working with dates and times even more complicated.
+
+### Date formats
+
+In most cases, when you read data with dates/times in it into R, it will be read in as character (text) data:
+
+```{r}
+evp <- read.csv("data/ev_police.csv")
+str(evp)
+```
+
+If you want to use this information in a visualization, or aggregate data by month, or use the date information in other ways, you'll need to convert this information into an object that knows about dates and times. The easiest way to do this is with the lubridate package (part of tidyverse).
+
+```{r}
+# install.packages("tidyverse")
+library(lubridate)
+```
+
+It has a series of functions names like:
+
+```{r}
+ymd()
+ymd_hms()
+dmy()
+dmy_h()
+mdy()
+```
+
+And so on, where y=year, m (in the first part)=month, d=day, h=hour, m (in the second part)=minute, s=second. With the function name, you are specifying which parts of a date or time appear in the text you're converting and what order the different parts appear in. You can ignore all of the delimiters and other components like dashes, slashes, or even no delimiter at all. `{lubridate}` can handle most cases:
+
+```{r}
+my_dates <- c("7/11/2023","7/11/23", "07112023", "7-11-2023", "Jul 11 2023", "Jul. 11, 2023") 
+class(my_dates)
+```
+
+```{r}
+my_dates <- mdy(my_dates)
+class(my_dates)
+```
+
+### EXERCISE 4
+
+Make two new columns in the `evp` data frame:
+
+-   Date (capitalized) that converts the date column to a Date type - you can use a function with just the date components, such as `mdy()`, `dmy()`, or `ymd()`
+
+-   datetime: paste (concatenate) the date and time columns together, and then convert the joined string to a datetime object - you'll need to use a function with both date and time components
+
+    ```{r}
+
+    ```
+
+### Example
+
+Now that we have the data information in a date-type format, we can ask questions such as: what day of the week had the most traffic stops?
+
+```{r}
+wday(evp$Date, label = TRUE) # day of the week of the stop (named)
+table(wday(evp$Date, label=TRUE)) # tally these
+```
+
+The data we have is just for January, which means there are more instances of some days of the week than others. So we want to normalize by the number of Mondays, Tuesdays, etc.
+
+```{r}
+seq.Date(ymd("2017-01-01"), ymd("2017-01-31"), 1)  # days in January 2017
+
+wday(seq.Date(ymd("2017-01-01"), ymd("2017-01-31"), 1), label=TRUE)  ## as days of the week
+
+table(wday(seq.Date(ymd("2017-01-01"), ymd("2017-01-31"), 1), label=TRUE))  # tallied
+
+table(wday(evp$Date, label=TRUE)) / table(wday(seq.Date(ymd("2017-01-01"), ymd("2017-01-31"), 1), label=TRUE)) # together
+```
+
+## Strings
+
+Text in R is represented by `character` strings. These are created using double or single quotes. I recommend double quotes for three reasons. First, it is the default in R, and is the recommended style (see e.g. `?Quotes`). Second, it improves readability - code with double quotes is easier to read because double quotes are easier to spot than single quotes. Third, it will allow you to easily use apostrophes in your strings, which single quotes don't (because apostrophes will be interpreted as the end of the string). Single quotes can however be used if you need to include double quotes inside your string:
+
+```{r}
+# This works:
+text1 <- "An example of a string. Isn't this great?"
+text2 <- 'Another example of a so-called "string".'
+
+# This doesn't work:
+text1_fail <- 'An example of a string. Isn't this great?
+text2_fail <- "Another example of a so-called "string"."
+```
+
+If you check what these two strings look like, you'll notice something funny about `text2`:
+
+```{r}
+text1
+text2
+```
+
+R has put backslash characters, `\`, before the double quotes. The backslash is called an *escape character*, which invokes a different interpretation of the character that follows it. In fact, you can use this to put double quotes inside a string that you define using double quotes:
+
+```{r}
+text2_success <- "Another example of a so-called \"string\"."
+```
+
+There are a number of other special characters that can be included using a backslash: `\n` for a line break (a new line) and `\t` for a tab (a long whitespace) being the most important:
+
+```{r}
+text3 <- "Text...\n\tWith indented text on a new line!"
+```
+
+To print your string in the Console in a way that shows special characters instead of their escape character-versions, use the function `cat`:
+
+```{r}
+cat(text3)
+```
+
+### `{stringr}` package
+
+The stringr package provides a cohesive set of functions designed to make working with strings as easy as possible. It is part of the `{tidyverse}` set of packages.
+
+```{r}
+# intsall.packages("tidyverse")
+library(stringr)
+```
+
+Here is a handy [cheat-sheet](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf) for string manipulation with {`stringr}`. All functions start with `str_` and take a vector of strings as the first argument.
+
+#### Cleaning text labels
+
+There are functions for converting and cleaning up text data:
+
+```{r}
+str_to_lower("John Oliver")
+```
+
+```{r}
+str_to_title("r bootcamp workshop day 2")
+```
+
+```{r}
+str_trim("     John ") # remove whitespace beginning and end
+```
+
+```{r}
+str_squish("r     bootcamp    workshop  day   2   ") # trim plus collapse interior spaces
+```
+
+There are functions for padding strings
+
+```{r}
+str_pad("8831", width = 5, side="left", pad="0")
+```
+
+#### Detecting or Replacing strings
+
+Then there are lots of functions to detect or replace substrings in a string. These functions will take either a fixed string for comparison or a regular expression. Regular expressions, or regex, are a way of writing patterns that match text. We can't cover them all within this workshop, but they're well worth learning and will save you lots of time if you work with text at all.
+
+They default to interpreting the "pattern" input as a regex. This doesn't make much difference if you're only searching for letters and spaces. If you need to search for punctuation, you will likely want to tell it it's not a regex.
+
+These functions all take the string to work on first, then the pattern to match/detect, then other options.
+
+```{r}
+str_detect("John Oliver", "liver")
+str_detect("John Oliver", "heart")
+```
+
+```{r}
+# don't use a regex, and don't care about case
+str_detect("John Oliver", fixed("LIVER", ignore_case=TRUE))
+```
+
+`fixed()` is useful to tell it to make a literal match. To get a case-insensitive match you have to use either `fixed()` or `regex()` explicitly. For example, a "." has special meaning in regular expressions (it matches any character), so if you want to match a literal period, `fixed()` is useful:
+
+```{r}
+str_detect("John Oliver", ".")
+str_detect("John Oliver", fixed("."))
+```
+
+You can also match to the beginning or the end of strings:
+
+```{r}
+str_starts("Oliver", "Ol")
+str_ends("Oliver", "ver")
+```
+
+You can also just get the elements of the vector that do match:
+
+```{r}
+my_string_vector <- c("Political Science", "Biological Science", "Pol. Science", "technology")
+str_subset( my_string_vector, regex("pol.+sci.+", ignore_case=TRUE))
+```
+
+Replacing -- there is a version of each for replacing the first occurrence vs. all. First, just deletion:
+
+```{r}
+str_remove("John Oliver is a person who exists", "i")
+str_remove_all("John Oliver is a person who exists", "i")
+```
+
+Replacing with something new:
+
+```{r}
+str_replace("John Oliver is a person who exists", "i", "a")
+str_replace_all("John Oliver is a person who exists", "i", "a")
+```
+
+You can split a string, which can get complicated, because you get lists back, unless you know how many components to expect:
+
+```{r}
+str_split("John Oliver is a person who exists", pattern=" ")
+```
+
+```{r}
+# here fixed means fixed number of components, not a fixed pattern as above
+str_split_fixed("John Oliver is a person who exists", pattern=" ", n = 3)
+```
+
+### EXERCISE 5
+
+Load the `evp` dataset, and find all the rows where the reason for stop (`reason_for_stop`) is a moving violation of any type
+
+```{r}
+
+```
+
+### EXERCISE 6
+
+Convert the department name from all capitals to title case
+
+```{r}
+
+```
+
+### EXERCISE 7
+
+Clean the location column, which should be a five letter zip code, such that values like "9121" are corrected to "09121"
+
+```{r}
+
+```
+
+## Statistics and models
+
+### Formula
+
+A formula object is a variable, but it's a special type of variable that specifies a relationship between other variables. A formula is specified using the "tilde operator" `~`. A very simple example of a formula is shown below:
+
+```         
+formula1 <- outcome_variable ~ predictor_variable
+formula1
+```
+
+The *precise* meaning of this formula depends on exactly what you want to do with it, but in broad terms it means "the outcome variable, analysed in terms of the predictor variable". That said, although the simplest and most common form of a formula uses the "one variable on the left, one variable on the right" format, there are others. For instance, the following examples are all reasonably common.
+
+```         
+formula2 <-  out ~ pred1 + pred2                 # more than one variable on the right
+formula3 <-  out ~ pred1 + pred2 + pred1:pred2   # add an interaction term
+formula4 <-  out ~ pred1 * pred2                 # different relationship between predictors 
+formula5 <-  ~ var1 + var2                       # a 'one-sided' formula
+```
+
+Formulas are pretty flexible things, and so different functions will make use of different formats, depending on what the function is intended to do.
+
+```         
+formula6 <-  out ~ pred1 + sqrt(pred2)           # transform a predictor variable
+formula7 <-  out ~ pred1 | pred2                 # condition pred1 on pred2
+```
+
+### Linear Regression
+
+To compute a linear regression, we use the `lm()` function (linear model) and the special formula syntax:
+
+```{r}
+reg1 <- lm(body_mass_g ~ flipper_length_mm + bill_length_mm , data=penguins)
+reg1
+```
+
+To get more than just the coefficient estimates in the output, use the summary function on the resulting regression object:
+
+```{r}
+summary(reg1)
+```
+
+The result of the regression is an lm model object, which contains multiple pieces of information. We can access these different components if we need to.
+
+```{r}
+names(reg1)
+```
+
+```{r}
+reg1$coefficients
+```
+
+The result of the summary function is a different object, with some different components:
+
+```{r}
+names(summary(reg1))
+```
+
+But we can still extract the information
+
+```{r}
+summary(reg1)$coefficients
+```
+
+Finally, simply using the generic `plot()` function on a regression model provides some very helpful information:
+
+```{r}
+plot(reg1)
+```
+
+If you want to compare several models you can use the `AIC()` or `BIC()` functions. Lower scores are better.
+
+```{r}
+reg1 <- lm(body_mass_g ~ flipper_length_mm + bill_length_mm , data=penguins)
+reg2 <- lm(body_mass_g ~ flipper_length_mm + bill_length_mm  + bill_depth_mm, data=penguins)
+reg3 <- lm(body_mass_g ~ flipper_length_mm + bill_length_mm  + sex, data=penguins)
+
+AIC(reg1, reg2, reg3)
+
+BIC(reg1, reg2, reg3)
+```
+
+### EXERCISE 8
+
+Does body mass depend on species and/or sex?
+
+```{r}
+
+
+```
+
+### EXERCISE 9
+
+Test if there is a significant interaction between flipper length and bill length for predicting body mass in male Gentoo penguins
+
+```{r}
+
+
+```
+
+### EXERCISE 10
+
+**Challenge:**
+
+Which among the three species has the highest $R^2$ value for predicting body mass from flipper length?
+
+```{r}
+
+
+```
+
+## Answers to Exercises
+
+### EXERCISE 1
+
+Create a vector whose length matches the length of `x` and fill it with alternating 1's and 0's
+
+```{r}
+x <- c(6, 6, 4, 3, 9, 4, 7, 5, 1, 6)
+
+rep(1:0, length.out = length(x)) 
+```
+
+### EXERCISE 2
+
+Write a for loop that iterates over the list below and prints "I can pet it!" if the element is not `NA` .
+
+Hint: look up the `is.na` function with R help.
+
+```{r}
+animals <- c("cat", "dog", NA, "panda", "koala", "rabbit")
+
+for (i in animals) {
+  if(!is.na(i)) {
+    print("I can pet it!")
+  }
+}
+```
+
+### EXERCISE 3
+
+Now modify your loop above to print "Animal: I can pet it!" (eg: "cat: I can pet it!")
+
+```{r}
+for (i in animals) {
+  if(!is.na(i)) {
+    text <- paste(i, "I can pet it!", sep=": ")
+    print(text)
+  }
+}
+```
+
+### EXERCISE 4
+
+Make two new columns in the `evp` data frame:
+
+-   Date (capitalized) that converts the date column to a Date type - you can use a function with just the date components, such as `mdy()`, `dmy()`, or `ymd()`
+
+-   datetime: paste (concatenate) the date and time columns together, and then convert the joined string to a datetime object - you'll need to use a function with both date and time components
+
+    ```{r}
+    evp$Date <- ymd(evp$date)
+    evp$datetime <- ymd_hms(paste(evp$Date, evp$time))
+
+    str(evp)
+    ```
+
+### EXERCISE 5
+
+Load the `evp` dataset, and find all the rows where the reason for stop (`reason_for_stop`) is a moving violation of any type
+
+```{r}
+new_df <- evp[str_detect(evp$reason_for_stop, fixed("moving violation", ignore_case=TRUE)), ]
+head(new_df$reason_for_stop)
+```
+
+### EXERCISE 6
+
+Convert the department name from all capitals to title case
+
+```{r}
+evp$department_name <- str_to_title(evp$department_name)
+head(evp$department_name)
+```
+
+### EXERCISE 7
+
+Clean the location column, which should be a five letter zip code, such that values like "9121" are corrected to "09121"
+
+```{r}
+evp$location <- str_pad(evp$location, width=5, side="left", pad="0")
+head(sort(evp$location))
+```
+
+### EXERCISE 8
+
+Does body mass depend on species and/or sex?
+
+```{r}
+reg <- lm(body_mass_g ~ species*sex, data=penguins)
+summary(reg)
+```
+
+### EXERCISE 9
+
+Test if there is a significant interaction between flipper length and bill length for predicting body mass in male Gentoo penguins
+
+```{r}
+reg <- lm(body_mass_g ~ flipper_length_mm:bill_length_mm, data=penguins)
+summary(reg)
+```
+
+### EXERCISE 10
+
+Which among the three species has the highest $R^2$ value for predicting body mass from flipper length?
+
+```{r}
+
+my_formula <- body_mass_g ~ flipper_length_mm
+
+for (sp in levels(penguins$species)) {
+  # subset data by species
+  data_subset <- penguins[penguins$species == sp, ]
+  
+  # make a linear model
+  model <- lm(my_formula, data_subset)
+  
+  # extract the r2 from the model
+  r_squared <- summary(model)$r.squared
+  r_squared <- round(r_squared, digits=3) # round to format the output text
+  
+  # create text output to print
+  text <- paste(sp, as.character(r_squared), sep=" - ")
+  
+  # print
+  print(text)
+}
+```
