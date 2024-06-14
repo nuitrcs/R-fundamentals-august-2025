@@ -34,7 +34,7 @@ library(ggplot2)
 
 ![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
-Typically, to build or describe any visualization with one or more dimensions, we can use the components as follows.
+To build or describe any visualization with one or more dimensions, we can use the components as follows.
 
 1.  **Data**: Always start with the data, identify the dimensions you want to visualize.
 
@@ -74,26 +74,41 @@ View(midwest)
 ```
 
 ```{r}
-# Initialize a plot by calling the ggplot() function
-ggplot(midwest, aes(x=area, y=poptotal))  # area and poptotal are columns in 'midwest'
+ggplot(midwest) # Initialize a plot by calling the ggplot() function
 ```
 
-A blank ggplot is drawn. Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y. I haven't explicitly asked it to draw any points.
+A blank ggplot is drawn. ggplot knows we want a plot with a given data set!
+
+![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
+
+```{r}
+ggplot(midwest) + # Initialize a plot by calling the ggplot() function
+  aes(x=area, y=poptotal) # area and poptotal are columns in 'midwest'
+```
+
+Now ggplot knows the columns we want to plot! 
+
+Notice how layering works with the + operator (not %>%).
+
+Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y. I haven't explicitly asked it to draw any points.
 
 Also note that `aes()` function is used to specify the X and Y axes. That's because, any information that is part of the source dataframe has to be specified inside the `aes()` function.
+
+![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
 # Make a simple scatterplot
 
 Let's make a scatterplot on top of the blank ggplot by adding points using a geom layer called `geom_point`
 
 ```{r}
-ggplot(midwest, aes(x=area, y=poptotal)) + 
+ggplot(midwest) +
+  aes(x=area, y=poptotal) +
   geom_point()
 ```
 
-Notice how layering works with the + operator (not %>%).
-
 We got a basic scatterplot, where each point represents a county. However, it lacks some basic components such as the plot title, meaningful axis labels, etc. Moreover, most of the points are concentrated on the bottom portion of the plot, which is not so helpful. You will see how to rectify these in upcoming steps.
+
+![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
 ## Using geoms to make other plot types
 
@@ -101,25 +116,29 @@ Like `geom_point()`, there are many such geom layers such as `geom_line` , `geom
 
 ```{r}
 # histogram of county area
-ggplot(midwest, aes(x=area)) + 
+ggplot(midwest) + 
+  aes(x=area) +
   geom_histogram(bins=100)
 ```
 
 ```{r}
 # density plot of county area
-ggplot(midwest, aes(x=area)) + 
+ggplot(midwest) + 
+  aes(x=area) +
   geom_density()
 ```
 
 ```{r}
 # make a boxplot
-ggplot(midwest, aes(x=area, y=state)) + 
+ggplot(midwest) + 
+  aes(x=area, y=state) +
   geom_boxplot() 
 ```
 
 ```{r}
 # make a violinplot
-ggplot(midwest, aes(x=area, y=state)) + 
+ggplot(midwest) + 
+  aes(x=area, y=state) +
   geom_violin()
 ```
 
@@ -141,7 +160,8 @@ data(penguins)
 For now, let's just add a smoothing layer using `geom_smooth(method='lm')`. Since the `method` is set as `lm` (short for [*linear model*](http://r-statistics.co/Linear-Regression.html)), it draws the line of best fit.
 
 ```{r}
-g <- ggplot(midwest, aes(x=area, y=poptotal)) + 
+g <- ggplot(midwest) + 
+  aes(x=area, y=poptotal) +
   geom_point() + 
   geom_smooth(method="lm")  # set se=FALSE to turnoff confidence bands
 g
@@ -247,6 +267,8 @@ scale_plot
 Scales maps from the data-points to the aesthetics, it does not delete data-points, rather it zooms in similar to `coord_cartesian()` .
 
 Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
+
+![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
 ## EXERCISE
 
@@ -562,6 +584,8 @@ name <- "my_beautiful_plot.pdf"
 
 ggsave(name, plot=p, height = 4, width = 6, device="pdf", useDingbats=F) # setting useDingbats to FALSE lets you edit plot fonts in Illustrator
 ```
+
+![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
 # Arranging multiple plots
 
