@@ -1152,6 +1152,14 @@ length(unique(phds$program[phds$count>=1]))
 
 ## EXERCISE 5
 
+Are there any programs who awarded no degrees during the time period covered by the data set?
+
+```{r}
+unique(phds$program[phds$count==0])
+```
+
+## EXERCISE 6
+
 Compute the total number of degrees awarded each year.
 
 ```{r}
@@ -1159,20 +1167,12 @@ aggregate(count ~ year, data=phds, sum)
 tapply(phds$count, phds$year, sum)
 ```
 
-## EXERCISE 6
+## EXERCISE 7
 
 Compute the total number of degrees awarded in 2021-22 by school.
 
 ```{r}
 aggregate(count ~ school, data = phds[phds$year=="2021-22",], sum)
-```
-
-## EXERCISE 7
-
-Are there any programs who awarded no degrees during the time period covered by the data set?
-
-```{r}
-unique(phds$program[phds$count==0])
 ```
 
 ## EXERCISE 8

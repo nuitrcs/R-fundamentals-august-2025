@@ -42,56 +42,6 @@ Each pane can be minimized or maximized within the column by clicking the minimi
 
 ![](images/rstudio-panes-labeled.jpeg)
 
-## Console and R Commands
-
-We can type basic math equations in the console. Click Run Code to give it a try.
-
-```{r}
-2+2
-3^2
-(2+3)/(5+7)
-```
-
-```{r}
-
-```
-
-We can also do Boolean comparisons -- expressions that result in TRUE or FALSE
-
--   == for testing equality
--   ! means NOT
--   & is AND, \| is OR
-
-```{r}
-3 > 2
-5 == 25/5
-"cat" != "dog"
-!TRUE
-```
-
-```{r}
-TRUE & FALSE
-TRUE | FALSE
-```
-
-### Console Tips
-
--   There's a space after the prompt (`>`)
--   If you see a `+` instead of a `>`, R thinks the previous command wasn't finished and expects more input
-    -   If you're stuck with a `+`, you can use Control+C or the escape (esc) key to cancel the command and get the normal `>` prompt back.
--   Use the up and down arrow keys to cycle through previous commands
-    -   List of previous commands is in the History tab in RStudio (with the Environment tab)
--   Output starts with `[1]`; this number indexes the output values, since there can be more than one value as output
-
-### EXERCISE
-
-Type some math equations in the console. Lacking inspiration? What's the square root of 394, minus 5, cubed?
-
-```{r}
-
-
-```
-
 ## File paths
 
 -   You can use the Files tab to access the files on your computer
@@ -139,8 +89,6 @@ This is an R Quarto file. It is very similar to an R Markdown file if you've use
 
 We're using an R Quarto Document instead of an R script so that we can include additional text and explanation in the file. In an .R script, everything has to be an R command or comment. Here, between chunks of R code, we can include text and other information.
 
-# Functions and Variables
-
 ## Functions
 
 Functions have a name. They optionally take one or more input values (arguments). They optionally return a value (or a more complicated object) or have a side effect (do something).
@@ -166,34 +114,6 @@ round(3.1415, digits=2)
 ```
 
 You can find the argument names in the Help or documentation page for the function. We'll look at these soon.
-
-## Variables
-
-We save and reference individual values, or more complex objects like vectors and data sets, with variables. We assign values to a name.
-
-```{r}
-x <- 3
-```
-
-```{r}
-x = 3
-```
-
-The `<-` assignment operator is recommended for clarity. `=` also works, but because we use `=` for named arguments when we call functions, it can be confusing.
-
-You can see the value of a variable by typing the name in the console and hitting enter. A variable name by itself is a valid R command.
-
-Variable names are case sensitive. `X` and `x` are different names.
-
-Everything on the right-hand side of an assignment operator is evaluated first, then the result is saved to the name on the left:
-
-```{r}
-x <- x + 1
-```
-
-When we make variables, they show up in the **Environment** tab of RStudio. The Environment tab has the variables and objects that you create, so you can check there to verify what R knows about).
-
-Data sets, variables, and objects in R are held in memory. This means that the data size limits of R are based on the limits of RAM on the computer you are using. On most relatively recent laptops, you generally won't have an issue until your datasets start to approach around 1GB in size.
 
 # Packages
 
@@ -222,6 +142,37 @@ Packages are installed from a repository. CRAN (Comprehensive R Archive Network)
 The Packages tab in the bottom right of RStudio can help you install and update packages.
 
 If you're asked a question about whether you want to install packages from source, say NO. This is because installing from source requires compiling into computer-readable documents which take time. If you say NO then R uses a pre-compiled version.
+
+### EXERCISE
+
+Let's install all the packages that we're going to use throughout the workshop! 
+
+Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tidyverse`, `RColorBrewer`, `ggpubr`, `gridExtra`, and `grid`.
+
+
+```{r, installpackagesworkshop, eval=FALSE}
+
+```
+
+## What if you can't install packages in your computer? Posit Cloud to the rescue!
+
+If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud. Posit Cloud allows you to run R on the cloud (in other words, other people's computers). 
+
+When using cloud services, keep in mind that you're sending data to other people's computers. Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind. You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/). For this workshop, it's okay to use Posit Cloud. 
+
+To use Posit Cloud, go to [https://posit.cloud/](https://posit.cloud/).
+![](images/posit_cloud_main.jpeg)
+
+The first time you use it, follow these steps:
+
+1. [Sign up for a free acount](https://posit.cloud/plans/free)
+![](images/posit_cloud_sign_up.jpeg)
+2. Once you are logged in, click on "New Project" on the top right.
+![](images/posit_cloud_new_project.jpeg)
+3. Then click on New RStudio Project. It'll take a couple of moments to get the project ready.
+![](images/posit_cloud_rstudio_project.jpeg)
+4. Once you see RStudio's interface, you're good to go! 
+![](images/posit_cloud_rstudio.jpeg)
 
 ## Using Packages
 
@@ -1009,84 +960,6 @@ What percentage of Toyota drivers are male? What percentage of drivers in the da
 
 ```
 
-# Compute by Group
-
-We learned how to subset our data frame, so if we want to compute a measure by group in our data, we could do it on subsets.
-
-```{r}
-data("penguins") # reload penguins data
-table(penguins$species)
-
-mean(penguins$bill_length_mm[penguins$species == "Adelie"], na.rm=TRUE)
-mean(penguins$bill_length_mm[penguins$species == "Chinstrap"], na.rm=TRUE)
-mean(penguins$bill_length_mm[penguins$species == "Gentoo"], na.rm=TRUE)
-```
-
-But there are functions in R that will help us aggregate our data by categorical variables and compute summary measures. We will learn more about that when we cover Factors tomorrow.
-
-First, `tapply`, which applies a function to a vector grouped by a second vector.
-
-```{r, eval=FALSE}
-tapply(vector to compute on, 
-       vector with groups, 
-       name of the function, 
-       optionally any arguments to the function besides the data vector)
-```
-
-```{r}
-tapply(penguins$bill_length_mm,   # vector to compute on
-       penguins$species,  # vector with groups
-       mean,  # name of the function
-       na.rm = TRUE)  # optionally any arguments to the function besides the data vector
-```
-
-We can group by two different grouping variables by combining them in a list. Lists can hold objects of different types or the same type. For now, since we haven't covered lists, just know that this is the syntax to group by two different groups.
-
-```{r}
-tapply(penguins$bill_length_mm,   # vector to compute on
-       list(penguins$species, penguins$island),  # vector with groups
-       mean,  # name of the function
-       na.rm = TRUE)  # optionally any arguments to the function besides the data vector
-```
-
-Why are there still `NA` in the output if we removed missing values when computing the mean? Because there are no observations with those combinations of variables in the data -- no [Gentoo penguins](https://en.wikipedia.org/wiki/Gentoo_penguin) on [Dream island](https://en.wikipedia.org/wiki/Dream_Island) in our data.
-
-`aggregate()` is similar to `tapply` but produces output in a different format
-
-```{r}
-aggregate(penguins$bill_length_mm,  # data to compute on
-          list(penguins$species, penguins$island),  # groups: it expects a list here
-          mean,  # function
-          na.rm=TRUE)   # additional arguments to the function
-```
-
-We could also use the formula syntax. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
-
-```{r}
-aggregate(bill_length_mm ~ species + island,
-          data = penguins,
-          mean,
-          na.rm=TRUE)
-```
-
-## EXERCISE
-
-Compute group means of `body_mass_g` by `sex` with `tapply()` and `aggregate()`.
-
-Use `tapply()`
-
-```{r}
-
-
-```
-
-Use `aggregate()`
-
-```{r}
-
-
-```
-
 # PRACTICE SET 2
 
 These exercises are more challenging than the ones above and most require multiple steps to complete. Try to break each problem down into smaller steps.
@@ -1135,7 +1008,7 @@ How many different programs awarded at least one degree in 2021-22?
 
 ## EXERCISE 5
 
-Compute the total number of degrees awarded each year.
+Are there any programs who awarded no degrees during the time period covered by the data set?
 
 ```{r}
 
@@ -1143,7 +1016,9 @@ Compute the total number of degrees awarded each year.
 
 ## EXERCISE 6
 
-Compute the total number of degrees awarded in 2021-22 by school.
+Compute the total number of degrees awarded each year.
+
+Hint: you'll need either `aggregate` or `tapply`.
 
 ```{r}
 
@@ -1151,7 +1026,9 @@ Compute the total number of degrees awarded in 2021-22 by school.
 
 ## EXERCISE 7
 
-Are there any programs who awarded no degrees during the time period covered by the data set?
+Compute the total number of degrees awarded in 2021-22 by school.
+
+Hint: again, you'll need to aggregate the data.
 
 ```{r}
 
@@ -1160,6 +1037,8 @@ Are there any programs who awarded no degrees during the time period covered by 
 ## EXERCISE 8
 
 Which school had the greatest increase in the number of degrees awarded between 2010-11 and 2021-22?
+
+Hint: you'll need to aggregate the data one more time!
 
 ```{r}
 
