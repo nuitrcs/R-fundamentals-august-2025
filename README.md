@@ -6,6 +6,7 @@ We will cover the following topics:
 * Introduction to programming concepts
 * R and RStudio basics, data frames; indexing with conditional statements; packages; missing values
 * Factors; ifelse; useful functions
+* Tidyverse basics: select, filter, mutate, arrange, summarize, group_by
 * Data visualization with ggplot
 
 

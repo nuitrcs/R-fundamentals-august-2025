@@ -595,7 +595,7 @@ Variables (columns) that are already logical (TRUE/FALSE values), can be used to
 filter(police, contraband_found)
 ```
 
-### EXERCISE 
+### EXERCISE
 
 Use `filter()` to choose the rows where subject_race is "white".
 
