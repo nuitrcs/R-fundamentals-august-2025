@@ -7,10 +7,10 @@
 # letters, numbers, . _ 
 # case sensitive!
 
-my_name <- "Ritika"
-my.name <- "Ritika"  # legal, but not recommended
-My_name <- "Ritika"
-myName <- "Ritika"
+my_name <- "Katherine"
+my.name <- "Katherine"  # legal, but not recommended
+My_name <- "Katherine"
+myName <- "Katherine"
 
 # these are all different!
 
