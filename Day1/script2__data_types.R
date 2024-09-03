@@ -9,8 +9,8 @@
 
 # Character AKA string (of characters) AKA text ----
 # Surround with matching quotes
-"ritika"
-'Ritika'
+"angelica"
+'Angelica'
 "This is a whole sentence"
 "Can't you get more creative?"  # use " outside, when ' is inside
 
