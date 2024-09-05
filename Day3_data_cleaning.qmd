@@ -37,15 +37,7 @@ You can get help with the `?` function:
 ?read.csv
 ```
 
-Many times we just need to see some examples rather than read the entire documentation of a function or command. In this situation we would use the `example()` function. Consider below where we might be interested in some perspective plots. When you enter this into RStudio you will see some of the beautiful graphics that R can do:
-
-```{r}
-example(persp)
-```
-
-The Run Examples hyperlink at the bottom of the function documentation is generally the quickest way to understand different use cases.
-
-Aside from these areas of help another method is to search the internet for further help. Here are some other resources:
+Aside from the documentation, another method is to search the internet for further help. Here are some other resources:
 
 -   [The Comprehensive R Archive Network](https://cran.r-project.org/)
 
@@ -71,7 +63,7 @@ This section will list several basic R functions that are very useful and should
 
 ### ifelse
 
-`ifelse()` allows you to change the values of a vector based on a conditional test. It's useful for recoding data, and you can use it in situations where you don't want to change the underlying data.
+`ifelse()` allows you to change the values of a vector based on a conditional test. It's useful for recoding data, and you can also use it in situations where you don't want to change the underlying data.
 
 The format is:
 
@@ -87,9 +79,7 @@ x >= 0
 
 ifelse(x >= 0, x, 0)  # keep positive (>= 0) values as they are, replace others with 0
 
-ifelse(is.na(x), 0, x)  # replace missing values with 0, leave others alone
-
-ifelse(x %% 2 == 0, "even", "odd")  ## remainder of dividing x by 2 is 0 
+ifelse(is.na(x), mean(x, na.rm = TRUE), x)  # replace missing values with the mean, leave others alone
 ```
 
 `ifelse()` looks at each value in the initial TRUE/FALSE vector, and it decides what the value at each position should then be.
@@ -111,12 +101,10 @@ There's also the useful `replace_na()` function in the tidyr package and `na_if(
 library(tidyr)
 library(dplyr)
 
-replace_na(x, 0) # replace NA with 0
+replace_na(x, mean(x, na.rm = TRUE)) # replace NA with 0
 
 y <- c("abc", "def", "", "ghi") # remove an empty string
 na_if(y, "")
-
-na_if(1:5, 5:1) # when x == y, replace the value in x with NA
 ```
 
 ### EXERCISE
@@ -209,15 +197,6 @@ paste(first_names, last_names, sep=" ")
 paste(salutation, first_names, sep=" ")
 ```
 
-If you provide a vector of characters, you can also use the `collapse` argument, which places whatever you provide for `collapse` between the characters of the vector:
-
-```{r}
-state.name[1:5] # built-n vector state.name, using the first 5 values
-
-paste0(state.name[1:5], collapse = ", and ")
-paste0(state.name[1:5], sep = ", and ") # will not work as intended
-```
-
 ### EXERCISE
 
 `state.abb` has two-letter abbreviations for US states. `state.region` has the region for each US state. Use `paste()` to join the info from these two vectors together, so the output has entries that look like:
@@ -225,84 +204,6 @@ paste0(state.name[1:5], sep = ", and ") # will not work as intended
 ```         
 "AL: South"         "AK: West"          "AZ: West"          "AR: South"  ...
 ```
-
-```{r}
-
-```
-
-### seq
-
-`seq()` is used to generate sequences of numbers. You can specify the interval between values or how many values you want.
-
-```{r}
-seq(from=1, to=10, by=2)
-```
-
-Note that the sequence output will only have values that are \<= the "to" value.
-
-```{r}
-seq(0, 10, length.out=4)
-```
-
-```{r}
-seq(0, 1, .1)
-```
-
-### EXERCISE
-
-Use the `seq()` function to select every 5th row from `state.x77` (it's a matrix built in to R - you can index it like a data frame).
-
-Things you need to figure out: how do you know what the sequence should go to? How do you use the result of seq() to then select the rows?
-
-```{r}
-
-```
-
-## Changing data types
-
-Previously, you discovered that R implicitly coerces variables into other data types when needed. For instance, if you add a `numeric` to a `logical`, the result is a `numeric`. And if you place them together in a vector, the vector will contain two `numeric` values. Alternatively, if you add a `numeric` to a `character`, the operation fails. If you put them together in a vector, both become `character` strings:
-
-```{r}
-TRUE + 5
-v1 <- c(TRUE, 5)
-v1
-
-"One" + 5
-v2 <- c("One", 5)
-v2
-```
-
-There is a hierarchy for data types in R: `logical` \< `integer` \< `numeric` \< `character`.
-
-When variables of different types are somehow combined (with addition, put in the same vector, and so on), R will coerce both to the higher ranking type. That is why `v1` contained `numeric` variables (`numeric` is higher ranked than `logical`) and `v2` contained `character` values (`character` is higher ranked than `numeric`).
-
-Automatic coercion is often useful, but will sometimes cause problems. As an example, a vector of numbers may accidentally be converted to a `character` vector, which will confuse plotting functions. Luckily it is possible to convert objects to other data types. The functions most commonly used for this are `as.logical`, `as.numeric` and `as.character`. Here are some examples of how they can be used:
-
-```{r}
-as.logical(1)           # Should be TRUE
-as.logical("FALSE")     # Should be FALSE
-as.numeric(TRUE)        # Should be 1
-as.numeric("2.718282")  # Should be numeric 2.718282
-as.character(2.718282)  # Should be the string "2.718282"
-as.character(TRUE)      # Should be the string "TRUE"
-```
-
-A word of warning though - conversion only works if R can find a natural conversion between the types. Here are some examples where conversion fails. Note that only some of them cause warning messages:
-
-```{r}
-as.numeric("two")                   # Should be 2
-as.numeric("1+1")                   # Should be 2
-as.numeric("2,718282")              # Should be numeric 2.718282
-as.logical("Vaccines cause autism") # Should be FALSE
-```
-
-### EXERCISE
-
--   What happens if you apply `as.logical` to the `numeric` values 0 and 1? What happens if you apply it to other numbers?
-
--   What happens if you apply `as.character` to a vector containing `numeric` values?
-
--   The functions `is.logical`, `is.numeric` and `is.character` can be used to check if a variable is a `logical`, `numeric` or `character`, respectively. What type of object do they return?
 
 ```{r}
 
@@ -344,8 +245,11 @@ levels(smoke2)
 So far, we have solved neither the problem of the categories being in the wrong order nor that invalid `No` value. To fix both these problems, we can use the `levels` argument in `factor`:
 
 ```{r}
-smoke2 <- factor(smoke, levels = c("Never", "Occasionally", "Regularly", "Heavy"),
-                        ordered = TRUE)
+smoke2 <- factor(
+  smoke,
+  levels = c("Never", "Occasionally", "Regularly", "Heavy"),
+  ordered = TRUE
+  )
 
 # Check the results:
 smoke2
@@ -355,7 +259,7 @@ table(smoke2)
 
 You can control the order in which the levels are presented by choosing which order we write them in in the `levels` argument. The `ordered = TRUE` argument specifies that the order of the variables is *meaningful*.
 
-It can be excluded in cases where you wish to specify the order in which the categories should be presented purely for presentation purposes (e.g. when specifying whether to use the order `Male/Female/Other` or `Female/Male/Other`). Also note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations. To find the values of `smoke` that became `NA` in `smoke2` you can use `which` and `is.na`:
+It can be excluded in cases where you wish to specify the order in which the categories should be presented purely for presentation purposes (e.g., when specifying whether to use the order `Male/Female/Other` or `Female/Male/Other`). Also note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations. To find the values of `smoke` that became `NA` in `smoke2` you can use `which` and `is.na`:
 
 ```{r}
 smoke[which(is.na(smoke2))]
@@ -369,20 +273,28 @@ When we created `smoke2`, one of the elements became an `NA`. `NA` was however n
 
 ```{r}
 smoke2 <- addNA(smoke2)
+levels(smoke2)
 ```
 
 If you wish to change the name of one or more of the `factor` levels, you can do it directly via the `levels` function. For instance, we can change the name of the `NA` category, which is the 5th level of `smoke2`, as follows:
 
 ```{r}
+levels(smoke2)
+levels(smoke2)[5]
 levels(smoke2)[5] <- "Invalid answer"
+levels(smoke2)
 ```
 
 Finally, if you've added more levels than what are actually used, these can be dropped using the `droplevels` function:
 
 ```{r}
-smoke2 <- factor(smoke, levels = c("Never","Occasionally","Regularly","Heavy","Constantly"),
-                        ordered = TRUE)
+smoke2 <- factor(
+  smoke,
+  levels = c("Never","Occasionally","Regularly","Heavy","Constantly"),
+  ordered = TRUE
+  )
 levels(smoke2)
+table(smoke2)
 smoke2 <- droplevels(smoke2)
 levels(smoke2)
 ```
@@ -392,10 +304,13 @@ levels(smoke2)
 Now suppose that we'd like the levels of the `smoke2` variable to be presented in the reverse order: *Heavy*, *Regularly*, *Occasionally*, and *Never*. This can be done by a new call to `factor`, where the new level order is specified in the `levels` argument:
 
 ```{r}
-smoke2 <- factor(smoke2, levels = c("Heavy", "Regularly", "Occasionally", "Never"))
+smoke2 <- factor(
+  smoke2,
+  levels = c("Heavy", "Regularly", "Occasionally", "Never")
+  )
 
 # Check the results:
-levels(smoke2)
+table(smoke2)
 ```
 
 ### Combining levels
@@ -403,6 +318,8 @@ levels(smoke2)
 Finally, `levels` can be used to merge categories by replacing their separate names with a single name. For instance, we can combine the smoking categories *Occasionally*, *Regularly*, and *Heavy* to a single category named *Yes*. Assuming that these are first, second and third in the list of names (as will be the case if you've run the last code chunk above), here's how to do it:
 
 ```{r}
+levels(smoke2)
+levels(smoke2)[1:3] 
 levels(smoke2)[1:3] <- "Yes"
 levels(smoke2)
 ```
@@ -467,7 +384,7 @@ Tidyverse packages are particularly useful for:
 
 ### Data
 
-Let's import the data we'll be using. The data is from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/) and includes vehicle stops by the Evanston police in 2017.
+Let's import the data we'll be using. The data is from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/) and includes vehicle stops by the Evanston police in 2017. It's similar, but not exactly the same as `evp` (e.g., it has more rows).
 
 We're going to use the `read_csv` function from the `readr` package, which is part of the tidyverse. The `read_csv` function works like `read.csv` except it has some different defaults, guesses data types a bit differently, and produces a tibble instead of a data frame (details coming).
 
@@ -480,36 +397,11 @@ The output message that you get tells you what data type it guessed for each col
 We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to colClasses for `read.csv`). Let's make the location to be character data, since it is zip codes -- zip codes should not be treated as numbers.
 
 ```{r, eval=TRUE}
-police <- read_csv("data/ev_police.csv",
-                   col_types=c("location"="c"))
+police <- read_csv(
+  "data/ev_police.csv",
+  col_types=c("location"="c")
+  )
 ```
-
-### Tibbles
-
-You may have noticed above that `read_csv` imported the data as something called a Tibble. Tibbles are the tidyverse version of a data frame. You can use them as you would a data frame (they are one), but they behave in slightly different ways.
-
-```{r, eval=TRUE}
-police
-```
-
-The most observable difference is that tibbles will only print 10 rows and the columns that will fit in your console. When they print, they print a list of column names and the types of the columns that are shown.
-
-To view the dataset, use `View()`:
-
-```{r}
-View(police)
-```
-
-When using \[\] notation to subset them, they will always return a tibble. In contrast, data frames sometimes return a data frame and sometimes return just a vector.
-
-```{r}
-police[, 1]
-as.data.frame(police)[, 1]
-```
-
-dplyr is at the core of the tidyverse. It is for working with data frames. It contains six main functions, each a verb, of actions you frequently take with a data frame. We're covering 3 of those functions today (select, filter, mutate), and 3 more next session (group_by, summarize, arrange).
-
-Each of these functions takes a data frame as the first input. Within the function call, we can refer to the column names without quotes and without \$ notation.
 
 ### dplyr
 
@@ -591,7 +483,7 @@ The equivalent base R expression would be `police[police$subject_race == "white"
 
 ```
 
-## Pipe: Chaining Commands Together
+### Pipe: Chaining Commands Together
 
 So, we can choose rows and choose columns separately; how do we combine these operations? `dplyr`, and other tidyverse commands, can be strung together in a series with a `%>%` (say/read: pipe) operator. (If you are familiar with working in a terminal/at the command line, it works like a bash pipe character `|`.) It takes the output of the command on the left and makes that the first input to the command on the right.
 
