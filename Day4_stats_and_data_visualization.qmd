@@ -126,11 +126,9 @@ You can learn more in our workshop on [statistical modelin in R](https://github.
 
 Often, plotting your data will be much more informative than summary statistics alone. The R package *ggplot2* is the most widely used and aesthetically pleasing graphics framework available in R. It relies on a structure called the "grammar of graphics". Essentially, it follows a layered approach to describe and construct the visualization.
 
-## Installing `{ggplot2}`
-
 Here is a handy [cheat sheet for ggplot2](https://statsandr.com/blog/files/ggplot2-cheatsheet.pdf)! Most users rely on the cheat-sheet because it is often difficult to remember the exact syntax and options.
 
-Install and load the *ggplot2* package in your workspace as below.
+Load the *ggplot2* package in your workspace as below.
 
 ```{r}
 # install.packages("ggplot2")
@@ -157,7 +155,7 @@ To build or describe any visualization with one or more dimensions, we can use t
 
 7.  **Coordinate system:** What kind of a coordinate system should the visualization be based on ---should it be cartesian or polar?
 
-    You don't have to remember everything - refer to your handy [cheat sheet for ggplot2](https://statsandr.com/blog/files/ggplot2-cheatsheet.pdf)!
+You don't have to remember everything - refer to your handy [cheat sheet for ggplot2](https://statsandr.com/blog/files/ggplot2-cheatsheet.pdf)!
 
 # Understanding the `{ggplot}` Syntax
 
@@ -371,7 +369,7 @@ scale_plot <- ggplot(midwest, aes(x=area, y=poptotal)) +
 scale_plot
 ```
 
-Scales maps from the data-points to the aesthetics, it does not delete data-points, rather it zooms in similar to `coord_cartesian()` .
+Notice that, similarly to method 1, this method deletes the points outside of the range.
 
 Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
 
@@ -663,7 +661,7 @@ Separate the plot above into facets by sex. Make sure to remove observations tha
 
 ```
 
-# Saving your beautiful plots!
+# Bonus 1: Saving your beautiful plots!
 
 Suppose you created a bunch of plots and now you want to save them, you can use the [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html) function:
 
@@ -685,16 +683,13 @@ p <-
        y = "Body mass (g)", 
        title = "Penguins Data") +
   theme_classic()
-  
 
-name <- "my_beautiful_plot.pdf"
-
-ggsave(name, plot=p, height = 4, width = 6, device="pdf", useDingbats=F) # setting useDingbats to FALSE lets you edit plot fonts in Illustrator
+ggsave("my_beautiful_plot.pdf", plot=p, height = 4, width = 6, device="pdf", useDingbats=F) # setting useDingbats to FALSE lets you edit plot fonts in Illustrator
 ```
 
 ![](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*mcLnnVdHNg-ikDbHJfHDNA.png){width="665"}
 
-# Arranging multiple plots
+# Bonus 2: Arranging multiple plots
 
 If you are preparing several different plots for publication, perhaps you want to arrange them in a grid before exporting and saving them.
 
