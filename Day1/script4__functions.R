@@ -18,6 +18,8 @@ round(4.342345, 2)
 
 
 
+# functions that operate on vectors
+
 x <- c(5, 7, 2, 4, 5, 1, 0, 9, 7, 5, 
        4, 7, 3, 6, 6, 4, 4, 4, 4, 1,
        4, 6, 2, 3, 4, 5, 7, 6, 5, 3,
@@ -27,22 +29,16 @@ x <- c(5, 7, 2, 4, 5, 1, 0, 9, 7, 5,
        6, 2, 3, 4, 5, 7, 6, 5, 3, 6, 
        0, 9, 7, 5, 4, 2, 9, 8, 8, 9)
 
+# functions that operate element-wise on a vector
+log(x)
 
-# functions that operate on a vector
+# functions that operate on the entire vector
 sum(x)
 mean(x)
 sd(x)
 var(x)
 
 length(x)
-
-
-# we can use function calls in expressions directly
-sd(x)^2 == var(x)
-
-
-# functions that operate on a single value
-log(x)
 
 
 # TRY IT ----
@@ -61,15 +57,6 @@ v2 <- rnorm(20)
 # Which vector has the greater max value?  max() is the function
 
 
-
-# What is this code doing?
-max(v1, v2)
-
-
-# Challenge: run the expression below to open the documentation for the max function.
-# See if you can figure out how to get the pairwise maximum values for each 
-# position in the v1 and v2 vectors: the output should have 20 values
-?max
 
 
 

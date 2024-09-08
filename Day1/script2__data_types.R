@@ -49,9 +49,6 @@ F
 # missing: replaces any individual value
 NA
 
-# invalid: only used by itself // undefined value
-NULL
-
 
 # Testing data types ----
 
@@ -115,11 +112,6 @@ FALSE == 0
 TRUE + TRUE # !!!! -- it's normal to sum TRUE values in R (although not directly)
 
 # combining conditions
-
-# & && and
-# | || or
-# & and | work with vectors with multiple values (coming soon), && and || work with single values
-
 
 TRUE & TRUE
 TRUE & FALSE

@@ -35,12 +35,6 @@ x <- c(5, 7, 2, 4, 5, 1, 0, 9, 7, 5,
 
 x[1]
 
-# what happens if we go out of bounds?
-x[0]
-
-x[1000]
-
-
 # Ranges
 
 x[1:5]
@@ -50,8 +44,6 @@ x[1:5]
 x[10:20]
 
 x[20:200]
-
-x[0:3]
 
 
 # Multiple values
@@ -128,18 +120,25 @@ x[2, 3, 5]
 
 
 # Working with variables and vectors ----
+## single element stored in a numeric variable
+x <- 30
+y <- 15
 
-val1 <- 30
-val2 <- 15
-
+# multiple elements inside a vector variable
 ages <- c(18, 25, 43, 35, 36, 50, 26, 25)
 
+# think of single elements as vectors of length 1
+a_variable <- 10
+a_vector <- c(10)
+typeof(a_variable)
+typeof(a_vector)
 
-val1 + val2
 
-val2/val1
+x + y
 
-(val1 > 10) | (val2 > 10)
+x/y
+
+(x > 10) | (y > 10)
 
 # vectorized operations
 
@@ -158,5 +157,10 @@ ages > 30
 ages < 40
 (ages > 30) & (ages < 40)
 
+# recycling: vector operations between vectors of unequal length
+a <- c(0,0,0,0,0) # 5 elements
+b <- c(1)
+a + b
 
-
+b <- c(1, 2)
+a + b # warning

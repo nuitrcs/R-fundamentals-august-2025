@@ -8,25 +8,14 @@
 2 + 5
 
 
-# here's a more complicated one
-
-t.test(rnorm(15), runif(15))
-
-
-# here's a command split across multiple lines
-
-summary(
-  lm(mpg ~ disp + hp, 
-     data=mtcars)
-)
-
-
 # TIPS
 
 # There's a space after the prompt (`>`)
 
 # If you see a `+` instead of a `>`, R thinks the previous command 
 # wasn't finished and expects more input
+2 *
+  5
 
 # If you're stuck with a `+`, you can use Control+C or the escape (esc) key 
 # to cancel the command and get the normal `>` prompt back.
@@ -37,10 +26,5 @@ summary(
 # Output starts with [1]; this number indexes the output values, 
 # since there can be more than one value as output
 
-
-
-
-
-
-
-
+x <- 1:20
+x

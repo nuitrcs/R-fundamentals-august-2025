@@ -47,16 +47,15 @@ evp[evp$vehicle_make == "CADI", "vehicle_year" ] # row and column indexing with 
 
 
 # make new columns in a data frame --------
-evp$vehicle_age_in_2023 <- 2023 - evp$vehicle_year
+evp$vehicle_age_in_2024 <- 2024 - evp$vehicle_year
 View(evp)
 names(evp)
 
 # simple histogram 
-hist(evp$vehicle_age_in_2023)
+hist(evp$vehicle_age_in_2024)
 
 # simple statistics
-mean(evp$vehicle_age_in_2023, na.rm=TRUE)
-
+mean(evp$vehicle_age_in_2024, na.rm=TRUE)
 
 
 
