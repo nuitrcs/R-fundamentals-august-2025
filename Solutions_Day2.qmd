@@ -42,59 +42,10 @@ Each pane can be minimized or maximized within the column by clicking the minimi
 
 ![](images/rstudio-panes-labeled.jpeg)
 
-## Console and R Commands
-
-We can type basic math equations in the console. Click Run Code to give it a try.
-
-```{r}
-2+2
-3^2
-(2+3)/(5+7)
-```
-
-```{r}
-
-```
-
-We can also do Boolean comparisons -- expressions that result in TRUE or FALSE
-
--   == for testing equality
--   ! means NOT
--   & is AND, \| is OR
-
-```{r}
-3 > 2
-5 == 25/5
-"cat" != "dog"
-!TRUE
-```
-
-```{r}
-TRUE & FALSE
-TRUE | FALSE
-```
-
-### Console Tips
-
--   There's a space after the prompt (`>`)
--   If you see a `+` instead of a `>`, R thinks the previous command wasn't finished and expects more input
-    -   If you're stuck with a `+`, you can use Control+C or the escape (esc) key to cancel the command and get the normal `>` prompt back.
--   Use the up and down arrow keys to cycle through previous commands
-    -   List of previous commands is in the History tab in RStudio (with the Environment tab)
--   Output starts with `[1]`; this number indexes the output values, since there can be more than one value as output
-
-### EXERCISE
-
-Type some math equations in the console. Lacking inspiration? What's the square root of 394, minus 5, cubed?
-
-```{r}
-(sqrt(394)-5)^3
-```
-
 ## File paths
 
 -   You can use the Files tab to access the files on your computer
--   **Absolute paths** always start with the root directory and provide the full path to the file or directory. For example, the absolute path to the home directory of a user named "ritika" would be "/home/ritika".
+-   **Absolute paths** always start with the root directory and provide the full path to the file or directory. For example, the absolute path to the home directory of a user named "john" would be "/home/john".
 -   On the other hand, a **relative path** is a path to a file or directory that is relative to the current directory.
 
 ## Working directory
@@ -108,14 +59,16 @@ getwd()
 setwd("r-bootcamp/")  # this is an example -- file path needs to be valid
 ```
 
-Whenever you refer to a file with a *relative path* it will look for it in the working directory.
-
 ### EXERCISE
 
 Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder). Use either a console command or the GUI options.
 
 ```{r}
-setwd("R-fundamentals-summer-workshop")
+# run this code to change your working directory only for this exercise
+setwd("..")
+
+# type code below to change the working directory back to your R workshop folder
+setwd("R-fundamentals-summer-workshop") # change this to match your folder name
 ```
 
 ## RStudio Projects
@@ -126,7 +79,7 @@ To make a project you would click File \> New Project, then follow the prompts. 
 
 ### EXERCISE
 
-Check that you are currently working within the `R-``fundamentals-summer-workshop` Project. If not, open the relevant .RProj file in a new RStudio session.
+Check that you are currently working within the `R-fundamentals-summer-workshop` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
 
 ```{r}
 getwd()
@@ -137,8 +90,6 @@ getwd()
 This is an R Quarto file. It is very similar to an R Markdown file if you've used those before. There are two view modes for this file - Source and Visual. The code in the gray chunks (surrounded by \`\`\` in Source view) is R code that you can run. There's a green triangle you can click to run all of the code in a chunk, or put your cursor in a line and press Command+Enter (Mac) or Control+Enter (PC) to execute that command (which can span multiple lines).
 
 We're using an R Quarto Document instead of an R script so that we can include additional text and explanation in the file. In an .R script, everything has to be an R command or comment. Here, between chunks of R code, we can include text and other information.
-
-# Functions and Variables
 
 ## Functions
 
@@ -154,6 +105,8 @@ round(2.12345)
 round(log(16))
 ```
 
+In `round(log(16))` for example R first evaluates `log(16)` and then evaluates `round()` on that result.
+
 How do you learn function names? See the [R Reference Card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) for some basics. Otherwise, look at the documentation for the packages you're using, or tutorials for the type of analysis you want to do.
 
 The inputs or arguments to a function have names. When we don't use the name, like above, it matches the values in order. But we can always use the argument name:
@@ -163,34 +116,6 @@ round(3.1415, digits=2)
 ```
 
 You can find the argument names in the Help or documentation page for the function. We'll look at these soon.
-
-## Variables
-
-We save and reference individual values, or more complex objects like vectors and data sets, with variables. We assign values to a name.
-
-```{r}
-x <- 3
-```
-
-```{r}
-x = 3
-```
-
-The `<-` assignment operator is recommended for clarity. `=` also works, but because we use `=` for named arguments when we call functions, it can be confusing.
-
-You can see the value of a variable by typing the name in the console and hitting enter. A variable name by itself is a valid R command.
-
-Variable names are case sensitive. `X` and `x` are different names.
-
-Everything on the right-hand side of an assignment operator is evaluated first, then the result is saved to the name on the left:
-
-```{r}
-x <- x + 1
-```
-
-When we make variables, they show up in the **Environment** tab of RStudio. The Environment tab has the variables and objects that you create, so you can check there to verify what R knows about).
-
-Data sets, variables, and objects in R are held in memory. This means that the data size limits of R are based on the limits of RAM on the computer you are using. On most relatively recent laptops, you generally won't have an issue until your datasets start to approach around 1GB in size.
 
 # Packages
 
@@ -217,6 +142,42 @@ install.packages(c("palmerpenguins", "tidyverse", "janitor"))
 Packages are installed from a repository. CRAN (Comprehensive R Archive Network) is the most common. People also install packages from Bioconductor and GitHub (process differs for these).
 
 The Packages tab in the bottom right of RStudio can help you install and update packages.
+
+If you're asked a question about whether you want to install packages from source, say NO. This is because installing from source requires compiling into computer-readable documents which take time. If you say NO then R uses a pre-compiled version.
+
+### EXERCISE
+
+Let's install all the packages that we're going to use throughout the workshop!
+
+Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tidyverse`, `RColorBrewer`, `ggpubr`, `gridExtra`, and `grid`.
+
+```{r, installpackagesworkshop, eval=FALSE}
+my_packages <- c("praise", 
+                 "palmerpenguins", 
+                 "janitor", 
+                 "tidyverse",
+                 "RColorBrewer",
+                 "ggpubr", 
+                 "gridExtra",
+                 "grid")
+
+install.packages(my_packages)
+```
+
+## What if you can't install packages in your computer? Posit Cloud to the rescue!
+
+If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud. Posit Cloud allows you to run R on the cloud (in other words, other people's computers).
+
+When using cloud services, keep in mind that you're sending data to other people's computers. Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind. You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/). For this workshop, it's okay to use Posit Cloud.
+
+To use Posit Cloud, go to <https://posit.cloud/>. ![](images/posit_cloud_main.jpeg)
+
+The first time you use it, follow these steps:
+
+1.  [Sign up for a free acount](https://posit.cloud/plans/free) ![](images/posit_cloud_sign_up.jpeg)
+2.  Once you are logged in, click on "New Project" on the top right. ![](images/posit_cloud_new_project.jpeg)
+3.  Then click on New RStudio Project. It'll take a couple of moments to get the project ready. ![](images/posit_cloud_rstudio_project.jpeg)
+4.  Once you see RStudio's interface, you're good to go! ![](images/posit_cloud_rstudio.jpeg)
 
 ## Using Packages
 
@@ -342,6 +303,9 @@ Using the `penguins` data frame, write commands to figure out:
 -   Names of the variables?
 
 ```{r}
+# load the package
+library(palmerpenguins)
+
 nrow(penguins)
 ncol(penguins)
 
@@ -369,6 +333,8 @@ We can also use the vectors in expressions:
 ```{r}
 month_info$days/7
 ```
+
+When using vectors in math expressions
 
 ## EXERCISE
 
@@ -440,13 +406,14 @@ Using the data on Northwestern degrees from the last exercise:
 
 What is the mean number of bachelors degrees issued in the first 5 years of the data?
 
-What is the mean for the second 5 years in the data?
+What is the mean number of bachelors degrees issued in the last 5 years of the data?
 
 What is the mean number of doctoral degrees per year excluding the most recent year of 2021-22?
 
 ```{r}
 mean(degrees[1:5,]$bachelors)
 mean(degrees[6:10,]$bachelors)
+
 mean(degrees[-10,]$doctorates)
 mean(degrees[-nrow(degrees),]$doctorates)
 ```
@@ -572,25 +539,43 @@ month_info[,c("month", "days")]
 
 ## Boolean/Conditional Selection
 
+Suppose we want to select rows from a data frame that might meet a specific condition. For example, select all data for patients aged greater than 65, or select all sales items that were sold in the month of December.
+
+Typically, we use boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
+
 If we have a boolean vector (`TRUE` and `FALSE` values) that is the same length as the number of rows or columns, we can use it to select data.
 
-First, with a vector:
+For example, let's suppose you want to find the names of the months which have 31 days exactly
 
 ```{r}
-month_info$days[c(TRUE, FALSE,  TRUE, FALSE,
-                  TRUE, FALSE,  TRUE,  TRUE,
-                  FALSE,  TRUE, FALSE,  TRUE)]
+# create month_info data frame manually
+month_info <- data.frame(month=month.name,
+                         index=1:12,
+                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
 
-month_info$days == 31
+month_info
+month_info$days # vector containing number of days in each month
+month_info$days == 31 # boolean vector of T,F values based on a condition
 
-month_info$days[month_info$days == 31]
-
-month_info$month[month_info$days == 31]  # can index a different vector
-
-month_info$month[month_info$days != 31]
+month_info$month[month_info$days == 31] # works!
 ```
 
-Now, with a data frame, we typically want to use boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
+The command above works because R selects the values which evaluated to TRUE and discards the values that evaluated to FALSE.
+
+Another example:
+
+```{r}
+# create a boolean vector of length equal to number of rows in month_info
+selection_vector <- c(T, T, T, T, T, T,
+                      F, F, F, F, F, F)
+
+month_info$month
+month_info$month[selection_vector] 
+
+month_info$month[!selection_vector] # inverted selection
+```
+
+Let's see an example with the penguins data frame:
 
 Start with the criteria we want:
 
@@ -626,7 +611,9 @@ penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58,]
 
 ## EXERCISE
 
-Which years were more than 600 doctoral degrees awarded? You might want to break this down into two steps: 1) write an expression for determining whether there were more than 600 doctoral degrees, then 2) use that expression to index the correct column of your degrees data.
+Which years were more than 600 doctoral degrees awarded according to the `nu_degrees.csv` data?
+
+You might want to break this down into two steps: 1) write an expression for determining whether there were more than 600 doctoral degrees, then 2) use that expression to index the correct column of your degrees data.
 
 ```{r}
 degrees[degrees$doctorates > 600, "year"]
@@ -664,7 +651,9 @@ If we don't want the missing rows included in our results above when we were sel
 is.na(penguins$bill_length_mm)
 !is.na(penguins$bill_length_mm)  # ! is not
 
+# not missing bill length AND bill length < 34
 penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34,]
+penguins[penguins$bill_length_mm < 34,]
 ```
 
 The function `complete.cases()` can be used to find which rows have no missing values at all:
@@ -713,71 +702,47 @@ What if the variable/column names in your dataset have spaces, start with number
 ```{r}
 bad_data <- read.csv("data/annoying.csv")
 bad_data
+names(bad_data)
 ```
 
-Use readr package read_csv function to preserve the original names or set the check.names option in read.csv to FALSE.
-
-```{r}
-library(readr)
-bad_data <- read_csv("data/annoying.csv")
-bad_data
-
-# or
-bad_data <- read.csv("data/annoying.csv", check.names=FALSE)
-bad_data
-```
-
-Then use back ticks around the names, or use the clean_names function from the janitor package to clean them up
-
-```{r, eval=FALSE}
-bad_data$2022
-```
-
-```{r}
-bad_data$`2022`
-```
+The package `{janitor}` functions expedite the initial data exploration and cleaning that comes with any new data set. 
 
 ```{r}
 library(janitor)
 bad_data <- clean_names(bad_data)
 bad_data
+names(bad_data)
 bad_data$x2022
 ```
 
 ## Renaming Columns
 
-Normally we don't need to do this step below, but I want to keep the current names so I can reset the names later
-
-```{r}
-oldnames <- names(penguins)  # save so we can reset later
-```
+Sometimes, we want to change the column names of a dataframe after importing into R. For example, in `bad_data` above, perhaps we want the columns `x2022` and `x2023` to be called `year_2022` and `year_2023` respectively.
 
 Just like we use `names()` to get the names, use the same function to assign the names. This is different syntax than we see other places in R; `names()` is a special type of function called a replacement function.
 
-I can change the name of the first variable with:
+We can change the name of a data frame column as follows:
 
 ```{r}
-names(penguins)[1]
-names(penguins)[1] <- "boo"  # change the name of the first column
-names(penguins)
-head(penguins)
+names(bad_data)
+names(bad_data)[2]
+names(bad_data)[2] <- "year_2022"
+names(bad_data) # inspect new names
+bad_data 
 ```
+
+You can also change all or several column names at once.
 
 ```{r}
-names(penguins) <- c("a", "b", "c", "d", "e", "f", "g", "h")  # change all of the column names
-head(penguins)
+names(bad_data)
+names(bad_data) <- c("fruit", "year_2022", "year_2023", "year_2024")
+names(bad_data) # inspect new names
+bad_data 
 ```
 
-Put the old names back
+# Making new columns
 
-```{r}
-names(penguins) <- oldnames
-head(penguins)  # check
-```
-
-# Making new variables
-
-We can add a new variable to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a variable that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
+We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
 
 ```{r}
 penguins$bill_length_cm <- penguins$bill_length_mm / 10  # make new variable: note CM instead of MM in the name
@@ -785,7 +750,7 @@ names(penguins)  # check to see that it was added
 penguins[, c("bill_length_cm", "bill_length_mm")]  # select the two vars to view them
 ```
 
-Variables will be added to the end (right). We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
+Columns will be added to the end (right). We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
 
 ```{r}
 penguins <- penguins[, c("species", "island", "sex", "year",
@@ -800,6 +765,12 @@ names(penguins)
 Using `month_info`: make a new variable as part of `month_info`, called `weeks`, that is the number of days divided by 7.
 
 ```{r}
+# create month_info dataframe manually
+month_info <- data.frame(month=month.name,
+                         index=1:12,
+                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
+
+
 month_info$weeks <- month_info$days/7
 month_info
 ```
@@ -818,16 +789,17 @@ month_info$long_month <- month_info$days == 31
 month_info
 ```
 
-# Dropping Variables
+# Dropping Columns
 
-To remove a variable from a data frame, we select the data we want to keep, and then save that back to the same variable:
+To remove a column from a data frame, we select the data we want to keep, and then save that back to the same column:
 
 ```{r}
 month_info
 
 month_info[, 1:3]
 
-month_info <- month_info[, 1:3]
+month_info <- month_info[, -c(2,6)]
+month_info
 ```
 
 Or with names:
@@ -844,21 +816,25 @@ names(penguins)
 
 How do we change our data? A common task might be replacing missing values -- either actual NA values or other values that indicate missing.
 
+Data imputation is a method for retaining the majority of the dataset's data and information by substituting missing data with a different value. This is a very common task in data cleaning. One way to impute missing data is mean imputation i.e. replacing missing values by the mean of the non-missing values in that column.
+
+Let's go through an example to replace missing values in the `bill_depth_mm` column of the `penguins` data frame.
+
 First, we identify and select the values we want to change:
 
 ```{r}
+# find NA / missing values in the column bill_depth_mm
 penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)]
 ```
 
-Let's compute the average value to replace it with
+Next, compute the replacement value, which is the mean of non-missing values of `bill_depth_mm` in this case:
 
 ```{r}
 bill_depth_mean <- mean(penguins$bill_depth_mm, na.rm=TRUE)
 bill_depth_mean
-
 ```
 
-Now, assign a new value to the observations we want to change
+Now, assign the replacement value `bill_depth_mean` to the missing observations:
 
 ```{r}
 penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)] <- bill_depth_mean
@@ -866,12 +842,18 @@ penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)] <- bill_depth_mean
 sum(is.na(penguins$bill_depth_mm))
 ```
 
-It doesn't have to be missing values, and we could use a function:
+You can replace any values you need to replace (it doesn't have to be missing), and often-times it is common to use functions to compute the replacement values.
 
 ```{r}
+# get a sub-string from the given input string
+substr(x = "January", start = 1, stop = 3)
+
+# generate a vector of replacement values using month_info$month as the input vector
 substr(month_info$month, 1, 3)
 
+# replace the original values in the month column with the new values
 month_info$month <- substr(month_info$month, 1, 3)
+month_info
 ```
 
 ## EXERCISE
@@ -880,12 +862,19 @@ Here is code to make a new data frame. Run the code and take a look at the data 
 
 ```{r}
 some_numbers <- data.frame(v1 = rnorm(10), v2 = runif(10))
+some_numbers
 ```
 
-Replace all values of v1 that are below 0 with the value 0
+You decide that you don't want any negative numbers in your data frame. Write code to replace all values of column v1 in `some_numbers` that are below 0 with the value 0.
 
 ```{r}
+# Identify the values to be replaced/changed in some_numbers
+some_numbers$v1[some_numbers$v1 < 0]
+
+# Assign the new/replacement value to the elements identified in the first step
 some_numbers$v1[some_numbers$v1 < 0] <- 0
+
+# check some_numbers to see if the replacement worked!
 some_numbers
 ```
 
@@ -893,7 +882,7 @@ some_numbers
 
 What if we want to select observations with more complicated criteria?
 
-Which penguins are the heaviest?
+Which penguins are heavier than average?
 
 Let's build this up together...
 
@@ -1025,82 +1014,6 @@ What percentage of Toyota drivers are male? What percentage of drivers in the da
 100 * nrow(evp[evp$subject_sex=="male",]) / nrow(evp)
 ```
 
-# Compute by Group
-
-We learned how to subset our data frame, so if we want to compute a measure by group in our data, we could do it on subsets.
-
-```{r}
-data("penguins") # reload penguins data
-table(penguins$species)
-
-mean(penguins$bill_length_mm[penguins$species == "Adelie"], na.rm=TRUE)
-mean(penguins$bill_length_mm[penguins$species == "Chinstrap"], na.rm=TRUE)
-mean(penguins$bill_length_mm[penguins$species == "Gentoo"], na.rm=TRUE)
-```
-
-But there are functions in R that will help us aggregate our data by categorical variables and compute summary measures.
-
-First, `tapply`, which applies a function to a vector grouped by a second vector.
-
-```{r, eval=FALSE}
-tapply(vector to compute on, 
-       vector with groups, 
-       name of the function, 
-       optionally any arguments to the function besides the data vector)
-```
-
-```{r}
-tapply(penguins$bill_length_mm,   # vector to compute on
-       penguins$species,  # vector with groups
-       mean,  # name of the function
-       na.rm = TRUE)  # optionally any arguments to the function besides the data vector
-```
-
-We can group by two different grouping variables by combining them in a list. Lists can hold objects of different types or the same type. For now, since we haven't covered lists, just know that this is the syntax to group by two different groups.
-
-```{r}
-tapply(penguins$bill_length_mm,   # vector to compute on
-       list(penguins$species, penguins$island),  # vector with groups
-       mean,  # name of the function
-       na.rm = TRUE)  # optionally any arguments to the function besides the data vector
-```
-
-Why are there still `NA` in the output if we removed missing values when computing the mean? Because there are no observations with those combinations of variables in the data -- no [Gentoo penguins](https://en.wikipedia.org/wiki/Gentoo_penguin) on [Dream island](https://en.wikipedia.org/wiki/Dream_Island) in our data.
-
-`aggregate()` is similar to `tapply` but produces output in a different format
-
-```{r}
-aggregate(penguins$bill_length_mm,  # data to compute on
-          list(penguins$species, penguins$island),  # groups: it expects a list here
-          mean,  # function
-          na.rm=TRUE)   # additional arguments to the function
-```
-
-We could also use the formula syntax. This approach gives us better names in the resulting data frame. It wants `variable ~ group1` or `variable ~ group1 + group2`, with `data` specified. Because we tell it what data frame to use (`data = pengiuns`), we can reference the column names alone. The formula syntax then knows where to find those columns.
-
-```{r}
-aggregate(bill_length_mm ~ species + island,
-          data = penguins,
-          mean,
-          na.rm=TRUE)
-```
-
-## EXERCISE
-
-Compute group means of `body_mass_g` by `sex` with `tapply()` and `aggregate()`.
-
-Use `tapply()`
-
-```{r}
-tapply(penguins$body_mass_g, penguins$sex, mean, na.rm=TRUE)
-```
-
-Use `aggregate()`
-
-```{r}
-aggregate(body_mass_g ~ sex, data=penguins, mean, na.rm=TRUE)
-```
-
 # PRACTICE SET 2
 
 These exercises are more challenging than the ones above and most require multiple steps to complete. Try to break each problem down into smaller steps.
@@ -1156,33 +1069,4 @@ Are there any programs who awarded no degrees during the time period covered by 
 
 ```{r}
 unique(phds$program[phds$count==0])
-```
-
-## EXERCISE 6
-
-Compute the total number of degrees awarded each year.
-
-```{r}
-aggregate(count ~ year, data=phds, sum)
-tapply(phds$count, phds$year, sum)
-```
-
-## EXERCISE 7
-
-Compute the total number of degrees awarded in 2021-22 by school.
-
-```{r}
-aggregate(count ~ school, data = phds[phds$year=="2021-22",], sum)
-```
-
-## EXERCISE 8
-
-Which school had the greatest increase in the number of degrees awarded between 2010-11 and 2021-22?
-
-```{r}
-total_11 <- aggregate(count ~ school, data = phds[phds$year=="2010-11",], sum)
-total_22 <- aggregate(count ~ school, data = phds[phds$year=="2021-22",], sum)
-
-total_22$difference <- total_22$count - total_11$count
-total_22
 ```

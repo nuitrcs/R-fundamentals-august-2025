@@ -59,13 +59,15 @@ getwd()
 setwd("r-bootcamp/")  # this is an example -- file path needs to be valid
 ```
 
-Whenever you refer to a file with a *relative path* it will look for it in the working directory.
-
 ### EXERCISE
 
 Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder). Use either a console command or the GUI options.
 
 ```{r}
+# run this code to change your working directory only for this exercise
+setwd("..")
+
+# type code below to change the working directory back to your R workshop folder
 
 ```
 
@@ -77,7 +79,7 @@ To make a project you would click File \> New Project, then follow the prompts. 
 
 ### EXERCISE
 
-Check that you are currently working within the ``` R-``fundamentals-summer-workshop ``` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
+Check that you are currently working within the `R-fundamentals-summer-workshop` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
 
 ```{r}
 
@@ -145,10 +147,9 @@ If you're asked a question about whether you want to install packages from sourc
 
 ### EXERCISE
 
-Let's install all the packages that we're going to use throughout the workshop! 
+Let's install all the packages that we're going to use throughout the workshop!
 
 Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tidyverse`, `RColorBrewer`, `ggpubr`, `gridExtra`, and `grid`.
-
 
 ```{r, installpackagesworkshop, eval=FALSE}
 
@@ -156,23 +157,18 @@ Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tid
 
 ## What if you can't install packages in your computer? Posit Cloud to the rescue!
 
-If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud. Posit Cloud allows you to run R on the cloud (in other words, other people's computers). 
+If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud. Posit Cloud allows you to run R on the cloud (in other words, other people's computers).
 
-When using cloud services, keep in mind that you're sending data to other people's computers. Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind. You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/). For this workshop, it's okay to use Posit Cloud. 
+When using cloud services, keep in mind that you're sending data to other people's computers. Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind. You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/). For this workshop, it's okay to use Posit Cloud.
 
-To use Posit Cloud, go to [https://posit.cloud/](https://posit.cloud/).
-![](images/posit_cloud_main.jpeg)
+To use Posit Cloud, go to <https://posit.cloud/>. ![](images/posit_cloud_main.jpeg)
 
 The first time you use it, follow these steps:
 
-1. [Sign up for a free acount](https://posit.cloud/plans/free)
-![](images/posit_cloud_sign_up.jpeg)
-2. Once you are logged in, click on "New Project" on the top right.
-![](images/posit_cloud_new_project.jpeg)
-3. Then click on New RStudio Project. It'll take a couple of moments to get the project ready.
-![](images/posit_cloud_rstudio_project.jpeg)
-4. Once you see RStudio's interface, you're good to go! 
-![](images/posit_cloud_rstudio.jpeg)
+1.  [Sign up for a free acount](https://posit.cloud/plans/free) ![](images/posit_cloud_sign_up.jpeg)
+2.  Once you are logged in, click on "New Project" on the top right. ![](images/posit_cloud_new_project.jpeg)
+3.  Then click on New RStudio Project. It'll take a couple of moments to get the project ready. ![](images/posit_cloud_rstudio_project.jpeg)
+4.  Once you see RStudio's interface, you're good to go! ![](images/posit_cloud_rstudio.jpeg)
 
 ## Using Packages
 
@@ -298,10 +294,10 @@ Using the `penguins` data frame, write commands to figure out:
 -   Names of the variables?
 
 ```{r}
-nrow(penguins)
-ncol(penguins)
+# load the package
+library(palmerpenguins)
 
-names(penguins)
+
 ```
 
 ## Working with Variables
@@ -391,7 +387,7 @@ Using the data on Northwestern degrees from the last exercise:
 
 What is the mean number of bachelors degrees issued in the first 5 years of the data?
 
-What is the mean for the second 5 years in the data?
+What is the mean number of bachelors degrees issued in the last 5 years of the data?
 
 What is the mean number of doctoral degrees per year excluding the most recent year of 2021-22?
 
@@ -520,25 +516,43 @@ month_info[,c("month", "days")]
 
 ## Boolean/Conditional Selection
 
+Suppose we want to select rows from a data frame that might meet a specific condition. For example, select all data for patients aged greater than 65, or select all sales items that were sold in the month of December.
+
+Typically, we use boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
+
 If we have a boolean vector (`TRUE` and `FALSE` values) that is the same length as the number of rows or columns, we can use it to select data.
 
-First, with a vector:
+For example, let's suppose you want to find the names of the months which have 31 days exactly
 
 ```{r}
-month_info$days[c(TRUE, FALSE,  TRUE, FALSE,
-                  TRUE, FALSE,  TRUE,  TRUE,
-                  FALSE,  TRUE, FALSE,  TRUE)]
+# create month_info data frame manually
+month_info <- data.frame(month=month.name,
+                         index=1:12,
+                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
 
-month_info$days == 31
+month_info
+month_info$days # vector containing number of days in each month
+month_info$days == 31 # boolean vector of T,F values based on a condition
 
-month_info$days[month_info$days == 31]
-
-month_info$month[month_info$days == 31]  # can index a different vector
-
-month_info$month[month_info$days != 31]
+month_info$month[month_info$days == 31] # works!
 ```
 
-Now, with a data frame, we typically want to use boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
+The command above works because R selects the values which evaluated to TRUE and discards the values that evaluated to FALSE.
+
+Another example:
+
+```{r}
+# create a boolean vector of length equal to number of rows in month_info
+selection_vector <- c(T, T, T, T, T, T,
+                      F, F, F, F, F, F)
+
+month_info$month
+month_info$month[selection_vector] 
+
+month_info$month[!selection_vector] # inverted selection
+```
+
+Let's see an example with the penguins data frame:
 
 Start with the criteria we want:
 
@@ -574,7 +588,9 @@ penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58,]
 
 ## EXERCISE
 
-Which years were more than 600 doctoral degrees awarded? You might want to break this down into two steps: 1) write an expression for determining whether there were more than 600 doctoral degrees, then 2) use that expression to index the correct column of your degrees data.
+Which years were more than 600 doctoral degrees awarded according to the `nu_degrees.csv` data?
+
+You might want to break this down into two steps: 1) write an expression for determining whether there were more than 600 doctoral degrees, then 2) use that expression to index the correct column of your degrees data.
 
 ```{r}
 
@@ -662,71 +678,47 @@ What if the variable/column names in your dataset have spaces, start with number
 ```{r}
 bad_data <- read.csv("data/annoying.csv")
 bad_data
+names(bad_data)
 ```
 
-Use readr package read_csv function to preserve the original names or set the check.names option in read.csv to FALSE.
-
-```{r}
-library(readr)
-bad_data <- read_csv("data/annoying.csv")
-bad_data
-
-# or
-bad_data <- read.csv("data/annoying.csv", check.names=FALSE)
-bad_data
-```
-
-Then use back ticks around the names, or use the clean_names function from the janitor package to clean them up
-
-```{r, eval=FALSE}
-bad_data$2022
-```
-
-```{r}
-bad_data$`2022`
-```
+The package `{janitor}` functions expedite the initial data exploration and cleaning that comes with any new data set. 
 
 ```{r}
 library(janitor)
 bad_data <- clean_names(bad_data)
 bad_data
+names(bad_data)
 bad_data$x2022
 ```
 
 ## Renaming Columns
 
-Normally we don't need to do this step below, but I want to keep the current names so I can reset the names later
-
-```{r}
-oldnames <- names(penguins)  # save so we can reset later
-```
+Sometimes, we want to change the column names of a dataframe after importing into R. For example, in `bad_data` above, perhaps we want the columns `x2022` and `x2023` to be called `year_2022` and `year_2023` respectively.
 
 Just like we use `names()` to get the names, use the same function to assign the names. This is different syntax than we see other places in R; `names()` is a special type of function called a replacement function.
 
-I can change the name of the first variable with:
+We can change the name of a data frame column as follows:
 
 ```{r}
-names(penguins)[1]
-names(penguins)[1] <- "boo"  # change the name of the first column
-names(penguins)
-head(penguins)
+names(bad_data)
+names(bad_data)[2]
+names(bad_data)[2] <- "year_2022"
+names(bad_data) # inspect new names
+bad_data 
 ```
+
+You can also change all or several column names at once.
 
 ```{r}
-names(penguins) <- c("a", "b", "c", "d", "e", "f", "g", "h")  # change all of the column names
-head(penguins)
+names(bad_data)
+names(bad_data) <- c("fruit", "year_2022", "year_2023", "year_2024")
+names(bad_data) # inspect new names
+bad_data 
 ```
 
-Put the old names back
+# Making new columns
 
-```{r}
-names(penguins) <- oldnames
-head(penguins)  # check
-```
-
-# Making new variables
-
-We can add a new variable to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a variable that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
+We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
 
 ```{r}
 penguins$bill_length_cm <- penguins$bill_length_mm / 10  # make new variable: note CM instead of MM in the name
@@ -734,7 +726,7 @@ names(penguins)  # check to see that it was added
 penguins[, c("bill_length_cm", "bill_length_mm")]  # select the two vars to view them
 ```
 
-Variables will be added to the end (right). We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
+Columns will be added to the end (right). We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
 
 ```{r}
 penguins <- penguins[, c("species", "island", "sex", "year",
@@ -769,9 +761,9 @@ Challenge: Make a new logical column called `long_month` that is TRUE if the mon
 
 ```
 
-# Dropping Variables
+# Dropping Columns
 
-To remove a variable from a data frame, we select the data we want to keep, and then save that back to the same variable:
+To remove a column from a data frame, we select the data we want to keep, and then save that back to the same column:
 
 ```{r}
 month_info
@@ -779,6 +771,7 @@ month_info
 month_info[, 1:3]
 
 month_info <- month_info[, -c(2,6)]
+month_info
 ```
 
 Or with names:
@@ -795,21 +788,25 @@ names(penguins)
 
 How do we change our data? A common task might be replacing missing values -- either actual NA values or other values that indicate missing.
 
+Data imputation is a method for retaining the majority of the dataset's data and information by substituting missing data with a different value. This is a very common task in data cleaning. One way to impute missing data is mean imputation i.e. replacing missing values by the mean of the non-missing values in that column.
+
+Let's go through an example to replace missing values in the `bill_depth_mm` column of the `penguins` data frame.
+
 First, we identify and select the values we want to change:
 
 ```{r}
+# find NA / missing values in the column bill_depth_mm
 penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)]
 ```
 
-Let's compute the average value to replace it with
+Next, compute the replacement value, which is the mean of non-missing values of `bill_depth_mm` in this case:
 
 ```{r}
 bill_depth_mean <- mean(penguins$bill_depth_mm, na.rm=TRUE)
 bill_depth_mean
-
 ```
 
-Now, assign a new value to the observations we want to change
+Now, assign the replacement value `bill_depth_mean` to the missing observations:
 
 ```{r}
 penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)] <- bill_depth_mean
@@ -817,12 +814,18 @@ penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)] <- bill_depth_mean
 sum(is.na(penguins$bill_depth_mm))
 ```
 
-It doesn't have to be missing values, and we could use a function:
+You can replace any values you need to replace (it doesn't have to be missing), and often-times it is common to use functions to compute the replacement values.
 
 ```{r}
+# get a sub-string from the given input string
+substr(x = "January", start = 1, stop = 3)
+
+# generate a vector of replacement values using month_info$month as the input vector
 substr(month_info$month, 1, 3)
 
+# replace the original values in the month column with the new values
 month_info$month <- substr(month_info$month, 1, 3)
+month_info
 ```
 
 ## EXERCISE
@@ -831,19 +834,27 @@ Here is code to make a new data frame. Run the code and take a look at the data 
 
 ```{r}
 some_numbers <- data.frame(v1 = rnorm(10), v2 = runif(10))
+some_numbers
 ```
 
-Replace all values of v1 that are below 0 with the value 0
+You decide that you don't want any negative numbers in your data frame. Write code to replace all values of column v1 in `some_numbers` that are below 0 with the value 0.
 
 ```{r}
+# Identify the values to be replaced/changed in some_numbers
 
+# What is the new/replacement value?
+
+# Assign the new/replacement value to the elements identified in the first step
+
+# check some_numbers to see if the replacement worked!
+some_numbers
 ```
 
 # Building Up Expressions
 
 What if we want to select observations with more complicated criteria?
 
-Which penguins are the heaviest?
+Which penguins are heavier than average?
 
 Let's build this up together...
 
@@ -1009,36 +1020,6 @@ How many different programs awarded at least one degree in 2021-22?
 ## EXERCISE 5
 
 Are there any programs who awarded no degrees during the time period covered by the data set?
-
-```{r}
-
-```
-
-## EXERCISE 6
-
-Compute the total number of degrees awarded each year.
-
-Hint: you'll need either `aggregate` or `tapply`.
-
-```{r}
-
-```
-
-## EXERCISE 7
-
-Compute the total number of degrees awarded in 2021-22 by school.
-
-Hint: again, you'll need to aggregate the data.
-
-```{r}
-
-```
-
-## EXERCISE 8
-
-Which school had the greatest increase in the number of degrees awarded between 2010-11 and 2021-22?
-
-Hint: you'll need to aggregate the data one more time!
 
 ```{r}
 
