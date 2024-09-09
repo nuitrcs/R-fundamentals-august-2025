@@ -57,6 +57,29 @@ Look up the documentation for `lm` . What does this function do? Can you run som
 
 ```
 
+## Debugging: errors and warnings
+
+A very useful skill in coding is learning to debug your code. R helpfully provides warning messages or error messages to help you understand where you might be making a mistake.
+
+Let's see a few examples:
+
+```{r}
+# Error: object not found
+my_vector
+
+# Error: non-numeric argument to binary operator
+x <- 1:10
+x + "a" 
+
+# Warning: longer object length is not a multiple of shorter object length
+1:10 + 1:3
+
+# Warning: Unknown or uninitialised column
+penguins[penguins$speciess]
+```
+
+Once you identify an error, you can then debug your code by fixing the source of the error and testing the code line by line. [How to Debug Your Code for Beginners](https://www.freecodecamp.org/news/what-is-debugging-how-to-debug-code/#heading-how-to-debug-your-code) provides some helpful tips to get new coders started!
+
 ## Useful functions
 
 This section will list several basic R functions that are very useful and should be part of your toolbox.
@@ -101,8 +124,10 @@ There's also the useful `replace_na()` function in the tidyr package and `na_if(
 library(tidyr)
 library(dplyr)
 
+# replace any NA / missing values with user input
 replace_na(x, mean(x, na.rm = TRUE)) # replace NA with 0
 
+# make an element into NA / missing if it is undesired value
 y <- c("abc", "def", "", "ghi") # remove an empty string
 na_if(y, "")
 ```
@@ -145,13 +170,15 @@ state.name  # built-in vector in R
 ifelse(state.name %in% c("Alaska", "Hawaii"), NA, state.name)
 ```
 
-Let's use it with some data:
+Let's say we want to create a new column called `evanston` in our `evp` data frame such that it takes the value TRUE if the `location` for that row is either 60201 or 60202 (zip codes for Evanston IL), but FALSE otherwise. This will help us to quickly subset the data only for stops made in Evanston.
+
+First, read in the data frame:
 
 ```{r}
 evp <- read.csv("data/ev_police_jan.csv")
 ```
 
-We could use it to subset data - get the rows where the location is an Evanston zip code
+We could subset data - get the rows where the location is an Evanston zip code
 
 ```{r}
 evp[evp$location %in% c(60201, 60202), ]
@@ -234,6 +261,7 @@ When creating a `factor` variable, you typically start with a `character`, `nume
 
 ```{r}
 smoke2 <- factor(smoke)
+smoke2
 ```
 
 You can inspect the elements, and *levels*, i.e. values that the categorical variable takes, as follows:
@@ -242,24 +270,70 @@ You can inspect the elements, and *levels*, i.e. values that the categorical var
 levels(smoke2)
 ```
 
-So far, we have solved neither the problem of the categories being in the wrong order nor that invalid `No` value. To fix both these problems, we can use the `levels` argument in `factor`:
+We see two problems! First, we see that "No" is a level/category, but it was not listed on our survey. To fix this problem, we can decide the categories/levels a factor vector is allowed to take by specifying the `levels` parameter in the `factor()` function call:
 
 ```{r}
 smoke2 <- factor(
   smoke,
+  # allowed levels
+  levels = c("Never", "Heavy", "Occasionally", "Regularly") 
+)
+
+levels(smoke2)
+smoke2
+```
+
+We see that "No" is no longer listed as a level, and has been replaced by `NA` in the factor vector `smoke2`.
+
+However, we still have another problem - the categories are in the wrong order.
+
+```{r}
+barplot(table(smoke2))
+
+smoke2 <- factor(
+  smoke,
+  # allowed levels in some desired order
+  levels = c("Never", "Occasionally", "Regularly", "Heavy") 
+)
+
+barplot(table(smoke2))
+```
+
+Now we see the categories are in an order that is more informative. However, we still have one more problem to fix. What if we wanted to compare smokers such that:
+
+Never \< Occasionally \< Regularly \< Heavy
+
+i.e. if we make conditional expressions such as smoke2 \> Occasionally, then Never and Occasionally would evaluate to FALSE while Regularly and Heavy would evaluate to TRUE. This can be helpful to subset the data meaningfully or make comparisons when the order is meaningful in some manner.
+
+Let's see how to do this with the `ordered` parameter within `factor()`
+
+```{r}
+smoke2 <- factor(
+  smoke,
+  # create allowed levels in some desired order
   levels = c("Never", "Occasionally", "Regularly", "Heavy"),
+  # logical flag to determine if the levels should be regarded as ordered (in the order given) for any comparisons
   ordered = TRUE
   )
 
-# Check the results:
 smoke2
-levels(smoke2)
-table(smoke2)
 ```
 
-You can control the order in which the levels are presented by choosing which order we write them in in the `levels` argument. The `ordered = TRUE` argument specifies that the order of the variables is *meaningful*.
+Notice how the level information is presented differently this time to indicate possible comparisons between categories.
 
-It can be excluded in cases where you wish to specify the order in which the categories should be presented purely for presentation purposes (e.g., when specifying whether to use the order `Male/Female/Other` or `Female/Male/Other`). Also note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations. To find the values of `smoke` that became `NA` in `smoke2` you can use `which` and `is.na`:
+```{r}
+smoke2
+smoke2 > "Occasionally"
+
+# how many survey respondents smoke more than Occasionally
+sum(smoke2 > "Occasionally", na.rm = TRUE)
+```
+
+To recap, you can control the order in which the levels are presented by choosing which order we write them in in the `levels` argument. The `ordered = TRUE` argument specifies that the order of the variables is *meaningful*.
+
+It can be excluded in cases where you wish to specify the order in which the categories should be presented purely for presentation purposes (e.g., when specifying whether to use the order `Male/Female/Other` or `Female/Male/Other`).
+
+Also note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations. To find the values of `smoke` that became `NA` in `smoke2` you can use `which` and `is.na`:
 
 ```{r}
 smoke[which(is.na(smoke2))]
@@ -274,6 +348,7 @@ When we created `smoke2`, one of the elements became an `NA`. `NA` was however n
 ```{r}
 smoke2 <- addNA(smoke2)
 levels(smoke2)
+smoke2
 ```
 
 If you wish to change the name of one or more of the `factor` levels, you can do it directly via the `levels` function. For instance, we can change the name of the `NA` category, which is the 5th level of `smoke2`, as follows:
@@ -283,6 +358,7 @@ levels(smoke2)
 levels(smoke2)[5]
 levels(smoke2)[5] <- "Invalid answer"
 levels(smoke2)
+smoke2
 ```
 
 Finally, if you've added more levels than what are actually used, these can be dropped using the `droplevels` function:
@@ -297,19 +373,6 @@ levels(smoke2)
 table(smoke2)
 smoke2 <- droplevels(smoke2)
 levels(smoke2)
-```
-
-### Changing the order of levels
-
-Now suppose that we'd like the levels of the `smoke2` variable to be presented in the reverse order: *Heavy*, *Regularly*, *Occasionally*, and *Never*. This can be done by a new call to `factor`, where the new level order is specified in the `levels` argument:
-
-```{r}
-smoke2 <- factor(
-  smoke2,
-  levels = c("Heavy", "Regularly", "Occasionally", "Never")
-  )
-
-# Check the results:
 table(smoke2)
 ```
 
@@ -318,19 +381,44 @@ table(smoke2)
 Finally, `levels` can be used to merge categories by replacing their separate names with a single name. For instance, we can combine the smoking categories *Occasionally*, *Regularly*, and *Heavy* to a single category named *Yes*. Assuming that these are first, second and third in the list of names (as will be the case if you've run the last code chunk above), here's how to do it:
 
 ```{r}
+# create our factor vector as usual
+smoke2 <- factor(
+  smoke,
+  levels = c("Never","Occasionally","Regularly","Heavy"),
+  ordered = TRUE)
+smoke2
+
+# recode levels that are not "Never" to "Yes"
 levels(smoke2)
-levels(smoke2)[1:3] 
-levels(smoke2)[1:3] <- "Yes"
+levels(smoke2)[2:4] 
+levels(smoke2)[2:4] <- "Yes"
 levels(smoke2)
+smoke
+table(smoke2)
 ```
 
 ### EXERCISE
 
-Convert the vector below to a factor. Set the levels in an intentional order.
+Convert the vector below to a factor. Set the levels in an intentional order. Should ordered be set to TRUE here - why or why not?
+
+Hint: use `table()` or `unique()` to find all the categories
 
 ```{r}
-directions <- c("east", "west", "east", "south", "north", "north", "west", "north", "east", "northwestern")
+age_group <- c("35-50",
+               "25-34",
+               "50-65",
+               "65+",
+               "18-24",
+               "18-24",
+               "50-65",
+               "35-50",
+               "50-65",
+               "18-24",
+               "18-24",
+               "65+",
+               "65+")
 
+# your code here               
 
 ```
 
@@ -389,7 +477,7 @@ Let's import the data we'll be using. The data is from the [Stanford Open Polici
 We're going to use the `read_csv` function from the `readr` package, which is part of the tidyverse. The `read_csv` function works like `read.csv` except it has some different defaults, guesses data types a bit differently, and produces a tibble instead of a data frame (details coming).
 
 ```{r, eval=TRUE}
-police <- read_csv("data/ev_police.csv")
+police <- readr::read_csv("data/ev_police.csv")
 ```
 
 The output message that you get tells you what data type it guessed for each column based on the format of the information. "chr" is character or text data, "dbl" is numeric (stands for double, which is technical term for a type of number), "lgl" is logical/Boolean (TRUE/FALSE). Note that it also automatically read and identified date and time values and converted them to date and time objects -- not just string/character data.
@@ -397,7 +485,7 @@ The output message that you get tells you what data type it guessed for each col
 We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to colClasses for `read.csv`). Let's make the location to be character data, since it is zip codes -- zip codes should not be treated as numbers.
 
 ```{r, eval=TRUE}
-police <- read_csv(
+police <- readr::read_csv(
   "data/ev_police.csv",
   col_types=c("location"="c")
   )
@@ -415,7 +503,7 @@ Before we start, let's remember what columns are in our data:
 names(police)
 ```
 
-### (1) Select: choose columns
+### Select: choose columns
 
 The `select()` function lets us choose which columns (or variables) we want to keep in our data.
 
@@ -453,7 +541,7 @@ Convert this base R expression: `police[,c("violation", "citation_issued", "warn
 
 Hint: The base R expression above keeps all rows but selects only the three columns named within `c()`.
 
-### (2) Filter: choose rows
+### Filter: choose rows
 
 To choose which rows should remain in our data, we use `filter()`. As with `[]`, we write expressions that evaluate to TRUE or FALSE for each row. Like `select()`, we can use the column names without quotes.
 
@@ -467,17 +555,11 @@ Note that we use `==` to test for equality and get TRUE/FALSE output. You can al
 filter(police, is.na(beat))
 ```
 
-Variables (columns) that are already logical (TRUE/FALSE values), can be used to filter:
-
-```{r}
-filter(police, contraband_found)
-```
-
 ### EXERCISE
 
-Use `filter()` to choose the rows where subject_race is "white".
+How many rows have subject_race as "white"?
 
-The equivalent base R expression would be `police[police$subject_race == "white",]`.
+Hint: Use `filter()` to choose the rows where subject_race is "white". The equivalent base R expression would be `police[police$subject_race == "white",]`.
 
 ```{r}
 
@@ -486,8 +568,6 @@ The equivalent base R expression would be `police[police$subject_race == "white"
 ### Pipe: Chaining Commands Together
 
 So, we can choose rows and choose columns separately; how do we combine these operations? `dplyr`, and other tidyverse commands, can be strung together in a series with a `%>%` (say/read: pipe) operator. (If you are familiar with working in a terminal/at the command line, it works like a bash pipe character `|`.) It takes the output of the command on the left and makes that the first input to the command on the right.
-
-It's similar to the new native pipe operator in R: \|\> but it has a few additional features that make it a bit more flexible.
 
 The pipe works well with dplyr (and other tidyverse packages) because the functions almost all take a data frame as the first input, and they return a data frame as the output.
 
@@ -550,10 +630,18 @@ is.na(police$beat) %>% sum()
 police$beat %>% is.na() %>% sum()
 ```
 
-Advanced aside: it is possible to select parts of a data frame within a piped set of commands (with the %\>% pipe, but not the \|\> pipe). A `.` represents whatever the result of the left of the %\>% is:
+Advanced aside: it is possible to select parts of a data frame within a piped set of commands. A `.` represents whatever the result of the left of the %\>% is:
 
 ```{r}
-police %>% .$beat %>% is.na() %>% sum()
+police %>% 
+  filter(subject_race == "white") %>%
+  View() # notice the name of the df in the Viewer is .
+
+# example of getting a part of the dataframe piped before
+police %>% 
+  .$beat %>% 
+  is.na() %>% 
+  sum()
 ```
 
 ### EXERCISE
@@ -578,7 +666,7 @@ police60201 <- police %>%
   select(date, time, beat, type, outcome) 
 ```
 
-### (3) Mutate: add new columns
+### Mutate: add/modify columns
 
 `mutate()` is used to both change the values of an existing column and make a new column.
 
@@ -601,7 +689,7 @@ mutate(police,
 
 ### EXERCISE
 
-If the column beat in `police` is "/" or "CHICAGO", set it to `NA` instead using `mutate()`.
+If the column beat in `police` is "/", set it to `NA` instead using `mutate()`.
 
 Hint: look up the `na_if` function to do this.
 
@@ -609,31 +697,7 @@ Hint: look up the `na_if` function to do this.
 
 ```
 
-### (4) Arrange: order rows using column values
-
-`arrange()` orders the rows of a data frame by the values of selected columns. We would mostly use this when viewing our data, but it's also useful when we need to compute a time series (lags and leads in the data), when we want to select just a few rows from each group, or any other order-sensitive transformations on our data.
-
-```{r}
-police %>% 
-  arrange(time)
-```
-
-To sort in reverse order, wrap the column name in `desc()`.
-
-```{r}
-police %>% 
-  arrange(desc(time))
-```
-
-### EXERCISE
-
-Sort the data by `vehicle_make` and then `vehicle_year`.
-
-```{r}
-
-```
-
-### (5) Summarize
+### Summarize
 
 We'll start with `summarize()` (or `summarise()` - British spelling is accepted).
 
@@ -670,11 +734,11 @@ Use summarize to compute the `min()` and `max()` `vehicle_year`
 
 ```
 
-### (6) Group_by
+### Group_by
 
-With base R, when we want to compute summary measures or do other computation on groups in our data (as defined by some grouping variable), we use functions such as `tapply()` or `aggregate()`. With dplyr, we can explicitly group our tibble into subgroups. This isn't very useful by itself, but it is often combined with `summarize()` to compute summary measures by group.
+When we want to compute summary measures or do other computation on groups in our data (as defined by some grouping variable), we can explicitly group our tibble into subgroups. This isn't very useful by itself, but it is often combined with `summarize()` to compute summary measures by group.
 
-First, what if we just group:
+First, what if we just group our data by a specific column:
 
 ```{r}
 police %>%
@@ -744,15 +808,9 @@ Compute the `min()` and `max()` `vehicle_year` for each `vehicle_make`.
 
 ```
 
-## EXERCISE
+### EXERCISE
 
 Using mtcars, compute the average horsepower (hp) for each \# of cylinders (cyl)
-
-```{r}
-
-```
-
-Now compute the average value of each variable by \# of cylinders
 
 ```{r}
 
