@@ -14,10 +14,6 @@ ggplot2::ggplot() # explicit function call
 
 
 
-# Using the RStudio GUI to install and load packages
-
-
-
 # Print version information about R, the OS and attached or loaded packages.
 sessionInfo()  # helpful for troubleshooting
 
@@ -26,5 +22,3 @@ sessionInfo()  # helpful for troubleshooting
 # Using R help to search documentation
 ?lm
 help(lm)
-
-# use help from the GUI

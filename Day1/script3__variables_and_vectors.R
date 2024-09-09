@@ -69,8 +69,6 @@ x[-1:-20]
 
 c(c(1, 2, 3), c(5, 6, 7))
 
-# we'll use data frames instead (coming soon!)
-
 
 # Vectors can only have 1 type of data in them ----
 
@@ -110,13 +108,6 @@ x <- c(5, 7, 2, 4, 5, 1, 0, 9, 7, 5)
 
 # fix the error with the code below
 x[2, 3, 5]
-
-
-# Get the values at odd index values (first, third, fifth, etc. positions)
-
-
-
-
 
 
 # Working with variables and vectors ----
