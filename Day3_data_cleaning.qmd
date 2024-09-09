@@ -699,8 +699,6 @@ Hint: look up the `na_if` function to do this.
 
 ### Summarize
 
-We'll start with `summarize()` (or `summarise()` - British spelling is accepted).
-
 We use `mutate()` when we want the output to have the same length as the input. In other words, we use `mutate()` when we're operating on the individual elements in a vector - we want a value for every row in the data.
 
 When we want to condense multiple values down to a single (or a few values), such as taking the mean or standard deviation of a vector, we use summarize instead:
@@ -827,5 +825,3 @@ police %>%
 ```
 
 Usually this would come up after more complicated operations, and often after computing summary measures by group.
-
-## 

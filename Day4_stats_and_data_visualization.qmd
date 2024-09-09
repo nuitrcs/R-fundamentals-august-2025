@@ -27,8 +27,8 @@ Learning statistics in R is not about memorizing a set of functions. Once you kn
 
 To use statistics in R, you first need to know statistics. Say you already do and you want to use linear regression.
 
-1. The first step is to Google "linear regression in R." That search will result in many resources (which is one of the great things of using R!).
-2. Once you find a good resource, it's all a matter of using your knowledge of R to implement any statistical method.
+1.  The first step is to Google "linear regression in R." That search will result in many resources (which is one of the great things of using R!).
+2.  Once you find a good resource, it's all a matter of using your knowledge of R to implement any statistical method.
 
 Throughout the process, it's important that you don't lose yourself in the code and forget to use your statistical knowledge. Are you using the method in an appropriate way? Are you satisfying the key assumptions? Are you using the right tests and diagnostics?
 
@@ -88,31 +88,26 @@ But we can still extract the information
 summary(reg1)$coefficients
 ```
 
-Finally, simply using the generic `plot()` function on a regression model provides some very helpful information:
-
-```{r}
-plot(reg1)
-```
-
 ### EXERCISE
 
-Does body mass depend on species or sex?
+What is the correlation coefficient between flipper length and bill length for penguins of the Gentoo species?
+
+Hint: Break down this problem into steps. Subset penguins to get only rows with species Gentoo, then select the columns for correlation, and remove any NA values that might interfere. Then find out the R function you would need to calculate the correlation coefficient between 2 vectors.
+
+Bonus challenge: use pipes to write out the code above in one command
 
 ```{r}
+library(palmerpenguins)
+data(penguins)
 
-```
-
-### EXERCISE
-
-Test if there is a significant interaction between flipper length and bill length for predicting body mass in male Gentoo penguins. Hint: use `pred1*pred2` to add an interaction term between two predictors in the formula.
-
-```{r}
 
 ```
 
 ### EXERCISE
 
-Which among the three species has the highest $R^2$ value for predicting body mass from flipper length?
+Perform a t-test to check if there is a statistical difference in body mass between male and female penguins. Get the p-value for this test.
+
+Hint: Find out the R function you would need to calculate the t-test statistic between 2 vectors. Use `names()` to access the p-value of your test statistic.
 
 ```{r}
 
@@ -171,10 +166,7 @@ Let's initialize a basic ggplot based on the midwest dataset:
 
 ```{r}
 # Setup
-options(scipen=999)  # turn off scientific notation like 1e+06
-
 data("midwest", package = "ggplot2")  # load the data (part of the ggplot2 package)
-
 View(midwest)
 ```
 
@@ -191,9 +183,9 @@ ggplot(midwest) + # Initialize a plot by calling the ggplot() function
   aes(x=area, y=poptotal) # area and poptotal are columns in 'midwest'
 ```
 
-Now ggplot knows the columns we want to plot! 
+Now ggplot knows the columns we want to plot!
 
-Notice how layering works with the + operator (not %>%).
+Notice how layering works with the + operator (not %\>%).
 
 Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y. I haven't explicitly asked it to draw any points.
 
@@ -206,6 +198,16 @@ Also note that `aes()` function is used to specify the X and Y axes. That's beca
 Let's make a scatterplot on top of the blank ggplot by adding points using a geom layer called `geom_point`
 
 ```{r}
+ggplot(midwest) +
+  aes(x=area, y=poptotal) +
+  geom_point()
+```
+
+But the scientific notation doesn't look too appealing - no problem, you can set an R option to turn it off! Options settings allow the user to set and examine a variety of global *options* which affect the way in which R computes and displays its results.
+
+```{r}
+options(scipen=999)  # turn off scientific notation like 1e+06
+
 ggplot(midwest) +
   aes(x=area, y=poptotal) +
   geom_point()
@@ -274,8 +276,6 @@ g
 
 The line of best fit is in blue. Can you find out what other `method` options are available for `geom_smooth`?(note: see `?geom_smooth`).
 
-You might have noticed that majority of points lie in the bottom of the chart which doesn't really look nice. So, let's change the Y-axis limits to focus on the lower half.
-
 ## EXERCISE
 
 Add a linear fit line to the `penguin_plot` from before
@@ -293,6 +293,8 @@ What if I just want a smooth (non-linear) fit to the plot above? Hint: use metho
 ```
 
 ## Adjusting the X and Y axis limits
+
+You might have noticed that majority of points lie in the bottom of the chart which doesn't really look nice. So, let's change the Y-axis limits to focus on the lower half.
 
 The X and Y axis limits can be controlled in 3 ways.
 
@@ -377,7 +379,7 @@ Position scales have many more features that you can [explore](https://ggplot2-b
 
 ## EXERCISE
 
-Limit the flipper length to values between 180 and 220 in `penguin_plot` without removing the original points from the best-fit line calculation
+Limit the flipper length to values between 180 and 220 in `penguin_plot` **without** removing the original points from the best-fit line calculation
 
 ```{r}
 
@@ -468,7 +470,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 ## EXERCISE
 
-Change the color to red and transparency (alpha) of the points to 0.5 by setting parameters within `geom_point` for `penguin_plot`.
+Change the color to red and transparency (alpha) of the points to 0.5 by setting parameters within `geom_point` for a plot of flipper_length_mm vs body_mass_g
 
 ```{r}
 
@@ -530,7 +532,7 @@ When selecting colors for your visualizations, in addition to other factors, it'
 
 ## EXERCISE
 
-Change the color of the points according to the species column for `penguin_plot`:
+Change the color of the points according to the species column for a plot of flipper_length_mm vs body_mass_g
 
 ```{r}
 
@@ -603,12 +605,17 @@ Remember that the order of layering matters! The last passed input will be retai
 
 ## EXERCISE
 
-Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) to `penguin_plot`. 
+Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) to `penguin_plot`.
 
 Reminder: if you are using a new package, first install and load that package to access the themes inside it.
 
 ```{r}
+penguin_plot <- ggplot(data = penguins, 
+                       aes(x = flipper_length_mm, 
+                           y = body_mass_g)) +
+  geom_point(aes(color=species)) 
 
+penguin_plot + _________
 ```
 
 # Separating by Facets
@@ -635,7 +642,7 @@ ggplot(data=penguins,
    
 ```
 
-You can separate by more than one column, for example:
+You can separate by more than one column. Note also the difference between "color" and "fill" in the example below:
 
 ```{r}
 ggplot(data=penguins, 
@@ -646,10 +653,13 @@ ggplot(data=penguins,
              size = 2, 
              alpha = 0.8) +
   geom_smooth(method="lm", 
-              aes(color=species, fill=species), 
-              alpha=0.1) + 
+              aes(color=species),
+              fill="black",
+              alpha=0.15) + 
   facet_grid(~species + island) +
-  labs(x = "Flipper length (mm)", y = "Body mass (g)", title = "Penguins Data") +
+  labs(x = "Flipper length (mm)", 
+       y = "Body mass (g)", 
+       title = "Penguins Data") +
   theme_classic() 
 ```
 
@@ -693,22 +703,20 @@ ggsave("my_beautiful_plot.pdf", plot=p, height = 4, width = 6, device="pdf", use
 
 If you are preparing several different plots for publication, perhaps you want to arrange them in a grid before exporting and saving them.
 
-Let's create another fictional plot first:
+Let's create another plot first:
 
 ```{r}
-library(ggpubr)
-set.seed(1234)
-wdata <- data.frame(sex = factor(rep(c("F", "M"), each=200)), 
-                   weight = c(rnorm(200, 55), rnorm(200, 58)))
+# We already have a plot p
+p
 
-plot_new <- ggdensity(wdata, 
-                      x = "weight", 
-                      add="mean", 
-                      rug=TRUE, 
-                      color = "sex", 
-                      fill = "sex", 
-                      palette = c("#00AFBB", "#E7B800"))
-plot_new
+# create a new plot to display the sample size for each species
+p_count <- ggplot(penguins, aes(species)) + 
+  geom_bar(aes(fill=species)) +
+  theme_classic() +
+  scale_color_brewer(palette = "Accent") +
+  labs(title="Count of penguin species")
+
+p_count
 ```
 
 Now let's put the plots together using the packages `{grid}` and `{gridExtra}`:
@@ -718,9 +726,9 @@ Now let's put the plots together using the packages `{grid}` and `{gridExtra}`:
 library(gridExtra)
 library(grid)
 
-grid.arrange(p, plot_new, ncol=2)
+grid.arrange(p_count, p, ncol=2)
 
-grid.arrange(p, plot_new, nrow=2)
+grid.arrange(p_count, p, nrow=2)
 ```
 
 You can create very [complicated layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html) if needed. You can also use the `{patchwork}` package to same effect.
