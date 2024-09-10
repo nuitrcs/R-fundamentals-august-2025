@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 Welcome to the R Bootcamp! In this section, we're going to cover some fundamental R tools such as:
 
 -   RStudio
--   The R console
 -   File paths
 -   Working directory
 -   RStudio Projects
@@ -46,26 +45,26 @@ Each pane can be minimized or maximized within the column by clicking the minimi
 
 -   You can use the Files tab to access the files on your computer
 -   **Absolute paths** always start with the root directory and provide the full path to the file or directory. For example, the absolute path to the home directory of a user named "john" would be "/home/john".
--   On the other hand, a **relative path** is a path to a file or directory that is relative to the current directory.
+-   On the other hand, a **relative path** is a path to a file or directory that is relative to the current directory. For example, from the directory "/home/john", the relative path to a data set located in the Desktop would be "Desktop/data.csv".
 
 ## Working directory
 
-Working directory: Where R starts looking for files on your computer.
+Working directory: where R starts looking for files on your computer. In other words, where you're "working from." This is also where R will save any output you save (e.g., processed data or plots).
 
 You can set it or go to it in the Files pane (under the More menu), or with functions.
 
 ```{r}
-getwd()
-setwd("r-bootcamp/")  # this is an example -- file path needs to be valid
+getwd() # function to get working directory
+setwd("<insert valid path here>") # function to set working directory
 ```
 
 ### EXERCISE
 
-Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder). Use either a console command or the GUI options.
+Set the working directory for your RStudio session to `R-fundamentals-summer-workshop` (or whatever the correct path is for your project folder).
 
 ```{r}
 # run this code to change your working directory only for this exercise
-setwd("..")
+setwd("~")
 
 # type code below to change the working directory back to your R workshop folder
 
@@ -75,7 +74,40 @@ setwd("..")
 
 R experts keep all the files associated with a project together --- input data, R scripts, analytical results, figures. This is such a wise and common practice that RStudio has built-in support for this via **projects**.
 
-To make a project you would click File \> New Project, then follow the prompts. For this workshop, we have already created a Project for you. Double clicking on the **.RProj** file automatically opens up the project and associated documents in the correct working directory.
+There are multiple ways to create a project. Here we cover two of them.
+
+**Option 1 -- Create a new directory:**
+
+On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):.
+![](images/project1.jpeg)
+
+Then, click on "New Project..." in the drop-down menu.
+![](images/project2.jpeg)
+
+Then, click on "New Directory".
+![](images/project3.jpeg)
+
+Then, click on "New Project".
+![](images/project4a.jpeg)
+
+Then, populate a directory name (whatever name you want to be associated with the folder), select a location, and click on "Create Project". In this case, the folder will be called "test_project" and will be located in the Desktop.
+![](images/project5a.jpeg)
+
+**Option 2 -- Project in an existing directory:**
+
+On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):.
+![](images/project1.jpeg)
+
+Then, click on "New Project..." in the drop-down menu.
+![](images/project2.jpeg)
+
+Then, click on "Existing Directory".
+![](images/project3.jpeg)
+
+Then, select the location of your existing directory and click on "Create Project".
+![](images/project4b.jpeg)
+
+Regardless of which option you use, you'll end up with a directory containing a file ending in **".Rproj"**. Double clicking on that file automatically opens up the project and associated documents in the correct working directory.
 
 ### EXERCISE
 
@@ -87,7 +119,7 @@ Check that you are currently working within the `R-fundamentals-summer-workshop`
 
 ## Code scripts and R Document files
 
-This is an R Quarto file. It is very similar to an R Markdown file if you've used those before. There are two view modes for this file - Source and Visual. The code in the gray chunks (surrounded by \`\`\` in Source view) is R code that you can run. There's a green triangle you can click to run all of the code in a chunk, or put your cursor in a line and press Command+Enter (Mac) or Control+Enter (PC) to execute that command (which can span multiple lines).
+This is an R Quarto file. It is very similar to an R Markdown file. There are two view modes for this file - Source and Visual. The code in the gray chunks (surrounded by \`\`\` in Source view) is R code that you can run. There's a green triangle you can click to run all of the code in a chunk, or put your cursor in a line and press Command+Enter (Mac) or Control+Enter (PC) to execute that command (which can span multiple lines).
 
 We're using an R Quarto Document instead of an R script so that we can include additional text and explanation in the file. In an .R script, everything has to be an R command or comment. Here, between chunks of R code, we can include text and other information.
 
@@ -95,9 +127,9 @@ We're using an R Quarto Document instead of an R script so that we can include a
 
 Functions have a name. They optionally take one or more input values (arguments). They optionally return a value (or a more complicated object) or have a side effect (do something).
 
-Examples: `log`, `round`
+Example functions: `log`, `round`.
 
-You can nest function calls:
+Note that you can nest function calls:
 
 ```{r}
 log(16)
@@ -107,7 +139,7 @@ round(log(16))
 
 In `round(log(16))` for example R first evaluates `log(16)` and then evaluates `round()` on that result.
 
-How do you learn function names? See the [R Reference Card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) for some basics. Otherwise, look at the documentation for the packages you're using, or tutorials for the type of analysis you want to do.
+How do you learn function names? See the [R Reference Card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) for some basics. Otherwise, look at the documentation for the packages you're using, or tutorials for the type of analysis you want to do. Google is always there for you!
 
 The inputs or arguments to a function have names. When we don't use the name, like above, it matches the values in order. But we can always use the argument name:
 
@@ -187,6 +219,12 @@ library(praise)
 library(palmerpenguins)  # we're going to use this later
 ```
 
+Now that we loaded `praise`, we can use functions within it!
+
+```{r}
+praise()
+```
+
 # Import Data
 
 ## Reading in a Data File
@@ -230,9 +268,12 @@ penguins
 It's also possible to create a data frame from scratch. You will not do this often.
 
 ```{r, manualdf}
-month_info <- data.frame(month=month.name,
-                         index=1:12,
-                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
+month_info <- data.frame(
+  month=month.name,
+  index=1:12,                 
+  days=c(31,28,31,30,31,30,31,31,30,31,30,31)
+  )
+
 month_info
 ```
 
@@ -290,8 +331,8 @@ summary(evp)
 
 Using the `penguins` data frame, write commands to figure out:
 
--   How many rows and columns?
--   Names of the variables?
+-   How many rows and columns it has?
+-   Whart are the names of the variables?
 
 ```{r}
 # load the package
@@ -316,25 +357,29 @@ table(evp$location)
 median(month_info$days)
 ```
 
+Notice that, by default, `table` doesn't include missing values. To see those, you need to add `useNA = "ifany"` or `useNA = "always"`.
+
+```{r}
+table(evp$location, useNA = "always")
+```
+
 We can also use the vectors in expressions:
 
 ```{r}
 month_info$days/7
 ```
 
-When using vectors in math expressions
-
 ## EXERCISE
 
-Import data from `"data/nu_degrees.csv"` - save it in a variable (choose an appropriate name).
+Import data from `"data/nu_degrees.csv"` and save it in a variable (choose an appropriate name).
 
-Look at the data.
+View the data.
 
 What is the average (the function is `mean()`) number of bachelor's degrees issued in a year?
 
-What is the standard deviation in the number of doctoral degrees issued each year? The function is `sd()`
+What is the standard deviation in the number of doctoral degrees issued each year? The function is `sd()`.
 
-How many total masters degrees were issued for the years in the data? Hint: `sum()`
+How many total masters degrees were issued for the years in the data? Hint: `sum()`.
 
 ```{r}
 
@@ -348,7 +393,7 @@ Challenge: How many total degrees were issued each year? How many total degrees 
 
 ## Indexing by Position: Vectors
 
-We can access the individual values in vectors or data frame by their index position. We put the number of the element we want in `[]`.
+We can access the individual values in vectors or data frames by their index position. We put the number of the element we want in `[]`.
 
 Let's start with vectors:
 
@@ -364,7 +409,7 @@ We can also select a range of values:
 month_info$month[1:5]
 ```
 
-Or non-adjacent values by using a vector of values. We can make our own vector with the c() function:
+Or non-adjacent values by using a vector of values. We can make our own vector with the `c()` function:
 
 ```{r}
 c(1, 3, 5, 7, 9, 11)
@@ -431,25 +476,25 @@ There is a shortcut if we want all rows or all columns -- we can leave one posit
 Select first row
 
 ```{r}
-month_info[1,]
+month_info[1, ]
 ```
 
 Select first two rows
 
 ```{r}
-month_info[1:2,]
+month_info[1:2, ]
 ```
 
 Select first column
 
 ```{r}
-month_info[,1]
+month_info[ ,1]
 ```
 
 This gave us a vector back, but with `penguins`:
 
 ```{r}
-penguins[,1]
+penguins[ ,1]
 ```
 
 we get a data frame/tibble back. This is one difference between tibbles and regular data frames.
@@ -499,37 +544,32 @@ month_info$days
 Use names in `[]`: put them in quotes
 
 ```{r}
-month_info[,"days"]
+month_info[ ,"days"]
 ```
 
 With penguins (tibble), it stays as a tibble:
 
 ```{r}
-penguins[,"bill_length_mm"]
+penguins[ ,"bill_length_mm"]
 ```
 
 Multiple columns by name, need to use a vector of names:
 
 ```{r}
-month_info[,c("month", "days")]
+month_info[ ,c("month", "days")]
 ```
 
 ## Boolean/Conditional Selection
 
 Suppose we want to select rows from a data frame that might meet a specific condition. For example, select all data for patients aged greater than 65, or select all sales items that were sold in the month of December.
 
-Typically, we use boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
+Typically, we use Boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
 
-If we have a boolean vector (`TRUE` and `FALSE` values) that is the same length as the number of rows or columns, we can use it to select data.
+If we have a Boolean vector (`TRUE` and `FALSE` values) that is the same length as the number of rows or columns, we can use it to select data.
 
 For example, let's suppose you want to find the names of the months which have 31 days exactly
 
 ```{r}
-# create month_info data frame manually
-month_info <- data.frame(month=month.name,
-                         index=1:12,
-                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
-
 month_info
 month_info$days # vector containing number of days in each month
 month_info$days == 31 # boolean vector of T,F values based on a condition
@@ -542,11 +582,15 @@ The command above works because R selects the values which evaluated to TRUE and
 Another example:
 
 ```{r}
-# create a boolean vector of length equal to number of rows in month_info
-selection_vector <- c(T, T, T, T, T, T,
-                      F, F, F, F, F, F)
-
 month_info$month
+length(month_info$month)
+
+# create a Boolean vector of length equal to number of rows in month_info
+selection_vector <- c(
+  T, T, T, T, T, T, F, F, F, F, F, F
+  )
+length(selection_vector)
+
 month_info$month[selection_vector] 
 
 month_info$month[!selection_vector] # inverted selection
@@ -565,7 +609,7 @@ Hmmm - there's some missing values in there (NA) - we'll come back to that in a 
 Select the **rows** (all columns) where bill length is less than 34:
 
 ```{r}
-penguins[penguins$bill_length_mm < 34,]
+penguins[penguins$bill_length_mm < 34, ]
 ```
 
 If I forget the `,` in the `[]`:
@@ -579,11 +623,13 @@ It tries to index the columns instead, and our vector is too long.
 Multiple conditions
 
 ```{r}
-penguins[penguins$bill_length_mm < 34 & penguins$bill_depth_mm < 16,]
+penguins[penguins$bill_length_mm < 34 & penguins$bill_depth_mm < 16, ]
+dim(penguins[penguins$bill_length_mm < 34 & penguins$bill_depth_mm < 16, ])
 ```
 
 ```{r}
-penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58,]
+penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58, ]
+dim(penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58, ])
 ```
 
 ## EXERCISE
@@ -603,8 +649,11 @@ You might want to break this down into two steps: 1) write an expression for det
 ```{r}
 NA  
 y <- c("dog", "cat", NA, NA, "bird")
+y
 x <- c(NA, 2, NA, 4, NA, 6, NA, 6, 6, 4)
+x
 
+is.na(y)
 is.na(x)  
 ```
 
@@ -612,6 +661,7 @@ A common operation is to count how many missing values there are in a vector. We
 
 ```{r}
 sum(c(TRUE, FALSE))
+x
 sum(is.na(x))  
 ```
 
@@ -628,9 +678,14 @@ If we don't want the missing rows included in our results above when we were sel
 is.na(penguins$bill_length_mm)
 !is.na(penguins$bill_length_mm)  # ! is not
 
+dim(penguins)
+
 # not missing bill length AND bill length < 34
-penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34,]
-penguins[penguins$bill_length_mm < 34,]
+penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34, ]
+dim(penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34, ])
+
+penguins[penguins$bill_length_mm < 34, ]
+dim(penguins[penguins$bill_length_mm < 34, ])
 ```
 
 The function `complete.cases()` can be used to find which rows have no missing values at all:
@@ -638,13 +693,17 @@ The function `complete.cases()` can be used to find which rows have no missing v
 ```{r}
 complete.cases(penguins)
 
-penguins[complete.cases(penguins),] ## effectively drops rows with any missing values
+dim(penguins)
+
+penguins[complete.cases(penguins), ] ## effectively drops rows with any missing values
+dim(penguins[complete.cases(penguins), ])
 ```
 
 The function `na.omit()` can be used to shorten the above calls, it directly returns the subset of data with complete cases.
 
 ```{r}
 na.omit(penguins) # is the same as code chunk above
+dim(na.omit(penguins))
 ```
 
 ## EXERCISE
@@ -675,20 +734,23 @@ Challenge: What is the mean of non-missing values of `penguins$bill_depth_mm` fo
 
 What if the variable/column names in your dataset have spaces, start with numbers, or are otherwise not names that you can use with R?
 
+First, take a look at `annoying.csv` in Excel.
+
+Then, run this code:
+
 ```{r}
 bad_data <- read.csv("data/annoying.csv")
 bad_data
 names(bad_data)
 ```
 
-The package `{janitor}` functions expedite the initial data exploration and cleaning that comes with any new data set. 
+The package `{janitor}` expedites the initial data exploration and cleaning that comes with any new data set.
 
 ```{r}
 library(janitor)
 bad_data <- clean_names(bad_data)
 bad_data
 names(bad_data)
-bad_data$x2022
 ```
 
 ## Renaming Columns
@@ -721,19 +783,36 @@ bad_data
 We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
 
 ```{r}
+names(penguins)
 penguins$bill_length_cm <- penguins$bill_length_mm / 10  # make new variable: note CM instead of MM in the name
 names(penguins)  # check to see that it was added
-penguins[, c("bill_length_cm", "bill_length_mm")]  # select the two vars to view them
 ```
 
-Columns will be added to the end (right). We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
+Columns will be added to the end (right).
 
 ```{r}
-penguins <- penguins[, c("species", "island", "sex", "year",
-                         "bill_length_mm", "bill_length_cm",
-                         "bill_depth_mm", "flipper_length_mm", "body_mass_g")]
+View(penguins)
+```
+
+
+We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
+
+```{r}
+penguins <- penguins[ , c(
+  "species",
+  "island",
+  "sex",
+  "year",
+  "bill_length_mm",
+  "bill_length_cm",
+  "bill_depth_mm",
+  "flipper_length_mm",
+  "body_mass_g"
+  )
+  ]
 
 names(penguins)
+View(penguins)
 ```
 
 ## EXERCISE
@@ -741,11 +820,6 @@ names(penguins)
 Using `month_info`: make a new variable as part of `month_info`, called `weeks`, that is the number of days divided by 7.
 
 ```{r}
-# create month_info dataframe manually
-month_info <- data.frame(month=month.name,
-                         index=1:12,
-                         days=c(31,28,31,30,31,30,31,31,30,31,30,31))
-
 
 ```
 
@@ -768,9 +842,9 @@ To remove a column from a data frame, we select the data we want to keep, and th
 ```{r}
 month_info
 
-month_info[, 1:3]
+month_info[ , 1:3]
 
-month_info <- month_info[, -c(2,6)]
+month_info <- month_info[ , -c(2,6)]
 month_info
 ```
 
@@ -778,9 +852,17 @@ Or with names:
 
 ```{r}
 names(penguins)
-penguins <- penguins[, c("species", "island", "sex", "year",
-                         "bill_length_mm", "bill_depth_mm", 
-                         "flipper_length_mm", "body_mass_g")]
+penguins <- penguins[ , c(
+  "species",
+  "island",
+  "sex",
+  "year",
+  "bill_length_mm",
+  "bill_depth_mm",
+  "flipper_length_mm",
+  "body_mass_g"
+  )
+  ] # we're excluding the cm column that we created earlier
 names(penguins)
 ```
 
@@ -816,18 +898,6 @@ sum(is.na(penguins$bill_depth_mm))
 
 You can replace any values you need to replace (it doesn't have to be missing), and often-times it is common to use functions to compute the replacement values.
 
-```{r}
-# get a sub-string from the given input string
-substr(x = "January", start = 1, stop = 3)
-
-# generate a vector of replacement values using month_info$month as the input vector
-substr(month_info$month, 1, 3)
-
-# replace the original values in the month column with the new values
-month_info$month <- substr(month_info$month, 1, 3)
-month_info
-```
-
 ## EXERCISE
 
 Here is code to make a new data frame. Run the code and take a look at the data frame
@@ -859,7 +929,6 @@ Which penguins are heavier than average?
 Let's build this up together...
 
 ```{r}
-
 
 ```
 
