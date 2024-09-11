@@ -482,7 +482,7 @@ If we want the color to change based on another column in the source dataset (`m
 
 ```{r}
 gg <- ggplot(midwest, aes(x=area, y=poptotal)) + 
-  geom_point(aes(col=state), size=2) +  # Vary color based on state categories.
+  geom_point(aes(colour=state), size=2) +  # Vary color based on state categories.
   geom_smooth(method="lm", col="firebrick", linewidth=2) + 
   coord_cartesian(xlim=c(0, 0.1), ylim=c(0, 1000000)) + 
   labs(title="Area Vs Population", 
@@ -493,13 +493,9 @@ gg <- ggplot(midwest, aes(x=area, y=poptotal)) +
 gg
 ```
 
-Now each point is colored based on the `state` it belongs to because of `aes(col=state)`. Not just color, but `size`, `shape`, `stroke` (thickness of boundary), and `fill` (fill color) can be used to discriminate groupings.
+Now each point is colored based on the `state` it belongs to because of `aes(colour=state)`. Not just color, but `size`, `shape`, `stroke` (thickness of boundary), and `fill` (fill color) can be used to discriminate groupings.
 
-As an added benefit, the legend is added automatically. If needed, it can be removed by setting the `legend.position` to `None` from within a `theme()` function.
-
-```{r}
-gg + theme(legend.position="None")  # remove legend
-```
+As an added benefit, the legend is added automatically. If needed, it can be removed by setting the `legend.position` to `None` from within a `theme()` function. We'll talk about themes later.
 
 ### Scales for color
 
@@ -525,7 +521,10 @@ More of such palettes can be found in the RColorBrewer package
 
 ```{r}
 library(RColorBrewer)
+
 head(brewer.pal.info, 10)  # show 10 palettes
+
+gg + scale_colour_brewer(palette = "PuOr")
 ```
 
 When selecting colors for your visualizations, in addition to other factors, it's important to consider [friendly colors for people with color vision deficiency](https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together).
@@ -538,17 +537,11 @@ Change the color of the points according to the species column for a plot of fli
 
 ```
 
-Note - You can also change the color of the points according to the species by setting `group` in `aes` , and setting the aesthetics for `geom_point` separately. This is useful if you want to plot multiple geoms in a plot (e.g. scatter points and a regression line).
-
-```{r}
-
-```
-
 # Themes
 
 Let's make the graph more elegant! Let's use themes to clean up the background.
 
-I like using the `theme_pubr()` from the `{ggpubr}` package:
+`theme_pubr()` from the `{ggpubr}` package is a nice option:
 
 ```{r}
 #install.packages("ggpubr")
@@ -603,13 +596,26 @@ Notice how the theme custom input overrides the defaults set in `theme_classic()
 
 Remember that the order of layering matters! The last passed input will be retained.
 
+```{r}
+ggplot(data=penguins, 
+       aes(x = flipper_length_mm, 
+           y = body_mass_g, 
+           color = species)) +
+  geom_point() +
+  theme(axis.title.x = element_text(color="dodgerblue", 
+                                    size=15, 
+                                    face="italic", 
+                                    family="Comic Sans MS")) +
+  theme_classic()
+```
+
 ## EXERCISE
 
 Add a theme of your choosing from [here](https://r-charts.com/ggplot2/themes/) to `penguin_plot`.
 
 Reminder: if you are using a new package, first install and load that package to access the themes inside it.
 
-```{r}
+```{r, eval=FALSE}
 penguin_plot <- ggplot(data = penguins, 
                        aes(x = flipper_length_mm, 
                            y = body_mass_g)) +
@@ -711,7 +717,7 @@ p
 
 # create a new plot to display the sample size for each species
 p_count <- ggplot(penguins, aes(species)) + 
-  geom_bar(aes(fill=species)) +
+  geom_bar(aes(fill=species)) + # this is coloring the bars by species
   theme_classic() +
   scale_color_brewer(palette = "Accent") +
   labs(title="Count of penguin species")
@@ -744,6 +750,7 @@ chic <- readr::read_csv(file="data/chicago_weather_data.csv")
 ```
 
 ```{r}
+dim(chic)
 str(chic)
 View(chic)
 ```
