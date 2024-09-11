@@ -36,10 +36,13 @@ Throughout the process, it's important that you don't lose yourself in the code 
 
 To start familiarizing yourself with statistics in R, let's take the example of linear regression, which is a commonly used method and is helpful to illustrate some key aspects about statistics in R.
 
+Here we're focusing on how to implement statistical methods in R. We're not covering the statistics of linear regression. That said, our team does have statisticians and we do teach workshops focused on statistics.
+
 Let's use the `penguins` dataset that we've used before from the package `palmerpenguins`.
 
 ```{r}
 library(palmerpenguins)
+data(penguins)
 head(penguins)
 ```
 
@@ -90,22 +93,19 @@ summary(reg1)$coefficients
 
 ### EXERCISE
 
-What is the correlation coefficient between flipper length and bill length for penguins of the Gentoo species?
+What is the correlation coefficient between flipper length and bill length?
 
-Hint: Break down this problem into steps. Subset penguins to get only rows with species Gentoo, then select the columns for correlation, and remove any NA values that might interfere. Then find out the R function you would need to calculate the correlation coefficient between 2 vectors.
-
-Bonus challenge: use pipes to write out the code above in one command
+Hint: Break down this problem into steps. Select the columns for correlation and remove any NA values that might interfere. Then find out the R function you would need to calculate the correlation coefficient between 2 vectors.
 
 ```{r}
 library(palmerpenguins)
 data(penguins)
 
-
 ```
 
 ### EXERCISE
 
-Perform a t-test to check if there is a statistical difference in body mass between male and female penguins. Get the p-value for this test.
+Perform a t-test to check if there is a statistically significant difference in body mass between male and female penguins. Get the p-value for this test.
 
 Hint: Find out the R function you would need to calculate the t-test statistic between 2 vectors. Use `names()` to access the p-value of your test statistic.
 
@@ -166,7 +166,7 @@ Let's initialize a basic ggplot based on the midwest dataset:
 
 ```{r}
 # Setup
-data("midwest", package = "ggplot2")  # load the data (part of the ggplot2 package)
+data(midwest, package = "ggplot2")
 View(midwest)
 ```
 
