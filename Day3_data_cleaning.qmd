@@ -339,17 +339,7 @@ sum(smoke_factor > "Occasionally", na.rm = TRUE)
 
 To recap, you can control the order in which the levels are presented by choosing which order we write them in in the `levels` argument. The `ordered = TRUE` argument specifies that the order of the variables is *meaningful*. `ordered = TRUE` can be excluded in cases where you wish to specify the order in which the categories should be presented purely for presentation purposes (e.g., when specifying whether to use the order `Male/Female/Other` or `Female/Male/Other`).
 
-Also, note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations. To find the values of **`smoke`** that became `NA` in **`smoke_factor`** you can use `which` and `is.na`:
-
-```{r}
-smoke
-smoke_factor
-is.na(smoke_factor)
-which(is.na(smoke_factor))
-smoke[which(is.na(smoke_factor))]
-```
-
-By checking the original values of the `NA` elements, you can see if they should be excluded from the analysis or recoded into a proper category (`No` could for instance be recoded into `Never`).
+Also, note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations.
 
 ### Changing factor levels
 
@@ -664,6 +654,16 @@ Sometimes we may still want to save the result of some expression, such as after
 police60201 <- police %>%
   filter(location == "60201") %>%
   select(date, time, beat, type, outcome) 
+```
+
+### EXERCISE (Bonus Challenge)
+
+Is there a difference in output between base R expression and `dplyr::filter` function outputs? How many rows does each output data frame have? Are they different? Why might that be?
+
+Hint: Investigate how NAs are treated in base R and by filter.
+
+```{r}
+
 ```
 
 ### Mutate: add/modify columns

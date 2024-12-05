@@ -7,6 +7,9 @@ output:
     toc_depth: 1
 editor_options:
   chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r, setup, include=FALSE}
@@ -17,7 +20,8 @@ knitr::opts_chunk$set(
 
 # R: Tools of the Trade
 
-Welcome to the R Bootcamp! In this section, we're going to cover some fundamental R tools such as:
+Welcome to the R Bootcamp!
+In this section, we're going to cover some fundamental R tools such as:
 
 -   RStudio
 -   File paths
@@ -49,7 +53,8 @@ Each pane can be minimized or maximized within the column by clicking the minimi
 
 ## Working directory
 
-Working directory: where R starts looking for files on your computer. In other words, where you're "working from." This is also where R will save any output you save (e.g., processed data or plots).
+Working directory: where R starts looking for files on your computer.
+In other words, where you're "working from." This is also where R will save any output you save (e.g., processed data or plots).
 
 You can set it or go to it in the Files pane (under the More menu), or with functions.
 
@@ -72,14 +77,15 @@ setwd("~")
 
 ## RStudio Projects
 
-R experts keep all the files associated with a project together --- input data, R scripts, analytical results, figures. This is such a wise and common practice that RStudio has built-in support for this via **projects**.
+R experts keep all the files associated with a project together --- input data, R scripts, analytical results, figures.
+This is such a wise and common practice that RStudio has built-in support for this via **projects**.
 
-There are multiple ways to create a project. Here we cover two of them.
+There are multiple ways to create a project.
+Here we cover two of them.
 
 **Option 1 -- Create a new directory:**
 
-On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):.
-![](images/project1.jpeg)
+On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):. ![](images/project1.jpeg)
 
 Then, click on "New Project..." in the drop-down menu.
 ![](images/project2.jpeg)
@@ -90,13 +96,13 @@ Then, click on "New Directory".
 Then, click on "New Project".
 ![](images/project4a.jpeg)
 
-Then, populate a directory name (whatever name you want to be associated with the folder), select a location, and click on "Create Project". In this case, the folder will be called "test_project" and will be located in the Desktop.
+Then, populate a directory name (whatever name you want to be associated with the folder), select a location, and click on "Create Project".
+In this case, the folder will be called "test_project" and will be located in the Desktop.
 ![](images/project5a.jpeg)
 
 **Option 2 -- Project in an existing directory:**
 
-On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):.
-![](images/project1.jpeg)
+On the top-right corner of RStudio, click on the button that has a blue cube with an R inside and says "Project: (None):. ![](images/project1.jpeg)
 
 Then, click on "New Project..." in the drop-down menu.
 ![](images/project2.jpeg)
@@ -107,11 +113,13 @@ Then, click on "Existing Directory".
 Then, select the location of your existing directory and click on "Create Project".
 ![](images/project4b.jpeg)
 
-Regardless of which option you use, you'll end up with a directory containing a file ending in **".Rproj"**. Double clicking on that file automatically opens up the project and associated documents in the correct working directory.
+Regardless of which option you use, you'll end up with a directory containing a file ending in **".Rproj"**.
+Double clicking on that file automatically opens up the project and associated documents in the correct working directory.
 
 ### EXERCISE
 
-Check that you are currently working within the `R-fundamentals-summer-workshop` Project. If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
+Check that you are currently working within the `R-fundamentals-summer-workshop` Project.
+If not, save any changes you've made to this file (or others in this folder), and then open the relevant .RProj file to open the project (which will restart your R session as well).
 
 ```{r}
 
@@ -119,13 +127,21 @@ Check that you are currently working within the `R-fundamentals-summer-workshop`
 
 ## Code scripts and R Document files
 
-This is an R Quarto file. It is very similar to an R Markdown file. There are two view modes for this file - Source and Visual. The code in the gray chunks (surrounded by \`\`\` in Source view) is R code that you can run. There's a green triangle you can click to run all of the code in a chunk, or put your cursor in a line and press Command+Enter (Mac) or Control+Enter (PC) to execute that command (which can span multiple lines).
+This is an R Quarto file.
+It is very similar to an R Markdown file.
+There are two view modes for this file - Source and Visual.
+The code in the gray chunks (surrounded by \`\`\` in Source view) is R code that you can run.
+There's a green triangle you can click to run all of the code in a chunk, or put your cursor in a line and press Command+Enter (Mac) or Control+Enter (PC) to execute that command (which can span multiple lines).
 
-We're using an R Quarto Document instead of an R script so that we can include additional text and explanation in the file. In an .R script, everything has to be an R command or comment. Here, between chunks of R code, we can include text and other information.
+We're using an R Quarto Document instead of an R script so that we can include additional text and explanation in the file.
+In an .R script, everything has to be an R command or comment.
+Here, between chunks of R code, we can include text and other information.
 
 ## Functions
 
-Functions have a name. They optionally take one or more input values (arguments). They optionally return a value (or a more complicated object) or have a side effect (do something).
+Functions have a name.
+They optionally take one or more input values (arguments).
+They optionally return a value (or a more complicated object) or have a side effect (do something).
 
 Example functions: `log`, `round`.
 
@@ -139,19 +155,26 @@ round(log(16))
 
 In `round(log(16))` for example R first evaluates `log(16)` and then evaluates `round()` on that result.
 
-How do you learn function names? See the [R Reference Card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) for some basics. Otherwise, look at the documentation for the packages you're using, or tutorials for the type of analysis you want to do. Google is always there for you!
+How do you learn function names?
+See the [R Reference Card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) for some basics.
+Otherwise, look at the documentation for the packages you're using, or tutorials for the type of analysis you want to do.
+Google is always there for you!
 
-The inputs or arguments to a function have names. When we don't use the name, like above, it matches the values in order. But we can always use the argument name:
+The inputs or arguments to a function have names.
+When we don't use the name, like above, it matches the values in order.
+But we can always use the argument name:
 
 ```{r}
 round(3.1415, digits=2)
 ```
 
-You can find the argument names in the Help or documentation page for the function. We'll look at these soon.
+You can find the argument names in the Help or documentation page for the function.
+We'll look at these soon.
 
 # Packages
 
-R comes with lots of built-in basic functions (commands). But we almost always need to use functions from additional packages as well.
+R comes with lots of built-in basic functions (commands).
+But we almost always need to use functions from additional packages as well.
 
 -   Packages contain additional functions, and sometimes data sets
 -   Install packages once (for each major version of R)
@@ -171,11 +194,15 @@ install.packages("praise")
 install.packages(c("palmerpenguins", "tidyverse", "janitor"))
 ```
 
-Packages are installed from a repository. CRAN (Comprehensive R Archive Network) is the most common. People also install packages from Bioconductor and GitHub (process differs for these).
+Packages are installed from a repository.
+CRAN (Comprehensive R Archive Network) is the most common.
+People also install packages from Bioconductor and GitHub (process differs for these).
 
 The Packages tab in the bottom right of RStudio can help you install and update packages.
 
-If you're asked a question about whether you want to install packages from source, say NO. This is because installing from source requires compiling into computer-readable documents which take time. If you say NO then R uses a pre-compiled version.
+If you're asked a question about whether you want to install packages from source, say NO.
+This is because installing from source requires compiling into computer-readable documents which take time.
+If you say NO then R uses a pre-compiled version.
 
 ### EXERCISE
 
@@ -189,11 +216,16 @@ Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tid
 
 ## What if you can't install packages in your computer? Posit Cloud to the rescue!
 
-If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud. Posit Cloud allows you to run R on the cloud (in other words, other people's computers).
+If for some reason you can't install packages in your computer, you can use R and RStudio within Posit Cloud.
+Posit Cloud allows you to run R on the cloud (in other words, other people's computers).
 
-When using cloud services, keep in mind that you're sending data to other people's computers. Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind. You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/). For this workshop, it's okay to use Posit Cloud.
+When using cloud services, keep in mind that you're sending data to other people's computers.
+Always consider the type of data that you're using and keep Northwestern's [research data](https://researchintegrity.northwestern.edu/resources/research-data-policy.pdf) and [data classification](https://policies.northwestern.edu/docs/data-classification-policy.pdf) policies in mind.
+You can always consult with [Research Computing and Data Services' Data Management team](https://www.it.northwestern.edu/departments/it-services-support/research/data-storage/).
+For this workshop, it's okay to use Posit Cloud.
 
-To use Posit Cloud, go to <https://posit.cloud/>. ![](images/posit_cloud_main.jpeg)
+To use Posit Cloud, go to <https://posit.cloud/>.
+![](images/posit_cloud_main.jpeg)
 
 The first time you use it, follow these steps:
 
@@ -204,15 +236,19 @@ The first time you use it, follow these steps:
 
 ## Using Packages
 
-Packages have additional functions in them. Go to the Packages tab to take a look. Click on a package name to pull up the package index.
+Packages have additional functions in them.
+Go to the Packages tab to take a look.
+Click on a package name to pull up the package index.
 
 To use a package in your current session, use the `library()` function to load all of the functions (and other objects) in the package into your environment.
 
-You need a separate library command for each package. You do not need quotes around the package names.
+You need a separate library command for each package.
+You do not need quotes around the package names.
 
 Put these at the top of your script or R Markdown file so people (collaborators or your future self) can see which packages are needed for the code.
 
-Only load the packages you need. Packages can conflict with each other, so don't load ones you aren't using.
+Only load the packages you need.
+Packages can conflict with each other, so don't load ones you aren't using.
 
 ```{r}
 library(praise)
@@ -229,7 +265,8 @@ praise()
 
 ## Reading in a Data File
 
-Most of the time, you'll read in data from a file. For example:
+Most of the time, you'll read in data from a file.
+For example:
 
 ```{r}
 evp <- read.csv("data/ev_police_jan.csv")
@@ -243,7 +280,8 @@ As with other variables, when we type the name of the data frame, it will print 
 evp
 ```
 
-Note: Evanston police data comes from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/). This is a small subset of data: just January 2017.
+Note: Evanston police data comes from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/).
+This is a small subset of data: just January 2017.
 
 TIPS: if you get an error message that a file can't be found when you're trying to import it:
 
@@ -251,13 +289,17 @@ TIPS: if you get an error message that a file can't be found when you're trying 
 
 2)  Check your working directory (`getwd()`) and make sure the path to the file is correct and completely specified given what your working directory is.
 
-3)  Make sure you extracted the contents of the .zip file you downloaded. We've seen some problems on Windows computers especially where a .zip file isn't really unzipped - it's just letting you see inside without actually expanding the contents and creating real files. Right click on the file and look for an Extract All or similar option.
+3)  Make sure you extracted the contents of the .zip file you downloaded.
+    We've seen some problems on Windows computers especially where a .zip file isn't really unzipped - it's just letting you see inside without actually expanding the contents and creating real files.
+    Right click on the file and look for an Extract All or similar option.
 
 ## From a Package
 
-Today, we're going to work with data on penguins from <https://github.com/allisonhorst/palmerpenguins>. It's been included in an R package: palmerpenguins.
+Today, we're going to work with data on penguins from <https://github.com/allisonhorst/palmerpenguins>.
+It's been included in an R package: palmerpenguins.
 
-There's a data frame in the package called penguins. Like with functions in a package, we can use it once we've loaded the package with the library command above.
+There's a data frame in the package called penguins.
+Like with functions in a package, we can use it once we've loaded the package with the library command above.
 
 ```{r}
 penguins
@@ -265,7 +307,8 @@ penguins
 
 ## Manual Creation
 
-It's also possible to create a data frame from scratch. You will not do this often.
+It's also possible to create a data frame from scratch.
+You will not do this often.
 
 ```{r, manualdf}
 month_info <- data.frame(
@@ -289,7 +332,8 @@ month_info
 
 ## What is a data frame?
 
-It has columns and rows. Let's look at it:
+It has columns and rows.
+Let's look at it:
 
 ```{r, eval=FALSE}
 View(evp)
@@ -343,7 +387,8 @@ library(palmerpenguins)
 
 ## Working with Variables
 
-Each column (variable) is a vector. We can access them individually with the `$` notation using the name of each variable:
+Each column (variable) is a vector.
+We can access them individually with the `$` notation using the name of each variable:
 
 ```{r}
 evp$location
@@ -357,7 +402,8 @@ table(evp$location)
 median(month_info$days)
 ```
 
-Notice that, by default, `table` doesn't include missing values. To see those, you need to add `useNA = "ifany"` or `useNA = "always"`.
+Notice that, by default, `table` doesn't include missing values.
+To see those, you need to add `useNA = "ifany"` or `useNA = "always"`.
 
 ```{r}
 table(evp$location, useNA = "always")
@@ -377,15 +423,18 @@ View the data.
 
 What is the average (the function is `mean()`) number of bachelor's degrees issued in a year?
 
-What is the standard deviation in the number of doctoral degrees issued each year? The function is `sd()`.
+What is the standard deviation in the number of doctoral degrees issued each year?
+The function is `sd()`.
 
-How many total masters degrees were issued for the years in the data? Hint: `sum()`.
+How many total masters degrees were issued for the years in the data?
+Hint: `sum()`.
 
 ```{r}
 
 ```
 
-Challenge: How many total degrees were issued each year? How many total degrees were issued across all years and types?
+Challenge: How many total degrees were issued each year?
+How many total degrees were issued across all years and types?
 
 ```{r}
 
@@ -393,7 +442,8 @@ Challenge: How many total degrees were issued each year? How many total degrees 
 
 ## Indexing by Position: Vectors
 
-We can access the individual values in vectors or data frames by their index position. We put the number of the element we want in `[]`.
+We can access the individual values in vectors or data frames by their index position.
+We put the number of the element we want in `[]`.
 
 Let's start with vectors:
 
@@ -409,7 +459,8 @@ We can also select a range of values:
 month_info$month[1:5]
 ```
 
-Or non-adjacent values by using a vector of values. We can make our own vector with the `c()` function:
+Or non-adjacent values by using a vector of values.
+We can make our own vector with the `c()` function:
 
 ```{r}
 c(1, 3, 5, 7, 9, 11)
@@ -454,11 +505,14 @@ What is `penguins`?
 class(penguins)
 ```
 
-"tbl_df" is a tibble data frame. These behave a little bit differently from normal data frames. You'll see tibbles instead of data frames within the tidyverse set of packages (and those packages that work within that framework).
+"tbl_df" is a tibble data frame.
+These behave a little bit differently from normal data frames.
+You'll see tibbles instead of data frames within the tidyverse set of packages (and those packages that work within that framework).
 
 The biggest difference is that tibbles give you a tibble back when subsetting with \[\], while data frames sometimes give you a vector.
 
-For now: treat tibbles as data frames; be aware that there may be a few differences (one is coming below!). Mostly tibbles are more consistent in their behavior than data frames -- they like to stay as tibbles.
+For now: treat tibbles as data frames; be aware that there may be a few differences (one is coming below!).
+Mostly tibbles are more consistent in their behavior than data frames -- they like to stay as tibbles.
 
 ## Indexing by Position: Data Frames
 
@@ -497,7 +551,8 @@ This gave us a vector back, but with `penguins`:
 penguins[ ,1]
 ```
 
-we get a data frame/tibble back. This is one difference between tibbles and regular data frames.
+we get a data frame/tibble back.
+This is one difference between tibbles and regular data frames.
 
 We can select rows and columns at the same time:
 
@@ -519,7 +574,8 @@ Using the Northwestern degree data set from above: select rows 2 through 5, and 
 
 ```
 
-Challenge: look up the `seq()` function in the Help. Use it to select every other row from the degree data.
+Challenge: look up the `seq()` function in the Help.
+Use it to select every other row from the degree data.
 
 ```{r}
 
@@ -561,13 +617,85 @@ month_info[ ,c("month", "days")]
 
 ## Boolean/Conditional Selection
 
-Suppose we want to select rows from a data frame that might meet a specific condition. For example, select all data for patients aged greater than 65, or select all sales items that were sold in the month of December.
+Suppose we want to select rows from a data frame that might meet a specific condition.
+For example, select all data for patients aged greater than 65, or select all sales items that were sold in the month of December.
 
 Typically, we use Boolean expressions to choose the ROWS (not the columns) because we want to select which particular observations meet some criteria.
 
 If we have a Boolean vector (`TRUE` and `FALSE` values) that is the same length as the number of rows or columns, we can use it to select data.
 
-For example, let's suppose you want to find the names of the months which have 31 days exactly
+For example, suppose your data set is as below:
+
+```         
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+```
+
+You want to choose rows where the **condition** `mpg` ≥ 15 evaluates to TRUE
+
+```         
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb condition
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4     FALSE
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4     FALSE
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4     FALSE
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4     FALSE
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4     FALSE
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8      TRUE
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3      TRUE
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2      TRUE
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2      TRUE
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4      TRUE
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3      TRUE
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3      TRUE
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4      TRUE
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1      TRUE
+```
+
+Therefore, the selected rows will be the ones where the condition evaluated to TRUE:
+
+```         
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb condition
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8      TRUE
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3      TRUE
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2      TRUE
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2      TRUE
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4      TRUE
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3      TRUE
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3      TRUE
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4      TRUE
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1      TRUE
+```
+
+And R will return the following subset of the original data frame to you:
+
+```         
+                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb 
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8      
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3      
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2      
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2      
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4      
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3      
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3      
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4      
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1      
+```
+
+Let's see another example.
+Say, you want to find the names of the months which have exactly 31 days.
 
 ```{r}
 month_info
@@ -657,7 +785,10 @@ is.na(y)
 is.na(x)  
 ```
 
-A common operation is to count how many missing values there are in a vector. We use the function `is.na()` to get TRUE when the value is `NA` and FALSE otherwise. Then we sum that result; this works because TRUE converts to 1 and FALSE converts to 0. So it counts the number of missing values (the number of TRUEs).
+A common operation is to count how many missing values there are in a vector.
+We use the function `is.na()` to get TRUE when the value is `NA` and FALSE otherwise.
+Then we sum that result; this works because TRUE converts to 1 and FALSE converts to 0.
+So it counts the number of missing values (the number of TRUEs).
 
 ```{r}
 sum(c(TRUE, FALSE))
@@ -665,7 +796,8 @@ x
 sum(is.na(x))  
 ```
 
-Different functions handle missing values in different ways. Most commonly, you'll get an answer of `NA` unless you tell the function to remove or exclude the missing values in the calculation.
+Different functions handle missing values in different ways.
+Most commonly, you'll get an answer of `NA` unless you tell the function to remove or exclude the missing values in the calculation.
 
 ```{r}
 mean(x)
@@ -755,9 +887,11 @@ names(bad_data)
 
 ## Renaming Columns
 
-Sometimes, we want to change the column names of a dataframe after importing into R. For example, in `bad_data` above, perhaps we want the columns `x2022` and `x2023` to be called `year_2022` and `year_2023` respectively.
+Sometimes, we want to change the column names of a dataframe after importing into R.
+For example, in `bad_data` above, perhaps we want the columns `x2022` and `x2023` to be called `year_2022` and `year_2023` respectively.
 
-Just like we use `names()` to get the names, use the same function to assign the names. This is different syntax than we see other places in R; `names()` is a special type of function called a replacement function.
+Just like we use `names()` to get the names, use the same function to assign the names.
+This is different syntax than we see other places in R; `names()` is a special type of function called a replacement function.
 
 We can change the name of a data frame column as follows:
 
@@ -780,7 +914,8 @@ bad_data
 
 # Making new columns
 
-We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it. For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
+We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it.
+For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
 
 ```{r}
 names(penguins)
@@ -793,7 +928,6 @@ Columns will be added to the end (right).
 ```{r}
 View(penguins)
 ```
-
 
 We usually don't bother to reorder the variables, but we can by selecting them in the order we want:
 
@@ -844,7 +978,7 @@ month_info
 
 month_info[ , 1:3]
 
-month_info <- month_info[ , -c(2,6)]
+month_info <- month_info[ , -c(2,3)]
 month_info
 ```
 
@@ -868,9 +1002,12 @@ names(penguins)
 
 # Replacing Values
 
-How do we change our data? A common task might be replacing missing values -- either actual NA values or other values that indicate missing.
+How do we change our data?
+A common task might be replacing missing values -- either actual NA values or other values that indicate missing.
 
-Data imputation is a method for retaining the majority of the dataset's data and information by substituting missing data with a different value. This is a very common task in data cleaning. One way to impute missing data is mean imputation i.e. replacing missing values by the mean of the non-missing values in that column.
+Data imputation is a method for retaining the majority of the dataset's data and information by substituting missing data with a different value.
+This is a very common task in data cleaning.
+One way to impute missing data is mean imputation i.e. replacing missing values by the mean of the non-missing values in that column.
 
 Let's go through an example to replace missing values in the `bill_depth_mm` column of the `penguins` data frame.
 
@@ -900,14 +1037,16 @@ You can replace any values you need to replace (it doesn't have to be missing), 
 
 ## EXERCISE
 
-Here is code to make a new data frame. Run the code and take a look at the data frame
+Here is code to make a new data frame.
+Run the code and take a look at the data frame
 
 ```{r}
 some_numbers <- data.frame(v1 = rnorm(10), v2 = runif(10))
 some_numbers
 ```
 
-You decide that you don't want any negative numbers in your data frame. Write code to replace all values of column v1 in `some_numbers` that are below 0 with the value 0.
+You decide that you don't want any negative numbers in your data frame.
+Write code to replace all values of column v1 in `some_numbers` that are below 0 with the value 0.
 
 ```{r}
 # Identify the values to be replaced/changed in some_numbers
@@ -968,7 +1107,8 @@ There are a few ways you might approach this
 
 ## EXERCISE 3
 
-What is the most common location? You may want to use the `table()` function.
+What is the most common location?
+You may want to use the `table()` function.
 
 Hint: you can use the `sort()` function in combination with the `table()` function: `sort(table(x))`
 
@@ -980,7 +1120,9 @@ Hint: you can use the `sort()` function in combination with the `table()` functi
 
 How many stops found contraband?
 
-Hint (for one approach to this): if you `sum()` a boolean variable, TRUE = 1, FALSE = 0, so it counts the TRUE values. Remember to deal with missing values with `sum()`: `sum(x, na.rm=TRUE)`. You could also make a table.
+Hint (for one approach to this): if you `sum()` a boolean variable, TRUE = 1, FALSE = 0, so it counts the TRUE values.
+Remember to deal with missing values with `sum()`: `sum(x, na.rm=TRUE)`.
+You could also make a table.
 
 ```{r}
 
@@ -1032,9 +1174,11 @@ Hint: there are two observations in the data that both have the minimum vehicle_
 
 This exercise is more challenging than the others.
 
-What percentage of men in the dataset drive a Toyota ("TOYT")? How does this compare to the percentage of women who drive a Toyota?
+What percentage of men in the dataset drive a Toyota ("TOYT")?
+How does this compare to the percentage of women who drive a Toyota?
 
-What percentage of Toyota drivers are male? What percentage of drivers in the data set are male?
+What percentage of Toyota drivers are male?
+What percentage of drivers in the data set are male?
 
 ```{r}
 
@@ -1042,7 +1186,8 @@ What percentage of Toyota drivers are male? What percentage of drivers in the da
 
 # PRACTICE SET 2
 
-These exercises are more challenging than the ones above and most require multiple steps to complete. Try to break each problem down into smaller steps.
+These exercises are more challenging than the ones above and most require multiple steps to complete.
+Try to break each problem down into smaller steps.
 
 These exercises use this data set, which is data on Northwestern doctoral degrees by program/department and year:
 
@@ -1054,7 +1199,8 @@ This data is in what we call long format -- there is one row (observation) per d
 
 ## EXERCISE 1
 
-View() the data, and look at the column names and column types. How many rows and columns?
+View() the data, and look at the column names and column types.
+How many rows and columns?
 
 ```{r}
 
@@ -1062,7 +1208,8 @@ View() the data, and look at the column names and column types. How many rows an
 
 ## EXERCISE 2
 
-Select programs/degrees where it's not a PhD (use the phd indicator column). These are other types of doctorate degrees.
+Select programs/degrees where it's not a PhD (use the phd indicator column).
+These are other types of doctorate degrees.
 
 Challenge: use the unique() function to get a vector that has each program in the list only once.
 
@@ -1072,7 +1219,8 @@ Challenge: use the unique() function to get a vector that has each program in th
 
 ## EXERCISE 3
 
-Select data just for 2021-22. Which program awarded the most degrees?
+Select data just for 2021-22.
+Which program awarded the most degrees?
 
 ```{r}
 

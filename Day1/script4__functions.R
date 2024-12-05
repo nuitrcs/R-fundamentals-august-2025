@@ -45,6 +45,9 @@ length(x)
 
 # This code creates two vectors with random values.
 # Run the code and look at the vectors
+set.seed(42) 
+?set.seed # look up the set.seed() function in R help
+
 v1 <- rnorm(20)
 v2 <- rnorm(20)
 

@@ -52,10 +52,6 @@ x[1, 3]   # error
 
 x[c(1, 3)]
 
-y <- c(1, 3)
-
-x[y]
-
 
 # Negative Values
 
@@ -84,6 +80,9 @@ my_data <- c(NA, "dog", "cat", "bird")
 my_data
 
 
+# note how comparisons work for vectors with NA values
+my_vector <- c(4, 5, NA, 5, 4, 6, NA, 5)
+my_vector == 5
 
 
 

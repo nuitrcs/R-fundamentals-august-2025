@@ -6,6 +6,11 @@ getwd()
 # change it if needed to the main folder for the workshop
 setwd("WORKING DIRECTORY YOU WANT TO USE")
 
+# useful function for working with files - can you figure out what it does?
+list.files()
+?list.files
+
+
 # Here is the basic code to read in (import) a CSV file and save it to a variable called "x":
 x <- read.csv("test.csv")  # this won't work if you run it, since there's no test.csv file!
 
