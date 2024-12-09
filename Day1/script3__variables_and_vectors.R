@@ -3,16 +3,23 @@
 
 # Variable Names ----
 
-# start with a letter
-# letters, numbers, . _ 
-# case sensitive!
+# Rules:
+# - Must start with a letter
+# - Can include letters, numbers, . (period), and _ (underscore)
+# - Case-sensitive: "myName" and "MyName" are different variables!
 
-my_name <- "Katherine"
-my.name <- "Katherine"  # legal, but not recommended
-My_name <- "Katherine"
-myName <- "Katherine"
+my_name <- "Katherine"  # Recommended: snake_case is common in R
+my.name <- "Katherine"  # Legal, but not recommended
+My_name <- "Katherine"  # Legal, but starting with an uppercase letter is less common in R
+myName <- "Katherine"   # Legal, but camelCase is more common in languages like Java or Python
 
-# these are all different!
+# Best Practices:
+# 1. Use meaningful names that clearly describe the data or purpose (e.g., `user_age` is better than `x`).
+# 2. Be consistent in style. Prefer snake_case for R, as it's widely used in the R community.
+# 3. Avoid starting variable names with a dot (.) unless necessary, as it can indicate hidden objects.
+# 4. Don't overwrite existing function names (e.g., avoid using `mean`, `sum`, etc.).
+# 5. Use lowercase for most variables to maintain readability and convention.
+
 
 # Look at variables in the Environment tab over there ----->
 
@@ -83,15 +90,6 @@ my_data
 # note how comparisons work for vectors with NA values
 my_vector <- c(4, 5, NA, 5, 4, 6, NA, 5)
 my_vector == 5
-
-
-
-# "Lists" in R can hold multiple types of things ----
-
-my_list <- list(3, TRUE, c(2, 3, 5, 7, 11), "Strongly agree")
-my_list
-
-# if you see [[ ]], you probably have a list
 
 
 # TRY IT ----

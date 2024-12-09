@@ -27,13 +27,6 @@
 "This is a whole sentence.\nThis is a sentence on a different line."
 
 
-# special characters: \t
-"\tThere is a tab at the start of this line."
-
-
-# \t is mostly used if you have a tab-delimited file and need to tell R that there are tabs
-
-
 # Logical AKA Boolean ----
 
 TRUE
@@ -82,8 +75,6 @@ as.numeric("400")
 
 # character/string comparisons based on alphabetical order
 "apple" > "banana"
-
-sort(c("zebra", "Zebra", "kangaroo", "cat", "lion"))  # we'll get to what c() is soon...
 # !!!! Alphabetical order varies by locale (country/language settings)
 
 
@@ -136,10 +127,4 @@ FALSE | FALSE
 !(3 > 2) | (3 < 5)
 !((3 > 2) | (3 < 5))
 
-
 # best practice: always use () to make groupings clear
-
-
-
-
-

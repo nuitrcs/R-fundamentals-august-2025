@@ -6,11 +6,11 @@ evp <- read.csv(file="data/ev_police_jan.csv")
 # it has columns and rows. Let's look at it
 View(evp)
 
-ncol(evp) # number of columns/features in data frame
+ncol(evp) # number of columns/variables in data frame
 nrow(evp) # number of rows/observations in data frame
 
 
-# what are the features?
+# what are the variables?
 names(evp)
 
 
@@ -50,12 +50,3 @@ evp[evp$vehicle_make == "CADI", "vehicle_year" ] # row and column indexing with 
 evp$vehicle_age_in_2024 <- 2024 - evp$vehicle_year
 View(evp)
 names(evp)
-
-# simple histogram 
-hist(evp$vehicle_age_in_2024)
-
-# simple statistics
-mean(evp$vehicle_age_in_2024, na.rm=TRUE)
-
-
-
