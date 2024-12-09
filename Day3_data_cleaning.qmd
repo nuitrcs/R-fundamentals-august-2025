@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ## Using the R Help
 
-One of the most important features that you will need as you start on your path to becoming and R user is getting help. No matter how skilled of a programmer you are, you always encounter new functions and need help understanding how to use them. We will take some time to explore the help features in R.
+One of the most important features that you will need as you start on your path to becoming an R user is getting help. No matter how skilled of a programmer you are, you always encounter new functions and need help understanding how to use them. We will take some time to explore the help features in R.
 
 To get online help within an R session we use the `help()` function. This will allow us to see the documentation on a function that we are interested in.
 
@@ -87,9 +87,9 @@ When you get an error, read it carefully and try to understand what's going on. 
 
 When you get a warning, make sure you understand what's going on and whether you need to do something about it.
 
-Often, Googling errors or warnings can be very helpful! It's likely that someone else has gotten that error and you'll find help in the Internet, often in Stack Overflow.
+Often, Googling errors or warnings can be very helpful! It's likely that someone else has gotten that error and you'll find help in the Internet, often on Stack Overflow.
 
-You can also debug your code yourself. To do this, break your code in the its smallest components. Make sure that you understand what each component is doing. Make sure that it's doing what you expected. Then, make sure you understand how the components are working with each other. Make sure it's what you expected.
+You can also debug your code yourself. To do this, break your code in the its smallest components. Make sure that you understand what each component is doing. Make sure that it's doing what you expected (e.g., correct output for a given input). Then, make sure you understand how the components are working with each other. Make sure it's what you expected.
 
 [How to Debug Your Code for Beginners](https://www.freecodecamp.org/news/what-is-debugging-how-to-debug-code/#heading-how-to-debug-your-code) provides some helpful tips to get new coders started!
 
@@ -99,7 +99,7 @@ This section will list several basic R functions that are very useful and should
 
 ### ifelse
 
-`ifelse()` allows you to change the values of a vector based on a conditional test. It's useful for recoding data, and you can also use it in situations where you don't want to change the underlying data.
+`ifelse()` allows you to change the values of a vector based on a conditional test. It's particularly useful for recoding data, but you can also use it in situations where you don't want to change the underlying data.
 
 The format is:
 
@@ -120,7 +120,7 @@ ifelse(is.na(x), mean(x, na.rm = TRUE), x)  # replace missing values with the me
 
 `ifelse()` looks at each value in the initial TRUE/FALSE vector, and it decides what the value at each position should then be.
 
-There's also the useful `replace_na()` function in the tidyr package and `na_if()` in dplyr.
+There's also the useful `replace_na()` function in the tidyr package and the `na_if()` function in the dplyr package.
 
 ```{r}
 library(tidyr)
@@ -228,8 +228,8 @@ salutation <- c("Dear")
 first_names <- c("John", "Kate", "Tyler", "Jordan")
 last_names <- c("Lee", "Sharma", "Smith")
 
-paste(first_names, last_names, sep=" ")
-paste(salutation, first_names, sep=" ")
+paste(first_names, last_names)
+paste(salutation, first_names)
 ```
 
 ### EXERCISE
@@ -246,13 +246,16 @@ paste(salutation, first_names, sep=" ")
 
 ## Factors
 
-Factors are variables with text labels, but the set of values (called levels) that are allowed for the variable is limited, and the values optionally can have a specific order to them. Categorical data is stored in R as `factor` variables. You may ask why a special data structure is needed for categorical data, when we could just use `character` variables to represent the categories.
+Factors are variables with text labels, but the set of values (called levels) that are allowed for the variable is limited, and the values optionally can have a specific order to them.
+
+You'll typically want to store categorical data in R as factors.
+
+You may ask why a special data structure is needed for categorical data, when we could just use `character` variables to represent the categories.
 
 Let's say that you've conducted a survey on students' smoking habits. The possible responses are *Never*, *Occasionally*, *Regularly*, and *Heavy*. From 10 students, you get the following responses:
 
 ```{r}
-smoke <- c("Never", "Never", "Heavy", "Never", "Occasionally",
-           "Never", "Never", "Regularly", "Regularly", "No")
+smoke <- c("Never", "Never", "Heavy", "Never", "Occasionally", "Never", "Never", "Regularly", "Regularly", "No")
 ```
 
 Note that the last answer is invalid - `No` was not one of the four answers that were allowed for the question. You could use `table` to get a summary of how many answers of each type that you got:
@@ -261,11 +264,15 @@ Note that the last answer is invalid - `No` was not one of the four answers that
 table(smoke)
 ```
 
-But the categories are not presented in the correct order! There is a clear order between the different categories, *Never* \< *Occasionally* \< *Regularly* \< *Heavy*, but `table` doesn't present the results in that way. Moreover, R didn't recognize that `No` was an invalid answer, and treats it just the same as the other categories. This is where `factor` variables come in. They allow you to specify which values your variable can take, and the ordering between them (if any).
+But the categories are not presented in the correct order! There is a clear order between the different categories, *Never* \< *Occasionally* \< *Regularly* \< *Heavy*, but `table` doesn't present the results in that way. Moreover, R didn't recognize that `No` was an invalid answer, and treats it just the same as the other categories.
+
+This is where `factor` variables come in. They allow you to specify which values your variable can take, and the ordering between them (if any).
 
 ### Creating Factors
 
-When creating a `factor` variable, you typically start with a `character`, `numeric` or `logical` variable, the values of which are turned into categories. To turn the `smoke` vector that you created in the previous section into a `factor`, you can use the `factor` function:
+When creating a `factor` variable, you typically start with a `character`, `numeric` or `logical` variable, the values of which are turned into categories.
+
+To turn the `smoke` vector that you created in the previous section into a `factor`, you can use the `factor` function:
 
 ```{r}
 smoke_factor <- factor(smoke)
@@ -307,11 +314,9 @@ smoke_factor <- factor(
 barplot(table(smoke_factor))
 ```
 
-Now we see the categories are in an order that is more informative. However, we still have one more problem to fix. What if we wanted to compare smokers such that:
+Now we see the categories are in an order that is more informative.
 
-Never \< Occasionally \< Regularly \< Heavy
-
-i.e. if we make conditional expressions such as smoke_factor \> Occasionally, then Never and Occasionally would evaluate to FALSE while Regularly and Heavy would evaluate to TRUE. This can be helpful to subset the data meaningfully or make comparisons when the order is meaningful in some manner.
+However, we still have one more problem to fix. What if we wanted to compare smokers such that: Never \< Occasionally \< Regularly \< Heavy. In other words, if we make conditional expressions such as smoke_factor \> Occasionally, then Never and Occasionally would evaluate to FALSE while Regularly and Heavy would evaluate to TRUE. This can be helpful to subset the data meaningfully or make comparisons when the order is meaningful in some manner.
 
 Let's see how to do this with the `ordered` parameter within `factor()`
 
@@ -379,7 +384,7 @@ table(smoke_factor)
 
 ### Combining levels
 
-Finally, `levels` can be used to merge categories by replacing their separate names with a single name. For instance, we can combine the smoking categories *Occasionally*, *Regularly*, and *Heavy* to a single category named *Yes*. Assuming that these are first, second and third in the list of names (as will be the case if you've run the last code chunk above), here's how to do it:
+Finally, the `levels` function can be used to merge categories by replacing their separate names with a single name. For instance, we can combine the smoking categories *Occasionally*, *Regularly*, and *Heavy* to a single category named *Yes*. Assuming that these are first, second and third in the list of names (as will be the case if you've run the last code chunk above), here's how to do it:
 
 ```{r}
 # create our factor vector as usual
@@ -476,7 +481,7 @@ Tidyverse packages are particularly useful for:
 
 ### Data
 
-Let's import the data we'll be using. Similarly to `evp`, the data is from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/) and includes vehicle stops by the Evanston police in 2017. In contrast to `evp`, the data is not limited to January.
+Let's import the data we'll be using. Similarly to `evp`, the data is from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/) and includes vehicle stops by the Evanston police in 2017. In contrast to `evp`, the data are not limited to January.
 
 We're going to use the `read_csv` function from the `readr` package, which is part of the tidyverse. The `read_csv` function works like `read.csv` except it has some different defaults, guesses data types a bit differently, and produces a tibble instead of a data frame (details coming).
 
@@ -486,7 +491,7 @@ police <- readr::read_csv("data/ev_police.csv")
 
 The output message that you get tells you what data type it guessed for each column based on the format of the information. "chr" is character or text data, "dbl" is numeric (stands for double, which is technical term for a type of number), "lgl" is logical/Boolean (TRUE/FALSE). Note that it also automatically read and identified date and time values and converted them to date and time objects -- not just string/character data.
 
-We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to colClasses for `read.csv`). Let's make the location to be character data, since it is zip codes -- zip codes should not be treated as numbers.
+We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to `colClasses` for `read.csv`). Let's make the location to be character data, since it is zip codes -- zip codes should not be treated as numbers.
 
 ```{r, eval=TRUE}
 police <- readr::read_csv(
@@ -499,7 +504,7 @@ police <- readr::read_csv(
 
 dplyr is the core package of the tidyverse. It includes functions for working with tibbles (or any data frames). While you can still use base R operations on tibbles/data frames, such as using `$` and `[]` subsetting like we did above, dplyr provides alternatives to all of the common data manipulation tasks.
 
-It contains six main functions, each a verb, of actions you frequently take with a data frame: select, filter, mutate, group_by, summarize, and arrange. Here we're going to cover the first five. You can take a look at [arrange](https://dplyr.tidyverse.org/reference/arrange.html) on your own.
+It contains six main functions, each a verb, of actions you frequently take with a data frame: select, filter, mutate, group_by, summarize, and arrange. Here we're going to cover the first five. You can take a look at [arrange](https://dplyr.tidyverse.org/reference/arrange.html) on your own or take one of our Tidyverse workshops.
 
 Before we start, let's remember what columns are in our data:
 
@@ -571,7 +576,9 @@ Hint: Use `filter()` to choose the rows where subject_race is "white". The equiv
 
 ### Pipe: Chaining Commands Together
 
-So, we can choose rows and choose columns separately; how do we combine these operations? `dplyr`, and other tidyverse commands, can be strung together in a series with a `%>%` (say/read: pipe) operator. (If you are familiar with working in a terminal/at the command line, it works like a bash pipe character `|`.) It takes the output of the command on the left and makes that the first input to the command on the right.
+So, we can choose rows and choose columns separately; how do we combine these operations?
+
+`dplyr`, and other tidyverse commands, can be strung together in a series with a `%>%` (say/read: pipe) operator. This operator takes the output of the command on the left and makes that the first input to the command on the right.
 
 The pipe works well with dplyr (and other tidyverse packages) because the functions almost all take a data frame as the first input, and they return a data frame as the output.
 
@@ -608,7 +615,7 @@ We would read the `%>%` in the command above as "then" if reading the code out l
 
 This works because the dplyr functions take a tibble/data frame as the first argument (input) and return a tibble/data frame as the output. This makes it easy to pass a data frame through multiple operations, changing it one step at a time.
 
-Order does matter, as the commands are executed in order. So this would give us an error, because we're trying to filder on a column that we didn't select:
+Order does matter, as the commands are executed in order. So this would give us an error, because we're trying to filter on a column that we didn't select:
 
 ```{r}
 police %>%
@@ -656,11 +663,9 @@ police60201 <- police %>%
   select(date, time, beat, type, outcome) 
 ```
 
-### EXERCISE (Bonus Challenge)
+### BONUS -- CHALLENGE EXERCISE
 
-Is there a difference in output between base R expression and `dplyr::filter` function outputs? How many rows does each output data frame have? Are they different? Why might that be?
-
-Hint: Investigate how NAs are treated in base R and by filter.
+Go back to the previous exercises. Is there a difference in output between base R expression and `dplyr::filter` function outputs? How many rows does each output data frame have? Are they different? Why might that be?
 
 ```{r}
 
@@ -693,7 +698,7 @@ mutate(
 
 If the column beat in `police` is "/", set it to `NA` instead using `mutate()`.
 
-Hint: look up the `na_if` function to do this.
+Hint: remember the `na_if` function.
 
 ```{r}
 
@@ -792,7 +797,7 @@ police %>%
     )
 ```
 
-We are getting extra information alerting us to the fact that our output is grouped. If we don't want the groups in place anymore, we can ungroup(). Usually this doesn't matter though if we're just printing output to the screen.
+We are getting extra information alerting us to the fact that our output is grouped. If we don't want the groups in place anymore, we can `ungroup()`. Usually this doesn't matter though if we're just printing output to the screen.
 
 Let's compute the ratio of warnings to citations by subject_race - note that we can use the variables we create in later expressions within the same call to `summarize()`:
 
