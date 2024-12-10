@@ -46,9 +46,9 @@ data(penguins)
 head(penguins)
 ```
 
-To compute a linear regression, we use the `lm()` function (linear model) and the special formula syntax.
+To compute a linear regression, we use the `lm()` function (linear model) and the special formula syntax.
 
-A formula object specifies a relationship between other variables. A formula is specified using the "tilde operator" `~`. A very simple example of a formula is shown below:
+A formula object specifies a relationship between variables. A formula is specified using the "tilde operator" `~`. A very simple example of a formula is shown below:
 
 ```         
 outcome_variable ~ predictor_variable
@@ -93,7 +93,7 @@ summary(reg1)$coefficients
 
 ### EXERCISE
 
-What is the correlation coefficient between flipper length and bill length?
+What is the Pearson correlation coefficient between flipper length and bill length?
 
 Hint: Break down this problem into steps. Select the columns for correlation and remove any NA values that might interfere. Then find out the R function you would need to calculate the correlation coefficient between 2 vectors.
 
@@ -105,7 +105,7 @@ data(penguins)
 
 ### EXERCISE
 
-Perform a t-test to check if there is a statistically significant difference in body mass between male and female penguins. Get the p-value for this test.
+Perform a Welch two sample t-test to check if there is a statistically significant difference in body mass between male and female penguins. Assume that the variance of the two groups is unequal. The test should be two-sided with a confidence level of 95%. Get the p-value for this test.
 
 Hint: Find out the R function you would need to calculate the t-test statistic between 2 vectors. Use `names()` to access the p-value of your test statistic.
 
@@ -115,7 +115,7 @@ Hint: Find out the R function you would need to calculate the t-test statistic b
 
 ## Resources to learn more about statistics in R
 
-You can learn more in our workshop on [statistical modelin in R](https://github.com/nuitrcs/r-statistical-modeling). We also have a [resource guide on linear regression](https://sites.northwestern.edu/researchcomputing/resource-guides/resource-guide-linear-regression/), which includes materials for R. Further, we have a [resource guide on R](https://sites.northwestern.edu/researchcomputing/resource-guides/resource-guide-r/), which includes statistical aspects. Finally, you can always use our [free consultation service](https://services.northwestern.edu/TDClient/30/Portal/Requests/ServiceDet?ID=93) for questions about statistical methods and their implementation in R.
+You can learn more in our workshop on [statistical modeling in R](https://github.com/nuitrcs/r-statistical-modeling). We also have a [resource guide on linear regression](https://sites.northwestern.edu/researchcomputing/resource-guides/resource-guide-linear-regression/), which includes materials for R. Further, we have a [resource guide on R](https://sites.northwestern.edu/researchcomputing/resource-guides/resource-guide-r/), which includes statistical aspects. Finally, you can always use our [free consultation service](https://services.northwestern.edu/TDClient/30/Portal/Requests/ServiceDet?ID=93) for questions about research using statistical methods and their implementation in R.
 
 # Data Visualization
 
@@ -138,9 +138,9 @@ To build or describe any visualization with one or more dimensions, we can use t
 
 1.  **Data**: Always start with the data, identify the dimensions you want to visualize.
 
-2.  **Aesthetics**: Confirm the axes based on the data dimensions, positions of various data points in the plot. Also check if any form of encoding is needed including size, shape, color and so on which are useful for plotting multiple data dimensions.
+2.  **Aesthetics**: Confirm the axes based on the data dimensions, positions of various data points in the plot. Also check if any form of encoding is needed including size, shape, color and so on, which are useful for plotting multiple data dimensions.
 
-3.  **Scale:** Do we need to scale the potential values, use a specific scale to represent multiple values or a range? For example you can scale the data to log of the original values.
+3.  **Scale:** Do we need to scale the potential values, use a specific scale to represent multiple values or a range? For example, you can scale the data to log of the original values.
 
 4.  **Geometric objects:** These are popularly known as 'geoms'. This would cover the way we would depict the data points on the visualization. Should it be points, bars, lines and so on?
 
@@ -148,7 +148,7 @@ To build or describe any visualization with one or more dimensions, we can use t
 
 6.  **Facets:** Do we need to create subplots based on specific data dimensions?
 
-7.  **Coordinate system:** What kind of a coordinate system should the visualization be based on ---should it be cartesian or polar?
+7.  **Coordinate system:** What kind of a coordinate system should the visualization be based on ---should it be Cartesian or polar?
 
 You don't have to remember everything - refer to your handy [cheat sheet for ggplot2](https://statsandr.com/blog/files/ggplot2-cheatsheet.pdf)!
 
@@ -156,11 +156,11 @@ You don't have to remember everything - refer to your handy [cheat sheet for ggp
 
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics:
 
--   `{ggplot}` works with dataframes and not individual vectors. All the data needed to make the plot is typically contained within the dataframe supplied to the `ggplot()` function itself or can be supplied to respective geoms.
+-   `{ggplot}` works with dataframes and not individual vectors. All the data needed to make the plot are typically contained within the dataframe supplied to the `ggplot()` function itself or can be supplied to respective geoms.
 
--   The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the `ggplot()` function
+-   The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the `ggplot()` function.
 
--   The order of the layers matters, the first command/layer is executed first, and so on. Sometimes, this can make a difference in your final plot.
+-   The order of the layers matters, the first command/layer is executed first, and so on. *Sometimes, this can make a difference in your final plot.*
 
 Let's initialize a basic ggplot based on the midwest dataset:
 
@@ -187,7 +187,7 @@ Now ggplot knows the columns we want to plot!
 
 Notice how layering works with the + operator (not %\>%).
 
-Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. I have only told ggplot what dataset to use and what columns should be used for X and Y. I haven't explicitly asked it to draw any points.
+Even though `x` and `y` are specified, there are no points or lines in it. This is because ggplot doesn't assume that you want a scatterplot or a line chart to be drawn. We have only told ggplot what dataset to use and what columns should be used for X and Y. We haven't explicitly asked it to draw any points.
 
 Also note that `aes()` function is used to specify the X and Y axes. That's because, any information that is part of the source dataframe has to be specified inside the `aes()` function.
 
@@ -203,7 +203,7 @@ ggplot(midwest) +
   geom_point()
 ```
 
-But the scientific notation doesn't look too appealing - no problem, you can set an R option to turn it off! Options settings allow the user to set and examine a variety of global *options* which affect the way in which R computes and displays its results.
+But the scientific notation doesn't look too appealing - no problem, you can set an R option to turn it off! Options settings allow the user to set and examine a variety of global *options* which affect the way in which R computes and displays its results. Typically you would include these options on top of the script, after loading the packages that you're going to use.
 
 ```{r}
 options(scipen=999)  # turn off scientific notation like 1e+06
@@ -251,9 +251,9 @@ ggplot(midwest) +
 
 ## EXERCISE
 
-Load the penguins data from before by loading the `palmerpenguins` package in your workspace.
+Load the penguins data from before by loading the `palmerpenguins` package.
 
-Make a scatterplot of flipper length and body mass with point representations for each observation
+Make a scatter plot of flipper length and body mass with point representations for each observation.
 
 ```{r}
 library(palmerpenguins)
@@ -274,11 +274,11 @@ g <- ggplot(midwest) +
 g
 ```
 
-The line of best fit is in blue. Can you find out what other `method` options are available for `geom_smooth`?(note: see `?geom_smooth`).
+The line of best fit is in blue. Can you find out what other `method` options are available for `geom_smooth` (note: see `?geom_smooth`)?
 
 ## EXERCISE
 
-Add a linear fit line to the `penguin_plot` from before
+Add a linear fit line to the `penguin_plot` from before.
 
 ```{r}
 
@@ -286,21 +286,21 @@ Add a linear fit line to the `penguin_plot` from before
 
 ## EXERCISE
 
-What if I just want a smooth (non-linear) fit to the plot above? Hint: use method `"loess"`
+What if we just want a smooth (non-linear) fit to the plot above? Hint: use method `"loess"`.
 
 ```{r}
 
 ```
 
-## Adjusting the X and Y axis limits
+## Adjusting the X and Y axes limits
 
-You might have noticed that majority of points lie in the bottom of the chart which doesn't really look nice. So, let's change the Y-axis limits to focus on the lower half.
+You might have noticed that the majority of points lie in the bottom of the chart which doesn't really look nice. So, let's change the Y-axis limits to focus on the lower half.
 
-The X and Y axis limits can be controlled in 3 ways.
+The X and Y axes limits can be controlled in 3 ways.
 
 ### **Method 1**: By deleting the points outside the range
 
-This will change the lines of best fit or smoothing lines as compared to the original data.
+*This will change the lines of best fit or smoothing lines as compared to the original data.*
 
 This can be done by `xlim()` and `ylim()`. You can pass a numeric vector of length 2 (with max and min values) or just the max and min values themselves.
 
@@ -318,11 +318,11 @@ g +
 
 In this case, the chart was not built from scratch but rather was built on top of `g`. This is because, the previous plot was stored as `g`, a ggplot object, which when called will reproduce the original plot. Using ggplot, you can add more layers, themes and other settings on top of this plot.
 
-Did you notice that the line of best fit became more horizontal compared to the original plot? This is because, when using `xlim()` and `ylim()`, the points outside the specified range are deleted and will not be considered while drawing the line of best fit (using `geom_smooth(method='lm')`). This feature might come in handy when you wish to know how the line of best fit would change when some extreme values (or outliers) are removed.
+Did you notice that the line of best fit became more horizontal compared to the original plot? This is because, when using `xlim()` and `ylim()`, the points outside of the specified range are deleted and will not be considered while drawing the line of best fit (using `geom_smooth(method='lm')`). This feature might come in handy when you wish to know how the line of best fit would change when some extreme values (or outliers) are removed.
 
 ### **Method 2**: Zooming In
 
-The other method to adjust the X and Y axis is to zoom in to the region of interest *without* deleting the points. This is done using `coord_cartesian()`.
+The other method to adjust the X and Y axes is to zoom in to the region of interest *without* deleting the points. This is done using `coord_cartesian()`.
 
 Let's store this plot as `g1`.
 
@@ -342,7 +342,9 @@ Since all points were considered, the line of best fit did not change.
 
 ### **Method 3**: Using the scales layer
 
-Scales in *ggplot2* control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work, but understanding scales and learning how to manipulate them will give you much more control. To get an in-depth understanding of how scales work in *ggplot2* see [this book chapter on scales and guides](https://ggplot2-book.org/scales-guides).
+Scales in *ggplot2* control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, color, position, or shape. They also provide the tools that let you interpret the plot: the axes and legends.
+
+You can generate plots with ggplot2 without knowing how scales work, but understanding scales and learning how to manipulate them will give you much more control. To get an in-depth understanding of how scales work in *ggplot2* see [this book chapter on scales and guides](https://ggplot2-book.org/scales-guides).
 
 An important property of *ggplot2* is the principle that every aesthetic in your plot is associated with exactly one scale. For instance, when you write this:
 
@@ -371,7 +373,7 @@ scale_plot <- ggplot(midwest, aes(x=area, y=poptotal)) +
 scale_plot
 ```
 
-Notice that, similarly to method 1, this method deletes the points outside of the range.
+Notice that, similarly to method 1, *this method deletes the points outside of the range.*
 
 Position scales have many more features that you can [explore](https://ggplot2-book.org/scales-position).
 
@@ -379,15 +381,15 @@ Position scales have many more features that you can [explore](https://ggplot2-b
 
 ## EXERCISE
 
-Limit the flipper length to values between 180 and 220 in `penguin_plot` **without** removing the original points from the best-fit line calculation
+Limit the flipper length to values between 180 and 220 in `penguin_plot` **without** removing the original points from the best-fit line calculation.
 
 ```{r}
 
 ```
 
-## Change the Title and Axis Labels
+## Change the Title and Axes Labels
 
-Let's continue with our previous scatterplot of the midwest data and add the plot title and labels for the X and Y axis. This can be done in one go using the `labs()` function with `title`, `x`, and `y` arguments. Another option is to use `ggtitle()`, `xlab()`, and `ylab()`.
+Let's continue with our previous scatter plot of the midwest data and add the plot title and labels for the X and Y axes. This can be done in one go using the `labs()` function with `title`, `x`, and `y` arguments. Another option is to use `ggtitle()`, `xlab()`, and `ylab()`.
 
 ```{r}
 g <- ggplot(midwest, aes(x=area, y=poptotal)) + 
@@ -470,7 +472,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 ## EXERCISE
 
-Change the color to red and transparency (alpha) of the points to 0.5 by setting parameters within `geom_point` for a plot of flipper_length_mm vs body_mass_g
+Change the color of the points to red and the transparency (alpha) to 0.5 by setting parameters within `geom_point` for a plot of flipper_length_mm vs body_mass_g.
 
 ```{r}
 
@@ -517,7 +519,7 @@ You can change the color palette entirely using a different color scale:
 gg + scale_colour_brewer(palette = "Set1")  # change color palette
 ```
 
-More of such palettes can be found in the RColorBrewer package
+More of such palettes can be found in the RColorBrewer package.
 
 ```{r}
 library(RColorBrewer)
@@ -527,11 +529,11 @@ head(brewer.pal.info, 10)  # show 10 palettes
 gg + scale_colour_brewer(palette = "PuOr")
 ```
 
-When selecting colors for your visualizations, in addition to other factors, it's important to consider [friendly colors for people with color vision deficiency](https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together).
+*When selecting colors for your visualizations, in addition to other factors, it's important to consider [friendly colors for people with color vision deficiency](https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together).*
 
 ## EXERCISE
 
-Change the color of the points according to the species column for a plot of flipper_length_mm vs body_mass_g
+Change the color of the points according to the species column for a plot of flipper_length_mm vs body_mass_g.
 
 ```{r}
 
@@ -592,7 +594,7 @@ ggplot(data=penguins,
                                     family="Comic Sans MS")) 
 ```
 
-Notice how the theme custom input overrides the defaults set in `theme_classic()` .
+Notice how the theme custom input overrides the defaults set in `theme_classic()`.
 
 Remember that the order of layering matters! The last passed input will be retained.
 
@@ -765,7 +767,7 @@ Generate a scatter plot of temperature vs date and add color the points `firebri
 
 ### EXERCISE 2
 
-Now add a title to the plot and appropriate axis labels
+Now add a title to the plot and appropriate axis labels.
 
 ```{r}
 

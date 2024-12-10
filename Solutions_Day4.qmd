@@ -109,7 +109,7 @@ penguins %>%
 
 ### EXERCISE
 
-Perform a t-test to check if there is a statistical difference in body mass between male and female penguins. Get the p-value for this test.
+Perform a Welch two sample t-test to check if there is a statistically significant difference in body mass between male and female penguins. Assume that the variance of the two groups is unequal. The test should be two-sided with a confidence level of 95%. Get the p-value for this test.
 
 Hint: Find out the R function you would need to calculate the t-test statistic between 2 vectors. Use `names()` to access the p-value of your test statistic.
 
