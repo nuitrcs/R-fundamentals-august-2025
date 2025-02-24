@@ -142,7 +142,7 @@ To update a package, re-install it.
 
 Let's install all the packages that we're going to use throughout the workshop!
 
-Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tidyverse`, `RColorBrewer`, `ggpubr`, `gridExtra`, and `grid`.
+Write code to install these packages:`praise`, `palmerpenguins`, `janitor`, `tidyverse`, `RColorBrewer`, `ggpubr`, `gridExtra`, `grid`, and `NHANES`.
 
 ```{r, installpackagesworkshop, eval=FALSE}
 
@@ -179,7 +179,7 @@ Only load the packages you need. Packages can conflict with each other, so don't
 
 ```{r}
 library(praise)
-library(palmerpenguins)  # we're going to use this later
+library(NHANES)  # we're going to use this later
 ```
 
 Now that we loaded `praise`, we can use functions within it!
@@ -197,7 +197,7 @@ Note that, as opposed to installing, you need to load packages in each R session
 Most of the time, you'll read in data from a file. For example:
 
 ```{r}
-evp <- read.csv("data/ev_police_jan.csv")
+qog <- read.csv("data/qog_data.csv")
 ```
 
 Most data in R will be stored in a data frame (more below).
@@ -205,10 +205,10 @@ Most data in R will be stored in a data frame (more below).
 As with other variables, when we type the name of the data frame, it will print the contents of the variable to the console.
 
 ```{r, eval=FALSE}
-evp
+qog
 ```
 
-Note: Evanston police data comes from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/). This is a small subset of data: just January 2017.
+Note: the data come from the [Quality of Government Institute at the University of Gothenburg](https://www.gu.se/en/quality-government). Most of the data come from the [Environmental Indicators Dataset](https://www.gu.se/en/quality-government/qog-data/data-downloads/environmental-indicators-dataset). The variables `br_elect` and `ht_region` come from the [Standard Dataset](https://www.gu.se/en/quality-government/qog-data/data-downloads/standard-dataset). The datasets were downloaded in January 2025 and processed for this workshop [in this GitHub repo](https://github.com/emiliolehoucq/selecting_data_for_r_bootcamp).
 
 TIPS: if you get an error message that a file can't be found when you're trying to import it:
 
@@ -220,12 +220,12 @@ TIPS: if you get an error message that a file can't be found when you're trying 
 
 ## From a Package
 
-Today, we're going to work with data on penguins from <https://github.com/allisonhorst/palmerpenguins>. It's been included in an R package: `palmerpenguins`.
+For this workshop, we're also going to work with data from the US National Health and Nutrition Examination Study. It's been included in an R package: `NHANES`.
 
-There's a data frame in the package called penguins. Like with functions in a package, we can use it once we've loaded the package with the library command above.
+There's a data frame in the package called `NHANES` Like with functions in a package, we can use it once we've loaded the package with the library command above.
 
 ```{r}
-penguins
+NHANES
 ```
 
 ## Manual Creation
@@ -257,51 +257,51 @@ month_info
 It has columns and rows. Let's look at it:
 
 ```{r, eval=FALSE}
-View(evp)
+View(qog)
 ```
 
 Or we can look at a few rows in the console:
 
 ```{r}
-head(evp)
+head(qog)
 ```
 
 What size is it?
 
 ```{r}
-dim(evp)
-nrow(evp)
-ncol(evp)
+dim(qog)
+nrow(qog)
+ncol(qog)
 ```
 
 What are the variables?
 
 ```{r}
-names(evp)
+names(qog)
 ```
 
 What type of data is in each variable?
 
 ```{r}
-str(evp)
+str(qog)
 ```
 
 Get some basic info about the variables:
 
 ```{r}
-summary(evp)
+summary(qog)
 ```
 
 ## EXERCISE
 
-Using the `penguins` data frame, write commands to figure out:
+Using the `NHANES` data frame, write commands to figure out:
 
 -   How many rows and columns it has?
 -   What are the names of the variables?
 
 ```{r}
 # load the package
-library(palmerpenguins)
+library(NHANES)
 
 
 ```
@@ -311,14 +311,14 @@ library(palmerpenguins)
 Each column (variable) is a vector. We can access them individually with the `$` notation using the name of each variable:
 
 ```{r}
-evp$location
-penguins$species
+qog$cname_qog
+qog$year
 ```
 
 We can do things like count values, summarize numeric values, etc.
 
 ```{r}
-table(evp$location)
+table(qog$cname_qog)
 median(month_info$days)
 ```
 
@@ -406,13 +406,13 @@ What is the mean number of doctoral degrees per year excluding the most recent y
 `class()` tells us the type of the object -- what's stored in the variable.
 
 ```{r}
-class(evp)
+class(qog)
 ```
 
-What is `penguins`?
+What is `NHANES`?
 
 ```{r}
-class(penguins)
+class(NHANES)
 ```
 
 "tbl_df" is a tibble data frame. These behave a little bit differently from normal data frames. You'll see tibbles instead of data frames within the tidyverse set of packages (and those packages that work within that framework).
@@ -452,10 +452,10 @@ Select first column
 month_info[ ,1]
 ```
 
-This gave us a vector back, but with `penguins`:
+This gave us a vector back, but with `NHANES`:
 
 ```{r}
-penguins[ ,1]
+NHANES[ ,1] 
 ```
 
 we get a data frame/tibble back. This is one difference between tibbles and regular data frames.
@@ -508,10 +508,10 @@ Use names in `[]`: put them in quotes
 month_info[ ,"days"]
 ```
 
-With penguins (tibble), it stays as a tibble:
+With `NHANES` (tibble), it stays as a tibble:
 
 ```{r}
-penguins[ ,"bill_length_mm"]
+NHANES[ ,"Weight"]
 ```
 
 Multiple columns by name, need to use a vector of names:
@@ -625,26 +625,26 @@ month_info$month[selection_vector]
 month_info$month[!selection_vector] # inverted selection
 ```
 
-Let's see an example with the penguins data frame:
+Let's see an example with the `qog` data frame:
 
 Start with the criteria we want:
 
 ```{r}
-penguins$bill_length_mm < 34
+qog$br_elect == 3
 ```
 
 Hmmm - there's some missing values in there (NA) - we'll come back to that in a minute.
 
-Select the **rows** (all columns) where bill length is less than 34:
+Select the **rows** (all columns) where `br_elect` is 3 (democratic elections):
 
 ```{r}
-penguins[penguins$bill_length_mm < 34, ]
+qog[qog$br_elect == 3, ]
 ```
 
 If I forget the `,` in the `[]`:
 
 ```{r, eval=FALSE}
-penguins[penguins$bill_length_mm < 34]
+qog[qog$br_elect == 3 ]
 ```
 
 It tries to index the columns instead, and our vector is too long.
@@ -652,13 +652,13 @@ It tries to index the columns instead, and our vector is too long.
 Multiple conditions
 
 ```{r}
-penguins[penguins$bill_length_mm < 34 & penguins$bill_depth_mm < 16, ]
-dim(penguins[penguins$bill_length_mm < 34 & penguins$bill_depth_mm < 16, ])
+qog[qog$br_elect == 3 & qog$ht_region == 5, ]
+dim(qog[qog$br_elect == 3 & qog$ht_region == 5, ])
 ```
 
 ```{r}
-penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58, ]
-dim(penguins[penguins$bill_length_mm < 34 | penguins$bill_length_mm > 58, ])
+qog[qog$br_elect == 3 | qog$ht_region == 5, ]
+dim(qog[qog$br_elect == 3 | qog$ht_region == 5, ])
 ```
 
 ## EXERCISE
@@ -701,41 +701,45 @@ mean(x)
 mean(x, na.rm=TRUE)
 ```
 
-If we don't want the missing rows included in our results above when we were selecting rows of penguins:
+If we don't want the missing rows included in our results above when we were selecting rows of qog:
 
 ```{r}
-is.na(penguins$bill_length_mm)
-!is.na(penguins$bill_length_mm)  # ! is not
+is.na(qog$br_elect)
+!is.na(qog$br_elect) # ! is not
 
-dim(penguins)
+dim(qog)
 
-# not missing bill length AND bill length < 34
-penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34, ]
-dim(penguins[!is.na(penguins$bill_length_mm) & penguins$bill_length_mm < 34, ])
+qog[!is.na(qog$br_elect) & qog$br_elect == 3, ]
+dim(qog[!is.na(qog$br_elect) & qog$br_elect == 3, ])
 
-penguins[penguins$bill_length_mm < 34, ]
-dim(penguins[penguins$bill_length_mm < 34, ])
+qog[qog$br_elect == 3, ]
+dim(qog[qog$br_elect == 3, ])
 ```
 
 The function `complete.cases()` can be used to find which rows have no missing values at all. The function `na.omit()` directly returns the subset of data with complete cases. You may want to use these functions at some point.
 
 ## EXERCISE
 
-How many missing values in `penguins$bill_depth_mm`?
-
-What is the mean of the non-missing values of `penguins$bill_depth_mm`?
+How many missing values in `NHANES$Height`?
 
 ```{r}
 
 ```
 
-Bonus -- challenge: Select the rows from penguins where `penguins$bill_depth_mm` is missing.
+
+What is the mean of the non-missing values of `NHANES$Height`?
 
 ```{r}
 
 ```
 
-Bonus -- challenge: What is the mean of non-missing values of `penguins$bill_depth_mm` for penguins of species Gentoo?
+Bonus -- challenge: Select the rows from penguins where `NHANES$Weight` is missing.
+
+```{r}
+
+```
+
+Bonus -- challenge: What is the mean of non-missing values of `NHANES$Weight` for people over 18 years old?
 
 ```{r}
 
@@ -795,18 +799,18 @@ bad_data
 
 We can add a new column to the data frame by naming it with the `$` notation, and assigning a value to it.
 
-For example, make a column that has bill length in **centimeters (cm)** instead of **millimeters (mm)**
+For example, make a column that has the annual average rainfall in **centimeters (cm)** instead of **millimeters (mm)**
 
 ```{r}
-names(penguins)
-penguins$bill_length_cm <- penguins$bill_length_mm / 10  # make new variable: note CM instead of MM in the name
-names(penguins)  # check to see that it was added
+names(qog)
+qog$cckp_rain_cm <- qog$cckp_rain / 10  # make new variable: note cm in the name
+names(qog)  # check to see that it was added
 ```
 
 Columns will be added to the end (right).
 
 ```{r}
-View(penguins)
+View(qog)
 ```
 
 ## EXERCISE
@@ -848,28 +852,28 @@ Of course, you can also do it with names instead of indices.
 
 How do we change our data? A common task might be replacing missing values -- either actual NA values or other values that indicate missing. One way to do this is by replacing missing values by the mean of the non-missing values in that column.
 
-Let's go through an example to replace missing values in the `bill_depth_mm` column of the `penguins` data frame.
+Let's go through an example to replace missing values in the `cckp_rain` column of the `qog` data frame. This is just an example -- if you were working with these data for your research, it probably wouldn't make sense to replace the missing values in this way. It could make more sense to do it for each country, but let's not add more complexity for now...
 
 First, we identify and select the values we want to change:
 
 ```{r}
 # find NA / missing values in the column bill_depth_mm
-penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)]
+qog$cckp_rain[is.na(qog$cckp_rain)]
 ```
 
-Next, compute the replacement value, which is the mean of non-missing values of `bill_depth_mm` in this case:
+Next, compute the replacement value, which is the mean of non-missing values of `cckp_rain` in this case:
 
 ```{r}
-bill_depth_mean <- mean(penguins$bill_depth_mm, na.rm=TRUE)
-bill_depth_mean
+cckp_rain_mean <- mean(qog$cckp_rain, na.rm=TRUE)
+cckp_rain_mean
 ```
 
-Now, assign the replacement value `bill_depth_mean` to the missing observations:
+Now, assign the replacement value `cckp_rain_mean` to the missing observations:
 
 ```{r}
-penguins$bill_depth_mm[is.na(penguins$bill_depth_mm)] <- bill_depth_mean
+qog$cckp_rain[is.na(qog$cckp_rain)] <- cckp_rain_mean
 
-sum(is.na(penguins$bill_depth_mm))
+sum(is.na(qog$cckp_rain))
 ```
 
 You can replace any values you need to replace (it doesn't have to be missing), and often-times it is common to use functions to compute the replacement values.
@@ -901,7 +905,7 @@ some_numbers
 
 What if we want to select observations with more complicated criteria?
 
-Which penguins are heavier than average?
+In 2020, which countries have have higher than average carbon dioxide emissions (`wdi_co2`)?
 
 Let's build this up together...
 
@@ -909,7 +913,7 @@ Let's build this up together...
 
 ```
 
-What proportion of Adelie penguins have above average flipper length?
+What proportion of countries in Western Europe and North American (`ht_region == 5`) have higher than average carbon dioxide emissions?
 
 ```{r}
 
