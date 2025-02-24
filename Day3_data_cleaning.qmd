@@ -346,6 +346,33 @@ To recap, you can control the order in which the levels are presented by choosin
 
 Also, note that the `No` answer now became an `NA`, which in the case of `factor` variables represents both missing observations and invalid observations.
 
+### EXERCISE
+
+Convert the vector below to a factor. Set the levels in an intentional order. Should ordered be set to TRUE here - why or why not?
+
+Hint: use `table()` or `unique()` to find all the categories
+
+```{r}
+age_group <- c(
+  "35-50",
+  "25-34",
+  "50-65",
+  "65+",
+  "18-24",
+  "18-24",
+  "50-65",
+  "35-50",
+  "50-65",
+  "18-24",
+  "18-24",
+  "65+",
+  "65+"
+  )
+
+# your code here               
+
+```
+
 ### Changing factor levels
 
 When we created `smoke_factor`, one of the elements became an `NA`. `NA` was however not included as a level of the `factor`. Sometimes it is desirable to include `NA` as a level, for instance when you want to analyse rows with missing data. This is easily done using the `addNA` function:
@@ -382,6 +409,14 @@ levels(smoke_factor)
 table(smoke_factor)
 ```
 
+### EXERCISE
+
+Using the `qog` dataset, convert the column `br_elect` to a factor. Then recode all `NA` values into "MISSING".
+
+```{r}
+
+```
+
 ### Combining levels
 
 Finally, the `levels` function can be used to merge categories by replacing their separate names with a single name. For instance, we can combine the smoking categories *Occasionally*, *Regularly*, and *Heavy* to a single category named *Yes*. Assuming that these are first, second and third in the list of names (as will be the case if you've run the last code chunk above), here's how to do it:
@@ -406,42 +441,7 @@ table(smoke_factor)
 
 ### EXERCISE
 
-Convert the vector below to a factor. Set the levels in an intentional order. Should ordered be set to TRUE here - why or why not?
-
-Hint: use `table()` or `unique()` to find all the categories
-
-```{r}
-age_group <- c(
-  "35-50",
-  "25-34",
-  "50-65",
-  "65+",
-  "18-24",
-  "18-24",
-  "50-65",
-  "35-50",
-  "50-65",
-  "18-24",
-  "18-24",
-  "65+",
-  "65+"
-  )
-
-# your code here               
-
-```
-
-### EXERCISE
-
-Using the `qog` dataset, convert the columns `cname_qog` and `ht_region` into factors.
-
-```{r}
-
-```
-
-### EXERCISE
-
-Using the `qog` dataset, convert the column `br_elect` to a factor. Then recode all `NA` values into "MISSING".
+Using the `qog` dataset, convert the column `ht_region` into a factor and recode 6, 7, and 8 to 'asia'.
 
 ```{r}
 
