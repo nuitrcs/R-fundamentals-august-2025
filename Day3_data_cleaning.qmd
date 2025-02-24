@@ -71,16 +71,16 @@ my_vector
 x <- 1:10
 x + "a" 
 
-# Error: object 'penguins' not found
-penguins[penguins$speciess]
+# Error: object 'NHANES' not found
+NHANES[NHANES$age]
 
 # Warning: longer object length is not a multiple of shorter object length
 1:10 + 1:3
 
-library(palmerpenguins)
+library(NHANES)
 
-# Warning: Unknown or uninitialised column
-penguins[penguins$speciess]
+# data frame with 0 columns and 10000 rows
+NHANES[NHANES$age]
 ```
 
 When you get an error, read it carefully and try to understand what's going on. It can be frustrating, but it's important to stay calm and slowly read the error and take a look at your code.
@@ -177,31 +177,31 @@ ifelse(state.name %in% c("Alaska", "Hawaii"), NA, state.name)
 sum(is.na(ifelse(state.name %in% c("Alaska", "Hawaii"), NA, state.name)))
 ```
 
-Let's say we want to create a new column called `evanston` in our `evp` data frame such that it takes the value TRUE if the `location` for that row is either 60201 or 60202 (zip codes for Evanston IL), but FALSE otherwise. This will help us to quickly subset the data only for stops made in Evanston.
+Let's say we want to create a new column called `asia` in our `qog` data frame such that it takes the value TRUE if the `ht_region` for that row is either 6 or 7 or 8, but FALSE otherwise. This will help us to quickly subset the data only for countries in Asia.
 
 First, read in the data frame:
 
 ```{r}
-evp <- read.csv("data/ev_police_jan.csv")
+qog <- read.csv("data/qog_data.csv")
 ```
 
 We could subset data - get the rows where the location is an Evanston zip code
 
 ```{r}
-evp[evp$location %in% c(60201, 60202), ]
+qog[qog$ht_region %in% c(6, 7, 8), ]
 ```
 
 Or make a new column called `evanston` if the location is one of the two main Evanston zip codes of 60201 or 60202
 
 ```{r}
-evp$evanston <- evp$location %in% c(60201, 60202)
-names(evp)
-table(evp$evanston)
+qog$asia <- qog$ht_region %in% c(6, 7, 8)
+names(qog)
+table(qog$asia)
 ```
 
 ### EXERCISE
 
-Select the rows from the `evp` data below where the vehicle make is one of FIAT, DATS, or GEO.
+Select the rows from the `NHANES` data below where `Education` is one of `8th Grade`, `9 - 11th Grade` or `High School`.
 
 ```{r}
 
@@ -433,7 +433,7 @@ age_group <- c(
 
 ### EXERCISE
 
-Using the `evp` dataset, convert the columns `subject_race` and `subject_sex` into factors.
+Using the `qog` dataset, convert the columns `cname_qog` and `ht_region` into factors.
 
 ```{r}
 
@@ -441,7 +441,7 @@ Using the `evp` dataset, convert the columns `subject_race` and `subject_sex` in
 
 ### EXERCISE
 
-Using the `evp` dataset, convert the column `search_basis` to a factor. Then recode all `NA` values into "invalid".
+Using the `qog` dataset, convert the column `br_elect` to a factor. Then recode all `NA` values into "MISSING".
 
 ```{r}
 
@@ -481,22 +481,20 @@ Tidyverse packages are particularly useful for:
 
 ### Data
 
-Let's import the data we'll be using. Similarly to `evp`, the data is from the [Stanford Open Policing Project](https://openpolicing.stanford.edu/data/) and includes vehicle stops by the Evanston police in 2017. In contrast to `evp`, the data are not limited to January.
-
-We're going to use the `read_csv` function from the `readr` package, which is part of the tidyverse. The `read_csv` function works like `read.csv` except it has some different defaults, guesses data types a bit differently, and produces a tibble instead of a data frame (details coming).
+We're going to use the `read_csv` function from the `readr` package, which is part of the tidyverse, to read the `qog` data again. The `read_csv` function works like `read.csv` except it has some different defaults, guesses data types a bit differently, and produces a tibble instead of a data frame (details coming).
 
 ```{r, eval=TRUE}
-police <- readr::read_csv("data/ev_police.csv")
+qog <- readr::read_csv("data/qog_data.csv")
 ```
 
 The output message that you get tells you what data type it guessed for each column based on the format of the information. "chr" is character or text data, "dbl" is numeric (stands for double, which is technical term for a type of number), "lgl" is logical/Boolean (TRUE/FALSE). Note that it also automatically read and identified date and time values and converted them to date and time objects -- not just string/character data.
 
-We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to `colClasses` for `read.csv`). Let's make the location to be character data, since it is zip codes -- zip codes should not be treated as numbers.
+We can also manually specify column types for cases where the assumption that `read_csv` makes is wrong. We use the `col_types` argument (similar to `colClasses` for `read.csv`). Let's make `br_elect`, `ht_region`, and `act_act` to be character data -- it doesn't make sense to treat them as numbers.
 
 ```{r, eval=TRUE}
-police <- readr::read_csv(
-  "data/ev_police.csv",
-  col_types = c("location"="c")
+qog <- readr::read_csv(
+  "data/qog_data.csv",
+  col_types = c("br_elect" = "c", "ht_region" = "c", "act_act" = "c")
   )
 ```
 
@@ -509,7 +507,7 @@ It contains six main functions, each a verb, of actions you frequently take with
 Before we start, let's remember what columns are in our data:
 
 ```{r}
-names(police)
+names(qog)
 ```
 
 ### Select: choose columns
@@ -519,30 +517,30 @@ The `select()` function lets us choose which columns (or variables) we want to k
 The data frame is the first input, and the name of the column is the second. We do not have to put quotes around the column name.
 
 ```{r}
-select(police, subject_race)
+select(qog, cname_qog)
 ```
 
 If we want to select additional columns, we can just list the column names as additional inputs, each column name separated by commas:
 
 ```{r}
-select(police, subject_race, outcome)
+select(qog, cname_qog, year)
 ```
 
 As with `[]` indexing, columns will be returned in the order specified:
 
 ```{r}
-select(police, subject_sex, subject_race, date)
+select(qog, year, cname_qog)
 ```
 
 We could also use the column index number if we wanted to instead. We don't need to put the values in `c()` like we would with `[]` (but we could).
 
 ```{r}
-select(police, 1, 4, 10)
+select(qog, 2, 1)
 ```
 
 ### EXERCISE
 
-Convert this base R expression: `police[ ,c("violation", "citation_issued", "warning_issued")]` to use `select()` instead to do the same thing.
+Convert this base R expression: `NHANES[ , c("Age", "Weight", "Height")]` to use `select()` instead to do the same thing.
 
 Hint: The base R expression above keeps all rows but selects only the three columns named within `c()`.
 
@@ -555,20 +553,20 @@ Hint: The base R expression above keeps all rows but selects only the three colu
 To choose which rows should remain in our data, we use `filter()`. As with `[]`, we write expressions that evaluate to TRUE or FALSE for each row. Like `select()`, we can use the column names without quotes.
 
 ```{r}
-filter(police, location == "60202")
+filter(qog, cname_qog == "United States")
 ```
 
 Note that we use `==` to test for equality and get TRUE/FALSE output. You can also write more complicated expressions -- anything that will evaluate to a vector of TRUE/FALSE values.
 
 ```{r}
-filter(police, is.na(beat))
+filter(qog, is.na(br_elect))
 ```
 
 ### EXERCISE
 
-How many rows have subject_race as "white"?
+In the `NHANES` data, how many rows have "Yes" to `PregnantNow`?
 
-Hint: Use `filter()` to choose the rows where subject_race is "white". The equivalent base R expression would be `police[police$subject_race == "white", ]`.
+Hint: Use `filter()` to choose the rows where `PregnantNow` is "Yes". The equivalent base R expression would be `NHANES[NHANES$PregnantNow == "Yes", ]`.
 
 ```{r}
 
@@ -585,20 +583,20 @@ The pipe works well with dplyr (and other tidyverse packages) because the functi
 We can rewrite
 
 ```{r}
-select(police, date, time)
+select(qog, cname_qog, year)
 ```
 
 as
 
 ```{r}
-police %>% select(date, time)
+qog %>% select(cname_qog, year)
 ```
 
 and you'll often see code formatted, so `%>%` is at the end of each line, and the following line that are still part of the same expression are indented:
 
 ```{r}
-police %>%
-  select(date, time)
+qog %>%
+  select(cname_qog, year)
 ```
 
 The pipe comes from a package called `magrittr`, which has additional special operators in it that you can use. The keyboard shortcut for `%>%` is command-shift-M (Mac) or control-shift-M (Windows).
@@ -606,61 +604,56 @@ The pipe comes from a package called `magrittr`, which has additional special op
 We can use the pipe to string together multiple commands operating on the same data frame:
 
 ```{r}
-police %>%
-  select(subject_race, subject_sex) %>%
-  filter(subject_race == "white")
+qog %>%
+  select(cname_qog, year) %>% 
+  filter(year == 2020)
 ```
 
-We would read the `%>%` in the command above as "then" if reading the code out loud: from police, select subject_race and subject_sex, then filter where subject_race is white.
+We would read the `%>%` in the command above as "then" if reading the code out loud: from `qog`, select `cname_qog` and `year`, then filter `year` is 2020.
 
 This works because the dplyr functions take a tibble/data frame as the first argument (input) and return a tibble/data frame as the output. This makes it easy to pass a data frame through multiple operations, changing it one step at a time.
 
 Order does matter, as the commands are executed in order. So this would give us an error, because we're trying to filter on a column that we didn't select:
 
 ```{r}
-police %>%
-  select(subject_sex, outcome) %>%
-  filter(subject_race == "white")
+qog %>%
+  select(cname_qog, year) %>% 
+  filter(ht_region == "5")
 ```
 
 We'd have to reverse the order:
 
 ```{r}
-police %>%
-  filter(subject_race == "white") %>%
-  select(subject_sex, outcome)
+qog %>%
+  filter(ht_region == "5") %>% 
+  select(cname_qog, year)
 ```
 
 You can use the pipe operator to string together commands outside of the tidyverse as well, and it works with any input and output, not just data frames:
 
 ```{r}
-# sum(is.na(police$beat))
-is.na(police$beat) %>% sum()
+is.na(qog$br_elect) %>% sum()
 
 # or
-police$beat %>% is.na() %>% sum()
+qog$br_elect %>%  is.na() %>% sum()
 ```
 
 ### EXERCISE
 
-Select the date, time, and outcome (columns) of stops that occur in beat "71" (rows). Make use of the `%>%` operator.
-
-The equivalent base R expression would be: `police[police$beat == "71", c("date", "time", "outcome")]`
-
-Hint: remember that a column needs to still be in the data frame if you're going to use the column to filter.
+Change this expression to use Tidyverse and the ` %>%` operator: `NHANES[ NHANES$Height > 150 , c("Age", "Weight", "Height")]`
 
 ```{r}
 
 ```
 
-Note that so far, we haven't actually changed the `police` data frame at all. We've written expressions to give us output, but we haven't saved it.
+Note that so far, we haven't actually changed the `qog` data frame at all. We've written expressions to give us output, but we haven't saved it.
 
 Sometimes we may still want to save the result of some expression, such as after performing a bunch of data cleaning steps. We can assign the output of piped commands as we would with any other expression:
 
 ```{r}
-police60201 <- police %>%
-  filter(location == "60201") %>%
-  select(date, time, beat, type, outcome) 
+qog_transformed <- qog %>%
+  filter(ht_region == "5") %>% 
+  select(cname_qog, year)
 ```
 
 ### BONUS -- CHALLENGE EXERCISE
@@ -678,25 +671,25 @@ Go back to the previous exercises. Is there a difference in output between base 
 We name the column we're mutating and set the value. If the name already exists, it will update the column. If the name doesn't exist, it will create a new variable (column is appended at the end of the existing columns).
 
 ```{r, eval=TRUE}
-police %>% 
-  mutate(vehicle_age = 2017 - vehicle_year) %>%
-  select(starts_with("vehicle")) %>%   # just to pick a few columns to look at
+qog %>% 
+  mutate(cckp_rain_cm = cckp_rain / 10) %>% 
   names()
 ```
 
 We can put multiple mutations in the same call to mutate, with the expressions separated by commas:
 
 ```{r,  eval=TRUE}
-mutate(
-  police, 
-  vehicle_age = 2017 - vehicle_year,
-  old_car = vehicle_year < 2000
-  )
+qog %>% 
+  mutate(
+    cckp_rain_cm = cckp_rain / 10,
+    asia = ht_region %in% c(6, 7, 8)
+    ) %>% 
+  names()
 ```
 
 ### EXERCISE
 
-If the column beat in `police` is "/", set it to `NA` instead using `mutate()`.
+In the `NHANES` data, if the column `PregnantNow` is "Unknown", set it to `NA` instead using `mutate()`.
 
 Hint: remember the `na_if` function.
 
@@ -711,9 +704,9 @@ We use `mutate()` when we want the output to have the same length as the input. 
 When we want to condense multiple values down to a single (or a few values), such as taking the mean or standard deviation of a vector, we use summarize instead:
 
 ```{r}
-police %>% 
-  mutate(vehicle_age = 2017 - vehicle_year) %>% # computing a new variable first
-  summarize(mean_vehicle_age = mean(vehicle_age))
+qog %>% 
+  mutate(cckp_rain_cm = cckp_rain / 10) %>% 
+  summarize(mean_cckp_rain = mean(cckp_rain, na.rm = TRUE))
 ```
 
 Note that even though there's just one value, we get a tibble returned. This is expected within the tidyverse.
@@ -721,13 +714,12 @@ Note that even though there's just one value, we get a tibble returned. This is 
 We can compute more than one summary measure at the same time:
 
 ```{r}
-police %>% 
-  mutate(vehicle_age = 2017 - vehicle_year) %>% # computing a new variable first
+qog %>% 
+  mutate(cckp_rain_cm = cckp_rain / 10) %>% 
   summarize(
-    mean_vehicle_age = mean(vehicle_age),
-    sd_vehicle_age = sd(vehicle_age),
-    min_date = min(date),
-    max_date = max(date)
+    mean_cckp_rain = mean(cckp_rain, na.rm = TRUE),
+    min_year = min(year),
+    max_year = max(year)
     )
 ```
 
@@ -735,7 +727,7 @@ We get one column per summary variable we create. Once we group below, we'll see
 
 ### EXERCISE
 
-Use summarize to compute the `min()` and `max()` `vehicle_year`
+Use summarize to compute the `min()` and `max()` `Height`.
 
 ```{r}
 
@@ -748,40 +740,27 @@ When we want to compute summary measures or do other computation on groups in ou
 First, what if we just group our data by a specific column:
 
 ```{r}
-police %>%
-  group_by(outcome)
+qog %>%
+  group_by(ht_region)
 ```
 
-When we print this in the console,
+When we print this in the console, we see that it tells us that the tibble (data frame) is grouped by `ht_region`, and that there are 11 groups. It doesn't rearrange the rows, it just keeps track of the groups for us.
 
-```         
-# A tibble: 14,792 x 29
-# Groups:   outcome [2]
-   raw_row_number date       time  location beat  subject_age subject_race subject_sex department_id
-            <dbl> <date>     <tim>    <dbl> <chr> <lgl>       <chr>        <chr>               <dbl>
- 1       11249746 2017-01-01 00:56    60202 72    NA          white        male                13178
- 2       11249747 2017-01-01 04:43    60643 71    NA          black        male                13178
- 3       11249748 2017-01-01 09:21    60625 78    NA          black        female              13178
-...
-```
-
-we see that it tells us that the tibble (data frame) is grouped by outcome, and that there are two groups. It doesn't rearrange the rows, it just keeps track of the groups for us.
-
-Now, let's combine it with summarize. But first, let's make the `vehicle_age` column we've been using actually part of the `police` dataset so that we don't have to keep creating it:
+Now, let's combine it with summarize. But first, let's make the `cckp_rain_cm` column we've been using actually part of the `qog` dataset so that we don't have to keep creating it:
 
 ```{r, eval=TRUE}
-police <- mutate(police, vehicle_age = 2017 - vehicle_year)
+qog <- mutate(qog, cckp_rain_cm = cckp_rain / 10)
 ```
 
 Now, group and summarize:
 
 ```{r}
-police %>% 
-  group_by(subject_sex) %>%
-  summarize(
-    mean_vehicle_age = mean(vehicle_age),
-    sd_vehicle_age = sd(vehicle_age)
-    )
+qog %>% 
+  group_by(ht_region) %>% 
+  summarise(
+    mean_wdi_co2 = mean(wdi_co2, na.rm = TRUE),
+    sd_wdi_co2 = sd(wdi_co2, na.rm = TRUE)
+  ) 
 ```
 
 Now we get one row for each group, and one column for each summary measure.
@@ -789,33 +768,17 @@ Now we get one row for each group, and one column for each summary measure.
 We can group by multiple columns, and we'll get all of the combinations of values present across the columns:
 
 ```{r}
-police %>% 
-  group_by(subject_sex, subject_race) %>%
-  summarize(
-    mean_vehicle_age = mean(vehicle_age),
-    sd_vehicle_age = sd(vehicle_age)
-    )
+qog %>% 
+  group_by(ht_region, br_elect) %>% 
+  summarise(
+    mean_wdi_co2 = mean(wdi_co2, na.rm = TRUE),
+    sd_wdi_co2 = sd(wdi_co2, na.rm = TRUE)
+  ) 
 ```
-
-We are getting extra information alerting us to the fact that our output is grouped. If we don't want the groups in place anymore, we can `ungroup()`. Usually this doesn't matter though if we're just printing output to the screen.
-
-Let's compute the ratio of warnings to citations by subject_race - note that we can use the variables we create in later expressions within the same call to `summarize()`:
-
-```{r}
-police %>%
-  group_by(subject_race) %>%
-  summarize(
-    warnings = sum(outcome == "warning"),  # count how many warnings
-    citations = sum(outcome == "citation"), # count how many citations
-    ratio = warnings/citations
-    )
-```
-
-There's considerable variation here, from 1.1 warnings for every citation given to 2.2 warnings for every citation given. So, relatively more warnings to citations for Black drivers than white and Hispanic ones.
 
 ### EXERCISE
 
-Compute the `min()` and `max()` `vehicle_year` for each `vehicle_make`.
+Using the `NHANES` data, compute the `min()` and `max()` `Height` for each `Gender`.
 
 ```{r}
 
@@ -823,7 +786,7 @@ Compute the `min()` and `max()` `vehicle_year` for each `vehicle_make`.
 
 ### EXERCISE
 
-Using mtcars, compute the average horsepower (hp) for each \# of cylinders (cyl)
+Using `NHANES`, compute the average `BMI` for each level of `Education`.
 
 ```{r}
 
@@ -834,8 +797,8 @@ Using mtcars, compute the average horsepower (hp) for each \# of cylinders (cyl)
 If you ever have a grouped data frame, you may need to ungroup it to get rid of the groups. To do so, use `ungroup()`:
 
 ```{r}
-police %>% 
-  group_by(outcome) %>%
+qog %>%
+  group_by(ht_region) %>% 
   ungroup()
 ```
 
