@@ -38,7 +38,7 @@ To start familiarizing yourself with statistics in R, let's take the example of 
 
 Here we're focusing on how to implement statistical methods in R. We're not covering the statistics of linear regression. That said, our team does have statisticians and we do teach workshops focused on statistics.
 
-Let's use the `penguins` dataset that we've used before from the package `palmerpenguins`.
+Let's use the `penguins` dataset from the package `palmerpenguins` ([more information about the dataset here](https://allisonhorst.github.io/palmerpenguins/)).
 
 ```{r}
 library(palmerpenguins)
