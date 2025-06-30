@@ -1,0 +1,123 @@
+---
+title: "Function Basics"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Functions: Introduction
+
+Functions allow us to perform operations that are more complicated than simple math. We call functions with the syntax of `function_name(input_values)`.
+
+Examples:
+
+```{r}
+log(10)  # natural log
+sqrt(4)  # square root
+exp(1)   # constant e: exp(1) = e; function computes e^x
+nchar("rstudio")  # number of characters 
+```
+
+Not all functions require an input value
+
+```{r}
+timestamp()
+list.files()
+```
+
+## Function Names: Case Sensitive
+
+Names of functions -- and other things -- in R are case sensitive
+
+```{r, error=TRUE}
+log(10)  # gives an error
+```
+
+
+## Using Functions in Expressions
+
+Functions can be combined in more complex expressions:
+
+```{r}
+sqrt(25) + sqrt(30)
+log(10) * 4
+```
+
+
+## Nesting Function Calls
+
+Functions can nest inside each other; they are evaluated from the inside out like a math equation would be
+
+```{r}
+log(exp(100))
+sqrt(abs(sin(-3)))
+```
+
+## Multiple Inputs/Arguments
+
+Many functions have multiple arguments or input values.
+
+Some take multiple inputs of the same type
+
+```{r}
+paste("cats", "are", "furry")  # concatenates, or joins, text together
+sum(3, 5, 9)                   # adding multiple values
+```
+
+But these functions are the exception.  Most functions don't allow an arbitrary number of inputs but instead expect specific values. 
+
+Most input arguments are named.  Specify input arguments, especially those after the first input value, with `name_of_argument=value`
+
+```{r}
+log(100, base=10)
+round(3.14159, digits=2)
+```
+
+## TRY IT
+
+Compute the base 16 log of 4, multiply by 3.45, and then round the result to 3 decimal places.
+
+```{r}
+
+```
+
+## Default Arguments
+
+Many functions have default values for arguments. If the value of an argument is not explicitly specified, the default is used instead.
+
+```{r}
+# default value for the argument sep (separator) is a space " "
+paste("cats", "are", "furry")  
+paste("cats", "are", "furry", sep="***")
+```
+
+```{r}
+# default value for the argument "base" is exp(1), 
+# which is the constant e for a natural logarithm
+log(100)
+log(100, base=10)
+```
+
+## Function Definitions
+
+How do you find out what arguments a function takes? The R documentation/help. The documentation is available in the Help tab in RStudio (bottom right window by default); enter the name for a specific function in the search box to pull up the documentation page for the function. Note that the search box does not work well for finding documentation if you do not already know the function name.
+
+You can also open the documentation page for a particular function from the R prompt with `?function_name`
+
+```{r}
+?log
+```
+
+## Finding Function Names
+
+The documentation will help you learn about a function if you know it's name, but how do you figure out the name in the first place?
+
+Here are two reference sheets that can help you get started with basic functions:
+
+-   https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf
+-   https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+
+Beyond these, asking AI coding tools (like ChatGPT, Claude, Gemini, etc.) can be useful.  If you're using a typical web search instead (i.e. Google), including "r statistics" along with the search can help, since "R" alone can be ambiguous.  
+
+When working on specific analyses, online tutorials and package documentation are useful for identifying more specific functions.
+

@@ -1,0 +1,500 @@
+---
+title: "Visualization Introduction"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Setup
+
+Before we get started, let's import packages that we'll use, and re-import the data set to make sure we're working from the same version:
+
+```{r}
+library(tidyverse)
+healthdata <- read_csv("data/nhanes.csv")
+```
+
+::: callout-tip
+## Online Resources
+
+There are many good online resources that show examples of different types of visualizations and the code to create them.  The R Graph Gallery is one example: https://r-graph-gallery.com/
+:::
+
+
+
+# Built-in Visualization Functions
+
+R has several built-in functions for visualizing or plotting data.  These functions generally take *vectors* as input (not data frames).  While you can make publication-quality graphics with the built-in R visualization functions, these functions are most useful for quick, exploratory plots.
+
+
+## Scatterplot
+
+We're starting easy.  The `plot()` function in R takes two vectors (ideally of continuous data) and makes a scatterplot by default:
+
+```{r}
+plot(healthdata$height, healthdata$weight)
+```
+
+By default, the first variable is x, and the second is y.  We can specify x and y explicitly though instead:
+
+```{r}
+plot(y=healthdata$height, x=healthdata$weight)
+```
+
+
+## Line Plot
+
+Line plots show a trend across values of a variable - most commonly across time, but we don't have a time variable in this data.  We'll compute some values across ages instead first so that we have appropriate data for a line plot:
+
+```{r}
+by_age <- healthdata %>%
+  group_by(age) %>%
+  summarize(avg_pulse = mean(pulse, na.rm=TRUE))
+
+by_age
+```
+
+Now, to plot this, we again use the `plot()` function.  Let's start with a scatterplot:
+
+```{r}
+plot(by_age$age, by_age$avg_pulse)
+```
+
+To convert this to a line plot, we add an input:
+
+```{r}
+plot(by_age$age, by_age$avg_pulse, type="l")
+```
+
+If we want **b**oth points and lines:
+
+```{r}
+plot(by_age$age, by_age$avg_pulse, type="b")
+```
+
+
+## Histogram
+
+Histograms are used to visualize the distribution of a continuous variable.  The function is `hist()`
+
+```{r}
+hist(healthdata$pulse)
+```
+
+You can change the number of bins (bars) with `breaks`
+
+```{r}
+hist(healthdata$pulse, breaks=50)
+```
+
+R doesn't obey `breaks` strictly - think of it as a suggestion. 
+
+
+## TRY IT
+
+Make a plot of `bp_sys1` and `bp_sys2`.
+
+Make a histogram of `income_poverty_ratio`.
+
+```{r}
+
+```
+
+
+# Visualization: ggplot2 Basics
+
+ggplot2 is a package that is part of the Tidyverse set of packages.  Like other Tidyverse packages, it expects your data to be in a data frame.  
+
+The code to make very simple plots is a bit more complicated with ggplot2 than with built-in plotting functions, but ggplot2 makes it much easier to make more complex plots and consistently style your plots.
+
+ggplot2 has very intentional design that's based on a theory of how to map data to visual elements (the grammar of graphics - hence the "gg").  There is an entire book about it!  Here, we're just focusing on the basic syntax, not the full design theory of the package.  If you keep learning ggplot2 (which is worth it if you do a lot of data visualization), then we recommend you learn more about why ggplot2 works the way it does.
+
+
+## Basic Syntax
+
+ggplot2 uses multiple functions to build a plot, and they are joined together with `+`.
+
+The basic formula is: 
+
+```{r, eval=FALSE}
+ggplot(dataframe_name, aes(x=variable1_name, y=variable2_name)) +
+  geom_type()
+```
+
+The first line defines what data is being used to make the plot.  The `aes()` function inside `ggplot()` maps variables to elements of the plot, like the x and y axes.
+
+The second line is a function that defines the plot type - there is a different geom (short for geometry) function for each plot type.
+
+Example:
+
+```{r}
+ggplot(healthdata, aes(x=weight, y=height)) +
+  geom_point()
+```
+
+
+## Common Plot Types
+
+Examples of common plot types.
+
+### Scatterplot 
+
+Two continuous variables
+
+```{r}
+ggplot(healthdata, aes(x=weight, y=height)) +
+  geom_point()
+```
+
+If we don't explicitly label the two variables as the x and y inputs, it assumes x is first and y is second. 
+
+### Line plot 
+
+Line plots show a trend over time or across values.  Since we don't have a time variable, we'll construct some appropriate data for a line plot first:
+
+```{r}
+by_age <- healthdata %>%
+  group_by(age) %>%
+  summarize(avg_pulse = mean(pulse, na.rm=TRUE))
+
+by_age
+```
+
+```{r}
+ggplot(by_age, aes(x=age, y=avg_pulse)) +
+  geom_line()
+```
+
+Combine point and line:
+
+```{r}
+ggplot(by_age, aes(x=age, y=avg_pulse)) +
+  geom_line() +
+  geom_point()
+```
+
+### Histogram
+
+Distribution of a continuous variable
+
+```{r}
+ggplot(healthdata, aes(pulse)) + 
+  geom_histogram()
+```
+
+The warning message is due to missing values in the variables.
+
+Control the number of bins (bars) with the bins argument.  ggplot does strictly obey this setting
+
+```{r}
+ggplot(healthdata, aes(pulse)) + 
+  geom_histogram(bins = 40)
+```
+
+Or the width of the bins:
+
+```{r}
+ggplot(healthdata, aes(pulse)) + 
+  geom_histogram(binwidth = 5)
+```
+
+
+
+### Bar Plot
+
+Bar plots are most common for visualizing the frequency of observations across categories (the visual version of a frequency table).  ggplot will compute the number of observations in each category for us.  It will also label each bar, even if the labels overlap.
+
+```{r}
+ggplot(healthdata, aes(education)) +
+  geom_bar()
+```
+
+Or create a horizontal bar chart by specifying that the variable should be on the y-axis:
+
+```{r}
+ggplot(healthdata, aes(y=education)) +
+  geom_bar()
+```
+
+You can control the order of the bars in a bar plot by making the variable a factor before plotting, and setting the levels of the factor in the order you want.  There are helper functions in the forcats package that are particularly useful for creating and ordering factors in ways that are common for visualization, such as ordering categories by their frequency.
+
+
+### Box Plot
+
+Visualizing the distribution of a single variable:
+
+```{r}
+ggplot(healthdata, aes(y=height)) +
+  geom_boxplot()
+```
+
+By group:
+
+```{r}
+ggplot(healthdata, aes(y=height, x=gender)) +
+  geom_boxplot()
+```
+
+
+## TRY IT
+
+Make a plot of `bp_sys1` and `bp_sys2` using ggplot2.
+
+Make a histogram of `income_poverty_ratio` using ggplot2.
+
+```{r}
+
+```
+
+## Labels and Title
+
+There are a few ways to set the labels and title in ggplot, but a common way is to use the `labs()` (labels) function.  It can be used with any ggplot.
+
+```{r}
+ggplot(healthdata, aes(y=height, x=gender)) +
+  geom_boxplot() + 
+  labs(title = "This is my title",
+       x = "Gender",
+       y = "Height (cm)")
+```
+
+
+## Visualizing Subsets
+
+What if you only want to visualize part of the data?  Filter or subset the data prior to plotting it.  The pipe operator can be particularly helpful for this.
+
+Example with dplyr:
+
+```{r}
+healthdata %>%           # either version of the pipe works
+  filter(age < 50) %>%   # either version of the pipe works
+  ggplot(aes(pulse)) +
+  geom_histogram() + 
+  labs(title = "Pulse for Respondents < 50")
+```
+
+Using the pipe operator isn't required.  Example with `[]`
+
+```{r}
+ggplot(healthdata[healthdata$age < 50, ], 
+       aes(pulse)) + 
+  geom_histogram() + 
+  labs(title = "Pulse for Respondents < 50")
+```
+
+
+## TRY IT
+
+Make a histogram of height just for female participants.
+
+```{r}
+
+```
+
+
+# ggplot2: Visualizing Groups
+
+ggplot2 is particularly useful and powerful for visualizing data by groups.  There are two main approaches to support looking at data divided into groups.
+
+## Visual Elements
+
+One way to look at groups is to use *color*.  With ggplot, we can map a variable (usually a categorical one) to be visually represented by color:
+
+```{r}
+ggplot(healthdata, aes(x=weight, y=height, color=gender)) +
+  geom_point()
+```
+
+It automatically adds a legend explaining the mapping between specific colors and values of the variable.
+
+With a bar plot, adding an additional variable mapped to color can give us either bars side by side, or a stacked bar plot.  With a bar plot, `color` refers to the outline of the bars, while `fill` refers to the primary color of the bars:
+
+```{r}
+ggplot(healthdata, aes(education, fill=gender)) +
+  geom_bar()
+```
+
+To make the bars side-by-side instead, we change the position:
+
+```{r}
+ggplot(healthdata, aes(education, fill=gender)) +
+  geom_bar(position="dodge")
+```
+
+
+## TRY IT
+
+Modify the plot below to color the points by whether the person is `physically_active`
+
+```{r}
+# subset the data so we can see all of the points
+# the slice_sample() function takes a random sample of rows
+healthdata_subset <- slice_sample(healthdata, n=100)
+
+ggplot(healthdata_subset, aes(x=bp_sys1, y=bp_sys2)) + 
+  geom_point()
+```
+
+
+## TRY IT
+
+Create a bar plot of `health_level`, dividing each category by `sleep_trouble`
+
+```{r}
+
+```
+
+Challenge 1: Remove the `NA` category (those observations) from the plot.  Hint: modify the data before plotting.  For bonus points, don't permanently change the `healthdata` data frame.  (think pipes!)
+
+Challenge 2: Put the `health_level` categories in their appropriate scale order on the plot.  
+
+
+## Facets
+
+Another way to view data by groups is to make the same plot multiple times, once for each group.  ggplot2 does this through facets.  We construct the overall plot, and then tell ggplot2 to split the data up by another variable, and how to arrange the subplots.
+
+```{r}
+ggplot(healthdata, aes(education)) +
+  geom_bar()
+
+# function definition for facet_grid
+?facet_grid
+  
+# side by side
+ggplot(healthdata, aes(education)) +
+  geom_bar() +
+  facet_grid(cols = vars(gender))
+
+# stacked vertically
+ggplot(healthdata, aes(education)) +
+  geom_bar() +
+  facet_grid(rows = vars(gender))
+
+# stacked by two variables across rows and columns
+ggplot(healthdata, aes(education)) +
+  geom_bar() +
+  facet_grid(rows = vars(physically_active), cols =vars(gender))
+```
+
+
+## TRY IT
+
+Modify the plot below to have separate facets for each value of `sleep_trouble`. Arrange the plot such that there are multiple rows, one for each unique value of `sleep_trouble`.
+```{r}
+healthdata %>% 
+ggplot(aes(sleep_hours)) +
+  geom_bar()
+```
+
+Challenge 1: Set the `scales` argument of `facet_grid()` to "free_y".  What did this do?
+
+Challenge 2: `sleep_hours` is a numeric variable, so ggplot made the x axis a continuous numeric scale.  But `sleep_hours` only takes on discrete integer values.  Modify the plot so that each bar is labeled with the number of hours as would be the case of `sleep_hours` was a categorical variable.  Hint: how can you make `sleep_hours` a categorical variable?
+
+
+# ggplot2: Axis Limits
+
+Sometimes we don't want to include the full range of all variables in a plot.  For example, in this plot:
+
+```{r}
+ggplot(healthdata, aes(x=bp_dia1, y=bp_sys1)) +
+  geom_point()
+```
+
+we might want to exclude the observations where the diastolic (bottom) blood pressure reading is implausibly low or 0.  
+
+We could filter or subset the data before plotting.  There are also two ways to do this with ggplot without subsetting the data first.
+
+
+## Limit the Axis Range
+
+We can limit the range of values displayed on the x or y axis by modifying the scale directly.
+
+```{r}
+ggplot(healthdata, aes(x=bp_dia1, y=bp_sys1)) +
+  geom_point() +
+  scale_x_continuous(limits = c(30, 120))
+```
+
+We use `scale_x_continuous()` as the function because we want to limit the x axis scale, and it's a continuous numeric scale.  We could use `scale_y_continuous()` to limit the y axis scale of this plot instead.  `limits` takes a vector of two values: the first is the minimum and the second is the maximum. 
+
+This works by dropping any data points that are not within the limits of the scale -- between the values of 30 and 120 in this example.  There's a small buffer region around the edge of the plot area where even if there was a point there, we wouldn't see it.  Note that all of the points showing on the plot are full circles - none are truncated.
+
+This approach is appropriate if you want to explicitly plot only observations in a particular range of values.
+
+## Zoom In
+
+A second option is to zoom in on the region of the plot we want to see instead of explicitly limiting the range of an axis scale.  
+
+```{r}
+ggplot(healthdata, aes(x=bp_dia1, y=bp_sys1)) +
+  geom_point() +
+  coord_cartesian(xlim = c(30, 120))
+```
+
+We use the `coord_cartesian()` function and set the `xlim` to change the region of the x axis we can see.
+
+This plot looks almost the same as the previous one, but if you look closely, there are a few points near the y-axis that appear at least partially in this plot that do not appear in the previous plot.  Use the arrows in the Plots tab in RStudio to flip back and forth between this plot and the previous one to see the difference.  These points have bp_dia1 values slightly less than 30, but close enough to 30 that they fall in the narrow buffer region.  
+
+This approach is appropriate if you want to zoom in on a region of a complex plot to show more detail.
+
+# ggplot2: Styling
+
+Fonts, text size, plot background, grid lines, axis lines, tick marks, and the position of elements like the title and legend are controlled by the plot `theme()`.  There are a few built-in themes that change several elements at once.
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  theme_bw()
+```
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  theme_classic()
+```
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  theme_minimal()
+```
+
+You can change individual elements instead.  A list is available in the [documentation](https://ggplot2.tidyverse.org/reference/theme.html).  Many theme elements are controlled with element functions:
+
+* element_line(): axis lines, grid lines, tick marks
+* element_rect(): plot background
+* element_text(): labels, titles
+* element_blank(): remove an element
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  theme(axis.title = element_text(size=20),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank())
+```
+
+You can also start with one of the built in themes, and then modify it further:
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  theme_minimal() +
+  theme(axis.title = element_text(size=20),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank())
+```
+
+A useful package for creating scientific plots is `{ggpubr}`. The function `theme_pubr` is especially useful to create plots with most of the modifications required for publication quality plots.
+
+```{r}
+ggplot(healthdata, aes(pulse)) +
+  geom_histogram() +
+  ggpubr::theme_pubr()
+```
+

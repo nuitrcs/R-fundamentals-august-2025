@@ -1,0 +1,257 @@
+---
+title: "Workflows with Tidyverse"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Tidyverse
+
+We've seen a few tidyverse functions that are useful when working with data frames: `select()`, `filter()`, `mutate()`, `rename()`.  These functions can be useful on their own, but they're most useful when combined together into multi-step workflows.  
+
+## Tibbles
+
+Let's start by loading the tidyverse set of packages, and using the `read_csv()` function from the readr package to load the dataset instead of using the built-in `read.csv()` function
+
+```{r}
+library(tidyverse)
+
+healthdata <- read_csv("data/nhanes.csv")
+```
+
+`read_csv()` makes slighly different assumptions about the data when importing than `read.csv()`.  For example, it reads in all numeric variables as the numeric type instead of using the integer type for some variables.
+
+For data sets that include dates or other special types of data, `read_csv()` often handles and automatically converts such data into appropriate types well.
+
+The biggest difference between `read_csv()` and `read.csv()` is that `read_csv()` results in a tibble, which is a data frame with some additional features.
+
+```{r}
+healthdata
+```
+
+The most obvious difference between a tibble and a regular data frame is that the output of a tibble in the console is limited to what fits.
+
+To view the entire data frame, use the `View()` function:
+
+```{r, eval=FALSE}
+View(healthdata)
+```
+
+
+## Review
+
+We've seen 3 key functions from the dplyr package already:
+
+* `select()`: to choose columns
+* `filter()`: to choose rows
+* `mutate()`: to create a column or alter an existing column
+
+As well as:
+
+* `rename()`: to change the name of existing columns
+* `arrange()`: to sort the data frame by selected columns
+
+Remember that we do not need quotes around column names inside of these functions.  
+
+```{r, eval=FALSE}
+select(healthdata, gender, age)
+filter(healthdata, age > 40)
+mutate(healthdata, senior = age >= 65)
+arrange(healthdata, age)
+```
+
+We're going to add a few more functions to this set, and learn how to combine them together using the pipe operator (`%>%` or `|>`).
+
+## Summarize
+
+We've seen how to subset a data frame with dplyr functions, but how do we compute summary statistics, like a mean?  `mutate()` is for changing an entire column in a data frame (either an existing one or creating a new one).  `summarize()` is for computing single values, such as a mean or median.
+
+```{r}
+summarize(healthdata, mean_age = mean(age))
+```
+
+The result is still a data frame.
+
+You can compute multiple summary measures at the same time:
+
+```{r}
+summarize(healthdata, 
+          mean_age = mean(age),
+          mean_weight = mean(weight, na.rm=TRUE))
+```
+
+
+## TRY IT
+
+Compute the mean and median of both bp_sys1 and bp_sys2
+
+```{r}
+
+```
+
+
+
+## Multi-step Operations 
+
+What about computing summary statistics on a subset of the data?  To do that, we need to combine multiple functions.  Use the pipe operator (`%>%` or `|>`) to combine multiple commands.
+
+A simple version is to subset the observations that we want to use with `filter()`:
+
+```{r}
+healthdata %>%
+  filter(gender == "male") %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE))
+```
+
+A more complicated example is to change a variable with `mutate()` (just temporarily) to use in a calculation.  For example, let's convert weight from kg to pounds before computing the mean:
+
+```{r}
+healthdata %>%
+  filter(gender == "male") %>%
+  mutate(weight = weight * 2.2) %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE))
+```
+
+Compare this to the base R code for the same operation:
+
+```{r}
+mean(healthdata$weight[healthdata$gender == "male"] * 2.2, na.rm=TRUE)
+```
+
+
+
+## TRY IT
+
+Compute the median pulse for female participants.
+
+```{r}
+
+```
+
+
+
+## Working with Groups
+
+Above, we computed summary statistics for particular subgroups.  But it would be nice to compute them for all subgroups at once -- for example, for both male and female participants.  Use `group_by()` as part of a multi-step operation to do that:
+
+```{r}
+healthdata %>%
+  group_by(gender) %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE))
+```
+
+We get one row of output for each distinct value of the variable we grouped by.
+
+We can also group by multiple variables:
+
+```{r}
+healthdata %>%
+  group_by(age, gender) %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE))
+```
+
+The rows have all combinations of the two grouping variables that exist in the data.
+
+## TRY IT
+
+Compute the mean of `bp_sys1` by `age_decade`
+
+```{r}
+
+```
+
+
+# Count
+
+A common summary value to compute is the number of observations in a group (like you get with `table()`).  To compute counts using dplyr functions, we can use `count()` and `n()`:
+
+First, use `count()` to make a frequency table:
+
+```{r}
+healthdata %>%
+  count(gender)
+```
+
+```{r}
+healthdata %>%
+  count(gender, age_decade)
+```
+
+If we want the count along with other values, we can use `n()` with `summarize()`:
+
+```{r}
+healthdata %>%
+  group_by(gender) %>%
+  summarize(n = n(), 
+            mean_pulse = mean(pulse, na.rm=TRUE))
+```
+
+
+## TRY IT
+
+How many participants have each work_status?
+
+```{r}
+
+```
+
+
+## Computing Proportions
+
+Knowing the number of observations in each group is useful, but we often want to know the proportion as well.  We can compute proportions by summing the group counts, and dividing each by the sum:
+
+```{r}
+healthdata %>%
+  count(gender) %>%
+  mutate(prop = n / sum(n))
+```
+
+Or, if you want to compute other summary statistics at the same time:
+
+```{r}
+healthdata %>%
+  group_by(gender) %>%
+  summarize(mean_pulse = mean(pulse, na.rm=TRUE),
+            n = n()) %>%
+  mutate(prop = n / sum(n))
+```
+
+For simple cases, the equivalent with built-in functions is:
+
+```{r}
+table(healthdata$gender) / nrow(healthdata)
+
+# or 
+prop.table(table(healthdata$gender))
+```
+
+
+## TRY IT
+
+What proportion of participants have each `marital_status`?
+
+```{r}
+
+```
+
+
+
+## tabyl
+
+The `tabyl()` function in the janitor package is useful for computing tables with counts and proportions.  It uses a tidyverse syntax, taking a data frame as the first input and the unquoted name of the column(s) as additional inputs.
+
+```{r}
+# install.packages("janitor")
+library(janitor)
+
+tabyl(healthdata, gender)
+```
+
+With two variables, you just get counts:
+
+```{r}
+tabyl(healthdata, gender, work_status)
+```
+
+
+

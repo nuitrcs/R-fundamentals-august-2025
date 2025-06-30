@@ -1,0 +1,203 @@
+---
+title: "Intro to Regression Models"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+::: callout-note
+## This is not a statistics workshop
+
+All of the statistical models we're covering have assumptions about the data and other requirements to produce valid output. Here, we're focused on how to run the models in R, not how to ensure we're making correct statistical inferences. Please consult your stats book or a statistician for guidance on actual statistical inference and analysis decisions.
+:::
+
+# Linear Regression: Continuous Dependent Variable
+
+Linear regression is used to determine the relationship between one or more independent or explanatory variables and a continuous dependent or outcome variable.  
+
+We're going to work with pulse as the dependent variable.  If we just had one predictor, age, then linear regression would fit a line to the data that minimizes the sum of the squared errors (the squared distance between each point and the fitted line)
+
+```{r}
+ggplot(healthdata, aes(x=age, y=pulse)) +
+  geom_point(alpha = .3)  # transparency to partially address overlapping points
+```
+
+The linear regression line:
+
+```{r}
+ggplot(healthdata, aes(x=age, y=pulse)) +
+  geom_point(alpha = .1) +
+  geom_smooth(method = "lm")  # "lm" corresponds to the linear model lm() function
+```
+
+We want to do more than plot the line - we want to know the slope, intercept, and other measures of the model fit.
+
+
+## Formula Syntax: Basics
+
+To compute the linear regression model, we use the `lm`() function (lm = linear model).  We specify the relationship between the variables with the formula syntax, which at the basic level is `y ~ x`.  The y is the dependent or outcome variable, and it is being modeled as a function of one or more x (independent, predictor, explanatory) variables
+
+```{r}
+lm(pulse ~ age, data=healthdata)
+```
+
+The basic output includes the intercept and slope of the line.  
+
+## Summary
+
+We can get additional information about the model fit with the `summary()` function.  This is the same function that can be used to get summary statistics about a data frame or variable.  The function takes different actions depending on what type of input it is given.
+
+We give the output of `lm()` to summary.  A few options for how to do this:
+
+```{r}
+# pipe
+lm(pulse ~ age, data=healthdata)  %>%  
+  summary()
+```
+
+```{r, eval=FALSE}
+# nested
+summary(lm(pulse ~ age, data=healthdata))
+
+# save the result in a variable
+reg1 <- lm(pulse ~ age, data=healthdata)
+summary(reg1)
+```
+
+The output of `summary()` includes the standard error on each coefficient estimate, and it computes a t-test for each to determine the likelihood that the coefficient estimate would take the given value if the true value of the coefficient was 0.  We get "stars" summarizing which coefficients are statistically different from 0 at common significance levels. It also include the R-squared measure, which is a measure of how much variance in the dependent variable is explained by the model.  It ranges between 0 and 1.  
+
+The output of `summary()` also let's us know that 184 observations were dropped from the model because they had a missing value for at least one of the variables included in the model.  Observations (rows) must have non-missing values for all variables in the model to be included in the estimation.  
+
+## TRY IT
+
+Run a linear regression model explaining weight with height.  Use `summary()` to see detailed output.
+
+```{r}
+
+```
+
+
+## Formula Syntax: Multiple X Variables
+
+The power of linear regression comes from being able to include multiple explanatory variables - if we just had a single one, we could compute the correlation instead.  
+
+To include multiple explanatory variables, we start by adding them together:
+
+```{r}
+lm(pulse ~ age + bp_sys1 + bp_dia2 + weight + height, data = healthdata) |> 
+  summary()
+```
+
+The model is now looking at the effect of each variable, controlling for all of the other variables.  
+
+## Categorical Explanatory Variables
+
+We can include categorical variables as explanatory/independent variables without modifying them first.  If a variable has n categories, R will convert it into n-1 indicator variables.
+
+```{r}
+## saving the lm output because using it below
+reg3 <- lm(pulse ~ age + gender, data = healthdata) 
+summary(reg3)
+```
+
+gender takes on two values: female and male (alphabetically).  The first category, female, is omitted, and R creates "gendermale" with takes 0 = not male (female) and 1 = male.  The intercept now corresponds to the intercept for female observations, and the coefficient for "gendermale" is how the intercept for male respondents differs: how the intercept shifts from the baseline for male respondents.  The slope of the line is the same for both groups:
+
+```{r}
+# this is slightly complicated code that manually adds the regression lines
+# to a scatterplot; this code incorporates concepts beyond
+# the introductory materials
+
+f1 <- function(age) reg3$coefficients[1] + reg3$coefficients[2]*age
+f2 <- function(age) reg3$coefficients[1] + reg3$coefficients[2]*age + reg3$coefficients[3]
+
+ggplot(healthdata, aes(x=age, y=pulse, color=gender)) +
+  geom_point(alpha = .3) +
+  geom_function(fun=f1, linewidth=1, color="#F8766D") + 
+  geom_function(fun=f2, linewidth=1, color="#00BFC4")
+```
+
+
+## Formula Syntax: Interaction Terms
+
+We sometimes want to interact two variables -- allow the effect of one variable to be conditioned on the value of another variable.  A common case for this is to allow the slope to vary between groups.  
+
+Back to the model with just age and gender.  BUT instead of adding age and gender, we multiply them:
+
+```{r}
+lm(pulse ~ age * gender, data = healthdata)  %>% 
+  summary()
+```
+
+Now, there's a third term in the output, "age:gendermale".  This is the interaction between age and an indicator for male respondents.  This affects the slope of the line (a slope shift):
+
+```{r}
+ggplot(healthdata, aes(x=age, y=pulse, color=gender)) +
+  geom_point(alpha = .3) +
+  geom_smooth(method = "lm")
+```
+
+In the plot, the effect is slight, but the slopes of the two lines differ (the gap is wider on the left than on the right).
+
+The multiplication of the two variables in the formula is a shortcut for including both variables in the model alone AND including the interaction between them.
+
+```{r, eval=FALSE}
+# this
+lm(pulse ~ age * gender, data = healthdata)
+
+# is equivalent to
+lm(pulse ~ age + gender + age:gender, data = healthdata)
+```
+
+
+
+## TRY IT
+
+Run a linear regression model explaining weight with height and gender.  Include an interaction between height and gender.  Use `summary()` to see detailed output.
+
+```{r}
+
+```
+
+
+
+# Logistic Regression: Binary Dependent Variable
+
+There are methods for many different types of statistical models in R.  The `glm()` function (generalized linear model) provides an interface to run several different types of models, including logistic regression, which is for a binary dependent (outcome) variable.
+
+physically_active is a binary variable:
+
+```{r}
+table(healthdata$physically_active)
+```
+
+Unlike with x variables in `lm()`, we can't use these text categories directly as a y variable.  We need the values to either be 0/1 or FALSE/TRUE (which can be automatically converted to 0/1):
+
+```{r}
+# make a new numeric binary variable
+healthdata$physically_active_01 <- healthdata$physically_active == "Yes"
+table(healthdata$physically_active_01)
+```
+
+If we want to see what variables predict or have a relationship with a binary outcome variable:
+
+```{r}
+glm(physically_active_01 ~ pulse, 
+    data = healthdata,
+    family = "binomial") # indicated to compute a logistic regression
+```
+
+Like with `lm()`, the basic output of `glm()` is limited.  We use `summary()` again to get more details.
+
+```{r}
+glm(physically_active_01 ~ pulse, 
+    data = healthdata,
+    family = "binomial") |>
+  summary()
+```
+
+

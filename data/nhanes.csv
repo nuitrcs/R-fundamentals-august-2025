@@ -1,0 +1,801 @@
+id,survey_year,gender,age,age_decade,education,marital_status,work_status,income_poverty_ratio,weight,height,pulse,bp_sys1,bp_dia1,bp_sys2,bp_dia2,bp_sys3,bp_dia3,cholesterol,health_level,sleep_hours,sleep_trouble,physically_active
+64663,2011_12,female,33,30-39,Some College,Married,NotWorking,0.81,89.1,160.2,76,108,78,104,72,114,70,4.42,NA,7,Yes,No
+66165,2011_12,male,24,20-29,High School,Married,Working,1.05,129.4,184.7,72,118,80,116,82,118,78,4.16,Good,5,No,No
+58693,2009_10,female,68,60-69,High School,Married,Working,2.06,64.9,149.4,80,130,64,130,56,128,60,6.93,Vgood,7,No,No
+53000,2009_10,male,53,50-59,8th Grade,Divorced,Working,1.41,89.2,164.3,64,126,66,122,52,NA,NA,4.58,Fair,8,No,Yes
+61238,2009_10,male,47,40-49,Some College,Married,Working,1.94,70,175.8,90,140,52,142,0,146,58,5.87,NA,7,No,Yes
+56444,2009_10,female,20,20-29,Some College,NeverMarried,Working,3.2,51,157.9,78,104,60,100,52,102,46,4.11,Good,8,No,No
+66162,2011_12,female,60,60-69,College Grad,Married,Working,5,77.5,160,62,148,84,142,86,134,80,6.36,NA,6,No,No
+70258,2011_12,female,24,20-29,College Grad,NeverMarried,Working,0.9,75.9,174.1,88,114,78,114,76,112,78,4.78,Excellent,7,No,Yes
+66172,2011_12,female,20,20-29,High School,NeverMarried,Working,0.73,102,169.7,76,NA,NA,114,86,112,56,4.01,Vgood,8,No,Yes
+62990,2011_12,male,79,70+,High School,Married,NotWorking,3.97,66.4,168.9,54,144,66,146,62,140,62,3.67,Good,8,No,Yes
+55884,2009_10,female,55,50-59,Some College,Married,NotWorking,4.8,82.1,164.5,86,122,84,116,82,114,76,7.09,Vgood,9,No,Yes
+56984,2009_10,male,43,40-49,9 - 11th Grade,Divorced,NotWorking,0.37,94.3,177.4,66,112,78,110,74,110,76,4.24,NA,7,No,No
+62232,2011_12,female,42,40-49,Some College,Married,Working,3.3,97,175.3,64,128,88,120,88,110,88,6.18,Good,5,No,No
+52223,2009_10,male,21,20-29,High School,NeverMarried,Working,2.4,84,169.8,78,112,68,104,66,106,72,4.99,Excellent,7,No,No
+57009,2009_10,male,49,40-49,9 - 11th Grade,Married,Working,0.61,90.6,162.8,84,130,84,136,82,126,80,5.51,Good,8,No,Yes
+61231,2009_10,female,48,40-49,College Grad,Separated,Working,3.4,108.2,169.4,76,100,42,94,44,90,46,5.48,Good,6,Yes,Yes
+70639,2011_12,female,34,30-39,8th Grade,LivePartner,Working,1.42,83.2,159.9,NA,NA,NA,NA,NA,NA,NA,6.59,Fair,10,No,No
+58197,2009_10,male,80,70+,8th Grade,Widowed,NotWorking,1.92,73,175.6,66,NA,NA,98,64,NA,NA,5.04,Fair,8,Yes,No
+54848,2009_10,male,28,20-29,Some College,NeverMarried,NotWorking,0.91,77.4,171.4,92,122,58,124,60,132,60,6.05,Good,8,No,Yes
+57984,2009_10,male,32,30-39,9 - 11th Grade,LivePartner,Working,1.63,109.5,183.3,72,138,76,136,72,124,68,5.48,Fair,7,No,Yes
+70537,2011_12,male,26,20-29,Some College,NeverMarried,Working,NA,86.9,182.5,NA,NA,NA,NA,NA,NA,NA,NA,Good,8,No,Yes
+67775,2011_12,female,29,20-29,High School,Married,Working,5,64.5,164.2,82,112,70,118,70,108,72,5.72,Excellent,8,Yes,Yes
+69325,2011_12,female,36,30-39,College Grad,LivePartner,Working,5,74.5,153.2,78,112,76,122,68,116,74,4.29,Good,7,No,No
+71775,2011_12,male,62,60-69,9 - 11th Grade,Married,NotWorking,1.52,129.7,178.5,72,118,78,110,78,108,74,3.8,Good,6,No,No
+60632,2009_10,female,29,20-29,High School,Divorced,Working,0.84,70.8,172.4,56,110,64,112,56,114,58,4.76,Good,6,No,No
+57364,2009_10,male,80,70+,Some College,Married,Working,NA,80.6,176.8,70,144,76,130,82,126,76,5.3,Vgood,8,No,Yes
+55608,2009_10,female,47,40-49,College Grad,Married,Working,5,61.1,168.6,74,118,84,122,80,118,84,5.59,Vgood,8,No,Yes
+53201,2009_10,female,44,40-49,8th Grade,Married,NotWorking,0.51,128.8,156.1,80,124,66,126,70,122,74,4.86,Good,10,No,No
+62476,2011_12,male,40,40-49,High School,NeverMarried,NotWorking,1.29,75.8,171.5,76,114,66,114,68,116,68,4.53,Good,7,Yes,Yes
+66876,2011_12,female,62,60-69,Some College,Married,Working,5,67,159.1,70,108,72,114,74,108,66,6.85,Vgood,6,Yes,Yes
+53911,2009_10,male,29,20-29,Some College,NeverMarried,Working,3.69,53.3,178.5,72,84,54,84,56,86,58,NA,Good,7,No,Yes
+70706,2011_12,female,48,40-49,8th Grade,Married,Working,NA,58.8,158.3,64,116,70,120,74,114,64,6.08,Good,7,No,Yes
+52471,2009_10,female,46,40-49,Some College,Married,Working,1.95,43.7,148.1,88,120,74,126,76,124,78,4.53,Good,8,No,No
+67321,2011_12,male,53,50-59,Some College,Married,Working,1.22,82.8,177.4,54,116,64,116,68,116,64,5.4,Fair,7,No,No
+67409,2011_12,female,45,40-49,High School,Separated,Working,NA,67.9,159,NA,NA,NA,NA,NA,NA,NA,5.3,NA,7,Yes,Yes
+55949,2009_10,female,78,70+,High School,Married,NotWorking,2.2,68.9,160.1,58,176,66,162,64,152,68,5.46,Vgood,7,Yes,No
+68513,2011_12,female,69,60-69,Some College,Married,Working,2.04,65.2,162.5,72,128,78,128,80,124,80,4.84,Good,8,No,Yes
+61166,2009_10,female,38,30-39,College Grad,Married,Working,4.54,100,163,112,NA,NA,NA,NA,150,110,5.9,Good,8,Yes,Yes
+55381,2009_10,female,29,20-29,9 - 11th Grade,LivePartner,Working,2.09,63.4,160.4,78,112,82,114,80,116,78,4.01,Fair,8,No,No
+65047,2011_12,male,42,40-49,High School,Married,Working,3.3,104.4,174.1,70,128,88,126,86,122,84,4.53,Good,6,No,No
+61519,2009_10,male,36,30-39,College Grad,Divorced,Working,5,87.8,180.7,108,114,84,112,82,114,88,7.24,Good,6,Yes,No
+71565,2011_12,female,24,20-29,College Grad,Married,Working,2.97,65.3,160.6,80,106,66,108,70,108,68,5.07,Good,6,No,Yes
+52134,2009_10,male,61,60-69,8th Grade,Married,Working,5,168.8,187.1,48,114,54,112,54,108,54,3.1,Poor,8,Yes,No
+54754,2009_10,female,80,70+,8th Grade,Widowed,NotWorking,0.74,67.8,150.6,66,120,64,122,62,118,54,4.27,Fair,9,No,No
+65325,2011_12,female,73,70+,Some College,Widowed,NotWorking,2.72,52.9,160.2,70,110,54,106,52,104,48,4.42,Good,4,Yes,No
+65699,2011_12,male,50,50-59,High School,Divorced,Working,2.24,104.9,183.9,58,100,72,104,70,102,72,6.21,Good,7,No,Yes
+70981,2011_12,male,50,50-59,College Grad,Married,Working,5,68,168.3,74,NA,NA,102,72,104,72,5.43,Vgood,7,No,No
+66956,2011_12,female,21,20-29,9 - 11th Grade,Married,NotWorking,0.54,68.1,162.3,82,106,64,98,62,102,62,4.29,Fair,7,Yes,Yes
+63308,2011_12,male,28,20-29,College Grad,NeverMarried,Working,0.73,72.5,178,60,108,64,106,64,100,64,3.7,Excellent,5,No,Yes
+71756,2011_12,male,63,60-69,College Grad,Married,Working,3.97,79.3,182.8,66,130,70,130,70,132,68,5.2,Vgood,7,No,No
+64994,2011_12,male,27,20-29,College Grad,Married,Working,1.96,70.4,171.5,78,118,68,114,70,116,74,6.36,Vgood,6,No,Yes
+61172,2009_10,female,55,50-59,College Grad,Married,Working,5,60.7,162.4,72,98,72,92,70,92,64,5.12,Vgood,8,No,Yes
+64549,2011_12,male,44,40-49,Some College,Separated,NotWorking,1.7,130,175.6,80,114,66,110,74,114,66,4.65,Fair,8,Yes,Yes
+54713,2009_10,male,48,40-49,9 - 11th Grade,NeverMarried,NotWorking,1.12,124.1,168.4,72,124,88,126,86,128,84,4.42,Fair,6,No,No
+51996,2009_10,female,29,20-29,Some College,Married,NotWorking,0,86.1,160.8,68,110,56,108,52,108,56,4.32,NA,5,Yes,Yes
+71415,2011_12,male,38,30-39,Some College,Divorced,NotWorking,1,95.2,186.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,8,Yes,No
+68182,2011_12,male,47,40-49,High School,Married,Working,4.56,89.4,175.3,82,114,74,110,74,110,76,5.69,Vgood,6,No,Yes
+56030,2009_10,male,21,20-29,High School,NeverMarried,Working,1.94,102.5,194.9,68,106,70,112,70,NA,NA,3.85,Good,6,No,Yes
+63223,2011_12,male,59,50-59,Some College,Divorced,Working,3.21,103.7,177.7,68,132,90,124,84,124,90,6.9,Good,7,No,No
+66586,2011_12,male,29,20-29,9 - 11th Grade,NeverMarried,Looking,1.67,95.3,180.6,74,122,58,122,56,118,58,2.61,NA,8,No,Yes
+69880,2011_12,female,34,30-39,Some College,LivePartner,Working,3.44,65.8,161.6,86,116,62,114,54,118,60,4.84,NA,6,No,Yes
+57633,2009_10,female,27,20-29,High School,NeverMarried,NotWorking,0.74,61.4,158.1,64,94,64,88,66,88,68,6.39,Fair,4,Yes,Yes
+53222,2009_10,female,63,60-69,Some College,Married,NotWorking,5,85.3,152.2,64,104,60,110,60,110,64,4.14,Good,8,Yes,Yes
+70478,2011_12,female,34,30-39,College Grad,Married,Working,5,50.7,152.3,76,112,66,104,62,102,66,5.12,NA,7,No,Yes
+71419,2011_12,female,37,30-39,College Grad,Married,Working,4.59,58.7,163,NA,NA,NA,NA,NA,NA,NA,3.52,NA,8,No,Yes
+59019,2009_10,female,54,50-59,College Grad,Separated,Working,2.71,135.4,167.8,68,118,80,116,78,116,76,5.74,Good,5,No,Yes
+53103,2009_10,male,66,60-69,College Grad,Married,Working,5,118,191.6,60,NA,NA,88,60,76,54,4.47,Vgood,6,No,Yes
+59522,2009_10,male,37,30-39,9 - 11th Grade,LivePartner,NotWorking,1.81,223,186.8,104,106,72,94,66,90,62,3.96,Fair,3,No,No
+62291,2011_12,male,56,50-59,Some College,Married,Working,5,91.9,175.4,60,122,70,120,68,116,62,3.44,Fair,7,Yes,Yes
+53104,2009_10,female,47,40-49,High School,Married,NotWorking,5,95.1,160.2,68,124,80,124,78,116,78,4.03,Vgood,8,Yes,Yes
+64134,2011_12,female,49,40-49,Some College,Married,Working,3.89,83.7,171.9,70,130,88,126,86,130,84,5.84,Excellent,5,No,No
+71826,2011_12,female,77,70+,9 - 11th Grade,Widowed,NotWorking,0.04,73.8,150.9,70,140,68,140,68,134,62,4.81,Fair,10,No,No
+67363,2011_12,male,61,60-69,8th Grade,Separated,Working,1.34,95.2,166.6,60,104,56,98,54,102,50,5.22,Excellent,7,No,No
+62102,2009_10,female,59,50-59,High School,Married,Working,2.33,71.4,163.4,92,112,70,106,74,108,74,6.65,Vgood,5,No,No
+65340,2011_12,female,25,20-29,Some College,Married,Working,4.97,59.6,164.3,104,110,64,116,60,114,62,NA,Vgood,7,No,No
+69522,2011_12,female,25,20-29,Some College,Married,NotWorking,0.39,64.6,165.7,NA,NA,NA,NA,NA,NA,NA,4.32,NA,6,No,Yes
+64786,2011_12,female,46,40-49,College Grad,Married,Working,4.95,112.4,174.1,82,116,68,110,72,116,70,4.68,Vgood,9,Yes,No
+52700,2009_10,male,67,60-69,High School,Married,Working,4.16,102.5,174.5,64,130,54,124,56,128,54,4.76,Good,7,No,No
+59693,2009_10,female,59,50-59,High School,Married,Working,5,73.3,154.9,52,114,64,122,54,106,68,5.09,Good,5,No,Yes
+68760,2011_12,male,24,20-29,Some College,NeverMarried,Looking,0.31,69.2,176,68,120,54,122,50,124,56,3.49,Good,6,No,Yes
+55018,2009_10,male,67,60-69,Some College,Married,Working,4.12,75.9,179.3,56,164,76,152,72,142,70,5.15,Good,8,No,No
+57615,2009_10,male,23,20-29,High School,NeverMarried,NotWorking,1.59,54.9,175.4,68,114,66,112,64,114,64,4.03,Good,8,No,Yes
+58045,2009_10,male,68,60-69,8th Grade,Widowed,NotWorking,2.13,92.4,168.3,78,130,66,114,72,116,70,2.97,Good,8,No,No
+57650,2009_10,female,26,20-29,College Grad,Married,Working,2.95,61.7,153.2,62,126,48,118,56,122,54,3.85,Fair,7,No,Yes
+53261,2009_10,male,80,70+,College Grad,Widowed,NotWorking,5,83.5,173,80,138,74,142,72,140,70,5.51,Vgood,10,No,No
+57989,2009_10,male,50,50-59,College Grad,Divorced,Working,5,91,177,60,102,70,112,74,104,70,5.51,Excellent,5,No,Yes
+52545,2009_10,male,58,50-59,High School,Married,NotWorking,5,112,183.6,74,138,94,134,96,136,96,5.69,Vgood,8,No,Yes
+60729,2009_10,female,23,20-29,Some College,NeverMarried,Working,5,76.1,166.7,70,126,78,126,78,126,78,5.22,Good,7,No,Yes
+51711,2009_10,female,59,50-59,8th Grade,Widowed,NotWorking,1.37,54.3,145.1,84,144,0,150,0,150,0,4.16,NA,5,Yes,No
+63234,2011_12,female,35,30-39,College Grad,NeverMarried,Working,0.9,60.5,156.8,84,122,72,116,68,118,74,4.42,Fair,9,No,No
+67828,2011_12,male,67,60-69,8th Grade,Married,Working,1.22,68.3,168.8,62,170,86,168,82,170,80,3.78,Good,4,Yes,No
+53770,2009_10,female,41,40-49,9 - 11th Grade,NeverMarried,Working,5,106.5,168.8,72,122,74,122,76,126,66,5.38,Fair,5,Yes,No
+69625,2011_12,male,29,20-29,Some College,Married,Working,5,89.8,183.8,70,122,76,122,72,116,72,5.48,Good,7,No,No
+53428,2009_10,male,80,70+,8th Grade,Divorced,NotWorking,0.83,77.9,168.2,84,176,90,186,76,172,76,4.97,Good,8,No,Yes
+52160,2009_10,female,73,70+,College Grad,Married,NotWorking,NA,117,159.8,64,172,64,164,64,158,62,5.25,Good,8,No,No
+61960,2009_10,female,78,70+,Some College,Widowed,Working,2.12,111.7,154.2,72,152,74,146,78,144,84,5.72,Fair,8,No,No
+64086,2011_12,female,45,40-49,College Grad,Married,Looking,4.1,56.5,163.4,64,122,82,126,78,122,82,4.84,Excellent,8,No,Yes
+60875,2009_10,female,80,70+,9 - 11th Grade,Married,NotWorking,2.75,71.4,155,52,126,56,124,50,124,48,4.76,Good,5,Yes,No
+57026,2009_10,female,41,40-49,High School,Married,Working,0.6,116.8,160.3,96,122,74,120,72,128,74,5.15,Vgood,8,No,Yes
+53606,2009_10,male,45,40-49,High School,Divorced,NotWorking,NA,82,167.3,90,108,84,120,80,118,82,5.28,Vgood,8,Yes,No
+65512,2011_12,female,39,30-39,High School,Married,Working,0.81,58.3,147.7,88,148,100,150,98,142,90,6.57,Fair,6,Yes,Yes
+64704,2011_12,male,62,60-69,8th Grade,Married,NotWorking,1.33,84.9,173.2,60,122,70,114,70,118,62,5.77,Fair,5,Yes,No
+56182,2009_10,female,41,40-49,College Grad,Married,NotWorking,5,68.4,174.2,NA,NA,NA,NA,NA,NA,NA,NA,NA,7,Yes,Yes
+54673,2009_10,female,26,20-29,College Grad,Married,Looking,4.8,82.8,162.8,78,98,64,96,62,96,64,5.02,Excellent,7,No,Yes
+64654,2011_12,male,44,40-49,High School,Married,Working,2.31,104.2,181.7,70,116,78,116,78,120,78,5.64,Good,7,No,Yes
+54759,2009_10,female,34,30-39,High School,NeverMarried,Working,0.46,74,162,70,NA,NA,122,84,118,84,4.97,Good,8,No,No
+58706,2009_10,male,34,30-39,College Grad,LivePartner,Working,0.63,75.6,171.1,60,124,80,128,78,130,82,3.62,Vgood,8,No,Yes
+70921,2011_12,female,29,20-29,Some College,Married,Working,NA,57.7,171.4,88,92,64,96,64,96,64,3.08,Vgood,7,No,No
+51685,2009_10,female,56,50-59,College Grad,Married,NotWorking,5,57.5,170.7,64,94,74,94,70,96,68,5.79,Good,7,No,Yes
+68203,2011_12,female,78,70+,Some College,Married,NotWorking,1.12,81.6,160.5,54,140,56,138,52,146,48,5.43,Vgood,8,Yes,No
+58190,2009_10,female,40,40-49,High School,Married,Working,4.85,59.6,159.9,64,110,68,104,68,114,70,6.05,Vgood,6,No,Yes
+52265,2009_10,male,25,20-29,College Grad,NeverMarried,Working,5,69.2,184.4,80,118,64,102,62,112,62,3.88,Vgood,8,No,Yes
+71060,2011_12,female,31,30-39,Some College,Widowed,Working,0.19,92.6,165.5,76,126,78,116,78,124,82,5.95,Good,6,No,Yes
+56234,2009_10,male,44,40-49,College Grad,Married,Working,5,81.3,185.9,68,98,72,108,68,106,72,5.09,Excellent,8,No,Yes
+66995,2011_12,female,37,30-39,College Grad,Married,Working,5,51,161.6,72,80,50,86,50,82,50,3.83,NA,7,No,Yes
+67088,2011_12,female,80,70+,9 - 11th Grade,Widowed,NotWorking,NA,62.6,155.1,72,164,70,152,74,156,76,5.07,Vgood,10,No,No
+60889,2009_10,male,23,20-29,High School,Married,Working,1.28,81.9,174.6,82,122,66,126,62,118,64,3.49,NA,5,No,No
+53425,2009_10,female,70,70+,College Grad,Married,Working,5,75.1,169.8,NA,NA,NA,NA,NA,NA,NA,5.35,Excellent,8,No,Yes
+68791,2011_12,female,45,40-49,Some College,Married,NotWorking,3.47,92.5,166.5,74,118,82,118,86,124,84,5.43,Vgood,7,No,Yes
+69006,2011_12,female,38,30-39,Some College,Divorced,Working,3.89,60.4,157.2,80,118,78,112,78,110,80,3.18,NA,6,No,No
+54396,2009_10,male,22,20-29,Some College,NeverMarried,NotWorking,0.69,111.6,182.1,86,134,92,136,90,136,94,6.8,Good,9,No,Yes
+52451,2009_10,female,22,20-29,College Grad,NeverMarried,Working,1.39,63.8,162,62,118,46,120,46,118,52,4.01,Good,7,No,Yes
+61886,2009_10,female,39,30-39,College Grad,Married,NotWorking,NA,86.9,160.6,NA,NA,NA,NA,NA,NA,NA,6.8,Vgood,8,No,No
+66944,2011_12,male,72,70+,College Grad,Married,NotWorking,2.15,86.6,171.8,64,148,58,154,58,152,60,5.59,Vgood,8,No,No
+59345,2009_10,male,76,70+,9 - 11th Grade,Widowed,NotWorking,NA,93.3,177,44,140,40,150,36,142,36,6.54,Vgood,7,No,No
+54478,2009_10,male,43,40-49,High School,NeverMarried,Working,2.27,134.7,176.4,56,144,80,138,78,140,82,4.73,Vgood,5,No,Yes
+71202,2011_12,female,80,70+,High School,Married,NotWorking,2.64,64.1,159.6,54,168,56,170,56,162,58,NA,Fair,9,No,No
+53532,2009_10,male,51,50-59,High School,Married,Working,3.98,84.2,176.8,78,130,72,130,76,124,72,5.22,Fair,6,Yes,No
+60848,2009_10,male,80,70+,College Grad,Married,NotWorking,NA,61.4,155,58,NA,NA,212,68,194,68,4.89,NA,4,No,Yes
+63230,2011_12,male,48,40-49,College Grad,NeverMarried,Working,5,79.7,168.2,64,110,72,106,76,110,74,5.4,Good,6,No,No
+56776,2009_10,female,48,40-49,Some College,Divorced,Working,3.43,54.4,163.7,76,120,74,124,78,126,76,5.9,Good,8,No,No
+51764,2009_10,female,29,20-29,College Grad,NeverMarried,Working,1.11,87.8,164.4,66,116,78,126,74,120,74,5.33,Good,9,No,Yes
+68871,2011_12,male,37,30-39,College Grad,Married,Working,5,93.7,184.6,68,146,74,148,66,154,66,5.46,Vgood,7,No,Yes
+53704,2009_10,female,22,20-29,High School,NeverMarried,NotWorking,0.91,66.6,160.1,72,108,74,106,70,96,72,4.29,Vgood,8,No,Yes
+56288,2009_10,male,43,40-49,8th Grade,Separated,Working,1.19,109.7,173.2,98,150,88,142,94,152,100,3.98,Excellent,7,No,No
+56522,2009_10,male,39,30-39,College Grad,NeverMarried,Working,2.68,76.2,183.5,64,120,70,126,64,128,72,7.14,Vgood,7,No,Yes
+71048,2011_12,female,52,50-59,9 - 11th Grade,Separated,NotWorking,0.13,39.3,144.3,74,136,64,124,60,124,62,4.34,NA,3,No,Yes
+62482,2011_12,female,32,30-39,Some College,LivePartner,Looking,1.34,73.2,166.1,86,94,64,96,64,92,62,3.36,NA,3,Yes,No
+61528,2009_10,female,42,40-49,Some College,Divorced,Looking,0.12,57.7,161.8,NA,NA,NA,NA,NA,NA,NA,6.1,NA,6,No,Yes
+61234,2009_10,male,35,30-39,Some College,Married,Working,5,78.1,175.4,78,152,66,148,66,148,66,4.16,Vgood,7,No,Yes
+57215,2009_10,female,40,40-49,College Grad,LivePartner,Working,3.88,77.7,176.6,64,124,82,126,80,124,80,4.4,Good,8,No,Yes
+52349,2009_10,male,45,40-49,8th Grade,Divorced,Working,2.73,76.2,175.1,66,132,60,136,52,132,52,6.18,Excellent,4,No,Yes
+51973,2009_10,male,46,40-49,College Grad,Married,Working,4.54,96.6,178.8,56,140,88,150,82,144,84,5.3,Good,6,No,Yes
+53968,2009_10,female,52,50-59,College Grad,Married,Working,NA,98.7,171.1,68,108,54,102,56,102,54,5.3,Vgood,7,No,No
+56468,2009_10,female,76,70+,9 - 11th Grade,Widowed,NotWorking,2.18,83.4,161.6,NA,NA,NA,NA,NA,NA,NA,5.4,NA,6,No,No
+65229,2011_12,male,31,30-39,College Grad,NeverMarried,Working,3.93,78.8,178.4,40,118,74,124,68,118,72,3.47,Excellent,6,No,Yes
+55488,2009_10,female,80,70+,9 - 11th Grade,Widowed,NotWorking,0.87,74.8,155,60,148,48,NA,NA,120,48,4.84,Good,6,No,No
+61968,2009_10,male,66,60-69,9 - 11th Grade,NeverMarried,Working,4.8,103.2,163.1,50,134,62,124,70,120,64,4.55,Vgood,7,No,No
+60910,2009_10,male,36,30-39,College Grad,Married,Working,2.4,73.5,163,64,104,62,106,66,104,62,6.44,Good,7,No,No
+65451,2011_12,female,33,30-39,College Grad,Married,Working,4.2,84.6,170.6,74,114,78,118,76,114,74,3.67,Vgood,8,No,Yes
+70414,2011_12,female,25,20-29,College Grad,LivePartner,Working,5,63.5,173,82,102,54,100,62,92,62,NA,Excellent,8,No,Yes
+70213,2011_12,male,35,30-39,Some College,Married,Working,3.15,89.1,177.9,64,120,80,126,82,122,80,3.67,Excellent,6,No,No
+62630,2011_12,female,68,60-69,9 - 11th Grade,Widowed,Working,1.25,78,158.7,56,154,70,160,72,154,78,4.73,Good,8,Yes,No
+69644,2011_12,female,64,60-69,College Grad,Married,Working,1.8,70.9,157.5,NA,NA,NA,NA,NA,NA,NA,4.14,Vgood,6,No,No
+68916,2011_12,male,56,50-59,8th Grade,Married,Working,1.39,57.5,156.7,56,136,76,134,68,126,74,5.84,Fair,8,No,No
+55790,2009_10,male,20,20-29,9 - 11th Grade,NeverMarried,Working,0.14,68.5,158.6,NA,NA,NA,NA,NA,NA,NA,5.66,NA,6,No,Yes
+69462,2011_12,female,36,30-39,Some College,Separated,Working,0.96,89.5,167.5,72,136,94,130,88,128,84,NA,Good,5,No,No
+52725,2009_10,female,68,60-69,Some College,Married,NotWorking,1.78,68.6,156.2,72,138,68,144,74,140,72,NA,Vgood,8,No,Yes
+68436,2011_12,female,51,50-59,Some College,LivePartner,Working,NA,83.8,170.4,80,NA,NA,114,80,114,76,5.84,Good,8,Yes,No
+67647,2011_12,female,70,70+,High School,Separated,NotWorking,1.1,78.4,163.7,96,140,70,136,70,134,72,3.88,Good,8,Yes,No
+59140,2009_10,male,58,50-59,College Grad,Married,Working,5,78.1,167.4,56,122,66,102,74,104,70,6.34,Vgood,7,No,Yes
+56067,2009_10,male,80,70+,8th Grade,Widowed,NotWorking,0.33,90.4,170,68,142,58,144,58,138,54,5.61,Good,8,No,Yes
+63077,2011_12,male,38,30-39,College Grad,Married,Working,4.59,91.7,193.9,54,120,70,118,68,124,68,4.06,Excellent,8,No,Yes
+70975,2011_12,female,22,20-29,College Grad,Married,Working,1.02,77.3,155.7,72,94,66,108,72,106,76,5.28,Good,6,No,Yes
+63285,2011_12,female,80,70+,High School,Widowed,NotWorking,1.16,65.8,158.5,78,158,72,148,64,148,66,5.09,Vgood,6,No,No
+69649,2011_12,male,27,20-29,College Grad,NeverMarried,NotWorking,1.84,111.1,177.6,70,118,80,112,74,116,78,4.55,Fair,8,No,Yes
+66851,2011_12,female,46,40-49,Some College,Widowed,Working,5,83.8,170.9,80,122,80,128,78,120,80,6.1,Good,7,No,No
+54679,2009_10,male,39,30-39,Some College,Married,Working,5,99.3,169.7,66,114,70,108,72,102,66,5.17,Good,6,No,Yes
+70061,2011_12,male,65,60-69,9 - 11th Grade,NeverMarried,NotWorking,0.83,73.2,184.2,82,144,62,146,64,146,60,NA,Fair,7,No,No
+60585,2009_10,male,25,20-29,9 - 11th Grade,NeverMarried,Working,2.31,92.3,188.3,68,120,60,120,68,122,68,4.94,NA,6,No,No
+53913,2009_10,female,75,70+,Some College,Married,NotWorking,5,64.7,161.2,58,124,64,124,60,124,58,NA,Good,7,No,No
+62530,2011_12,female,51,50-59,9 - 11th Grade,Divorced,Working,0.89,88.1,155.8,84,124,72,122,76,118,78,4.81,Good,7,Yes,No
+55985,2009_10,female,44,40-49,High School,Separated,Working,1.31,76.2,154.2,98,NA,NA,164,116,168,104,6.9,Vgood,7,No,No
+58171,2009_10,male,43,40-49,Some College,Married,Working,4.1,105.3,199.6,52,114,66,120,74,122,68,5.74,Excellent,8,No,Yes
+63218,2011_12,male,35,30-39,8th Grade,Married,Working,0.82,81,163.4,82,128,88,NA,NA,128,96,6.59,NA,8,No,No
+58458,2009_10,male,41,40-49,High School,Married,NotWorking,1.35,122.9,180.5,74,124,86,116,82,116,82,5.3,Good,7,No,No
+69531,2011_12,male,28,20-29,9 - 11th Grade,LivePartner,Looking,0.16,79.6,178.1,68,114,72,100,72,110,74,5.48,Excellent,5,No,No
+67995,2011_12,male,70,70+,9 - 11th Grade,Married,NotWorking,5,88.8,169.7,82,120,78,128,72,120,72,3.08,Fair,7,No,No
+70623,2011_12,male,54,50-59,High School,Married,Working,1.24,110,183.7,102,106,70,110,70,108,72,4.89,Good,7,No,No
+68521,2011_12,female,28,20-29,Some College,Divorced,NotWorking,2.93,67.5,163.7,78,112,62,112,66,110,62,3.78,Good,5,Yes,Yes
+53585,2009_10,female,43,40-49,College Grad,Married,Working,1.78,60.3,166.4,64,114,66,116,62,114,60,4.78,Vgood,6,No,Yes
+56630,2009_10,female,44,40-49,Some College,Married,NotWorking,3.5,124.4,166.5,90,94,62,96,62,96,58,2.74,Fair,6,Yes,No
+59716,2009_10,male,41,40-49,Some College,NeverMarried,Working,1.94,79.1,178.4,80,126,80,118,74,124,80,5.09,Good,6,Yes,Yes
+54011,2009_10,female,80,70+,9 - 11th Grade,Widowed,NotWorking,0.83,64.2,157.5,56,138,66,136,62,128,60,5.9,Good,6,Yes,No
+55250,2009_10,female,24,20-29,College Grad,NeverMarried,Working,3.17,137.6,167.8,82,130,84,128,88,126,78,5.51,Fair,8,No,Yes
+62819,2011_12,female,59,50-59,College Grad,Married,NotWorking,2.17,57.2,164.1,66,112,74,118,66,120,66,6.8,Excellent,8,Yes,Yes
+70932,2011_12,female,43,40-49,College Grad,Married,NotWorking,5,55.3,173.2,74,102,64,100,64,106,68,3.85,NA,6,No,Yes
+68899,2011_12,male,48,40-49,High School,NeverMarried,NotWorking,5,93.4,180.8,70,116,76,118,78,116,70,6.15,Good,6,No,Yes
+57116,2009_10,male,24,20-29,8th Grade,Married,Looking,0.61,79.3,178.1,72,116,66,108,60,110,62,4.97,Vgood,8,Yes,Yes
+66251,2011_12,male,33,30-39,8th Grade,Married,Working,0.78,81,165.7,76,130,74,128,66,132,72,NA,NA,8,No,Yes
+58290,2009_10,male,53,50-59,College Grad,Married,Working,NA,82.4,175.9,70,114,82,112,86,110,82,6.28,Vgood,7,No,No
+66438,2011_12,male,44,40-49,Some College,Divorced,NotWorking,0.58,91.9,173.2,68,120,78,124,82,122,80,6.7,Vgood,8,No,No
+54636,2009_10,male,34,30-39,9 - 11th Grade,Married,Working,2.56,69.3,184.1,72,112,70,112,58,100,64,3.93,Vgood,8,Yes,No
+64949,2011_12,female,26,20-29,Some College,NeverMarried,Looking,4.77,100.5,166.1,82,116,78,112,78,108,78,5.2,Good,7,No,No
+58340,2009_10,male,27,20-29,College Grad,NeverMarried,Working,5,90.3,174.8,70,114,68,110,64,112,64,4.6,Vgood,8,No,Yes
+63162,2011_12,female,58,50-59,Some College,Divorced,NotWorking,4.48,103.5,163.2,62,130,70,132,68,132,70,4.5,Good,7,No,Yes
+63037,2011_12,female,41,40-49,8th Grade,Separated,Working,1.36,78.9,156.5,66,110,70,102,70,96,68,NA,Fair,6,No,No
+67221,2011_12,male,22,20-29,Some College,NeverMarried,Working,1.81,116.4,184.2,78,142,66,132,60,134,58,4.01,Excellent,8,No,Yes
+68853,2011_12,female,37,30-39,Some College,NeverMarried,NotWorking,0.26,136.8,176.4,98,130,90,128,94,128,96,4.84,Good,4,Yes,Yes
+71638,2011_12,male,23,20-29,Some College,NeverMarried,Working,NA,62.1,173.6,64,146,80,144,78,140,90,4.99,NA,6,No,No
+68915,2011_12,female,48,40-49,College Grad,Married,Working,2.91,61.7,169.1,76,132,80,124,78,134,82,5.25,Vgood,7,No,No
+52841,2009_10,female,80,70+,High School,Widowed,NotWorking,1.94,72.2,151.7,62,156,42,156,46,146,52,5.2,Fair,7,No,No
+63260,2011_12,female,42,40-49,Some College,Separated,NotWorking,NA,52.3,156.6,58,168,82,166,74,168,68,6.1,Good,6,Yes,Yes
+67993,2011_12,male,60,60-69,8th Grade,NeverMarried,NotWorking,0.57,65.1,160.3,70,150,78,146,82,146,82,2.87,Poor,5,No,No
+59300,2009_10,male,22,20-29,8th Grade,NeverMarried,Working,2.4,72.3,169.3,72,132,66,124,62,122,64,4.22,Vgood,9,No,No
+57919,2009_10,male,36,30-39,College Grad,Married,Working,5,80.6,181.5,82,126,78,128,76,132,76,4.68,Good,7,No,Yes
+57906,2009_10,female,80,70+,College Grad,Widowed,NotWorking,3.23,45.6,162.7,50,120,54,122,50,122,46,4.45,NA,9,No,Yes
+58033,2009_10,male,37,30-39,Some College,Married,Working,3.17,137.6,180.2,74,124,70,128,68,128,72,6.67,Vgood,6,Yes,Yes
+66300,2011_12,female,35,30-39,High School,LivePartner,Working,0.59,90.2,159.6,86,126,70,116,66,122,66,4.84,Good,7,Yes,No
+52450,2009_10,male,63,60-69,9 - 11th Grade,Married,NotWorking,2.2,96.6,177.2,82,124,62,122,68,128,70,5.9,Good,7,No,No
+59524,2009_10,male,35,30-39,High School,Married,NotWorking,0.91,138.6,193.8,58,138,94,132,90,NA,NA,NA,Good,7,No,No
+61752,2009_10,female,20,20-29,High School,NeverMarried,NotWorking,3.04,61.7,166.5,78,112,78,106,68,100,74,3.67,Good,6,No,No
+57388,2009_10,male,40,40-49,9 - 11th Grade,Married,Working,NA,84.6,174.1,68,92,56,96,60,96,60,4.81,Fair,7,No,No
+54563,2009_10,male,73,70+,Some College,Divorced,NotWorking,0.51,75.2,174.2,88,114,62,108,60,116,58,NA,Good,6,Yes,No
+66565,2011_12,female,66,60-69,Some College,Divorced,Working,0.8,78.8,164.3,74,138,84,134,86,124,84,7.63,Vgood,6,No,No
+62076,2009_10,female,60,60-69,Some College,Married,Working,3.26,111.9,165.2,62,146,96,146,90,148,92,5.38,Good,4,No,No
+52408,2009_10,female,54,50-59,9 - 11th Grade,LivePartner,Working,0,67.9,161.9,80,140,82,134,82,136,86,8.82,Vgood,8,No,No
+71347,2011_12,male,53,50-59,9 - 11th Grade,LivePartner,NotWorking,0.81,65.6,171.4,66,158,84,156,84,160,84,NA,NA,4,No,No
+62388,2011_12,female,69,60-69,High School,Widowed,Working,1.12,102.8,163.6,58,128,64,124,64,120,64,2.4,Fair,4,Yes,No
+64682,2011_12,male,42,40-49,High School,Married,Working,2.96,99.7,175.2,62,130,72,126,82,134,74,5.82,Vgood,8,No,Yes
+60300,2009_10,male,51,50-59,9 - 11th Grade,Married,Working,3.51,103.8,175.7,60,NA,NA,140,52,126,48,3.78,Fair,5,No,Yes
+70369,2011_12,female,22,20-29,Some College,NeverMarried,Working,0.97,63.7,160.3,NA,NA,NA,NA,NA,NA,NA,2.79,NA,6,No,Yes
+61343,2009_10,male,48,40-49,High School,Divorced,Working,5,63.3,173.1,76,154,80,142,90,130,84,4.47,Vgood,7,No,Yes
+62444,2011_12,female,23,20-29,College Grad,NeverMarried,Working,0,96.4,169.3,68,112,54,116,54,112,56,4.34,Fair,5,No,Yes
+54542,2009_10,male,49,40-49,Some College,Married,Working,1.81,66.6,172.9,54,134,84,134,86,126,86,6.18,Excellent,6,No,No
+68886,2011_12,female,44,40-49,College Grad,Married,Working,5,75.9,167.1,68,110,68,108,66,108,74,4.91,Vgood,6,Yes,Yes
+55328,2009_10,female,51,50-59,Some College,Married,NotWorking,5,61.5,163.5,62,114,80,112,68,110,76,4.84,Excellent,8,No,Yes
+60856,2009_10,female,46,40-49,High School,Married,Working,0.86,87.3,174.2,64,104,74,112,76,106,74,5.28,Fair,4,Yes,No
+67446,2011_12,male,30,30-39,High School,Married,Working,1.18,125.5,179.2,84,130,80,132,78,136,82,NA,Good,7,Yes,No
+51701,2009_10,male,36,30-39,9 - 11th Grade,Separated,NotWorking,2.2,79.2,174.7,68,114,86,114,78,120,82,5.12,Good,6,No,Yes
+61943,2009_10,male,59,50-59,9 - 11th Grade,Married,Working,5,106.7,178.3,82,108,66,100,64,98,60,3.9,Fair,7,No,No
+65402,2011_12,male,33,30-39,9 - 11th Grade,NeverMarried,NotWorking,5,64.9,175.4,64,110,72,114,70,114,74,6.62,Good,8,No,No
+66938,2011_12,female,62,60-69,8th Grade,Married,NotWorking,2.29,60.9,149.6,64,124,54,116,60,120,54,5.09,Good,8,No,No
+60273,2009_10,male,39,30-39,9 - 11th Grade,Married,Working,1.35,119,178.1,60,124,70,120,80,124,76,5.66,Excellent,4,No,No
+63615,2011_12,female,26,20-29,College Grad,NeverMarried,Working,5,60.8,160.6,76,96,62,100,50,100,62,3.93,Vgood,8,No,Yes
+65407,2011_12,male,46,40-49,High School,Married,Working,0.99,80,180.7,56,142,64,138,64,136,60,5.97,Vgood,7,No,Yes
+64471,2011_12,female,37,30-39,College Grad,Married,Working,5,66.8,161.9,64,98,68,96,74,102,70,5.97,NA,6,No,Yes
+64248,2011_12,female,38,30-39,College Grad,NeverMarried,Working,5,79.6,178.9,68,94,68,110,60,100,64,4.73,NA,7,No,Yes
+61579,2009_10,female,51,50-59,High School,Married,Working,5,81.2,174.5,88,116,76,118,76,114,80,4.86,Vgood,7,Yes,Yes
+61685,2009_10,female,59,50-59,College Grad,Married,Working,5,80.1,173.9,64,116,56,112,52,118,52,5.15,Excellent,8,No,Yes
+55697,2009_10,female,50,50-59,8th Grade,Married,NotWorking,NA,86.2,154.8,70,126,84,126,80,122,80,5.56,Fair,6,No,No
+67887,2011_12,female,67,60-69,Some College,Married,NotWorking,5,57,157.4,60,138,66,142,68,126,70,4.68,Vgood,7,No,Yes
+53495,2009_10,male,31,30-39,Some College,LivePartner,Looking,1.85,69.1,185.1,54,126,58,116,62,120,58,4.14,Good,6,Yes,Yes
+54917,2009_10,male,20,20-29,Some College,NeverMarried,Looking,0.65,106.6,181.5,80,114,76,116,72,118,80,5.87,Vgood,6,Yes,Yes
+67217,2011_12,male,41,40-49,9 - 11th Grade,LivePartner,Working,1.89,91.8,163.2,68,124,76,124,74,122,74,3.65,Good,6,No,No
+56254,2009_10,female,59,50-59,9 - 11th Grade,Divorced,Working,1.11,51.7,154.9,64,134,68,136,66,128,64,4.4,Fair,6,No,Yes
+61625,2009_10,male,73,70+,College Grad,Married,NotWorking,NA,91.3,167.4,58,176,52,172,54,172,58,3.83,Vgood,8,Yes,Yes
+60871,2009_10,male,48,40-49,College Grad,Married,Working,5,120.7,185.9,56,132,76,134,78,128,78,5.9,Good,7,Yes,Yes
+59404,2009_10,male,31,30-39,High School,LivePartner,NotWorking,0.82,119.1,184.3,58,120,80,118,72,120,68,4.78,Good,8,No,Yes
+65194,2011_12,male,31,30-39,College Grad,NeverMarried,Working,1.84,73.2,180.4,68,100,56,98,66,98,38,5.07,Good,7,No,Yes
+60950,2009_10,male,51,50-59,Some College,Married,NotWorking,NA,91.8,176.3,84,118,78,NA,NA,NA,NA,NA,Good,6,No,No
+61616,2009_10,female,38,30-39,College Grad,Married,Working,4.54,77.9,162.3,62,104,62,106,64,110,54,5.43,Vgood,7,No,Yes
+62813,2011_12,male,71,70+,Some College,NeverMarried,NotWorking,1.16,76.2,166.1,66,116,74,106,72,108,72,4.63,Good,9,Yes,No
+57403,2009_10,female,55,50-59,College Grad,Married,Working,5,65.4,168.3,60,114,68,114,70,110,68,6.28,Vgood,7,No,No
+54030,2009_10,male,39,30-39,Some College,Married,Working,2.03,99.5,183.3,72,136,76,140,74,136,74,NA,NA,8,No,Yes
+71037,2011_12,female,52,50-59,Some College,Married,Working,5,58.3,157.9,78,104,62,102,66,106,66,6.59,Excellent,8,No,Yes
+66358,2011_12,male,64,60-69,Some College,Married,NotWorking,5,82.1,167.3,98,126,68,126,62,126,72,5.35,Good,7,No,No
+69489,2011_12,female,62,60-69,Some College,NeverMarried,Working,5,75.7,156.4,72,110,58,108,66,108,68,6.47,Vgood,8,No,Yes
+64065,2011_12,male,46,40-49,Some College,Married,Working,5,101,185.6,58,132,78,130,78,134,82,5.35,Good,7,No,Yes
+68380,2011_12,female,43,40-49,College Grad,Married,Working,5,68.4,158,78,110,74,104,74,108,72,4.24,Good,7,No,Yes
+53439,2009_10,male,46,40-49,College Grad,Married,Working,4.54,75.3,175.6,60,114,64,114,62,110,64,4.94,Fair,8,No,Yes
+55413,2009_10,male,71,70+,High School,Married,Working,3.08,99,183.1,60,138,58,142,64,136,58,3.54,Vgood,8,Yes,No
+61736,2009_10,male,24,20-29,Some College,NeverMarried,Working,5,93.3,168,70,110,72,118,76,114,76,5.4,Fair,7,No,Yes
+68746,2011_12,female,60,60-69,High School,Married,Working,2.1,54.6,148.8,NA,NA,NA,NA,NA,NA,NA,NA,Good,6,No,No
+52856,2009_10,female,80,70+,High School,LivePartner,NotWorking,NA,73.5,156.5,62,138,58,130,56,128,56,6.44,Good,7,No,Yes
+66208,2011_12,male,53,50-59,9 - 11th Grade,Married,Working,2.62,80,171.3,78,146,90,140,98,130,94,7.45,Good,8,No,No
+59830,2009_10,male,58,50-59,College Grad,Married,Working,5,80.1,177.6,68,106,78,104,72,108,72,3.36,Vgood,8,No,Yes
+56185,2009_10,male,23,20-29,High School,NeverMarried,NotWorking,1.04,122.6,194.9,106,122,72,120,66,124,74,5.07,Vgood,6,No,No
+65071,2011_12,female,79,70+,High School,Widowed,NotWorking,3.25,55.3,160,70,134,76,126,72,134,72,7.81,Excellent,6,No,No
+57708,2009_10,male,30,30-39,8th Grade,LivePartner,Looking,2.47,85.8,173.2,68,112,60,114,64,112,56,6.05,Good,5,No,No
+63126,2011_12,male,44,40-49,College Grad,Married,Working,5,90.1,182.6,78,122,86,122,82,118,84,4.86,Excellent,8,No,Yes
+62616,2011_12,female,37,30-39,8th Grade,Married,Working,0.69,51.8,164,82,100,80,108,72,110,74,4.03,Good,8,No,No
+58251,2009_10,male,37,30-39,8th Grade,LivePartner,Working,2.09,69.2,160.9,62,112,58,112,54,114,60,5.22,Fair,8,No,No
+69170,2011_12,female,51,50-59,8th Grade,Married,Working,2.95,78.4,152.3,80,144,78,134,80,124,78,5.87,Fair,9,No,Yes
+62612,2011_12,female,38,30-39,College Grad,Married,Working,2.68,69.6,151,78,104,74,108,74,108,74,5.77,NA,7,No,No
+62864,2011_12,female,57,50-59,Some College,NeverMarried,NotWorking,0.32,70.7,153.7,80,134,78,132,80,122,82,6.21,Poor,6,Yes,No
+62007,2009_10,male,28,20-29,Some College,NeverMarried,Working,3.28,98.5,182,64,132,78,130,70,134,74,3.8,Good,8,No,No
+63724,2011_12,male,33,30-39,High School,Married,Working,0.52,82,171.5,92,118,76,124,62,124,74,5.09,NA,8,No,No
+65308,2011_12,female,54,50-59,8th Grade,LivePartner,Working,1.07,60.6,150.9,48,132,64,130,64,130,64,6.85,Fair,5,No,No
+68123,2011_12,male,80,70+,8th Grade,NeverMarried,NotWorking,0.97,67.1,171,98,150,80,148,76,144,84,4.47,Vgood,8,No,No
+64725,2011_12,female,39,30-39,College Grad,LivePartner,Working,4.48,92.6,164.2,66,124,78,128,82,136,72,5.64,Vgood,8,No,Yes
+61573,2009_10,male,53,50-59,Some College,Married,NotWorking,1.1,138.8,184.9,62,134,70,130,88,144,82,4.81,Good,9,No,No
+54732,2009_10,female,36,30-39,High School,LivePartner,Working,0.98,161.7,183,64,116,72,116,74,118,68,5.17,Vgood,7,Yes,No
+59364,2009_10,female,25,20-29,Some College,NeverMarried,Working,3.69,80.6,158.8,68,114,88,116,86,118,86,4.68,Excellent,6,No,Yes
+54816,2009_10,female,32,30-39,8th Grade,NeverMarried,Working,NA,51.1,147.6,58,98,64,98,60,100,60,4.81,Fair,6,No,No
+61020,2009_10,male,55,50-59,9 - 11th Grade,Married,Working,3.95,92.7,178.7,66,124,70,124,66,130,70,5.38,Vgood,8,No,Yes
+61266,2009_10,male,55,50-59,College Grad,Married,Working,5,105.1,180.3,90,146,90,146,92,146,90,4.37,Good,8,No,No
+62041,2009_10,female,62,60-69,9 - 11th Grade,Widowed,NotWorking,0.62,83.7,165.1,82,156,78,154,70,148,68,4.81,NA,5,No,No
+57323,2009_10,female,21,20-29,Some College,LivePartner,Working,0.92,77.8,153,84,108,44,108,46,108,46,6.15,Good,5,Yes,No
+67517,2011_12,female,36,30-39,College Grad,Married,Working,1.07,105.9,160.3,88,116,74,118,76,118,78,3.49,NA,8,No,Yes
+54484,2009_10,male,51,50-59,High School,LivePartner,Working,3.28,78.1,172.8,62,130,80,130,78,136,76,5.09,Good,6,No,No
+54824,2009_10,female,65,60-69,9 - 11th Grade,Married,NotWorking,NA,63.4,159.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,No,No
+59239,2009_10,male,78,70+,College Grad,Married,NotWorking,3.43,70.1,173.4,62,144,64,136,52,136,58,4.37,Vgood,8,No,No
+55127,2009_10,female,35,30-39,9 - 11th Grade,Married,Working,3.17,96,155.7,72,114,60,114,66,116,68,5.72,Good,8,No,No
+63509,2011_12,male,20,20-29,Some College,NeverMarried,NotWorking,0.54,77,190.9,62,110,72,NA,NA,112,74,NA,Excellent,8,No,Yes
+71123,2011_12,male,41,40-49,Some College,Married,Working,3.6,99.7,181.2,60,138,90,138,94,130,90,5.12,Excellent,8,No,Yes
+55424,2009_10,female,47,40-49,College Grad,Divorced,Working,1.26,71.2,165.8,68,116,78,116,78,108,70,4.89,Good,8,No,Yes
+66485,2011_12,female,33,30-39,College Grad,NeverMarried,Working,5,116.1,165.3,88,104,66,106,64,102,58,4.63,Fair,6,Yes,No
+65214,2011_12,female,38,30-39,Some College,Married,Working,2.91,94.5,172,58,112,60,110,68,114,66,NA,Vgood,7,No,No
+54432,2009_10,female,71,70+,8th Grade,Married,NotWorking,0.89,74.5,147.5,80,166,58,160,54,156,46,4.71,NA,6,No,No
+60138,2009_10,male,66,60-69,Some College,Married,NotWorking,1.01,91.4,169.8,74,122,82,128,80,124,78,3.57,Excellent,6,Yes,No
+62631,2011_12,female,37,30-39,Some College,Married,NotWorking,1.28,66.7,167.4,68,114,74,114,72,114,72,5.48,Fair,5,No,Yes
+63409,2011_12,female,69,60-69,Some College,Widowed,NotWorking,0.53,85.2,162.1,68,130,82,134,80,134,80,6.15,Good,6,Yes,Yes
+69120,2011_12,female,39,30-39,Some College,Married,NotWorking,0.43,73.8,161.1,64,118,86,116,78,118,78,4.24,Vgood,10,No,Yes
+71495,2011_12,female,28,20-29,High School,LivePartner,Working,1.04,92.9,177.7,76,124,68,124,68,126,68,NA,Good,6,No,No
+66763,2011_12,female,80,70+,High School,Married,Working,1.61,60.4,151.7,58,168,78,170,86,168,80,4.01,Vgood,6,No,No
+58385,2009_10,male,30,30-39,9 - 11th Grade,NeverMarried,Looking,4.71,120.8,185.3,98,136,74,134,72,136,68,4.53,Good,8,No,Yes
+68271,2011_12,male,43,40-49,Some College,NeverMarried,Working,4.25,74.1,170.1,68,112,74,108,76,114,74,5.84,Good,7,No,No
+60152,2009_10,male,42,40-49,College Grad,Married,Working,5,89,185.2,70,106,72,108,68,106,56,4.5,Vgood,7,No,Yes
+60144,2009_10,male,57,50-59,9 - 11th Grade,Married,Working,5,88.4,176.9,78,118,80,122,70,116,80,5.79,Fair,6,No,No
+57558,2009_10,male,80,70+,Some College,Widowed,NotWorking,5,69,165,54,106,22,108,26,100,32,2.97,NA,10,No,No
+58845,2009_10,male,63,60-69,9 - 11th Grade,Widowed,NotWorking,4.46,101.1,163.8,62,112,70,108,70,104,70,5.28,Fair,6,No,No
+53038,2009_10,male,66,60-69,College Grad,Married,Working,NA,80.3,175.1,56,112,58,104,58,114,56,5.3,Vgood,8,No,Yes
+57908,2009_10,male,22,20-29,High School,Married,Working,0.69,95.8,180.5,96,112,68,114,66,120,46,5.22,Excellent,5,Yes,No
+56336,2009_10,male,36,30-39,Some College,Married,Working,3.4,69.5,175.9,40,104,58,104,56,100,60,3.44,Vgood,7,Yes,Yes
+70234,2011_12,male,63,60-69,8th Grade,NeverMarried,Working,0.87,87.3,172.1,66,104,62,104,66,102,64,5.2,Vgood,9,No,No
+69371,2011_12,male,32,30-39,9 - 11th Grade,NeverMarried,Working,NA,89.3,173.5,64,142,76,144,84,140,88,NA,NA,8,No,Yes
+53881,2009_10,female,22,20-29,Some College,NeverMarried,NotWorking,4.54,80.7,176.4,98,112,54,112,54,112,46,3.57,Fair,7,No,Yes
+54383,2009_10,female,27,20-29,Some College,Separated,Working,1.65,57.1,164.2,60,96,52,98,60,98,58,4.58,Vgood,7,No,Yes
+58787,2009_10,female,28,20-29,Some College,Married,Working,NA,68.8,154.5,80,104,56,100,66,102,70,4.58,NA,6,No,Yes
+67192,2011_12,female,55,50-59,Some College,Married,Working,2.7,76.5,165.1,NA,NA,NA,NA,NA,NA,NA,5.66,Fair,8,No,No
+60905,2009_10,male,46,40-49,9 - 11th Grade,Married,NotWorking,0.21,83.5,162.8,80,150,88,154,94,154,88,2.69,Fair,8,No,Yes
+66013,2011_12,male,23,20-29,9 - 11th Grade,Married,NotWorking,0.25,87.2,163.8,80,112,70,110,66,118,66,5.61,Vgood,10,No,Yes
+65358,2011_12,female,45,40-49,Some College,Married,Working,3.8,66.9,154.1,74,102,68,106,66,108,70,3.9,Vgood,7,No,Yes
+52746,2009_10,male,26,20-29,9 - 11th Grade,NeverMarried,NotWorking,NA,139.1,177.5,92,116,76,106,78,114,80,4.27,Fair,5,No,No
+59741,2009_10,male,60,60-69,Some College,LivePartner,NotWorking,3.23,97.2,175.3,78,138,78,124,76,126,74,4.76,Fair,7,No,Yes
+67594,2011_12,male,43,40-49,College Grad,Married,NotWorking,5,87.4,185.9,74,132,82,134,84,130,84,6.47,Good,7,No,Yes
+59368,2009_10,male,22,20-29,8th Grade,Married,Working,0.09,71.9,162.4,64,120,78,118,76,112,80,5.51,Good,7,No,No
+70162,2011_12,male,34,30-39,Some College,Married,NotWorking,1.57,97.1,178.5,72,148,98,152,94,142,94,5.04,Fair,3,No,Yes
+54418,2009_10,female,46,40-49,9 - 11th Grade,Married,NotWorking,2.63,112.4,164.5,80,106,64,98,68,102,68,6.26,Poor,5,Yes,No
+57587,2009_10,male,47,40-49,High School,Married,Working,NA,95.7,173.1,72,126,86,124,90,120,86,5.38,Good,8,No,Yes
+60533,2009_10,female,60,60-69,College Grad,Married,Working,5,61.2,163.4,62,88,60,86,60,88,52,4.68,Vgood,8,No,Yes
+57543,2009_10,female,28,20-29,9 - 11th Grade,LivePartner,NotWorking,NA,54.6,147.4,NA,NA,NA,NA,NA,NA,NA,4.24,NA,8,No,No
+63812,2011_12,female,47,40-49,9 - 11th Grade,LivePartner,NotWorking,0.68,117.3,153.1,60,NA,NA,174,78,176,74,5.09,Fair,8,No,No
+54556,2009_10,female,33,30-39,College Grad,Married,Working,0.93,63.8,157,74,112,72,102,74,NA,NA,6.28,Vgood,6,No,Yes
+67056,2011_12,male,54,50-59,9 - 11th Grade,Married,Working,NA,90.6,173.1,82,136,84,138,84,132,80,5.28,Good,6,Yes,Yes
+68570,2011_12,male,49,40-49,High School,Divorced,NotWorking,1.19,75.3,180.2,82,116,72,110,74,114,70,5.04,Vgood,7,No,Yes
+61848,2009_10,female,80,70+,Some College,Widowed,NotWorking,1.89,55.8,157.9,78,134,56,130,56,134,52,4.24,Fair,8,No,No
+60431,2009_10,female,33,30-39,College Grad,Married,Working,4.54,65.7,165.2,72,104,62,110,60,104,62,4.11,Excellent,8,No,Yes
+62993,2011_12,female,34,30-39,College Grad,Married,Working,3.93,70.1,169.1,76,92,74,NA,NA,86,68,5.2,Excellent,7,No,Yes
+54041,2009_10,male,52,50-59,Some College,Separated,Working,4.16,92.5,176.5,54,108,66,108,58,104,64,4.99,Good,8,No,No
+60281,2009_10,male,24,20-29,High School,NeverMarried,Working,5,88.9,169,64,110,58,110,64,114,64,5.09,Vgood,6,No,Yes
+59397,2009_10,male,65,60-69,High School,Married,Working,4.65,118.5,178.2,48,126,64,122,62,120,56,3.88,Good,9,No,No
+67193,2011_12,male,37,30-39,Some College,Married,Working,1.76,84.5,179.5,56,132,82,126,72,126,70,6.36,Excellent,7,No,No
+64040,2011_12,male,31,30-39,Some College,NeverMarried,Working,0,97.2,171.5,82,112,76,112,76,118,80,3.67,Vgood,5,No,Yes
+61582,2009_10,male,39,30-39,College Grad,Married,Working,1.22,62.2,182.8,72,100,52,100,56,102,54,4.4,Vgood,7,Yes,No
+60954,2009_10,male,30,30-39,High School,Married,Working,2.52,129.4,181.5,56,116,54,114,56,114,46,5.17,Good,7,No,No
+52864,2009_10,male,55,50-59,Some College,Married,Working,2.47,90.6,172.6,NA,NA,NA,NA,NA,NA,NA,5.35,Good,7,Yes,No
+67928,2011_12,female,34,30-39,Some College,Married,Working,5,76.4,154.2,82,98,60,NA,NA,102,62,4.22,Good,6,No,Yes
+52941,2009_10,male,20,20-29,9 - 11th Grade,NeverMarried,NotWorking,0.81,57.9,171,98,96,64,98,60,100,60,2.95,Good,11,No,No
+68256,2011_12,female,46,40-49,Some College,Married,Working,3.78,188.5,173.2,78,148,92,148,90,148,84,5.56,Fair,4,Yes,No
+64776,2011_12,female,29,20-29,8th Grade,Married,NotWorking,0.52,100.1,161.7,NA,NA,NA,NA,NA,NA,NA,4.01,NA,7,No,Yes
+68606,2011_12,female,62,60-69,8th Grade,Widowed,NotWorking,1.04,72.5,154.3,64,128,76,126,78,120,76,NA,Good,9,Yes,No
+52723,2009_10,male,58,50-59,High School,Divorced,Working,3.23,98.6,180.1,78,120,70,124,68,116,64,6.98,Fair,6,No,No
+53923,2009_10,female,30,30-39,9 - 11th Grade,NeverMarried,NotWorking,0.3,80,163,76,102,64,104,52,100,46,NA,NA,9,No,No
+53955,2009_10,female,24,20-29,High School,NeverMarried,Looking,0.93,105.8,155,82,112,58,114,52,114,46,4.19,Good,6,No,Yes
+58870,2009_10,male,55,50-59,Some College,NeverMarried,NotWorking,1.24,83.6,171.8,68,110,74,104,70,104,72,6.59,Poor,8,No,No
+58048,2009_10,male,40,40-49,High School,LivePartner,NotWorking,0.89,92.4,180.3,82,112,76,114,70,120,74,6.05,Fair,6,No,No
+51630,2009_10,female,49,40-49,Some College,LivePartner,NotWorking,1.91,86.7,168.4,86,118,82,108,74,116,76,6.7,Good,8,Yes,No
+56867,2009_10,male,30,30-39,High School,Married,Working,4.51,79.1,170,78,116,66,110,74,112,76,4.76,Good,6,No,No
+61770,2009_10,male,40,40-49,8th Grade,Married,Working,1.74,81.5,170.4,74,140,90,138,86,146,84,5.72,Good,7,No,No
+65172,2011_12,female,34,30-39,Some College,Married,Working,1.74,74.2,167.1,86,110,76,112,82,110,78,NA,Good,6,No,Yes
+57163,2009_10,male,30,30-39,College Grad,NeverMarried,Working,5,89.7,172.7,NA,NA,NA,NA,NA,NA,NA,4.09,Vgood,7,No,Yes
+69825,2011_12,female,43,40-49,College Grad,Married,NotWorking,5,63.3,163.6,88,122,84,122,84,122,82,8.02,Excellent,6,No,Yes
+70753,2011_12,male,30,30-39,8th Grade,LivePartner,Working,1.11,96.2,170.1,80,138,82,128,82,130,82,6.1,Fair,6,No,No
+70211,2011_12,female,80,70+,9 - 11th Grade,Married,NotWorking,1.9,73.3,158.5,54,110,48,102,48,108,50,4.11,Good,10,Yes,No
+64064,2011_12,female,46,40-49,College Grad,Married,Working,4.86,49.7,148.2,60,114,80,120,78,116,78,5.15,Vgood,7,No,Yes
+56899,2009_10,male,30,30-39,High School,Married,NotWorking,1.59,78.3,166.6,NA,NA,NA,NA,NA,NA,NA,6.03,NA,6,Yes,No
+61957,2009_10,male,43,40-49,Some College,Married,Working,1.27,74.9,174.1,NA,NA,NA,NA,NA,NA,NA,6.98,Good,7,No,No
+71091,2011_12,female,39,30-39,Some College,LivePartner,Working,3.77,77.5,154.9,74,106,82,NA,NA,106,82,5.79,NA,6,Yes,No
+63461,2011_12,female,21,20-29,High School,Married,Working,0.03,103.7,161,86,106,70,106,66,116,70,4.06,Fair,7,Yes,Yes
+60036,2009_10,male,65,60-69,College Grad,Married,NotWorking,3.43,87.1,176.3,72,116,68,118,66,112,68,4.76,NA,9,Yes,Yes
+59559,2009_10,female,23,20-29,High School,Married,Working,2.62,78.6,161.7,82,124,72,122,82,NA,NA,NA,Good,6,Yes,Yes
+67919,2011_12,female,59,50-59,Some College,Divorced,Working,1.3,79.5,172.9,66,134,84,128,82,134,84,6.15,Good,7,Yes,No
+58965,2009_10,female,48,40-49,8th Grade,LivePartner,Working,0.91,44.7,165.2,50,116,70,114,68,110,70,5.56,Fair,8,Yes,No
+59802,2009_10,male,44,40-49,Some College,Married,Working,5,107.3,187.8,92,122,82,128,84,128,78,6,Good,6,No,Yes
+58926,2009_10,female,57,50-59,Some College,Divorced,Working,5,81.1,165.9,68,132,62,134,62,124,64,6.36,Vgood,7,No,Yes
+69617,2011_12,female,25,20-29,Some College,Divorced,Working,2.69,71.6,165.1,62,110,72,110,60,114,64,5.2,Vgood,4,No,Yes
+53720,2009_10,male,30,30-39,High School,Separated,Working,3.51,83.2,186.2,64,126,78,128,82,118,82,3.67,Vgood,5,No,Yes
+57915,2009_10,female,21,20-29,Some College,NeverMarried,Working,1.35,66.1,166.7,84,108,60,112,58,114,64,4.11,Good,7,No,No
+58227,2009_10,female,71,70+,8th Grade,Widowed,NotWorking,NA,70.6,153.2,72,126,74,136,66,138,70,3.47,Good,6,No,No
+58275,2009_10,male,54,50-59,High School,Divorced,NotWorking,1.11,66.6,168.3,56,124,60,132,56,130,64,6.59,Good,6,No,Yes
+58638,2009_10,male,60,60-69,High School,Married,Working,4.12,89.4,170.5,82,146,76,136,80,140,78,6.39,Good,6,No,No
+63701,2011_12,male,55,50-59,College Grad,Married,Working,5,74.6,170.3,52,124,76,124,74,136,76,5.38,Excellent,7,No,Yes
+54142,2009_10,female,64,60-69,Some College,Married,Working,NA,111.4,164.5,62,128,70,124,72,120,66,5.33,Fair,7,Yes,No
+52222,2009_10,female,39,30-39,College Grad,Married,Working,2.27,102.8,173.3,74,110,72,108,72,106,70,4.45,Good,9,No,Yes
+58276,2009_10,female,80,70+,College Grad,Married,NotWorking,2.75,53,163.3,64,NA,NA,214,82,206,82,4.91,Vgood,7,No,Yes
+60471,2009_10,female,61,60-69,9 - 11th Grade,Widowed,Working,2.06,65.9,155.4,80,118,74,122,74,122,76,4.84,Fair,4,Yes,No
+57753,2009_10,male,74,70+,9 - 11th Grade,Married,NotWorking,5,63.6,166.9,72,130,60,128,66,130,64,4.22,Vgood,10,No,No
+56029,2009_10,female,80,70+,Some College,Married,NotWorking,3.91,58,154.3,80,134,82,142,80,144,78,4.55,Poor,8,No,No
+53775,2009_10,female,79,70+,Some College,Widowed,NotWorking,0.05,91.2,158.7,80,144,52,144,64,142,58,4.34,NA,8,Yes,No
+59463,2009_10,female,54,50-59,High School,Married,NotWorking,1.36,93.8,156.3,92,138,76,142,76,138,70,5.74,Good,7,Yes,No
+66058,2011_12,female,74,70+,Some College,Married,NotWorking,3.4,79.8,164.7,64,130,66,118,64,122,64,7.21,Vgood,6,Yes,No
+54829,2009_10,female,50,50-59,Some College,Married,Working,5,89.5,163.5,90,118,68,114,72,114,64,5.02,Vgood,7,Yes,Yes
+62368,2011_12,female,80,70+,8th Grade,Widowed,NotWorking,0.81,54.2,156.8,NA,NA,NA,NA,NA,NA,NA,5.17,Vgood,10,No,No
+60599,2009_10,female,50,50-59,High School,LivePartner,NotWorking,4.46,59.8,157.5,58,136,76,120,76,124,74,5.17,Good,3,No,No
+61127,2009_10,male,38,30-39,College Grad,Married,Working,NA,105.6,175.2,82,116,90,112,88,116,88,6.62,Vgood,7,No,Yes
+55441,2009_10,female,56,50-59,College Grad,Married,Working,0.82,63.4,174.1,86,104,78,NA,NA,96,74,5.38,Excellent,7,Yes,Yes
+55126,2009_10,male,63,60-69,8th Grade,Widowed,Looking,0.36,65.5,175.7,80,122,78,116,78,114,84,5.48,Good,8,Yes,No
+60186,2009_10,male,34,30-39,Some College,NeverMarried,Working,1.39,84.3,182.3,66,124,74,118,70,118,68,NA,Good,6,Yes,Yes
+52027,2009_10,male,55,50-59,8th Grade,Married,Working,0.45,57.6,158.9,62,134,66,136,62,132,66,6.47,Fair,4,No,No
+67055,2011_12,female,71,70+,9 - 11th Grade,Married,NotWorking,1.24,62.7,160.7,78,158,64,150,64,156,64,5.3,Fair,7,No,No
+67722,2011_12,male,20,20-29,Some College,NeverMarried,Working,0.4,74.5,176.6,66,108,70,124,74,120,70,4.27,Excellent,5,No,Yes
+65501,2011_12,female,24,20-29,Some College,NeverMarried,Working,0,54.8,155,NA,NA,NA,NA,NA,NA,NA,2.9,Vgood,7,Yes,Yes
+63584,2011_12,female,30,30-39,High School,NeverMarried,NotWorking,0.38,72.7,156.1,88,116,58,104,66,116,58,3.98,Fair,8,No,No
+62055,2009_10,female,27,20-29,College Grad,Married,Working,1.37,59.9,161.8,80,106,56,104,56,98,50,3.57,Vgood,8,No,No
+69097,2011_12,male,31,30-39,9 - 11th Grade,Married,Working,0.4,79.4,166.2,62,114,72,112,80,112,72,6.15,Good,8,No,No
+60555,2009_10,female,51,50-59,Some College,Widowed,Working,1.39,65.6,165.5,62,116,56,126,74,110,66,5.77,Vgood,7,No,Yes
+59153,2009_10,female,35,30-39,High School,Separated,Working,0.5,100.3,156.7,70,124,78,126,74,118,70,3.75,NA,5,No,No
+69434,2011_12,female,43,40-49,Some College,Married,Working,0.84,96.2,159.8,68,114,64,114,64,106,62,5.53,Vgood,8,Yes,No
+62521,2011_12,female,59,50-59,College Grad,Divorced,NotWorking,5,59.4,160.5,68,136,86,140,90,134,80,NA,Vgood,8,Yes,Yes
+55496,2009_10,male,80,70+,College Grad,Married,NotWorking,5,104.6,175.7,68,116,48,102,46,96,52,3.18,Vgood,7,Yes,No
+61839,2009_10,male,75,70+,9 - 11th Grade,Married,NotWorking,1.39,104.8,185.9,58,138,86,134,88,142,90,3.65,Vgood,6,No,No
+53842,2009_10,female,80,70+,Some College,Widowed,NotWorking,3.6,85.6,161,80,146,46,128,52,128,50,6.23,Vgood,10,No,No
+63977,2011_12,female,22,20-29,High School,NeverMarried,Working,1.46,73.4,170.2,72,92,52,98,52,100,54,3.49,Vgood,7,No,Yes
+61713,2009_10,male,55,50-59,College Grad,Married,Working,5,75.3,173.1,50,118,72,118,68,128,70,5.69,Vgood,8,No,Yes
+57765,2009_10,male,43,40-49,College Grad,Married,Working,5,79.7,179.5,54,126,70,124,68,124,72,5.92,Vgood,5,Yes,Yes
+65672,2011_12,female,22,20-29,Some College,NeverMarried,Working,0.92,57.2,156.1,92,124,68,126,54,122,60,3.93,Good,9,No,Yes
+57011,2009_10,female,33,30-39,9 - 11th Grade,NeverMarried,NotWorking,0.02,132.7,166.5,66,126,64,114,62,110,60,3.88,Good,7,No,No
+56526,2009_10,male,35,30-39,Some College,NeverMarried,Working,NA,71,163.6,94,126,72,126,64,122,60,7.5,Good,6,No,No
+65249,2011_12,female,23,20-29,Some College,NeverMarried,Working,0.73,62.3,164.9,72,116,62,104,60,108,60,5.87,Vgood,8,No,Yes
+59224,2009_10,male,39,30-39,College Grad,Married,Working,5,74.4,171.8,70,110,84,108,82,104,82,4.4,Excellent,8,No,Yes
+61828,2009_10,female,59,50-59,9 - 11th Grade,Married,Working,5,78.1,149.5,76,124,80,122,84,126,82,5.38,Vgood,8,No,No
+66194,2011_12,female,63,60-69,College Grad,Married,Working,5,61.6,149.9,76,110,74,104,78,106,78,5.33,Vgood,7,No,Yes
+58147,2009_10,female,21,20-29,High School,NeverMarried,NotWorking,0.68,65.2,168.9,76,112,68,114,64,114,60,3.57,Good,8,No,No
+70769,2011_12,female,21,20-29,9 - 11th Grade,NeverMarried,NotWorking,0.86,61.4,152,70,82,54,86,54,92,58,4.47,Fair,8,No,No
+64315,2011_12,female,52,50-59,9 - 11th Grade,NeverMarried,Working,1.31,64.5,160.9,68,124,68,128,70,132,68,5.51,Vgood,7,Yes,Yes
+64245,2011_12,male,51,50-59,9 - 11th Grade,Married,Working,2.88,60.7,160.2,66,130,76,136,76,130,78,4.19,Vgood,7,No,No
+53998,2009_10,male,40,40-49,8th Grade,Married,Working,NA,81.8,166.5,68,104,68,102,70,106,70,4.91,Fair,7,No,No
+59699,2009_10,female,43,40-49,College Grad,Divorced,Working,1.8,63.1,164.4,76,122,66,116,66,120,68,5.33,Good,4,Yes,No
+54914,2009_10,male,33,30-39,Some College,Married,NotWorking,5,113.5,185.4,68,136,100,138,100,130,96,4.68,Good,6,No,Yes
+62822,2011_12,male,33,30-39,College Grad,LivePartner,NotWorking,1.38,81.9,180.8,82,116,66,114,74,122,54,4.45,Vgood,7,No,Yes
+67417,2011_12,female,58,50-59,College Grad,Married,Working,5,49.6,155.6,68,98,64,90,66,92,66,4.94,Vgood,6,No,Yes
+67367,2011_12,female,32,30-39,High School,Married,NotWorking,1.11,60,155.3,80,108,66,108,66,108,68,5.33,NA,9,No,No
+54680,2009_10,male,35,30-39,8th Grade,Married,NotWorking,0.68,85.3,171.3,70,108,72,110,66,114,68,4.91,Fair,4,No,Yes
+54769,2009_10,male,64,60-69,College Grad,Married,NotWorking,1.59,113.3,187.5,76,134,84,146,80,150,80,3.08,Poor,7,Yes,No
+58297,2009_10,male,25,20-29,High School,Married,Working,0.95,110,177.8,84,130,54,124,62,124,56,5.87,NA,7,No,Yes
+67889,2011_12,female,42,40-49,College Grad,NeverMarried,Working,1.43,76.8,158.2,68,94,58,94,60,96,58,6.57,Good,8,No,Yes
+67392,2011_12,male,41,40-49,College Grad,Married,NotWorking,1.49,90.7,170.6,68,124,86,124,78,124,86,4.78,Good,8,No,Yes
+62350,2011_12,female,43,40-49,High School,Divorced,Working,2.72,58.7,162.1,70,112,66,112,64,118,70,4.47,Excellent,6,No,Yes
+57230,2009_10,female,64,60-69,College Grad,Married,Working,5,63,173.5,56,104,60,102,58,96,54,5.56,Excellent,7,No,Yes
+69335,2011_12,male,54,50-59,Some College,Divorced,NotWorking,1.84,152.3,170.6,84,128,86,130,82,124,80,4.6,Poor,5,No,No
+53829,2009_10,female,56,50-59,8th Grade,Married,NotWorking,0.25,63.3,159.8,96,118,72,106,72,108,66,5.59,NA,6,No,Yes
+63481,2011_12,female,48,40-49,High School,Married,Looking,0.76,74.3,157.9,68,96,62,96,60,94,58,5.56,Good,6,Yes,Yes
+58817,2009_10,female,45,40-49,9 - 11th Grade,Separated,Looking,0.39,179.3,165.3,92,NA,NA,NA,NA,NA,NA,5.92,Good,8,Yes,No
+60356,2009_10,female,24,20-29,Some College,NeverMarried,NotWorking,2.83,91.3,160,104,118,84,122,90,120,88,8.2,NA,8,No,Yes
+66855,2011_12,male,20,20-29,Some College,NeverMarried,Working,1.7,74,175.7,64,122,58,122,58,118,60,4.27,Good,8,No,Yes
+54633,2009_10,female,80,70+,Some College,Married,NotWorking,2.2,63.9,150.9,82,142,56,146,64,146,68,5.07,Good,11,No,No
+60086,2009_10,male,67,60-69,8th Grade,Married,Working,2.75,62.5,159.8,58,124,64,122,64,116,70,5.28,Fair,6,No,No
+57775,2009_10,female,80,70+,High School,Divorced,NotWorking,3.51,85.2,162.1,62,156,74,152,70,144,70,3.75,Vgood,8,No,No
+66791,2011_12,female,21,20-29,Some College,LivePartner,NotWorking,NA,58.8,163.8,68,108,66,108,60,100,66,NA,Vgood,8,No,No
+67412,2011_12,male,77,70+,Some College,Married,NotWorking,1.1,99,159,62,136,62,128,66,122,64,5.07,Poor,8,Yes,No
+65956,2011_12,male,37,30-39,Some College,Married,Working,NA,87.6,186.9,78,NA,NA,96,64,100,66,6.41,Vgood,8,No,No
+55523,2009_10,female,72,70+,8th Grade,Widowed,NotWorking,1.29,57.1,150.8,102,148,72,146,70,148,66,5.92,Poor,4,No,Yes
+57763,2009_10,female,31,30-39,High School,Married,Working,1.36,97,174.9,92,118,76,126,80,124,68,4.91,Good,9,No,No
+55893,2009_10,female,25,20-29,9 - 11th Grade,NeverMarried,Working,NA,115.4,159,66,110,52,110,48,114,52,4.14,Poor,7,No,No
+62006,2009_10,female,51,50-59,9 - 11th Grade,Divorced,NotWorking,NA,57.9,159.4,NA,NA,NA,NA,NA,NA,NA,NA,NA,8,No,No
+63086,2011_12,female,74,70+,High School,Widowed,NotWorking,5,66,156.6,90,NA,NA,154,48,158,56,5.61,Excellent,10,No,No
+65517,2011_12,female,25,20-29,Some College,Married,Working,2.7,60.8,151.8,82,118,54,116,58,116,62,4.45,Fair,8,No,No
+62070,2009_10,male,70,70+,Some College,Married,Working,4.46,66.6,171.2,NA,NA,NA,NA,NA,NA,NA,4.27,Good,7,No,Yes
+57815,2009_10,male,53,50-59,High School,Married,Working,5,75.4,173.2,72,136,82,116,82,112,80,4.81,Vgood,8,No,No
+70203,2011_12,male,46,40-49,9 - 11th Grade,Married,NotWorking,0.44,60.4,176.3,58,126,86,124,82,NA,NA,NA,NA,6,No,No
+62172,2011_12,female,43,40-49,High School,NeverMarried,NotWorking,2.02,98.6,172,80,100,70,102,68,104,76,4.37,Good,8,No,No
+60652,2009_10,male,22,20-29,College Grad,NeverMarried,Working,0.74,68.4,175.6,52,110,74,116,62,118,72,4.03,Vgood,6,No,Yes
+63425,2011_12,male,51,50-59,Some College,Married,Working,4.03,67.3,175.1,76,126,82,122,78,116,80,4.5,Good,4,Yes,No
+65174,2011_12,female,31,30-39,Some College,Married,Working,4.19,77.6,161.6,76,98,76,102,74,98,76,4.24,Vgood,7,Yes,Yes
+67089,2011_12,female,29,20-29,Some College,NeverMarried,Working,1.39,93.9,153.7,74,120,76,120,80,118,82,5.66,NA,7,No,Yes
+71122,2011_12,male,63,60-69,Some College,Married,Working,5,94.7,189.7,64,128,76,138,80,124,74,4.73,Vgood,6,No,Yes
+54471,2009_10,female,31,30-39,8th Grade,Married,NotWorking,0.78,72.7,168,56,104,58,106,54,100,58,5.66,Good,6,No,Yes
+66505,2011_12,male,34,30-39,High School,Married,Working,0.92,67.4,171.2,60,118,60,112,52,118,56,6.49,Good,8,No,No
+54223,2009_10,male,80,70+,College Grad,NeverMarried,NotWorking,4.62,92.4,180.8,64,116,66,116,64,116,64,6.13,Poor,4,Yes,No
+65851,2011_12,female,20,20-29,High School,NeverMarried,NotWorking,0.65,114.7,165.1,102,114,64,118,62,114,66,2.9,Fair,5,No,Yes
+70177,2011_12,female,20,20-29,High School,NeverMarried,NotWorking,2.75,60.9,177.7,66,106,66,106,62,108,62,4.16,Good,5,Yes,Yes
+52567,2009_10,female,25,20-29,9 - 11th Grade,Married,NotWorking,NA,55.7,159.8,116,106,72,108,68,114,66,3.78,NA,6,No,No
+63588,2011_12,female,80,70+,Some College,Married,NotWorking,1.98,47.9,156.9,84,126,70,126,74,128,78,4.99,Vgood,6,Yes,No
+51748,2009_10,male,56,50-59,8th Grade,NeverMarried,NotWorking,NA,72.7,170.6,66,NA,NA,88,56,84,52,4.6,Fair,8,No,No
+66443,2011_12,female,38,30-39,8th Grade,NeverMarried,Working,1.12,80.9,152.3,76,164,72,160,66,160,70,6,Fair,6,Yes,No
+69375,2011_12,male,40,40-49,Some College,NeverMarried,Working,5,71.8,173.3,62,142,88,142,90,148,90,4.55,Vgood,3,No,Yes
+67902,2011_12,male,21,20-29,High School,Separated,Working,1.07,82.8,174.1,54,122,72,124,74,114,68,4.97,Excellent,7,No,No
+65991,2011_12,female,26,20-29,Some College,NeverMarried,Working,2.75,60.2,164.4,74,120,66,126,62,124,70,4.86,Good,8,No,Yes
+70784,2011_12,female,54,50-59,College Grad,Married,Looking,5,123.4,164.3,62,132,46,132,52,130,58,NA,Good,8,Yes,Yes
+60493,2009_10,female,33,30-39,College Grad,Married,Working,5,81.9,167.1,72,104,62,98,60,102,62,4.94,Fair,6,Yes,No
+51952,2009_10,female,46,40-49,High School,Married,Working,5,62,166,66,130,84,122,76,126,74,4.34,Vgood,12,No,Yes
+61433,2009_10,male,33,30-39,College Grad,Married,Working,3.09,64.7,170.4,78,140,76,138,80,NA,NA,4.06,Good,8,No,No
+64310,2011_12,female,49,40-49,College Grad,Married,Working,5,78.5,161.9,74,124,74,124,78,124,78,6.05,Good,5,Yes,Yes
+57331,2009_10,male,29,20-29,College Grad,NeverMarried,Working,5,78.8,173.7,64,106,64,112,64,114,66,4.09,Excellent,6,No,Yes
+70935,2011_12,female,46,40-49,College Grad,Married,Working,5,69.6,168.6,62,114,80,112,78,116,80,5.12,Vgood,6,No,No
+70054,2011_12,male,38,30-39,8th Grade,LivePartner,Working,NA,70.6,159.8,70,116,68,112,72,118,66,NA,NA,8,No,No
+71403,2011_12,female,30,30-39,Some College,Married,NotWorking,0.92,117.5,160.8,82,120,72,116,72,114,74,4.94,Vgood,8,No,Yes
+68630,2011_12,male,32,30-39,9 - 11th Grade,Married,Working,2.1,78.3,166.2,80,116,78,120,78,122,80,NA,Good,8,No,Yes
+69750,2011_12,male,44,40-49,College Grad,Married,Working,4.47,91,175,84,120,70,124,74,124,68,5.64,Vgood,6,Yes,No
+60296,2009_10,female,47,40-49,College Grad,Married,Working,5,88.9,165.3,88,126,76,124,72,126,68,4.68,Good,6,No,Yes
+52494,2009_10,female,78,70+,College Grad,Married,NotWorking,4.12,50.4,155.1,54,192,64,188,66,194,62,4.09,Good,8,Yes,Yes
+58185,2009_10,male,69,60-69,9 - 11th Grade,Married,NotWorking,4.21,53.7,156.7,76,128,42,128,42,132,0,3.7,NA,6,No,Yes
+62997,2011_12,male,60,60-69,Some College,Married,Working,0.95,92.9,159.7,58,118,70,120,66,114,72,4.32,Good,8,No,No
+62425,2011_12,female,30,30-39,College Grad,Married,Working,5,66.1,172.4,64,NA,NA,102,64,100,64,4.45,Vgood,9,No,Yes
+70120,2011_12,female,70,70+,Some College,Married,NotWorking,3.4,67.9,172.3,66,126,72,128,68,126,70,5.25,Vgood,5,No,Yes
+61730,2009_10,female,51,50-59,Some College,Married,Working,5,55.9,168.2,70,98,72,106,70,102,72,5.09,Vgood,7,No,Yes
+70018,2011_12,male,28,20-29,High School,Married,Working,1.57,131.1,180.2,108,118,90,120,86,124,86,5.53,Good,7,No,Yes
+62745,2011_12,female,71,70+,9 - 11th Grade,Married,NotWorking,1.63,68.1,152.6,70,142,56,138,66,138,58,7.01,Good,8,No,Yes
+68633,2011_12,female,38,30-39,High School,Married,Working,2.46,68.2,172.6,68,100,56,98,64,106,62,3.93,Poor,9,Yes,No
+70653,2011_12,male,43,40-49,College Grad,NeverMarried,Looking,5,84.8,165.4,82,116,74,116,82,114,82,3.65,Good,8,Yes,Yes
+61659,2009_10,female,40,40-49,College Grad,Married,Working,5,91.3,162.7,56,102,60,102,54,104,60,4.34,Excellent,6,Yes,No
+53640,2009_10,male,31,30-39,High School,Married,Working,4.86,94.8,178.8,82,112,60,110,64,120,64,4.6,Good,6,No,Yes
+68206,2011_12,female,35,30-39,College Grad,Married,NotWorking,3.22,86.8,161.4,68,110,68,112,62,106,70,4.76,NA,7,No,Yes
+66597,2011_12,female,54,50-59,9 - 11th Grade,Separated,Working,4.04,111.4,171.7,62,NA,NA,118,72,114,76,4.47,Vgood,6,No,No
+55485,2009_10,female,29,20-29,College Grad,Married,Working,NA,79.9,157.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,8,No,No
+69024,2011_12,male,65,60-69,College Grad,Divorced,NotWorking,1.34,72.5,166.2,80,130,70,128,68,128,70,4.29,Good,6,No,No
+70163,2011_12,female,53,50-59,College Grad,Married,Working,5,76.6,149.4,68,120,68,116,58,124,56,5.74,Vgood,7,No,Yes
+53610,2009_10,female,67,60-69,High School,Widowed,NotWorking,1.29,66.2,158,58,148,70,144,72,146,66,5.79,Vgood,6,No,Yes
+61006,2009_10,male,75,70+,Some College,Married,NotWorking,3.5,72.8,159.3,60,134,70,132,74,132,70,4.11,Excellent,9,No,Yes
+56198,2009_10,female,47,40-49,College Grad,Married,NotWorking,2.72,58,165.1,60,130,82,144,78,146,82,5.56,Good,7,No,Yes
+64271,2011_12,female,24,20-29,Some College,LivePartner,Working,0.76,48.8,164.3,72,98,62,102,58,100,56,5.07,Fair,8,No,No
+69752,2011_12,female,79,70+,College Grad,Widowed,NotWorking,1.75,82.4,165.6,78,114,62,112,66,114,66,5.53,Vgood,8,No,Yes
+58532,2009_10,female,37,30-39,College Grad,Married,Working,3.1,64.3,161.3,78,100,62,98,60,102,66,4.55,Vgood,8,No,Yes
+65436,2011_12,male,28,20-29,Some College,NeverMarried,NotWorking,1.1,99.4,178.6,54,128,72,122,62,120,68,4.65,Vgood,7,No,Yes
+53072,2009_10,female,22,20-29,9 - 11th Grade,LivePartner,NotWorking,0.79,101.8,163.4,76,NA,NA,NA,NA,NA,NA,4.86,Good,6,Yes,No
+58173,2009_10,male,47,40-49,8th Grade,Married,Working,1.01,81.7,172.3,72,132,90,134,82,130,82,5.12,Vgood,8,No,No
+63631,2011_12,female,32,30-39,College Grad,Married,Working,5,60,156.5,84,96,64,102,66,112,58,5.33,Good,8,No,No
+60546,2009_10,male,32,30-39,High School,Married,Working,3.4,81.8,180.3,NA,NA,NA,NA,NA,NA,NA,4.68,NA,6,No,Yes
+60210,2009_10,female,20,20-29,College Grad,NeverMarried,Working,4.12,59.1,160.6,78,94,68,96,68,100,66,3,Vgood,8,No,Yes
+62326,2011_12,male,69,60-69,College Grad,Married,Working,4.3,81.6,175.9,82,100,70,NA,NA,108,68,5.43,Good,7,No,Yes
+60073,2009_10,female,51,50-59,Some College,Divorced,Working,1.85,64.1,172.7,94,122,74,110,76,118,76,5.53,Vgood,7,Yes,No
+70226,2011_12,female,70,70+,8th Grade,NeverMarried,NotWorking,1.18,97.6,157.8,58,156,74,152,86,162,86,5.43,Vgood,6,No,No
+54631,2009_10,male,64,60-69,Some College,LivePartner,Working,3,74.5,166.9,68,170,80,174,80,168,76,5.33,Fair,6,No,No
+53221,2009_10,male,39,30-39,Some College,LivePartner,Looking,5,91.5,173.5,70,122,78,126,78,124,72,6.9,Vgood,8,No,Yes
+70911,2011_12,male,59,50-59,College Grad,Married,Working,5,84,185.3,76,122,58,116,58,120,56,4.68,Good,6,Yes,No
+59347,2009_10,male,35,30-39,College Grad,Married,Working,1.8,105.8,181.8,70,136,80,132,80,126,74,3.18,Vgood,7,No,No
+57222,2009_10,female,65,60-69,High School,Married,Working,5,92.5,157.9,70,146,74,142,82,144,86,5.12,Excellent,8,No,Yes
+63361,2011_12,male,67,60-69,College Grad,Widowed,NotWorking,2.75,84.9,182.1,88,144,86,144,90,132,86,5.92,Good,6,Yes,Yes
+62763,2011_12,male,29,20-29,Some College,Married,Working,5,98.4,176,60,128,58,128,62,128,60,5.87,Good,6,No,Yes
+52094,2009_10,female,61,60-69,College Grad,Married,NotWorking,NA,96.9,154.1,76,128,84,136,82,130,84,4.86,Poor,4,Yes,No
+65633,2011_12,male,57,50-59,Some College,NeverMarried,Working,0.04,74.1,166.4,62,138,88,136,90,NA,NA,4.22,Vgood,6,No,Yes
+60023,2009_10,female,34,30-39,Some College,NeverMarried,Working,2.33,53.1,153.9,54,106,60,104,52,98,58,3.49,Excellent,5,No,No
+71409,2011_12,male,41,40-49,9 - 11th Grade,Married,Working,2.83,88.7,178.2,60,120,84,118,82,124,78,6.34,NA,6,No,Yes
+66070,2011_12,female,62,60-69,9 - 11th Grade,Widowed,Looking,1.3,68,158.1,82,132,88,126,84,134,76,6.52,Good,6,No,Yes
+59988,2009_10,female,24,20-29,High School,Married,Working,0.61,145.7,177.1,68,NA,NA,102,84,104,70,3.65,Vgood,6,No,No
+63317,2011_12,male,32,30-39,High School,NeverMarried,Working,2.2,77.5,173.9,62,110,68,118,70,118,66,4.27,Good,4,Yes,Yes
+64173,2011_12,female,38,30-39,Some College,Married,NotWorking,1.06,51.5,156,82,116,86,118,86,114,80,5.56,Good,7,No,Yes
+60603,2009_10,male,29,20-29,Some College,Married,Working,2.46,90.3,172.7,74,130,80,132,86,128,86,6.65,Good,8,No,No
+56623,2009_10,female,56,50-59,Some College,Married,Working,5,109.1,163.7,74,134,62,130,60,130,54,6.54,Good,5,Yes,No
+54964,2009_10,male,24,20-29,Some College,NeverMarried,Working,1.75,71.7,171.7,56,104,72,106,64,104,72,4.63,Excellent,7,No,Yes
+55855,2009_10,female,58,50-59,8th Grade,Widowed,NotWorking,1.64,76.5,154.2,82,134,72,134,70,130,72,3.98,Poor,6,Yes,No
+53746,2009_10,female,38,30-39,Some College,NeverMarried,Working,4.65,119.4,171.3,88,134,86,132,82,120,78,5.69,Good,6,No,No
+65799,2011_12,male,21,20-29,Some College,NeverMarried,NotWorking,4.44,86.2,175.7,86,110,60,116,62,110,60,3.72,Vgood,8,Yes,Yes
+64860,2011_12,male,50,50-59,9 - 11th Grade,Married,Working,1.89,65.1,164.9,78,106,76,114,80,114,76,6.96,Good,4,Yes,Yes
+57481,2009_10,male,34,30-39,9 - 11th Grade,NeverMarried,Working,1.11,82.1,177.5,68,128,96,132,98,126,90,5.97,Excellent,8,No,No
+63788,2011_12,female,40,40-49,High School,Divorced,Working,0.92,49.3,164.5,102,116,72,110,72,120,76,4.86,Good,7,Yes,Yes
+58414,2009_10,male,80,70+,8th Grade,Widowed,NotWorking,NA,69.1,168.4,86,154,0,146,0,150,0,NA,Good,8,No,No
+59205,2009_10,female,69,60-69,High School,Divorced,NotWorking,0.74,37,155.9,74,106,44,112,52,110,42,5.74,NA,8,No,No
+68571,2011_12,male,53,50-59,Some College,Married,Working,0.65,87.1,185.5,94,114,74,106,70,116,70,5.59,Good,6,No,Yes
+53604,2009_10,female,63,60-69,College Grad,Divorced,Working,2.95,73.4,168,74,138,62,138,72,146,60,6.13,Fair,6,No,No
+62040,2009_10,female,39,30-39,High School,Married,Working,1.37,62.6,142.5,76,108,74,118,76,104,74,4.63,Fair,6,No,No
+65316,2011_12,male,54,50-59,College Grad,Married,Working,5,94.6,177.6,62,120,66,124,68,120,68,4.24,Good,6,No,Yes
+53972,2009_10,female,41,40-49,College Grad,Married,Working,5,66.3,149,84,120,72,116,74,124,72,6.54,Vgood,7,No,Yes
+59148,2009_10,male,64,60-69,College Grad,Married,Working,5,76.1,169.8,68,102,60,104,56,90,52,4.27,Excellent,6,No,Yes
+53112,2009_10,female,42,40-49,9 - 11th Grade,Married,NotWorking,0.49,69.2,161.6,72,118,64,118,64,116,68,4.34,NA,4,No,No
+52426,2009_10,male,21,20-29,High School,NeverMarried,Working,NA,61.8,177.4,60,98,46,96,52,100,36,4.63,NA,5,No,No
+51647,2009_10,female,45,40-49,College Grad,Married,Working,5,75.7,166.7,62,106,62,118,68,118,60,5.82,Vgood,8,No,Yes
+60980,2009_10,male,37,30-39,College Grad,Married,Working,3.1,79.4,178.1,76,108,66,106,68,112,74,6.41,Vgood,7,Yes,Yes
+53684,2009_10,male,42,40-49,8th Grade,Married,Working,0.49,87.9,181.4,112,136,84,124,82,130,86,5.84,Good,8,No,Yes
+56399,2009_10,female,69,60-69,College Grad,LivePartner,NotWorking,5,58.8,166,62,114,68,110,68,100,70,4.91,Excellent,8,Yes,Yes
+67411,2011_12,male,43,40-49,8th Grade,LivePartner,Working,1.48,99.9,169.1,80,130,74,138,68,132,70,5.64,Good,8,No,Yes
+71802,2011_12,male,53,50-59,Some College,LivePartner,Working,0.92,102.6,181,86,132,74,142,74,136,74,4.99,Vgood,8,Yes,Yes
+67698,2011_12,female,63,60-69,Some College,Married,Working,3.97,57.9,168.8,72,108,70,102,68,100,70,5.87,Vgood,7,Yes,Yes
+60085,2009_10,female,29,20-29,9 - 11th Grade,LivePartner,NotWorking,0.75,38.7,155.4,60,104,64,108,66,100,66,3.75,NA,6,Yes,No
+66882,2011_12,female,22,20-29,Some College,NeverMarried,NotWorking,5,51.8,165.9,80,112,64,108,60,110,62,4.16,Excellent,8,No,Yes
+55495,2009_10,male,47,40-49,College Grad,Divorced,Working,5,84.6,177.3,54,114,64,118,68,124,64,5.15,Vgood,5,No,Yes
+63803,2011_12,female,36,30-39,9 - 11th Grade,LivePartner,Working,1.79,56.8,155.4,68,108,64,106,66,100,68,4.91,Fair,7,No,No
+52509,2009_10,male,54,50-59,Some College,Married,Working,5,79.7,168.6,66,156,88,150,92,144,84,6.18,Vgood,7,No,No
+57392,2009_10,male,33,30-39,College Grad,Married,Working,3.49,85.7,175.5,74,104,66,96,68,104,66,4.71,Good,6,No,No
+62501,2011_12,female,30,30-39,College Grad,Married,Working,3.15,63.3,157.2,76,110,68,110,64,104,68,3.75,Vgood,7,No,No
+55155,2009_10,male,29,20-29,High School,NeverMarried,Looking,0.39,80.2,178.2,66,122,88,120,86,124,88,5.04,Vgood,6,No,Yes
+55256,2009_10,male,57,50-59,Some College,Married,Working,5,105,176.9,78,142,74,138,70,136,74,4.29,Good,5,Yes,Yes
+65868,2011_12,male,70,70+,College Grad,LivePartner,Working,5,91.7,177,82,112,66,118,64,118,66,4.78,Vgood,6,Yes,Yes
+57791,2009_10,female,42,40-49,College Grad,Married,Working,NA,70.8,169.3,60,104,64,98,58,96,54,6.08,NA,8,No,Yes
+51997,2009_10,female,74,70+,9 - 11th Grade,Widowed,NotWorking,2.77,66.6,159.5,64,132,82,130,84,132,78,6.72,Vgood,8,No,No
+63395,2011_12,female,80,70+,High School,Married,NotWorking,NA,44.9,149.3,70,138,80,134,74,144,78,NA,NA,10,No,No
+71769,2011_12,male,24,20-29,Some College,NeverMarried,Working,3.06,56.3,162.7,94,96,62,94,66,96,64,4.27,Excellent,8,No,Yes
+57769,2009_10,male,26,20-29,8th Grade,LivePartner,NotWorking,0.58,83.9,172.7,86,122,78,118,64,120,62,4.81,Good,8,No,No
+55709,2009_10,male,59,50-59,High School,Married,Working,4.2,85.4,188.2,56,116,64,116,68,118,64,4.6,Fair,7,No,No
+63413,2011_12,female,61,60-69,College Grad,Separated,Working,5,91.5,169.8,60,124,66,124,62,116,66,5.04,Vgood,6,No,No
+63349,2011_12,female,48,40-49,High School,Married,NotWorking,NA,114,165.1,108,138,94,140,88,142,94,5.2,NA,8,No,No
+70420,2011_12,female,55,50-59,8th Grade,Widowed,Looking,0.43,100,159.4,76,120,66,126,62,118,64,4.22,NA,8,No,No
+70633,2011_12,male,56,50-59,College Grad,Married,Working,5,110.9,173.8,74,130,70,NA,NA,122,70,4.86,Vgood,8,No,Yes
+68947,2011_12,female,65,60-69,High School,Widowed,Working,NA,67.7,165.7,64,144,78,148,78,144,76,4.63,Fair,6,No,No
+67361,2011_12,male,59,50-59,8th Grade,Married,NotWorking,1.19,83.2,170.3,NA,NA,NA,NA,NA,NA,NA,4.5,NA,4,No,No
+52159,2009_10,female,45,40-49,College Grad,Divorced,Working,1.53,56.6,171.7,72,104,76,104,70,102,74,4.29,Vgood,6,Yes,No
+52197,2009_10,male,39,30-39,Some College,Married,Working,3.49,130.7,179.3,58,138,56,140,76,140,54,3.85,Fair,6,No,Yes
+58753,2009_10,female,73,70+,College Grad,Married,NotWorking,0.82,82.5,157.9,64,110,68,112,68,104,68,NA,Fair,12,No,No
+55847,2009_10,female,40,40-49,High School,LivePartner,NotWorking,1.45,53.6,158.2,76,114,80,108,80,106,78,4.63,Fair,6,No,Yes
+58477,2009_10,female,48,40-49,High School,NeverMarried,NotWorking,0.81,76.7,168,60,148,78,154,82,148,80,NA,NA,8,No,No
+55980,2009_10,male,55,50-59,High School,LivePartner,NotWorking,4.46,102.4,179.9,92,128,80,130,88,130,82,5.43,Good,6,No,No
+71691,2011_12,female,76,70+,Some College,Married,NotWorking,4.3,81.3,164.3,74,138,68,140,66,132,76,4.94,Fair,7,No,No
+69060,2011_12,male,20,20-29,Some College,NeverMarried,Working,0.92,57.3,169.1,68,116,52,114,60,110,58,5.82,Vgood,7,No,Yes
+67799,2011_12,female,38,30-39,Some College,Married,NotWorking,1.26,94.9,158.4,84,120,68,116,68,116,68,5.72,Good,6,Yes,Yes
+68918,2011_12,male,55,50-59,8th Grade,NeverMarried,Working,NA,89.7,177.9,56,144,62,134,70,142,68,6.7,Fair,7,No,Yes
+67590,2011_12,male,31,30-39,High School,LivePartner,Working,0.43,82.8,170.4,76,122,66,128,64,124,58,3.67,Good,7,No,Yes
+54600,2009_10,female,26,20-29,College Grad,Divorced,Working,3.69,64.1,174.1,78,106,82,108,82,110,80,3.96,Good,9,Yes,Yes
+68356,2011_12,female,73,70+,Some College,Divorced,Looking,3.49,71.7,160.7,NA,NA,NA,NA,NA,NA,NA,6.03,Good,5,Yes,No
+58571,2009_10,female,54,50-59,Some College,Divorced,NotWorking,0.55,91.9,167.8,72,92,52,92,50,98,48,6.28,Fair,10,No,Yes
+51951,2009_10,female,56,50-59,College Grad,Married,Working,1.81,69.6,154,70,NA,NA,138,84,NA,NA,6.13,Vgood,7,No,No
+56025,2009_10,female,80,70+,Some College,Divorced,NotWorking,3.51,62.5,160.1,82,170,76,168,52,168,52,5.02,Good,7,No,No
+62419,2011_12,male,80,70+,High School,Married,Working,0.65,81.3,175.2,62,150,74,146,74,144,66,4.01,Vgood,7,Yes,No
+55788,2009_10,female,26,20-29,College Grad,NeverMarried,Working,1.74,92.1,168,68,NA,NA,132,72,120,62,5.09,NA,6,Yes,Yes
+69923,2011_12,male,57,50-59,College Grad,Married,Working,5,80.8,177.8,52,124,82,128,82,118,84,7.09,Vgood,8,No,Yes
+55057,2009_10,female,71,70+,College Grad,NeverMarried,NotWorking,3.32,76.6,157.7,54,146,68,152,70,146,66,5.07,Fair,4,Yes,Yes
+54027,2009_10,female,62,60-69,Some College,Divorced,Working,2.71,85.8,166.3,82,124,64,118,60,124,58,6.41,Good,6,Yes,No
+67129,2011_12,female,24,20-29,Some College,NeverMarried,Working,2.32,55.1,152.7,76,106,74,106,62,104,60,4.01,Good,6,No,Yes
+57110,2009_10,male,26,20-29,High School,Married,Working,0.56,99.4,183.4,90,120,76,114,76,116,78,4.63,Good,6,No,No
+71488,2011_12,female,41,40-49,High School,Married,Working,1.08,110.4,165.8,74,102,64,104,64,110,66,3.78,Good,8,No,Yes
+69177,2011_12,male,66,60-69,College Grad,Married,Working,3.4,91.6,172.8,68,108,64,108,74,106,74,4.63,Good,8,No,Yes
+58115,2009_10,female,79,70+,High School,Married,NotWorking,2.75,77.4,169.6,74,154,46,150,0,150,0,5.95,Vgood,7,No,No
+62098,2009_10,male,38,30-39,Some College,Married,Working,NA,72.9,174,66,110,70,108,72,106,76,NA,NA,8,No,No
+71375,2011_12,male,73,70+,College Grad,Married,NotWorking,1.98,66.5,155.6,62,148,78,140,78,142,78,5.04,Good,7,No,Yes
+69616,2011_12,female,26,20-29,High School,Married,Working,0.36,84.4,164.8,90,112,80,104,74,110,76,3.96,Good,9,No,No
+58234,2009_10,male,53,50-59,College Grad,Married,Working,5,69.6,179.7,96,128,72,126,72,124,72,3.78,Fair,7,No,Yes
+66228,2011_12,male,28,20-29,College Grad,NeverMarried,Working,4.41,69.5,176.8,70,132,68,128,64,128,72,5.43,Vgood,6,Yes,Yes
+58471,2009_10,male,40,40-49,Some College,Married,Working,4.54,90.3,191.1,84,118,84,116,88,116,88,6.15,Excellent,6,No,Yes
+55369,2009_10,female,40,40-49,College Grad,Married,Working,3.4,75.6,161.5,60,130,84,124,82,124,82,4.47,Good,7,No,Yes
+53476,2009_10,male,35,30-39,Some College,Married,Working,5,94,180.1,64,116,72,110,66,118,64,5.02,Good,7,No,Yes
+52431,2009_10,male,41,40-49,High School,NeverMarried,Working,2.03,96.2,149.4,78,106,76,106,72,106,74,5.46,NA,4,No,No
+55471,2009_10,male,38,30-39,Some College,Married,Working,3.28,94.9,170.4,78,118,74,120,78,124,78,6.15,Vgood,7,No,Yes
+62674,2011_12,female,33,30-39,College Grad,Married,Working,1.16,59.7,166.5,80,106,70,96,68,102,66,6.57,Excellent,7,No,Yes
+64335,2011_12,female,27,20-29,9 - 11th Grade,LivePartner,Looking,NA,50.7,166.2,72,NA,NA,100,60,102,62,5.02,Fair,5,Yes,Yes
+59759,2009_10,female,32,30-39,Some College,LivePartner,Working,5,85.7,164.1,82,106,82,102,76,108,76,4.94,Good,12,No,No
+69035,2011_12,male,68,60-69,Some College,Married,Working,5,92.6,181.2,44,112,56,110,56,114,54,4.27,Good,6,No,No
+64330,2011_12,male,43,40-49,Some College,Married,Working,5,81.1,177.7,64,120,76,122,74,116,70,4.03,Excellent,8,No,Yes
+51912,2009_10,female,27,20-29,9 - 11th Grade,Married,NotWorking,0.17,95.9,158.2,98,92,66,NA,NA,NA,NA,5.4,Fair,4,Yes,No
+55986,2009_10,male,28,20-29,College Grad,NeverMarried,Working,5,74.1,188.9,64,128,76,118,64,116,64,3.7,Vgood,6,No,Yes
+52717,2009_10,female,63,60-69,High School,Married,Working,2.18,75.6,165.4,76,148,70,142,66,132,74,NA,Fair,7,No,No
+68448,2011_12,female,28,20-29,College Grad,NeverMarried,Working,3.22,61.8,160.9,74,102,62,104,60,104,64,NA,Vgood,7,No,Yes
+54704,2009_10,female,60,60-69,9 - 11th Grade,Divorced,Working,5,76.9,156.5,86,112,76,110,78,108,70,6.26,Good,8,No,No
+58003,2009_10,female,32,30-39,Some College,Married,Working,2.88,85.1,163.6,76,98,56,104,52,102,54,3.96,Good,6,No,No
+68016,2011_12,female,56,50-59,Some College,Married,Working,4.77,100.8,158.4,66,104,74,98,74,102,68,5.64,Fair,8,No,No
+51907,2009_10,female,22,20-29,Some College,NeverMarried,Working,0.76,81.8,157.3,NA,NA,NA,NA,NA,NA,NA,3.85,Fair,5,No,Yes
+52119,2009_10,female,67,60-69,9 - 11th Grade,Widowed,NotWorking,1.29,57.7,151.7,72,124,0,114,42,116,40,6,Good,7,No,No
+69603,2011_12,male,26,20-29,9 - 11th Grade,Married,Working,0.81,70.7,171.1,84,74,56,86,54,84,62,3.52,Fair,8,No,Yes
+52789,2009_10,male,34,30-39,College Grad,Married,Working,5,73.4,181.4,78,104,66,106,58,108,60,4.73,Excellent,7,No,Yes
+57289,2009_10,male,27,20-29,Some College,NeverMarried,NotWorking,3.17,112,181.3,74,120,64,124,60,126,68,5.51,Good,8,No,No
+58591,2009_10,male,53,50-59,College Grad,Married,Working,5,87.5,163.7,66,124,84,122,84,120,82,3.72,Vgood,7,No,Yes
+52122,2009_10,male,67,60-69,Some College,Married,Working,5,104,179.3,58,144,74,134,74,146,78,4.78,Vgood,8,No,Yes
+58577,2009_10,male,46,40-49,College Grad,Married,Working,5,85.7,168.5,60,112,70,110,66,108,64,5.92,Vgood,6,No,Yes
+60540,2009_10,female,34,30-39,High School,Married,Working,4.64,74.9,162.2,68,102,58,94,52,96,56,3.96,Good,7,No,No
+56955,2009_10,female,80,70+,9 - 11th Grade,Divorced,Looking,3.14,65,155.8,54,134,66,132,62,126,66,5.43,Good,9,Yes,No
+55747,2009_10,male,36,30-39,9 - 11th Grade,Married,Working,2.13,73.7,173.4,60,118,92,114,88,114,86,5.46,Fair,7,No,No
+70845,2011_12,female,21,20-29,Some College,NeverMarried,NotWorking,NA,51.2,156.9,98,112,52,106,56,106,62,5.51,Fair,8,No,Yes
+52780,2009_10,male,25,20-29,College Grad,NeverMarried,Working,4.37,129.9,172.8,68,122,90,112,82,118,86,4.94,Fair,5,No,Yes
+53664,2009_10,female,80,70+,8th Grade,Widowed,NotWorking,2.77,73.8,152.7,60,NA,NA,132,62,120,58,4.78,Vgood,5,Yes,No
+57400,2009_10,male,30,30-39,High School,LivePartner,Looking,0.91,87.4,175.3,86,122,82,118,70,120,80,4.03,Good,8,No,Yes
+58322,2009_10,male,47,40-49,Some College,Married,Working,4.08,105.5,175.3,68,124,76,120,72,116,78,6.57,Good,6,No,No
+63849,2011_12,male,34,30-39,Some College,Married,Working,2.96,93.2,176.1,68,124,74,122,80,120,80,3.62,Good,8,No,Yes
+53302,2009_10,male,51,50-59,Some College,Widowed,Working,3.91,119.3,178.7,82,118,84,132,90,130,92,3.9,Good,8,No,No
+61082,2009_10,female,27,20-29,Some College,Married,Working,1.58,154.5,170.3,68,128,76,126,82,130,78,4.5,Vgood,8,No,No
+70654,2011_12,female,28,20-29,9 - 11th Grade,LivePartner,Working,1.47,103.8,176.2,88,114,76,110,72,112,76,3.59,Good,5,Yes,Yes
+65896,2011_12,female,31,30-39,High School,NeverMarried,NotWorking,0.44,70.2,162.1,60,110,76,108,74,114,68,5.51,Fair,7,Yes,No
+70687,2011_12,male,59,50-59,College Grad,Widowed,Working,5,78.4,175.3,62,150,86,146,90,152,88,6.21,Excellent,6,No,Yes
+65742,2011_12,male,30,30-39,High School,NeverMarried,Working,5,63.5,163.8,100,118,78,118,74,120,78,5.02,Good,8,No,No
+64861,2011_12,female,26,20-29,College Grad,Divorced,Working,1.72,59.6,163.8,78,102,66,106,72,104,64,3.23,NA,6,No,Yes
+63288,2011_12,female,58,50-59,College Grad,Married,Working,NA,93.6,165.2,60,172,80,172,74,166,68,4.6,NA,8,No,Yes
+51694,2009_10,male,38,30-39,Some College,Married,Working,1.15,117.3,180.9,60,160,84,150,80,144,82,4.68,Poor,5,No,No
+65061,2011_12,male,38,30-39,College Grad,Married,Working,3.22,95.5,179.4,74,124,88,130,92,128,98,3.96,Vgood,6,No,Yes
+64511,2011_12,female,64,60-69,Some College,Married,NotWorking,4.15,86.4,160,90,136,62,134,60,136,64,5.97,Good,8,No,No
+55070,2009_10,male,27,20-29,College Grad,NeverMarried,Looking,0.92,81.8,180.3,78,106,66,106,72,108,80,6.03,Vgood,7,No,Yes
+71662,2011_12,male,74,70+,College Grad,Married,Working,3.8,81.3,165.1,62,140,62,142,64,136,64,3.98,Good,7,No,Yes
+66068,2011_12,male,76,70+,High School,Married,NotWorking,0.65,56.7,163.4,70,NA,NA,152,48,150,56,5.28,Fair,8,No,No
+52971,2009_10,male,80,70+,Some College,Widowed,NotWorking,3.6,75.4,167.1,56,182,76,178,68,174,74,5.17,Fair,7,No,Yes
+68695,2011_12,male,20,20-29,Some College,NeverMarried,NotWorking,0.23,80.1,184.9,54,124,66,124,66,120,68,NA,NA,8,No,Yes
+56785,2009_10,male,49,40-49,8th Grade,Married,Looking,0.28,67.7,163.2,54,126,64,126,64,120,64,6.36,NA,7,No,Yes
+52214,2009_10,male,38,30-39,High School,NeverMarried,Working,2.06,79.8,173,66,124,74,126,76,124,78,4.22,Good,7,No,Yes
+65145,2011_12,female,57,50-59,High School,Married,NotWorking,3.59,53.2,155.8,56,126,94,122,96,126,68,4.29,Vgood,8,No,No
+68665,2011_12,female,51,50-59,High School,Divorced,NotWorking,0.69,63.8,157.1,72,100,60,96,64,96,62,6.62,Good,4,Yes,No
+54960,2009_10,male,24,20-29,High School,Married,Working,2.95,71.3,169.9,98,NA,NA,124,66,126,60,4.55,NA,6,No,No
+52332,2009_10,female,40,40-49,Some College,Divorced,Working,2.73,87.2,154.7,NA,NA,NA,NA,NA,NA,NA,4.65,Vgood,5,Yes,Yes
+67454,2011_12,female,76,70+,High School,Married,NotWorking,2.02,63.1,161.5,80,150,74,142,58,146,56,5.9,Good,8,No,Yes
+51845,2009_10,female,50,50-59,High School,Married,Working,1.81,97.9,155.1,68,116,62,110,64,110,62,4.89,Good,6,Yes,Yes
+59809,2009_10,male,57,50-59,8th Grade,Married,Working,0.6,68.1,167.2,86,142,88,138,86,136,84,6.54,Good,5,No,No
+66665,2011_12,female,27,20-29,College Grad,Married,Working,4.59,69.7,167.9,82,118,58,104,64,100,60,5.59,Vgood,7,Yes,Yes
+51666,2009_10,female,58,50-59,High School,Married,Looking,2.03,57.5,148.1,94,NA,NA,134,82,120,84,4.78,NA,5,No,Yes
+68296,2011_12,female,69,60-69,High School,Married,NotWorking,0.68,92.4,159.3,NA,NA,NA,NA,NA,NA,NA,5.35,Fair,6,Yes,No
+71359,2011_12,male,41,40-49,8th Grade,Married,Looking,0.01,77.1,166.4,66,110,66,114,72,112,62,4.19,NA,7,No,No
+58111,2009_10,female,29,20-29,Some College,Married,NotWorking,0.27,82.3,163.9,74,NA,NA,180,92,178,90,8.15,Poor,8,No,No
+60187,2009_10,male,64,60-69,High School,Divorced,NotWorking,3.46,98.7,173.3,76,124,64,126,60,124,62,4.5,Good,9,No,Yes
+51888,2009_10,male,63,60-69,College Grad,Married,NotWorking,2.8,87.8,178.8,58,128,72,134,72,120,66,5.35,Vgood,7,No,No
+60658,2009_10,male,55,50-59,High School,Separated,Working,3.43,88.1,182.1,92,116,58,114,58,114,58,8.09,Vgood,8,No,Yes
+58446,2009_10,female,80,70+,Some College,Widowed,NotWorking,1.29,67.9,161.2,80,120,46,114,36,122,42,4.65,Vgood,9,No,No
+57685,2009_10,male,54,50-59,College Grad,Divorced,Working,2.47,126.7,175.1,62,120,68,NA,NA,116,64,5.72,Excellent,8,No,Yes
+61085,2009_10,female,51,50-59,Some College,Married,NotWorking,5,70.4,168.1,64,130,72,124,76,124,74,5.07,Good,8,No,No
+67545,2011_12,female,22,20-29,High School,LivePartner,Looking,1,54.5,162.2,74,94,66,92,60,90,64,3.9,Vgood,7,Yes,Yes
+57247,2009_10,female,50,50-59,College Grad,NeverMarried,Working,NA,102.9,167.7,66,NA,NA,NA,NA,104,70,3.52,Good,8,Yes,No
+55687,2009_10,female,60,60-69,Some College,Married,Working,5,88.3,173.4,56,142,82,144,82,148,80,4.78,Good,6,Yes,Yes
+63139,2011_12,female,25,20-29,Some College,Married,Working,0.59,82.3,155,NA,NA,NA,NA,NA,NA,NA,5.84,NA,7,No,Yes
+52020,2009_10,female,32,30-39,8th Grade,LivePartner,NotWorking,0.51,91.9,163.7,74,112,66,112,66,108,64,5.22,Fair,8,No,No
+67584,2011_12,male,38,30-39,High School,NeverMarried,Working,3.67,156.4,185.5,92,110,76,110,74,114,80,4.68,Good,3,No,Yes
+65812,2011_12,male,30,30-39,College Grad,Married,NotWorking,1.35,69.9,178.7,60,120,84,122,82,114,84,4.63,Good,10,No,Yes
+53876,2009_10,male,37,30-39,High School,Married,Working,3.5,114,172.6,68,134,76,134,74,134,76,6.39,Good,7,No,No
+51667,2009_10,male,50,50-59,Some College,NeverMarried,Looking,1.24,84.1,177.8,74,138,66,142,74,142,62,5.22,Good,7,No,Yes
+51734,2009_10,male,25,20-29,High School,Married,NotWorking,5,86.3,178.6,62,130,82,122,76,112,60,5.3,Excellent,8,No,Yes
+59859,2009_10,male,35,30-39,College Grad,LivePartner,Working,2.22,66.5,170.9,50,108,68,114,62,112,66,3.83,Excellent,8,No,Yes
+51677,2009_10,male,33,30-39,High School,Married,Working,1.27,93.8,181.3,96,126,80,128,74,NA,NA,5.59,Fair,6,No,No
+53118,2009_10,male,22,20-29,9 - 11th Grade,NeverMarried,NotWorking,0,70.3,184.1,72,116,68,106,70,114,68,4.29,Fair,3,No,Yes
+52599,2009_10,female,24,20-29,High School,NeverMarried,Working,2.33,84.7,152.3,72,118,58,112,58,110,52,4.6,Good,7,No,No
+64965,2011_12,male,26,20-29,Some College,Married,Working,4.97,82.6,160,78,104,62,104,58,100,56,4.63,Good,5,No,No
+58162,2009_10,female,32,30-39,Some College,Married,NotWorking,1.59,122.6,164.2,72,128,94,124,90,124,88,8.15,Fair,8,No,Yes
+70281,2011_12,female,30,30-39,Some College,NeverMarried,Working,3.13,70,166.9,78,124,64,118,72,128,70,4.84,Vgood,7,Yes,Yes
+53389,2009_10,male,47,40-49,High School,Married,Working,1.18,84.6,170.7,66,122,68,110,64,118,66,6.18,Good,4,Yes,No
+52044,2009_10,female,26,20-29,College Grad,Married,Working,5,62.3,173.1,66,124,66,122,60,118,66,3.67,Excellent,8,Yes,Yes
+53983,2009_10,male,29,20-29,Some College,Married,Working,2.95,95.6,170.6,88,124,82,124,80,126,70,6,Poor,6,No,Yes
+62927,2011_12,male,63,60-69,Some College,Married,Working,5,91.1,171.9,60,132,74,126,78,130,76,4.01,Vgood,5,Yes,No
+52577,2009_10,male,78,70+,College Grad,Widowed,Working,5,68.6,171,62,112,60,110,64,108,62,4.11,Vgood,7,No,Yes
+54968,2009_10,male,37,30-39,College Grad,Married,Working,1.74,128,187.5,66,114,64,116,66,118,72,5.51,Good,6,Yes,Yes
+63320,2011_12,female,27,20-29,College Grad,Married,Working,2.72,48.6,152.5,64,96,68,98,70,106,72,3.49,Good,6,No,Yes
+60014,2009_10,male,80,70+,Some College,Married,Working,4.1,75.5,174.5,74,140,100,140,104,140,104,4.58,Excellent,8,Yes,No
+54980,2009_10,female,60,60-69,Some College,Divorced,Working,2.71,68.1,159,62,116,76,116,76,118,72,4.5,Fair,7,No,Yes
+69700,2011_12,female,27,20-29,High School,NeverMarried,Working,0.42,68.8,163.9,70,108,62,100,66,100,66,4.16,NA,8,No,No
+69536,2011_12,female,57,50-59,Some College,Married,Working,3.53,77.7,164.9,46,148,74,136,66,150,60,7.55,Vgood,8,No,No
+69654,2011_12,male,20,20-29,Some College,NeverMarried,Looking,4.26,116.7,184.2,70,126,72,134,74,130,78,4.42,Vgood,7,No,Yes
+70580,2011_12,male,58,50-59,High School,Married,Working,2.12,87.7,186.4,58,134,76,126,70,112,68,4.84,Good,7,No,Yes
+67359,2011_12,male,74,70+,College Grad,Married,Working,5,81.3,175,64,118,64,110,74,114,78,3.39,Good,6,No,Yes
+52550,2009_10,female,68,60-69,Some College,Married,NotWorking,3.43,57.6,170.4,80,96,56,94,52,90,56,4.84,Vgood,9,No,Yes
+57640,2009_10,female,72,70+,College Grad,Married,NotWorking,3.09,83.9,166.2,70,114,88,112,82,106,82,5.9,Good,7,No,Yes
+52563,2009_10,female,35,30-39,High School,NeverMarried,NotWorking,1.39,63.3,175.8,82,132,88,136,88,124,90,5.28,Fair,4,Yes,Yes
+59089,2009_10,male,39,30-39,Some College,Married,Working,5,119.9,188,76,114,66,114,64,110,66,5.12,Good,8,Yes,No
+65635,2011_12,female,29,20-29,High School,NeverMarried,NotWorking,0.81,75.1,156.2,76,NA,NA,86,68,92,70,4.86,Excellent,9,No,No
+70282,2011_12,male,24,20-29,9 - 11th Grade,NeverMarried,Working,1.23,79.5,167.3,74,126,72,118,80,122,88,3.96,Good,6,No,Yes
+58295,2009_10,female,25,20-29,9 - 11th Grade,LivePartner,NotWorking,0.05,112.2,162.7,110,NA,NA,NA,NA,118,90,5.69,Good,8,Yes,Yes
+70152,2011_12,female,50,50-59,College Grad,Married,Working,3.8,86.6,169.9,68,126,84,134,84,132,86,5.02,Vgood,7,No,Yes
+53481,2009_10,male,66,60-69,9 - 11th Grade,Married,NotWorking,5,88.7,178.9,80,122,64,142,70,146,74,6.15,Good,9,No,No
+61420,2009_10,male,27,20-29,Some College,Married,Working,1.45,108.4,189.4,66,122,70,124,64,118,68,6.34,Vgood,6,No,No
+53243,2009_10,female,43,40-49,Some College,Divorced,Looking,0.76,98.4,163.4,64,132,80,136,80,122,80,6.44,Fair,2,Yes,No
+59181,2009_10,female,80,70+,9 - 11th Grade,Widowed,NotWorking,1.11,84.1,170.5,72,NA,NA,126,68,122,62,5.28,Excellent,6,No,No
+60112,2009_10,female,48,40-49,College Grad,Separated,Working,5,123.9,167.3,66,116,68,118,72,110,68,5.25,Good,5,Yes,Yes
+55965,2009_10,female,63,60-69,Some College,NeverMarried,Looking,1.62,73.2,169,76,130,80,114,80,NA,NA,5.77,Vgood,6,No,Yes
+52693,2009_10,male,44,40-49,8th Grade,Married,Working,1.44,81.5,169.7,62,138,92,134,98,142,88,6.21,NA,5,No,No
+57844,2009_10,male,57,50-59,High School,NeverMarried,Working,3.43,115.8,177.3,64,118,74,110,78,114,76,8.02,Good,8,No,No
+63837,2011_12,female,70,70+,Some College,Widowed,NotWorking,5,107.9,164.9,76,118,60,116,60,118,62,4.94,Vgood,7,Yes,Yes
+53550,2009_10,female,43,40-49,College Grad,Married,Working,5,60.4,176.8,76,108,62,108,58,114,62,4.03,Excellent,8,Yes,Yes
+54711,2009_10,male,41,40-49,9 - 11th Grade,Divorced,Working,5,80.4,173.2,64,120,72,122,70,128,72,4.22,Excellent,6,No,Yes
+70581,2011_12,female,63,60-69,9 - 11th Grade,Married,Working,2.86,66.6,154.5,82,112,72,116,74,112,66,6.83,Vgood,7,No,No
+68580,2011_12,female,47,40-49,Some College,Divorced,Working,4.43,80.2,157.5,52,106,72,112,74,104,76,3.88,Excellent,6,No,No
+59098,2009_10,female,47,40-49,High School,Married,Working,5,54.6,153.2,82,102,74,100,76,96,72,5.61,Vgood,8,No,Yes
+69140,2011_12,male,80,70+,High School,Married,NotWorking,2.64,96,182.8,74,144,44,154,48,146,40,5.48,Excellent,7,No,No
+68348,2011_12,male,32,30-39,College Grad,Married,Working,3.25,107.4,175.3,68,108,72,104,72,106,74,4.78,Good,6,Yes,No
+64197,2011_12,female,80,70+,College Grad,Widowed,NotWorking,4.2,40.2,148.1,52,NA,NA,148,64,NA,NA,6.18,Good,8,No,No
+53533,2009_10,male,42,40-49,9 - 11th Grade,Married,NotWorking,0.27,62.8,169.5,62,110,78,116,70,106,66,3.88,Fair,5,Yes,No
+64099,2011_12,female,71,70+,College Grad,Divorced,Working,3.9,67.3,173,58,140,48,138,46,138,42,9.05,Excellent,9,No,Yes
+70676,2011_12,female,75,70+,Some College,Divorced,NotWorking,4.69,60.4,161.9,64,144,72,128,66,132,72,4.78,Good,8,No,No
+66873,2011_12,female,54,50-59,Some College,Married,Working,NA,149.8,159.1,60,212,96,198,100,196,92,6.7,Good,7,No,No
+70728,2011_12,female,42,40-49,High School,NeverMarried,NotWorking,0,125.8,162.5,70,108,78,120,76,120,78,4.37,NA,NA,Yes,No
+60252,2009_10,male,39,30-39,Some College,Married,Working,3.77,86.3,171.2,68,110,70,112,74,114,74,5.3,Good,7,No,Yes
+65355,2011_12,male,37,30-39,Some College,Married,Looking,0.74,92.7,174.5,74,134,86,132,86,132,88,5.2,NA,7,Yes,No
+60213,2009_10,male,28,20-29,Some College,LivePartner,Looking,0.97,84.9,174.1,70,120,82,118,82,116,78,4.86,Vgood,9,No,Yes
+70757,2011_12,male,36,30-39,College Grad,Married,Working,5,66.5,174.9,72,118,76,122,68,114,68,3.93,Excellent,6,No,Yes
+64870,2011_12,female,80,70+,High School,Widowed,NotWorking,1.78,57.9,155.3,56,106,26,98,26,92,36,NA,Fair,7,Yes,Yes
+56771,2009_10,female,39,30-39,Some College,Married,Working,4.54,90.3,167.4,66,116,68,116,72,112,68,NA,Good,7,No,Yes
+52205,2009_10,female,48,40-49,Some College,Married,NotWorking,3.43,50.7,158.3,68,NA,NA,112,70,106,76,5.69,Fair,8,No,Yes
+56472,2009_10,female,32,30-39,9 - 11th Grade,Married,Working,0.98,73.4,158.3,78,114,52,110,54,108,50,4.53,Fair,7,Yes,Yes
+62174,2011_12,male,80,70+,College Grad,Married,NotWorking,4.3,95.8,168.1,56,NA,NA,96,38,98,40,5.25,Fair,9,No,No
+57053,2009_10,female,64,60-69,9 - 11th Grade,Married,NotWorking,3.3,40.8,147.6,66,132,80,132,82,122,84,6.08,Good,8,No,No
+65751,2011_12,male,54,50-59,High School,Married,Working,0.03,77.2,171.5,70,126,84,128,84,132,82,5.59,Good,7,No,No
+67073,2011_12,male,24,20-29,College Grad,NeverMarried,NotWorking,0.9,83.9,171.4,82,130,90,132,88,132,88,4.01,Vgood,6,No,Yes
+54659,2009_10,female,45,40-49,High School,Married,Working,1.2,52.1,160.8,64,110,60,94,58,100,60,4.68,Fair,8,No,Yes
+55239,2009_10,female,62,60-69,9 - 11th Grade,NeverMarried,NotWorking,1.39,69.5,161.5,86,180,90,174,84,172,86,5.69,Good,7,No,Yes
+70485,2011_12,male,34,30-39,College Grad,NeverMarried,Working,4.71,54.9,163.1,74,98,68,NA,NA,102,68,4.86,Vgood,7,No,Yes
+69329,2011_12,female,50,50-59,9 - 11th Grade,Divorced,NotWorking,0.62,91.2,171.3,82,102,78,98,74,102,72,5.43,Good,6,Yes,No
+55951,2009_10,female,33,30-39,Some College,Married,Working,3.43,72.8,167.2,70,106,52,106,58,104,60,4.09,Vgood,7,No,Yes
+57577,2009_10,male,52,50-59,College Grad,Married,Working,5,83.7,176.4,98,118,82,112,82,118,86,5.53,Vgood,6,Yes,Yes
+62549,2011_12,male,53,50-59,High School,Married,Working,2.01,65.9,174.9,78,114,74,118,72,122,74,5.17,NA,7,No,No
+62727,2011_12,female,80,70+,Some College,Married,NotWorking,1.65,78.2,159.3,58,NA,NA,220,64,214,64,5.46,Good,8,No,No
+57917,2009_10,male,54,50-59,9 - 11th Grade,NeverMarried,NotWorking,NA,73.8,169.9,52,134,82,128,80,134,82,6.03,Good,6,Yes,No
+71143,2011_12,female,53,50-59,College Grad,Married,Working,5,60.3,169.6,70,102,74,106,70,98,72,5.74,Excellent,7,No,Yes
+68622,2011_12,female,70,70+,Some College,Married,NotWorking,2.72,63.4,160.7,66,128,80,124,80,124,74,6.36,Good,7,Yes,No
+70751,2011_12,male,27,20-29,High School,Separated,Working,0.9,66.1,159.6,56,104,74,98,60,100,64,5.04,Vgood,7,No,Yes
+53191,2009_10,male,59,50-59,College Grad,Married,Working,5,96,184.4,46,134,92,126,88,130,86,5.22,Excellent,7,Yes,Yes
+69640,2011_12,female,23,20-29,9 - 11th Grade,NeverMarried,Working,1.08,109,168.2,58,108,66,104,62,106,58,5.09,Fair,6,Yes,Yes
+66147,2011_12,female,57,50-59,College Grad,Widowed,Working,0.53,76.7,160.4,72,136,88,130,88,126,84,NA,Good,8,No,No
+64307,2011_12,female,24,20-29,Some College,Married,NotWorking,1.74,81,159.5,74,102,70,102,72,100,68,3.39,Good,9,No,No
+56196,2009_10,male,71,70+,Some College,Divorced,NotWorking,2.31,110.7,180,72,136,60,126,54,124,62,4.27,Excellent,8,No,No
+55927,2009_10,female,43,40-49,Some College,Married,NotWorking,1.31,75.3,164.4,70,114,66,106,62,110,64,6.41,Vgood,8,No,Yes
+69917,2011_12,female,33,30-39,College Grad,Married,NotWorking,3.7,89.9,163,78,112,80,112,76,108,78,4.76,Vgood,7,No,Yes
+70987,2011_12,female,22,20-29,College Grad,NeverMarried,Working,5,59.1,158.3,74,122,66,112,76,NA,NA,5.07,Vgood,8,No,Yes
+64938,2011_12,male,40,40-49,College Grad,NeverMarried,Working,3.4,70.8,174.4,68,128,84,124,82,122,80,7.47,Vgood,7,No,Yes
+60833,2009_10,male,52,50-59,9 - 11th Grade,Married,Working,0.96,72.1,184.3,70,120,70,114,64,120,76,4.4,NA,4,Yes,No
+57668,2009_10,female,31,30-39,Some College,Divorced,Working,1.09,47.6,165.4,88,94,74,108,84,104,88,5.38,NA,8,Yes,No
+62621,2011_12,male,41,40-49,Some College,Married,Working,1.95,87.5,174.2,44,110,76,110,70,114,72,NA,NA,5,No,Yes
+61656,2009_10,female,26,20-29,Some College,Married,Working,2.75,64,165.7,60,114,72,112,60,112,66,3.7,Vgood,7,No,Yes
+62222,2011_12,male,32,30-39,College Grad,Married,Working,5,80.1,179,78,106,76,108,70,100,76,5.53,Good,7,Yes,No
+68950,2011_12,female,38,30-39,9 - 11th Grade,LivePartner,Working,1.33,61.7,156.2,78,120,72,118,70,110,74,6.39,Vgood,8,No,No
+67447,2011_12,female,57,50-59,College Grad,NeverMarried,Working,3.47,57.6,163.8,72,126,78,132,74,126,74,7.01,Vgood,7,No,No
+56305,2009_10,female,57,50-59,High School,Married,NotWorking,0.54,75.5,150.2,76,120,76,118,76,120,74,5.02,Fair,6,Yes,No
+67714,2011_12,male,75,70+,8th Grade,Widowed,NotWorking,0.86,95.4,185.9,54,142,48,136,38,134,46,4.27,Fair,8,No,No
+68667,2011_12,male,51,50-59,College Grad,Married,Working,2.1,77.8,175.7,58,134,76,124,78,128,76,NA,Vgood,7,No,No
+55580,2009_10,female,60,60-69,9 - 11th Grade,Married,NotWorking,0.84,166.1,157.5,80,140,70,134,62,134,64,5.38,Fair,6,Yes,No
+52661,2009_10,male,71,70+,Some College,Married,NotWorking,3.43,101.3,169.8,66,134,78,NA,NA,120,82,5.43,Good,8,No,No
+60700,2009_10,female,40,40-49,High School,Divorced,Working,0.06,50.1,164.9,74,114,62,112,60,116,60,4.14,Good,6,No,Yes
+57639,2009_10,female,44,40-49,High School,Married,Working,2.33,62.3,171.6,76,104,60,108,58,110,62,4.94,Good,4,No,No
+61332,2009_10,male,40,40-49,High School,NeverMarried,Working,1.59,117,171.3,94,118,84,120,84,126,80,6.67,Fair,7,No,Yes
+59280,2009_10,female,25,20-29,High School,Married,NotWorking,NA,48.7,148.2,88,96,52,94,54,92,50,4.01,Excellent,6,No,No
+53526,2009_10,female,62,60-69,College Grad,Married,Working,5,95.1,170.6,80,NA,NA,108,76,106,78,5.61,Vgood,7,No,No
+56024,2009_10,female,28,20-29,High School,Divorced,Working,1.37,56.3,162.8,62,104,66,104,72,108,78,4.09,NA,5,Yes,No

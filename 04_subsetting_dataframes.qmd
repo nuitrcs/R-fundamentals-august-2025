@@ -1,0 +1,403 @@
+---
+title: "Subsetting Data Frames"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# import the data frame
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+# Subsetting Data Frames
+
+In this section, we'll use some functions from the dplyr package (said as: d - plier), which is part of the tidyverse set of packages.
+
+```{r}
+library(dplyr)  
+```
+
+We've worked with the individual variables in our data frame. For example:
+
+```{r, eval=FALSE}
+healthdata$age
+```
+
+What if we want to work with a subset of the data frame other than a single column?
+
+We're going to cover several different methods to subset the data, including using some functions from the dplyr package that can make things a bit easier.
+
+Vectors are one-dimensional, while data frames are two dimensional: they have both rows and columns. When we refer to the elements of a data frame, we refer to rows first, columns second. This is also the order that we get information about a data frame when we use the `dim()` function:
+
+```{r}
+dim(healthdata)
+```
+
+The first value is the number of rows, the second is the number of columns.
+
+We can use `[]` to subset a data frame, but we need 2 values inside:
+
+```{r, eval=FALSE}
+data_frame_name[rows, columns]
+```
+
+Either rows or columns can be left empty, but the comma is still required. Leaving either the rows or columns position empty indicates that you want all of the rows or columns to be in the subset -- you're providing no limitations on that dimension.
+
+## Indexing Rows
+
+There are several ways to choose what rows to include in a subset:
+
+-   *By position*: first row index starts counting at 1 - not recommended except for quick checks
+-   *By conditional statement*: any expression that generates a boolean vector (TRUE and FALSE values) of the same length as the number of rows.
+
+These approaches can also be used with one-dimensional vectors.
+
+### Position
+
+This expression retrieves just the first row of the `healthdata` data frame.
+
+```{r}
+healthdata[1, ]
+```
+
+By leaving the place where we would index columns blank (putting nothing after the comma inside the square brackets), this indicates that we want all of the columns.
+
+The result is still a data frame, even though there is just one row.
+
+To choose more than one row, where the rows are consecutive, use a special syntax to select a range:
+
+```{r}
+healthdata[1:6, ]  # rows 1 through 6 inclusive
+```
+
+To choose non-consecutive rows, put the row numbers inside `c()` (c = combine, creates a vector):
+
+```{r}
+healthdata[c(2,4,6), ]  # rows 2, 4, 6
+```
+
+### Conditional Statement
+
+A conditional statement generates TRUE and FALSE values as output:
+
+```{r}
+healthdata$age == 34
+```
+
+When using this to subset data, any row in a position corresponding to a TRUE value is selected.
+
+Example of using a conditional statement:
+
+```{r}
+healthdata[healthdata$age == 34, ]
+```
+
+Note that the expression inside `[]` has to be a complete statement that is valid on it's own.
+
+## Common Mistake
+
+If we forget the comma inside `[]` when subsetting a data frame, it will (counter intuitively to many) think we're trying to index columns, not rows. This is because a data frame is internally stored as a list of the column vectors. So something like:
+
+```{r}
+healthdata[1]
+```
+
+does not produce an error, although it may not be the result you were looking for. This
+
+```{r, error=TRUE}
+healthdata[healthdata$age == 34]
+```
+
+does produce an error, because the length of `healthdata$age == 34` is greater than the number of columns in `healthdata`.
+
+Even though `healthdata[1]` doesn't produce an error, it is considered bad practice. When working with data frames, always include a comma inside `[]`.
+
+## TRY IT
+
+Subset healthdata to just rows where the participant gender is female.
+
+```{r}
+
+```
+
+## Indexing Rows: Missing Values
+
+When there is a missing value in the vector inside `[]` (of row indices/positions, or as the output of a conditional statement), the result returned is a little strange:
+
+```{r}
+healthdata[c(NA, 1, 2), ]
+```
+
+Each `NA` in a vector inside `[]` results in an entire row full of `NA` values in the output.
+
+```{r}
+healthdata[c(NA, 1, 2, NA, NA), ]
+```
+
+While we can avoid explicitly putting an `NA` value if we are indexing by position, but with conditional statements, `NA` show up if there are `NA` values in the variable we're interested in. For example,
+
+```{r}
+sum(is.na(healthdata$cholesterol))  # there are missing values
+head(healthdata[healthdata$cholesterol > 7, ])  # look at first few rows
+```
+
+There are functions discussed below that remove the `NA` rows from the output instead.
+
+## Choosing Columns
+
+We can choose which columns of a data frame we want by their numerical index or by their names.
+
+If we leave the position before the comma empty, then we get all rows in the output.
+
+```{r}
+healthdata[ , 1:3]
+healthdata[ , c("age", "gender")]
+```
+
+If the output includes more than one column (like above), it is returned as a data frame. If it is a single column, it is returned as a vector:
+
+```{r}
+healthdata[, 2]
+healthdata[, "age"]
+```
+
+When selecting a single column, you can use the `$` syntax, or put the column name inside `[]`.
+
+```{r, eval=FALSE}
+healthdata[, "age"] 
+# is equivalent to
+healthdata$age
+```
+
+## TRY IT
+
+Subset healthdata to just the education and marital_status of participants with age under 22
+
+```{r}
+
+```
+
+## Subsetting Both Rows and Columns
+
+The methods for selecting rows and columns can be combined together:
+
+```{r, eval=FALSE}
+healthdata[5:10, 3:5]
+healthdata[6:9, c("age", "cholesterol")]
+healthdata[healthdata$age < 22, c(4, 7, 9)]
+```
+
+When you just want one column in the output, you can use the `$` syntax, or put the column name inside `[]`.
+
+```{r}
+healthdata[healthdata$gender == "female", "age"]
+# is equivalent to
+healthdata$age[healthdata$gender == "female"]
+```
+
+## dplyr (Tidyverse)
+
+The syntax for subsetting a data frame can get a little cumbersome, with the `[]`, quotation marks around column names, `c()`, retyping the data frame name multiple times, and `$`. The dplyr package is part of a set of packages called the Tidyverse that are designed to work together and make working with data frames more consistent and easier. dplyr uses functions instead of `[]` to select and subset data.
+
+`dplyr` has two separate functions: `select()` for choosing columns and `filter()` for choosing rows:
+
+```{r}
+select(healthdata, age)
+select(healthdata, age, work_status, pulse)  # multiple columns 
+filter(healthdata, age < 22)
+```
+
+These funcitons always return a data frame.
+
+`filter()` ignores missing values, which simplifies the issues that happen with missing values with `[]`:
+
+```{r}
+head(filter(healthdata, sleep_hours == 12))
+```
+
+`select()` also has a lot of additional options that let you select columns based on their type, parts of the column name, and other features. `select()` and `filter()` can easily be combined together, as well as with other functions from the Tidyverse packages, in more complicated workflows. But we're going to learn a few more things before we learn how to use them together.
+
+## TRY IT
+
+Use dplyr functions to (separately):
+
+-   select just education and marital_status columns
+-   filter for participants with age under 22
+
+```{r}
+
+```
+
+# Compound Conditions
+
+What if we want to select observations (rows) that meet multiple conditions? We can write compound statements using AND (&) and OR (\|).
+
+## With Base R
+
+```{r, eval=FALSE}
+healthdata[healthdata$age > 60 & healthdata$gender == "male", ]
+healthdata[healthdata$age < 21 | healthdata$age > 79, ]
+
+# with a single column in the result:
+healthdata$gender[healthdata$age < 21 | healthdata$age > 79]
+```
+
+## With dplyr/Tidyverse
+
+```{r}
+filter(healthdata, age > 60 & gender == "male")
+# alternative: multiple conditions are joined by &
+filter(healthdata, age > 60, gender == "male")
+# OR | has to be explicit
+filter(healthdata, age < 21 | age > 79)
+```
+
+## TRY IT
+
+Are there any participants who get 10 or more hours of sleep (sleep_hours) but have trouble sleeping (sleep_trouble, which takes values Yes and No)?
+
+```{r}
+
+```
+
+## Even More Complexity
+
+Want to combine multiple and/or statements? "and" statements can be combined in any order; with "or" statements, it's best to enclose them in () to ensure they are combined correctly
+
+```{r, eval=FALSE}
+# base R
+healthdata[(healthdata$age > 75 | healthdata$age < 22) & healthdata$gender == "male", ]
+
+# dplyr
+filter(healthdata, (age > 75 | age < 22) & gender == "male")
+```
+
+# %in%
+
+The `%in%` operator lets us select observations matching several discrete values.
+
+```{r}
+my_vector <- c("snake", "cat", "dog", "fish", "hamster", "snake")
+my_vector %in% c("fish", "snake")
+```
+
+For each element of the left hand side vector, it returns TRUE if the value matches one of the values in the right hand side and FALSE otherwise. `%in%` is most commonly used with character/text values, but it can be used with discrete numeric values as well.
+
+```{r}
+my_vector <- c(1, 1, 2, 3, 5, 5)
+my_vector %in% c(1, 5)
+```
+
+Instead of using multiple OR expressions to find specific values such as:
+
+```{r}
+healthdata[healthdata$health_level == "Fair" | 
+             healthdata$health_level == "Good" | 
+             healthdata$health_level == "Vgood", ]
+```
+
+Use `%in%`:
+
+```{r}
+healthdata[healthdata$health_level %in% c("Fair", "Good", "Vgood"), ]
+```
+
+### NA and %in%
+
+`%in%` has the advantage of handling NA values a bit more gracefully than testing for equality.
+
+With `==`, if there is an `NA` in the vector, there will be an `NA` in the result
+
+```{r}
+my_vector <- c(1, 1, NA, 3, 5, 5)
+my_vector == 1 | my_vector == 5
+```
+
+With `%in%`, when `NA` is involved on the left hand side:
+
+```{r}
+my_vector <- c(1, 1, NA, 3, 5, 5)
+my_vector %in% c(1, 5)
+```
+
+`NA` doesn't match either 1 or 5, so the third value is FALSE in the result.
+
+If you want `NA` values included, they can be added explicitly. `NA` on the right hand side:
+
+```{r}
+my_vector <- c(1, 1, NA, 3, 5, 5)
+my_vector %in% c(1, NA)
+```
+
+The third value in the return vector is now TRUE because `NA` does match `NA`.
+
+## TRY IT
+
+Use `%in%` to subset healthdata to only include rows where people report getting 2, 3, 11, or 12 hours of sleep (sleep_hours)
+
+```{r}
+
+```
+
+# Data Frames: Subsetting Review
+
+We've seen several ways to subset vectors and data frames. Here's a quick review. The code blocks below include examples of selecting both rows and columns by position (with the numeric index), but not that this is not recommended in most cases, as it's easier to make a mistake and isn't robust to changes in your data file.
+
+```{r, eval=FALSE}
+# choose a single column
+healthdata$age       
+healthdata[, "age"]
+healthdata[, 4]          
+select(healthdata, age)  # returns the column as a data frame
+
+# choose multiple columns
+healthdata[, c("gender", "age")]
+healthdata[, 3:4]        
+select(healthdata, gender, age)
+```
+
+```{r, eval=FALSE}
+# subset a single column
+healthdata$age[1]     # by position
+healthdata[1, "age"]  # by position
+healthdata$age[healthdata$gender == "male"]    # by conditional
+healthdata[healthdata$gender == "male", "age"] # by conditional
+
+# subset a data frame, return all columns
+healthdata[1, ]                            # by position
+healthdata[healthdata$gender == "male", ]  # by conditional
+filter(healthdata, gender == "male")       # by conditional
+
+# subset a data frame, return select columns
+healthdata[1, c("gender", "age")]          # by position
+healthdata[1, 3:4]                         # by position
+healthdata[healthdata$gender == "male", c("gender", "age")]  # by conditional
+healthdata[healthdata$gender == "male", 3:4]  # by conditional
+```
+
+There are additional variations as well, but this covers many of the common patterns.
+
+When we're writing conditional statements to subset data, remember that we can also combine multiple expressions with AND (`&`) and OR (`|`), and use NOT (`!`) as well.
+
+```{r, eval=FALSE}
+# AND: meets multiple conditions
+healthdata[healthdata$gender == "male" & age >= 40, ]
+filter(healthdata, gender == "male", age >= 40)
+
+# OR: meets at least one condition
+healthdata[healthdata$bp_dia1 > 90 | healthdata$bp_sys1 > 140, ]
+filter(healthdata, bp_dia1 > 90 | bp_sys1 > 140)
+
+# NOT: negates an expression (reverses TRUE and FALSE)
+healthdata[!is.na(healthdata$pulse), ]
+filter(healtdata, !is.na(pulse))
+healthdata[!(healthdata$bp_dia1 > 90 | healthdata$bp_sys1 > 140), ]
+filter(healthdata, !(bp_dia1 > 90 | bp_sys1 > 140))
+
+# Compound conditions: use () when mixing AND and OR
+healthdata[healthdata$age < 30 & 
+             (healthdata$bp_dia1 > 90 | healthdata$bp_sys1 > 140), ]
+filter(healthdata, 
+       age < 30 & (bp_dia1 > 90 | bp_sys1 > 140))
+```

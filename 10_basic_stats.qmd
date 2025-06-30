@@ -1,0 +1,330 @@
+---
+title: "Summary Measures, Statistical Relationships, and Distributions"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+Import packages that we'll use:
+
+```{r}
+library(tidyverse)
+```
+
+# Continuous Variables: Statistical Summary Measures
+
+R was designed for statistics. Let's review some of the basics.
+
+We've already seen some functions for some common statistical summary measures for single variables with *continuous* data: `mean()`, as a common example. Some additional common functions: `median()`, `sd()`, `var()`, `min()`, `max()`.
+
+Let's re-import the data so that we're sure we're all working with the original data:
+
+```{r}
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+## For All Observations
+
+To compute these measures across all observations:
+
+Option 1: Examples without any external packages
+
+```{r}
+mean(healthdata$weight, na.rm=TRUE)
+median(healthdata$height, na.rm=TRUE)
+sd(healthdata$weight, na.rm=TRUE)
+var(healthdata$height, na.rm=TRUE)
+```
+
+Option 2: Examples using dplyr functions
+
+```{r}
+healthdata %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE),
+            median_height = median(height, na.rm=TRUE),
+            sd_weight = sd(weight, na.rm=TRUE),
+            var_height = var(height, na.rm=TRUE))
+```
+
+## For Groups
+
+To compute these measures per group, the easiest option is to use functions from the dplyr package. There are built-in alternatives (see `tapply()` or `aggregate()`), but we're just focusing on one option here:
+
+```{r}
+healthdata %>%
+  group_by(gender) %>%
+  summarize(mean_weight = mean(weight, na.rm=TRUE),
+            median_height = median(height, na.rm=TRUE),
+            sd_weight = sd(weight, na.rm=TRUE),
+            var_height = var(height, na.rm=TRUE))
+```
+
+To compute summary statistics for a single group without functions from packages, we can subset the data:
+
+```{r}
+mean(healthdata$weight[healthdata$gender == "male"], na.rm=TRUE)
+```
+
+
+## TRY IT
+
+Compute min, max, and mean age for each marital_status category.
+
+```{r}
+
+```
+
+
+
+# Categorical Variables: Frequencies and Proportions
+
+We have also seen how to count the number of observations in each category of a variable (`table()`), and we know what we need to compute group proportions as well (although we may not have done that completely before).
+
+## Single Variable
+
+Option 1: Examples without any external packages
+
+```{r}
+table(healthdata$gender, useNA = "ifany")
+prop.table(table(healthdata$gender, useNA = "ifany"))
+table(healthdata$gender, useNA = "ifany") / length(healthdata$gender)
+```
+
+Option 2: Examples using dplyr functions
+
+```{r}
+healthdata %>%
+  count(gender) %>%
+  mutate(prop = n / sum(n))
+```
+
+Option 3: Other packages; there are a number of useful packages that produce tables with summary statistics. One function that is particularly useful for categorical data is `tabyl()` from the janitor package:
+
+```{r}
+# install.packages("janitor")  # if needed
+library(janitor)
+
+tabyl(healthdata, gender)
+```
+
+## Multiple Variables
+
+We can make frequency tables with multiple variables:
+
+```{r}
+table(healthdata$gender, healthdata$education, useNA = "ifany")
+```
+
+If we want to then compute proportions, we have to decide which proportions we're computing.
+
+In particular, what is the denominator?  Are we computing row proportions?  Column proportions?  Overall proportions?
+
+With the table above, let's compute proportions across education categories within each gender, meaning we want row proportions (proportions in each row total to 1).  We want to group our analysis by gender.
+
+Option 1: Examples without any external packages
+
+```{r}
+prop.table(table(healthdata$gender, 
+                 healthdata$education, 
+                 useNA = "ifany"),
+           margin = 1)  # margin: 1 = prop. by rows, 2 = prop. by columns
+```
+
+Option 2: Examples using dplyr functions
+
+Proportions within each gender total to 1.
+
+```{r}
+count(healthdata, gender, education) %>%
+  group_by(gender) %>%
+  mutate(prop = n / sum(n))
+```
+
+Option 3: `tabyl()` from janitor
+
+```{r}
+# counts
+tabyl(healthdata, gender, education)
+
+# row proportions
+tabyl(healthdata, gender, education) %>%
+  adorn_percentages(denominator = "row")
+
+# format as %
+tabyl(healthdata, gender, education) %>%
+  adorn_percentages(denominator = "row") %>%
+  adorn_pct_formatting(digits = 0)
+
+# add back in the counts
+tabyl(healthdata, gender, education) %>%
+  adorn_percentages(denominator = "row") %>%
+  adorn_pct_formatting(digits = 0) %>%
+  adorn_ns() 
+```
+
+## TRY IT
+
+Examine `education` and `work_status`.  Does the proportion of people out of work vary across education levels?  Hint: proportions for each education level should total 1.
+
+```{r}
+
+```
+
+
+
+# Statistical Relationships
+
+As we explore the relationship between different types of variables, we often want to test whether those relationships are significant: are they real or likely to hold with other data, or are they part of the expected variability and noise in the data?
+
+The type of statistical test we use depends on whether we're working with continuous or categorical variables.
+
+::: callout-note
+## This is not a statistics workshop
+
+All of the statistical measures and tests we're covering have assumptions about the data and other requirements to produce valid output. Here, we're focused on how to run the tests in R, not how to ensure we're making correct statistical inferences. Please consult your stats book or a statistician for guidance on actual statistical inference and analysis decisions.
+:::
+
+## Correlation: Two Continuous
+
+One way to look at the relationship between two continuous variables is the correlation. For example, height and weight:
+
+```{r}
+ggplot(healthdata, aes(cholesterol, weight)) +
+  geom_point()
+```
+
+Correlation looks at whether there is a linear relationship.  `cor()` takes two vectors.
+
+```{r}
+cor(healthdata$cholesterol, healthdata$weight)
+```
+
+`NA` again!
+
+The `NA` options for `cor()` are slightly different than for `mean()` or other similar functions.  The `NA` options are different because `cor()` can also be used with matrices of numeric values.  When computing the correlation between two variables, the option to use is:
+
+```{r}
+cor(healthdata$cholesterol, healthdata$weight, use = "pairwise")
+```
+
+To determine whether a correlation is statistically significant, we can use `cor.test()`
+
+```{r}
+cor.test(healthdata$cholesterol, healthdata$weight, use = "pairwise")
+```
+
+In addition to computing the correlation coefficient, which ranges between -1 and 1, it also computes a t-test (more on these below) where the null hypothesis is that there is no correlation between the variables.  p-values < 0.05 are often considered to be statistically significant, meaning that there is less than a 5% chance of seeing the given correlation statistic if there was truly no relationship between the two variables.
+
+The result is affected by how many observations are included.
+
+## TRY IT
+
+Compute the correlation between `bp_sys1` and `bp_dia1.`  Is this correlation statistically different from 0?
+
+```{r}
+
+```
+
+
+### Tidyverse
+
+You can compute a correlation within a Tidyverse workflow:
+
+```{r}
+healthdata %>%
+  summarize(correlation = cor(height, weight, use="pairwise"))
+```
+
+
+
+## t-test: Categorical and Continuous
+
+Is the average height of female participants different than that of male participants?  This is an example of investigating the relationship between a continuous variable (height) and a categorical variable (gender). 
+
+To do this, we can use a t-test to see how the mean differs across two groups.
+
+The easiest way to specify that we want to compare the average value of a variable between two groups is to use R's formula syntax, which includes a `~`.  `~` is read as "as a function of".  So to test whether average height differs as a function of gender:
+
+```{r}
+t.test(healthdata$height ~ healthdata$gender)
+```
+
+The output includes the mean values for each group, a confidence interval on the *difference* between the two means, and the test statistic and p-value.  p-values < 0.05 are often considered to be statistically significant, meaning that there is less than a 5% chance of seeing the given test statistic (t value) if there was truly no difference in means between the two groups.
+
+If the continuous variable has more than 2 groups, you will need a test or model other than a t-test, such as ANOVA.  
+
+## TRY IT
+
+Does average pulse differ by gender?
+
+```{r}
+
+```
+
+
+## t-test: Accessing Results
+
+If you need the values from the t-test results, instead of copying them from the output in the console, you can extract them from the result of the test.  Save the test result to a variable, and then you can access its components:
+
+```{r}
+t1 <- t.test(healthdata$height ~ healthdata$gender)
+names(t1)  # works for a variety of objects besides data frames
+t1$statistic
+t1$p.value
+```
+
+
+## t-test: Other Scenarios
+
+t-tests can also be used in other situations, such as comparing pre and post measures for participants in an experiment or testing whether a single value, such as the mean of a variable, is different from 0 (or another value).
+
+### Single Variable t-test
+
+Instead of comparing the mean of two groups of observations, we can compare whether the mean is different than a specific value.  The specific value of interest is often 0, but we can compare the mean to any value.
+
+The average height of people in the US is about 168 cm.  Does the average height of people in this data set differ from that?
+
+We can specify a comparison value with the `mu` argument, which defaults to 0.
+
+```{r}
+t.test(healthdata$height, mu = 168)
+```
+
+
+
+### Paired t-test
+
+A paired t-test is used when you have more than one measurement per observation.  Instead of comparing averages across two groups, we instead test whether the difference between measurement 1 and measurement 2, averaged across observations (people), is different than 0 (or another value).
+
+With our dataset, we can ask: is the first BP measurement different than the second?  We'll compare bp_sys1 and bp_sys2, and indicate that the observations are paired:
+
+```{r}
+t.test(healthdata$bp_sys1, healthdata$bp_sys2, paired = TRUE)
+```
+
+
+## Chi-squared: Two Categorical
+
+To test whether there is a relationship between two categorical variables, we can use a chi-squared test.  
+
+For example, do men and women have different education levels?
+
+```{r}
+table(healthdata$gender, healthdata$education)
+prop.table(table(healthdata$gender, healthdata$education), 
+           margin = 1)  # 1 = rows
+```
+
+A chi-squared test doesn't tell us what the relationship is, just whether there is a difference in proportions across categories between different groups.
+
+```{r}
+chisq.test(healthdata$gender, healthdata$education)
+```
+
+## TRY IT
+
+Is there a relationship between gender and work_status?  Make a table first to look at the relationship, and then run a chi-squared test.
+
+```{r}
+
+```

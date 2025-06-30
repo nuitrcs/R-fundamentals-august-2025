@@ -1,0 +1,269 @@
+---
+title: "Helpful Functions"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(dplyr)
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+# Pipe Operator
+
+As you put together more complex expressions with R, nesting function calls can make code hard to read, because it flips the order of the steps: the last operation ends up on the outside.  
+
+Instead, we can use a "pipe" operator to chain together commands in order.  The operator takes the output from a command on the left and makes it the first input to the function on the right.
+
+The built-in version of this operator is `|>`.  Another version of the operator that is commonly used, which comes from a package that's installed with tidyverse, is `%>%`.  `%>%` has some additional capabilities that `|>` doesn't, but they work the same for the situations we'll discuss here.
+
+
+```{r}
+# instead of:
+round(log(10))
+
+# with pipe
+log(10) |> round()
+log(10) %>% round()
+```
+
+The left hand side, `log(10)` is computed, and the output becomes the first input to the `round()` function on the right hand side.
+
+Other inputs can also be used:
+
+```{r}
+log(10) |> round(digits=3)
+```
+
+Using the pipe operator means that we can think about the steps we need to take with the data, and then have those steps show up in that order in the code.
+
+::: callout-tip
+## RStudio Tip: Pipe Shortcut
+
+The keyboard shortcut to type a pipe operator in RStudio is Ctrl + Shift + M (Windows) or Cmd + Shift + M (Mac).  This will insert `%>%` by default.  To change to `|>`, go to the Tools menu > Global Options > Code > Use Native Pipe Operator
+:::
+
+
+## TRY IT
+
+Convert the following expression to use the pipe operator instead:
+
+```{r}
+max(round(healthdata$weight), na.rm=TRUE)
+
+
+```
+
+
+
+## Pipe with Tidyverse
+
+dplyr functions, like `select()`, `filter()`, and `mutate()` take a data frame as their first input and return a data frame.  This means they can be chained together easily with the pipe operator.  
+
+```{r}
+filter(healthdata, gender == "male") %>%
+  select(height, weight)
+```
+
+Note that the data frame name is omitted from `select()` because the data frame that results from `filter()` is that first input because of the pipe operator.  
+
+To make it clearer what data frame you're working with, it's common to put the data frame by itself at the start of a chain of dplyr commands:
+
+```{r}
+healthdata %>%
+  filter(gender == "male") %>%
+  select(height, weight)
+```
+
+Remember: Order matters - if you want to filter using a particular column, make sure you don't remove it with select before the filter step 😀 
+
+## TRY IT
+
+Subset the healtdata data frame to contain the the education and marital_status for participants younger than 22.
+
+```{r}
+
+```
+
+
+# Save a Data Frame
+
+To save a data frame to a CSV file, use the `write.csv()` function.
+
+```{r, eval=FALSE}
+write.csv(healthdata[healthdata$gender == "male", ], 
+          file="male_respondents.csv",
+          row.names = FALSE)  # don't number the rows in the output
+```
+
+The file is saved in your working directory; include directories in the file path to direct the output elsewhere.
+
+If you want to work with the resulting file in Excel, it's still recommended to save a CSV file, instead of an Excel file, as Excel can easily open a CSV file.  
+
+It is HIGHLY recommended to save a data frame to a new file; do NOT overwrite the original CSV or Excel file that you read into R and modified (meaning use a different file name when you save the file).  Overwriting the original file would prevent you from undoing any changes and prevents you from replicating your workflow, since the complete workflow would use two different versions of the same file.
+
+
+# Working with Text
+
+## paste()
+
+`paste()` is used to join, or concatenate, pieces of text together into a single string. It works element-wise on vectors.
+
+```{r}
+paste("Participant", healthdata$id, "is", healthdata$age, "years old")
+```
+
+The default separator between the elements is a space.  
+
+```{r}
+paste(healthdata$gender, healthdata$age, sep=", ")
+```
+
+There is a shorthand for the common situation where you want to join the pieces of text without any separator between them: `paste0()`
+
+```{r}
+paste0(healthdata$height, "cm")
+```
+
+
+## TRY IT
+
+Format `bp_sys1` and `bp_dia1` in a blood pressure reporting format, like 120/80
+
+```{r}
+
+```
+
+## str_replace()
+
+To edit character/text data, functions from the `{stringr}` package (which is installed as part of tidyverse), are helpful - to replace a character or substring use `str_replace`:
+
+```{r}
+library(stringr)
+
+str_replace(healthdata$age_decade, "-", " to ")
+```
+
+If you know regular expressions for pattern matching, the `{stringr}` functions can be used with regular expressions as well.  (Regular expressions are really useful if you work with text data.)
+
+If you want to remove a character or substring instead of replace it, use `str_remove()` instead.
+
+
+## TRY IT
+
+Replace the underscore "_" in survey_year with a dash "-"
+
+```{r}
+
+```
+
+
+
+# Sorting
+
+To sort the values of a vector, use `sort()`:
+
+```{r}
+sort(healthdata$age)
+sort(healthdata$age, decreasing = TRUE)
+```
+
+`NA` values are dropped by default when sorting:
+
+To sort the rows in a data frame, use the `arrange()` function from the dplyr package:
+
+```{r}
+arrange(healthdata, age)
+arrange(healthdata, desc(age))
+
+arrange(healthdata, age, pulse)
+```
+
+
+
+# Unique Values
+
+## unique()
+
+`unique()` returns the set of distinct values in a vector:
+
+```{r}
+unique(healthdata$sleep_hours)
+```
+
+`NA` is included as a value.
+
+If you use `unique()` on a data frame instead of on a vector, it drops fully duplicate rows.
+
+To get the unique values in sorted order, combine with `sort()`:
+
+```{r}
+sort(unique(healthdata$sleep_hours))
+```
+
+Note that when sorting, `NA` values are dropped.
+
+To count the number of distinct values, combine with `length()`:
+
+```{r}
+length(unique(healthdata$sleep_hours))
+```
+
+## n_distinct()
+
+The `n_distinct()` function from the dplyr package is a useful shortcut when you want `length(unique(...))`:
+
+```{r}
+n_distinct(healthdata$sleep_hours)
+```
+
+
+
+# Generating Vectors
+
+Generating a vector with a specific sequence of values in it can be useful for some data cleaning/manipulating tasks, and when doing more complex programming or creating simulations in R.
+
+## :
+
+You've already seen the colon operator when subsetting vectors and data frames:
+
+```{r}
+1:4
+-4:7
+```
+
+This creates a vector of integers inclusive of the start and end values.  This can be useful if you want to number the rows in a data frame.
+
+## seq()
+
+The `seq()` (sequence) function generalizes what you can do with `:` by allowing you to use values other than integers and specify the spacing between values:
+
+```{r}
+seq(from=0, to=1.5, by=.25)
+```
+
+```{r}
+seq(0, 3, by=.7)
+```
+
+The first value in the output will be the first value (`from`) of the input.  The last value of the output will be the last valid value in the sequence less than or equal to the `to` value in the input.  There are some additional special cases and variants on how to use the function that you can read about in the documentation.
+
+
+## rep()
+
+`rep()` (repeat) builds a vector by repeating elements a specified number of times:
+
+```{r}
+rep("a", 4)
+rep(c("a", "b"), 4)       # repeats the whole vector 4 times
+rep(c("a", "b"), each=4)  # repeats each element 4 times
+```
+
+You can also specify more complicated patterns.  For example:
+
+```{r}
+rep(6:9, times=1:4)
+```
+
+The first element (6) is repeated 1 time, the second (7) is repeated 2 times, and so on.  

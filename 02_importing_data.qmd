@@ -1,0 +1,147 @@
+---
+title: "Importing Data"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Importing a CSV File: Basics
+
+R can import many types of data files, but we'll start with a comma separated values (CSV) file. The file "data/nhanes.csv" is a rectangle of data with rows of observations and columns of variables, each column having a name in the first row.
+
+```{r}
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+What's going on in the statement above:
+
+-   We specify the file path, "data/nhanes.csv", relative to R's *working directory* which is the folder that R looks in first for any data or files.
+-   We're providing the file path, "data/nhanes.csv", as input to the function `read.csv()`. The function returns the contents of the file as a `data.frame`, which we'll learn more about.
+-   We save the data set into a variable called `healthdata` using the assignment operator: `<-`. This will allow us to use the name "healthdata" to refer to the dataset later. "healthdata" is a name we chose; we could have picked a different name. `healthdata` now appears in the Environment tab in RStudio, which shows all of the variables we've created.
+
+There are additional options available for the `read.csv()` function, as well as alternatives to the `read.csv()` function, which can be helpful if you have a CSV file without a header row, unusual formatting, special missing value codes, or other issues that deviate from the default expectations.
+
+::: callout-tip
+## RStudio Tip: File Path Suggestions
+
+In RStudio, when you're importing a file, if you type quotation marks, and then put your cursor between the quotation marks and hit tab, a menu will pop up listing the files and folders in the current working directory. You can then choose the file from the menu.
+
+If you choose a folder initially, just hit tab again to get the list of the contents of that folder, until you find the file you want to import.
+
+This is helpful for avoiding typos in file names and so you can see what's accessible from the current working directory.
+:::
+
+# Get Information about a Data Frame
+
+We can use functions to get information about the data frame `healthdata`. We call functions with the syntax of `functionname(input_values)`.
+
+## View it
+
+We can open the data in a spreadsheet-like viewer:
+
+```{r}
+View(healthdata)
+```
+
+Or we can print out the contents to the console. Typing the variable name `healthdata` will print everything, which won't be very helpful, because it's too much output. Instead, we can print the first few rows with `head()`:
+
+```{r}
+head(healthdata)
+```
+
+## Dimensions/Size
+
+After importing data, it's good to check that the data frame has the number of rows and columns expected.
+
+```{r}
+nrow(healthdata)  # number of rows/observations
+ncol(healthdata)  # number of columns/variables
+dim(healthdata)   # both numbers at once: rows, columns
+```
+
+## Information on Data Frame Variables
+
+We have two types of "variables":
+
+-   Objects or values we store with a name in R, which appear in the Environment tab in RStudio
+-   The columns of a data frame
+
+In both cases, the variables have names that we'll be able to use to refer to either the entire data set (`healthdata`) or the individual columns.
+
+We can get information on what variables are included and the data type of each column with `str()`:
+
+```{r}
+str(healthdata)   # str is short for structure
+```
+
+Core data types are:
+
+-   int (integer): whole numbers, positive or negative
+-   chr (character): text
+-   num (numeric): numbers including decimal values
+-   logi (logical): true and false values
+
+There are additional data types that can result from transforming variables, such as dates and factors for categorical variables.
+
+The output of `str()` is also what you can see in the Environment tab in RStudio.
+
+## Variable (Column) Names
+
+We'll need to reference the column names frequency. To see those more compactly than with `str()`, use `names()`
+
+```{r}
+names(healthdata)
+```
+
+### Data Set Information
+
+We'll be working with this data set throughout the workshop. Here is some information about the variables:
+
+-   **id**: unique ID for the participant
+-   **survey_year**: 2 different survey years: "2009_10" "2011_12"
+-   **gender**: male or female
+-   **age**: age in years (integer values)
+-   **age_decade**: categorical age grouping
+-   **education**: education level completed, text values
+-   **marital_status**: marital status, text values
+-   **work_status**: work status, text values
+-   **income_poverty_ratio**: ratio of participant income to the poverty line
+-   **weight**: weight in kg
+-   **height**: height in cm
+-   **pulse**: heart beats per minute
+-   **bp_sys1**: first systolic (top) blood pressure measure
+-   **bp_dia1**: first diastolic (bottom) blood pressure measure
+-   **bp_sys2**: second systolic (top) blood pressure measure
+-   **bp_dia2**: second diastolic (bottom) blood pressure measure
+-   **bp_sys3**: third systolic (top) blood pressure measure
+-   **bp_dia3**: third diastolic (bottom) blood pressure measure
+-   **cholesterol**: total cholesterol, in millimoles per liter (mmol/L); multiply by 38.67 to convert to US measure in mg/dL
+-   **health_level**: participant-reported overall health level, categorical
+-   **sleep_hours**: number of hours of sleep per weeknight, integer values
+-   **sleep_trouble**: binary indicator of whether participant has sleep problems (Yes/No)
+-   **physically_active**: binary indicator of whether participant participates in at least moderate physical activities (Yes/No)
+
+# Importing Excel Files
+
+R can import file types other than CSV. For example, Excel files (.xls, .xlsx) can be imported directly - no need to save a copy as a CSV file first. Use the `readxl` package, which is installed as part of the `tidyverse` meta package, or it can be installed separately.
+
+Because you're only likely to use one function from the `readxl` package, namely `read_excel()`, we can preface the function name with the package name instead of using `library(readxl)` (but it's OK to import the package with the library command if you prefer).
+
+```{r}
+## this code isn't saving the data in R: just importing and printing to the console
+readxl::read_excel("data/NUdates.xlsx")
+```
+
+By default, `read_excel()` imports the first sheet, but you can specify a different sheet. If you need to import more than one sheet from the same Excel file, you will need to use a `read_excel()` command for each sheet.
+
+```{r}
+readxl::read_excel("data/NUdates.xlsx", sheet="holidays")
+```
+
+To use the data in R, we need to save the data to a variable:
+
+```{r, eval=FALSE}
+nu_calendar <- readxl::read_excel("data/NUdates.xlsx")
+```
+
+Note that unlike `read.csv()`, `read_excel()` recognizes dates and reads them in as a date type automatically.

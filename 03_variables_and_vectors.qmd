@@ -1,0 +1,502 @@
+---
+title: "Data Frame Variables and Vectors"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# import the dataframe
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+# Working with Data Frame Variables
+
+We can access individual variables from a data frame using the syntax of `dataframe_name$variable_name`. For example:
+
+```{r}
+healthdata$age
+```
+
+By default, this will print out the first 1000 values of the variable.
+
+::: callout-tip
+## RStudio Tip: Variable Names
+
+In RStudio, when you type the name of a data frame followed by \$, a menu listing the names of the variables in that data frame will appear. You can select the name from the menu, or keep typing to narrow down the choices before choosing the variable. Hit the tab key to choose the highlighted option.
+:::
+
+::: callout-tip
+## R Tip: Output Indices
+
+Note when there is a lot of output, the numbers in brackets on the left side (\[1\] and so on) are providing the index position of the first element in that line of output. This always starts with 1, and then the values on the subsequent lines will depend on how much output can fit on a line (varies by the values and the width of your console).
+:::
+
+To see just a few values, we can use `head()` like we did with the full data set, optionally specifying the number (`n`) values to show:
+
+```{r}
+head(healthdata$age, n=20)
+```
+
+An individual variable/column of a data frame is a *vector*. A vector is an ordered list of values all of the same type.
+
+## Using Summary Functions
+
+We can supply variables from the data frame as inputs to functions:
+
+```{r}
+mean(healthdata$age)
+table(healthdata$gender)
+unique(healthdata$survey_year)
+length(healthdata$survey_year)  # number of values in the vector
+```
+
+## TRY IT
+
+Compute the variance `var()`, standard deviation `sd()`, minimum value `min()`, and maximum value `max()` of the age variable in `healthdata`.
+
+```{r}
+
+```
+
+# Vectorized Functions
+
+Some functions, like `mean()` and `max()` take a vector as input and return a single value. Other functions will operate on each element of the vector individually:
+
+```{r}
+log(healthdata$height)
+```
+
+Arithmetic operations also affect each element of a vector:
+
+```{r}
+healthdata$weight/2.2
+```
+
+Basic math operations and comparisons involving two vectors are also performed element-wise:
+
+```{r}
+healthdata$height * healthdata$weight  
+```
+
+# Missing Values
+
+Vectors can contain missing values. Missing values are represented by `NA` in R:
+
+```{r}
+head(healthdata$health_level, n=20)
+```
+
+Note in the output that `NA` appears by itself, with no quotation marks around it. It is a special value/symbol, not character data like the other values.
+
+## Missing Values with Functions
+
+When there is missing data in a vector, many summary functions will return `NA` as a result:
+
+```{r}
+mean(healthdata$pulse)
+max(healthdata$pulse)
+```
+
+The `mean()` and `max()` functions have an argument, `na.rm` (NA remove) to indicate that missing values should be dropped in computing the value:
+
+```{r}
+mean(healthdata$pulse, na.rm=TRUE)
+max(healthdata$pulse, na.rm=TRUE)
+```
+
+`min()`, `sd()`, `var()`, `median()` all also have an `na.rm` option.
+
+How other functions handle missing values, and the name of the argument for handling missing values (if there is one) may be different. For example, to include missing values in a frequency table:
+
+```{r}
+table(healthdata$health_level)   # excludes missing values by default
+table(healthdata$health_level, useNA = "ifany")
+```
+
+## TRY IT
+
+Compute the mean and median of the first blood pressure measurements (`bp_sys1` and `bp_dia1`)
+
+```{r}
+
+```
+
+## Counting Missing Values
+
+We can identify missing values with the `is.na()` function, which returns `TRUE` where a value is missing and `FALSE` where the value is not missing:
+
+```{r}
+head(healthdata$health_level, n=20)
+is.na(head(healthdata$health_level, n=20))
+```
+
+### Summing Boolean Values
+
+A vector of TRUE and FALSE indicating which values are missing isn't that helpful to us. But we can use the `sum()` function to count the missing values. `sum()` will add numeric values, but it will also "add" logical/boolean values, counting TRUE as 1 and FALSE as 0
+
+```{r}
+# is.na() returns TRUE/FALSE
+is.na(head(healthdata$health_level, n=20))
+
+# count NA in the first 20 observations
+sum(is.na(head(healthdata$health_level, n=20)))
+
+# count NA over the whole vector
+sum(is.na(healthdata$health_level))
+```
+
+## TRY IT
+
+How many missing values are in the cholesterol variable?
+
+What proportion of the values in the cholesterol variable are missing? Hint: what function can tell you how many values there are total in the cholesterol variable (how long the vector is)?
+
+```{r}
+
+```
+
+## Not Missing
+
+What if we want to see or count the observations that are NOT missing instead of those that are? We use the not operator `!`
+
+```{r}
+# is.na() returns TRUE/FALSE
+is.na(head(healthdata$health_level, n=20))
+
+# !is.na() returns the opposite
+!is.na(head(healthdata$health_level, n=20))
+
+# count not missing
+sum(!is.na(head(healthdata$health_level, n=20)))
+```
+
+## Counting Missing Values for All Variables
+
+`is.na()` will also work with a data frame as input:
+
+```{r}
+is.na(healthdata)
+```
+
+Combining this with the function `colSums()`, we can get a count of how many missing values are in each column:
+
+```{r}
+colSums(is.na(healthdata))
+```
+
+# Standalone Vectors
+
+The columns in a data frame are vectors, but we can also create vectors that are not part of a data frame. We do this with the `c()` function (short for combine)
+
+```{r}
+my_vector <- c(1, 5, 3, 2)
+my_vector
+```
+
+Here, we are creating a vector with 4 integer values and assigning it to the variable `my_vector`. `my_vector` now appears in the Environment tab in RStudio. Because it's not part of a data frame, we can refer to it by it's name alone.
+
+Standalone vectors can be useful when we're subsetting data frames and other vectors (coming soon).
+
+Vectors have a single type of data in them. If we try to create a vector with different types of data, the types will be converted to the most general/flexible type that's present in the vector:
+
+```{r}
+my_second_vector <- c("a", 3, TRUE)
+my_second_vector
+```
+
+Above, all of the values were (silently!) converted to type character (text). We can see this in the output because the values are displayed with quotation marks around them.
+
+From most general/flexible to most specific/limited:
+
+-   character
+-   numeric
+-   integer
+-   logical
+
+`NA` can be included in vectors of any type:
+
+```{r}
+my_third_vector <- c("cat", "cat", "dog", NA, "bear")
+my_third_vector 
+```
+
+::: callout-tip
+## R Tip: Keep Data in a Data Frame
+
+It may be tempting to create standalone vectors to store data, since you don't need the `$` syntax to refer to them. This, however, is a dangerous practice if you have more than one vector of related data. Data frames help insure that the values for each observation (row) remain together. Working with independent vectors, it's easy to sort or delete values in one vector and not change the others. This can result in values for an observation being mixed up across vectors. Use data frame when possible.
+:::
+
+# Vector Indexing
+
+We can access individual values in a vector by their position index, or subset a vector by position indices or by writing conditional statements.
+
+## By Position
+
+Each element in a vector has a position, starting with 1. We use `[]` (read as "square brackets") to refer to elements of a vector
+
+```{r}
+my_vector <- c("apple", "banana", "cat", "dog", "elephant")
+my_vector
+my_vector[1]
+```
+
+```{r}
+healthdata$age[1]
+```
+
+If we want more than one element from the vector, we can put a vector of positions inside the `[]`
+
+```{r}
+my_vector[c(1, 2)]
+my_vector[c(1, 5)]
+```
+
+### Range
+
+When we want elements at consecutive positions, there's a shorthand notation
+
+```{r}
+my_vector[1:2]
+my_vector[1:5]
+```
+
+`1:3` creates a vector with the integer values from the first through the last, inclusive
+
+```{r}
+1:3
+```
+
+## TRY IT
+
+Select elements in positions 1-5 and 10 from `healthdata$age` in a single statement
+
+```{r}
+
+```
+
+## TRY IT: Challenge
+
+Select the first and last elements of `healthdata$age` in a single statement. Hint: use a function to help you get the last valid position in the vector.
+
+```{r}
+
+```
+
+### Negative Indices
+
+What happens if we put a negative value inside `[]`?
+
+```{r}
+my_vector <- c("apple", "banana", "cat", "dog", "elephant")
+my_vector[-1]
+my_vector[-1:-3]
+```
+
+It omits the element(s)!
+
+Combining both negative and positive values will give an error - we have to do one or the other
+
+```{r, eval=FALSE}
+my_vector[c(-1, 4)]
+```
+
+## With Boolean Values/Conditions
+
+Most of the time, we want to avoid referencing vector elements by their position, since positions may change if the dataset changes. Instead, we can use a vector of TRUE and FALSE values that is the same length as the original vector to say which elements we want (TRUE) and which to omit (FALSE).
+
+We could manually construct a Boolean vector:
+
+```{r}
+my_vector <- c("apple", "banana", "cat", "dog", "elephant")
+my_vector
+my_vector[c(TRUE, FALSE, TRUE, FALSE, FALSE)]
+```
+
+But, if we had to type out TRUE/FALSE values, 1) it isn't any better than using positions, and 2) it would be really tedious for real data!
+
+Instead, we can write statements with comparison operators or other expressions that create Boolean vectors for us, and use those to index other vectors
+
+```{r}
+my_vector <- c(3, 6, 9, 12, 2, 4, 6, 8)
+my_vector
+
+# statement that returns TRUE/FALSE
+my_vector > 5
+
+# put the statement inside []
+my_vector[my_vector > 5]
+```
+
+The statement inside `[]` does not have to use the vector we're subsetting. We can condition on a different variable:
+
+```{r}
+# Remember to use == to test for equality
+healthdata$age[healthdata$gender == "male"]
+```
+
+## TRY IT
+
+Select ages from `healthdata` that are greater than 75
+
+```{r}
+
+```
+
+## Using Vector Subsets
+
+The subset of a vector is still a vector - so we can use expressions including `[]` with functions as well:
+
+```{r}
+mean(healthdata$age[healthdata$gender == "male"], na.rm=TRUE)
+```
+
+## TRY IT
+
+What is the average age of people who have a `marital_status` of Divorced? What about for Widowed?
+
+```{r}
+
+```
+
+## TRY IT: Challenge
+
+Select the ages from `healthdata` for those participants who have a missing value for the `pulse` variable
+
+```{r}
+
+```
+
+# Multi-step Operations
+
+Getting the value we want may require breaking down a task into multiple steps and building up a complex expression.
+
+Example: what is the age of the person with the lowest weight in the data?
+
+```{r}
+# Step 1: Find the lowest weight
+min(healthdata$weight)
+
+# Step 2: Which weight observation (which row) has that lowest value?
+healthdata$weight == min(healthdata$weight)
+
+# Step 3: What is the age of the person with the lowest weight?
+healthdata$age[healthdata$weight == min(healthdata$weight)]
+```
+
+We would not necessarily keep all of these steps in our code file -- this is just how we might work up to putting the more complicated expression together. Even experienced R coders don't necessarily just produce complex expressions straight through. They start with a part of the expression, and then build up around it.
+
+Sometimes it helps to save an intermediate value to a standalone variable (not part of a data frame) to use in a later expression to avoid writing really complicated R expressions. While the above expression is still pretty readable, we could split it up:
+
+```{r}
+min_weight <- min(healthdata$weight)
+healthdata$age[healthdata$weight == min_weight]
+```
+
+This is most helpful as expressions get more complicated. We don't want to save *every* intermediate value we compute, but in cases where doing so makes the code easier to understand, it's a good option.
+
+## TRY IT
+
+What is the education level of the tallest participant?
+
+```{r}
+
+```
+
+# Vector Quirks
+
+R can be a but quirky. When it comes to vectors, there are a few things that are useful to be aware of because R doesn't always give you an error or warning when you might expect it to.
+
+## Vector Recycling
+
+What happens if we subset a vector with boolean values, but the length of the vector inside `[]` does not match the length of the vector we're subsetting?
+
+```{r}
+my_vector <- c(1, 3, 5, 6)
+my_vector[c(TRUE)]
+```
+
+What?!?
+
+But wait, there's more:
+
+```{r}
+my_vector[c(TRUE, FALSE)]
+```
+
+The first and third elements are in the result above.
+
+```{r}
+my_vector[c(TRUE, FALSE, TRUE)]
+```
+
+What is going on?
+
+If the length of a boolean vector inside `[]` doesn't match the length of the vector we're subsetting, then the values in the shorter vector are recycled to match the length of the longer vector.
+
+```{r}
+# these are equivalent in this case
+my_vector[c(TRUE, FALSE)]
+my_vector[c(TRUE, FALSE, TRUE, FALSE)]
+```
+
+```{r}
+# these are equivalent in this case
+my_vector[c(TRUE, FALSE, TRUE)]
+my_vector[c(TRUE, FALSE, TRUE, TRUE)]  # the values start repeating; the extra FALSE, TRUE are ignored
+```
+
+A similar thing happens when using vectors in operations:
+
+```{r}
+my_vector <- c(1, 3, 5, 6)
+
+my_vector > 1
+```
+
+The above may seem natural, but the value 1 is still being recycled -- that is, compared to each element of the vector.
+
+```{r}
+my_vector > c(1, 3)
+```
+
+With recycling, the above is equivalent to:
+
+```{r}
+my_vector > c(1, 3, 1, 3)
+```
+
+But, unlike when subsetting, we do finally get a warning when the shorter vector cannot be recycled evenly to match the longer:
+
+```{r}
+my_vector > c(1, 3, 10)
+```
+
+But note that this is a warning, not an error. This means the expression did compute - it's just letting you know that you may have done something you didn't mean to.
+
+The recycling can repeat many times:
+
+```{r}
+healthdata$age > c(30, 40, 50)
+```
+
+## Nesting Vectors
+
+Vectors are one dimensional. If we put a vector inside another vector, R squishes them all back to be a single dimension:
+
+```{r}
+c(1, 3, 3:6, c(7, 8, 9))
+
+my_vector <- c(1, 3, 3:6, c(7, 8, 9))
+my_vector
+```
+
+Doing this intentionally can be useful if we need to combine vectors. To add an element onto the end of the vector, we can just include the original vector and the new value(s) together inside `c()`:
+
+```{r}
+my_vector <- c(1, 2, 3)
+my_vector <- c(my_vector, 4, 5, 6)
+my_vector
+```
+
+There are other data structures in R to store more complicated multidimensional or hierarchical data, including lists and matrices.

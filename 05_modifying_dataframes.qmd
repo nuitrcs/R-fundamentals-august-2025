@@ -1,0 +1,295 @@
+---
+title: "Modifying Data Frames"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# notebook setup
+library(dplyr)
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+
+# Data Frames: Change Column Names
+
+We get the current names of variables/columns in a data frame with `names()`:
+
+```{r}
+names(healthdata)
+```
+
+The output is a vector, so we can also reference individual elements of the result:
+
+```{r}
+names(healthdata)[2]
+```
+
+Changing the name of a column involves a slightly weird syntax: we use `names()` on the left-hand side of an assignment operation.
+
+To change the name of the second column to "year", we select the value we want to change, and then assign a new value to it:
+
+```{r}
+names(healthdata)
+names(healthdata)[2] <- "year"
+names(healthdata)
+```
+
+You can change multiple value at once as well:
+
+```{r}
+names(healthdata)
+names(healthdata)[2:3] <- c("year", "participant_gender")
+names(healthdata)
+```
+
+
+## rename()
+
+The `rename()` function from the dplyr package also allows you to rename columns, with a slightly easier syntax.  `rename()` takes a data frame as input and returns the whole data frame with the columns renamed as output.  The syntax is:
+
+```{r, eval=FALSE}
+rename(data_frame, new_name = old_name)
+```
+
+Example:
+
+```{r, eval=FALSE}
+rename(healthdata, year = survey_year)
+names(rename(healthdata, year = survey_year))  # to see the names
+
+# rename multiple columns at once
+rename(healthdata, year = survey_year, systolic = bp_sys1)
+```
+
+To make the changes stay, assign the output back to the original data frame variable name:
+
+```{r}
+healthdata <- rename(healthdata, year = survey_year)
+```
+
+Let's change the name back:
+
+```{r}
+healthdata <- rename(healthdata, survey_year = year)
+```
+
+
+## Valid Names
+
+Variable names in R need to start with a letter (or, technically, a letter or a period, but don't use a period).  They can contain letters, numbers, underscores, and periods.  A good convention, or style, to use is to name variables in all lower case letters and numbers, using underscores (`_`) to separate words in the name as needed.
+
+Variable names are case sensitive.
+
+Sometimes, we might import a dataset that has column names that don't conform to the requirements.  For example, the column names might start with a number or have spaces in them.  When data with invalid names is imported with `read.csv()`, by default it will add an "X" to the beginning of variable names if needed, and replace spaces with a period.  Other data import functions, such as `read_csv()` from the readr/tidyverse package, leave the names unchanged by default.  
+
+What happens when we use a name that doesn't conform to the specifications for a column in a data frame?  Here's an example:
+
+```{r}
+names(healthdata)[1] <- "123"
+names(healthdata)
+```
+
+The above is OK so far, but when we try to access the column:
+
+```{r, eval=FALSE}
+# gives an error
+healthdata$123
+```
+
+Note that "123" above is blue in the code highlighting in RStudio because it looks like a number.  We'd also get errors or unintended behavior trying to use a variable named "123" with functions like `select()`.
+
+Invalid names have to be surrounded by backticks to use them with `$` or in functions that reference the column names unquoted.  If we wanted to reference this variable, we'd need to do:
+
+```{r}
+healthdata$`123`
+select(healthdata, `123`)
+```
+
+But this is annoying.  It's best to clean up any invalid names either before importing the data file or immediately after 
+
+Let's fix the name before moving on:
+
+```{r}
+names(healthdata)[1] <- "id"
+```
+
+
+### Tip: clean_names()
+
+There is a function called `clean_names()` in the janitor package that takes a data frame as input and returns a data frame as output, with the column names cleaned up: names are converted to all lower case, with underscores where there were any spaces; characters are converted to ASCII equivalents (for example, é becomes e); an "x" will be added before any names starting with a number.  Other clean up options are also available.  Even if a data frame has valid names, this function can be useful to standardize them all to the same style and standards.
+
+# Data Frames: Change the Values of an Existing Column
+
+How we modify an existing variable in the data frame depends on whether we want to change all of the values or just specific values (like `NA`).  
+
+## Changing All Values
+
+If we can use a function or operation that will return either a single value that we want to use for ALL rows, or a vector of the same length as the original variable (the number of rows in the data frame), we can assign the new value(s) to the column vector.
+
+For example, the weight variable in the dataset is in kg.  Multiply all of the values by 2.2 to convert it to pounds:
+
+```{r}
+healthdata$weight <- healthdata$weight * 2.2
+```
+
+## Modifying Column Types
+
+One specific way we might change all of the values in a variable/column is by changing the data type of the column.  There is a series of functions that will convert data to a specific type.  For example: `as.character()`, `as.numeric()`, `as.integer()`, `as.logical()`
+
+The id variable is currently a numeric (integer) type.  But we wouldn't want to use it as a number.  Let's convert it to character data:
+
+```{r}
+head(healthdata$id)
+healthdata$id <- as.character(healthdata$id)
+head(healthdata$id)
+```
+
+
+## mutate()
+
+We can also change variables with the `mutate()` function from the dplyr package.  `mutate()` returns a copy of the data frame with the modification.  To make this change affect the data frame for future operations, we need to save the result back to the data frame:
+
+```{r}
+# just return a modified copy
+mutate(healthdata, height = height / 2.54)  # convert cm to inches
+
+# save the change
+healthdata <- mutate(healthdata, height = height / 2.54)
+```
+
+
+## TRY IT
+
+Change back the variables we modified above: divide weight by 2.2, multiply height by 2.54, and convert the id variable back to an integer type
+
+```{r}
+
+```
+
+
+## Tip: What if you make a mistake?
+
+What if you make a mistake and mess up your data frame?  Just import the data again, and re-run any other code you may have written.  This is one reason we keep track of what we do in an R script or notebook.
+
+```{r}
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+
+
+## Changing Specific Values
+
+To change just specific values in a column, we select the values we want to change, and then assign a new value to them.  This is most commonly done when we want to recode one or just a few specific values.
+
+For example, we could replace missing `NA` values in a variable with a special code:
+
+```{r}
+head(healthdata$bp_sys1, n=20)  # see that there are missing
+healthdata$bp_sys1[is.na(healthdata$bp_sys1)] <- 9999
+head(healthdata$bp_sys1, n=20)  # check that they changed
+```
+
+The above is just an example - usually we'd be recoding values like 9999 to `NA` instead!
+
+```{r}
+# change it back
+healthdata$bp_sys1[healthdata$bp_sys1 == 9999] <- NA
+```
+
+We could supply a vector, instead of a single value, on the right, but it can be easy to make a mistake that way if the length of the two sides doesn't match up correctly.
+
+Note that this approach doesn't work with `mutate()`.  `mutate()` always requires the right-hand side of the assignment to be either a single value or a vector of the same length as the original.  
+
+
+## ifelse()
+
+Subsetting a vector and then assigning a value to that subset can be a bit cumbersome.  The `ifelse()` function allows us to use the same syntax as if we were changing all of the values in a vector, while only changing some.  `ifelse()` also works with `mutate()`.
+
+`ifelse()`allows you to change the values of a vector based on a conditional test.
+
+```{r, eval=FALSE}
+ifelse(test_condition, value_if_true, value_if_false)
+```
+
+Example:
+
+```{r}
+ifelse(healthdata$sleep_hours >= 8, "8+ hours", "<8 hours")
+```
+
+To use `ifelse()` to modify the values of a vector, a common use is: 
+
+* if some condition is TRUE,
+* then return a new value
+* otherwise return the original value
+
+This code will recode all `NA` values in `healthdata$bp_sys1` to 9999 and leave all other values unaffected:
+
+```{r}
+healthdata$bp_sys1 <- ifelse(is.na(healthdata$bp_sys1), 9999, healthdata$bp_sys1)
+
+# or 
+mutate(healthdata, by_sys1 = ifelse(is.na(bp_sys1), 9999, bp_sys1))
+```
+
+If the test condition results in `NA`, then the output of `ifelse()` is `NA`.  
+
+
+## TRY IT
+
+1. Use `ifelse()` to recode the 9999 values in bp_sys1 to `NA`
+
+2. Recode missing values in `healthdata$health_level` to "Unknown" using `ifelse()`
+
+```{r}
+
+```
+
+
+# Data Frames: Add a Column
+
+To add a column, simply name it and assign a value to it:
+
+```{r}
+healthdata$long_sleeper <- healthdata$sleep_hours > 8
+names(healthdata)
+
+# or
+mutate(healthdata, long_sleeper = sleep_hours > 8)
+```
+
+The column will be added to the far right of the data frame.  
+
+
+# Data Frames: Removing Rows or Columns
+
+To remove rows or columns from a data frame, create the subset of the data frame that you want, and then assign that result to a variable -- either the same data frame name to overwrite the original data frame (only in the R session, it doesn't change the file) or to a new name.
+
+```{r}
+males <- healthdata[healthdata$gender == "male", ]
+```
+
+Avoid saving multiple subsets of the data with different names.  Having multiple copies or versions of a dataset in the environment makes your code harder to follow, can result in mistakes by choosing or modifying the wrong subset, and can use a lot of memory with larger data sets.  Instead, subset or modify the data just when needed. 
+
+
+# Data Frames: Reorder Columns
+
+Most of the time, there is no need to reorder columns in a data frame.  If you want to, you can subset the columns in the order you want, and then reassign the result back to the same variable name.
+
+Example:
+
+```{r}
+healthdata <- healthdata[ , c(4, 2, 3, 1, 5:ncol(healthdata))]
+```
+
+`5:ncol(healthdata)` selects the 5th through the last column.
+
+## select()
+
+The `select()` function from dplyr can also be used to reorder columns.  There's a helper function, `everything()`, that is a convenient shorthand for including all other columns beyond the ones named, putting them at the end in the original order:
+
+```{r}
+select(healthdata, age, age_decade, gender, everything())
+```

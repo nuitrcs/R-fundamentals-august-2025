@@ -1,0 +1,98 @@
+---
+title: "Factors"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+healthdata <- read.csv("data/nhanes.csv")
+```
+
+# Factors
+
+Factors are a way to represent categorical data in R.
+
+Consider the output of:
+
+```{r}
+table(healthdata$education)
+```
+
+The order of the categories is alphabetical.  But there is an order in the real world to education levels that is different from the output in the table.  
+
+To control the order of the categories, we can tell R to treat the variable as a categorical variable, instead of just some text values, by making it a factor and explicitly specifying the levels or categories in order.
+
+```{r}
+healthdata$education <- factor(healthdata$education, 
+                               levels = c("8th Grade", "9 - 11th Grade", "High School",
+                                          "Some College", "College Grad"))
+table(healthdata$education)
+```
+
+If we just print the contents of `healthdata$education` to the console, once it's a factor, the output changes:
+
+```{r}
+healthdata$education
+```
+
+The values no longer have quotation marks around them, and the levels that we set are listed in order at the bottom.
+
+Factors are how we control the order of categories in tables, visualizations, and other grouped output.
+
+
+## TRY IT
+
+Convert `work_status` variable to a factor, putting the categories in an explicit order.  Make a table of the variable to check the output.
+
+```{r}
+
+```
+
+
+
+## Factor Levels
+
+The levels of a factor can be retrieved and manipulated through the `levels()` function, which works in a similar way to the `names()` function for a data frame
+
+```{r}
+levels(healthdata$education)
+
+# change a category
+levels(healthdata$education)[1] <- "No high school"
+ 
+levels(healthdata$education)
+```
+
+
+
+## Missing Values
+
+Missing values stay as missing values when you create a factor. To make missing an explicit category, first make the variable a factor, and then use `addNA()`
+
+```{r}
+healthdata$health_level <- factor(healthdata$health_level,
+                                  levels = c("Poor", "Fair", "Good",
+                                             "Vgood", "Excellent"))
+levels(healthdata$health_level)
+sum(is.na(healthdata$health_level))
+
+healthdata$health_level <- addNA(healthdata$health_level)
+levels(healthdata$health_level)
+sum(is.na(healthdata$health_level))
+```
+
+Once NA is an explicit category, the values are no longer considered missing.
+
+
+## Factor Tips
+
+Factors can be difficult to change correctly once they're created.  It's best to modify a variable/vector before creating a factor.  If you need to change a variable that is a factor, consider unfactoring it first by converting it to character (text) type:
+
+```{r}
+healthdata$education <- as.character(healthdata$education)
+```
+
+
+See the `{forcats}` package for many useful functions for working with factors.  
+
