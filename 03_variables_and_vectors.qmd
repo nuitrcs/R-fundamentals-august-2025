@@ -38,7 +38,7 @@ To see just a few values, we can use `head()` like we did with the full data set
 head(healthdata$age, n=20)
 ```
 
-An individual variable/column of a data frame is a *vector*. A vector is an ordered list of values all of the same type.
+An individual variable/column of a data frame is a *vector*. A vector is an ordered list of values all of the same type. Each element of a vector is uniquely identified by its position.
 
 ## Using Summary Functions
 

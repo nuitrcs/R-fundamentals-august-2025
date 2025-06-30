@@ -42,65 +42,6 @@ plot(y=healthdata$height, x=healthdata$weight)
 ```
 
 
-## Line Plot
-
-Line plots show a trend across values of a variable - most commonly across time, but we don't have a time variable in this data.  We'll compute some values across ages instead first so that we have appropriate data for a line plot:
-
-```{r}
-by_age <- healthdata %>%
-  group_by(age) %>%
-  summarize(avg_pulse = mean(pulse, na.rm=TRUE))
-
-by_age
-```
-
-Now, to plot this, we again use the `plot()` function.  Let's start with a scatterplot:
-
-```{r}
-plot(by_age$age, by_age$avg_pulse)
-```
-
-To convert this to a line plot, we add an input:
-
-```{r}
-plot(by_age$age, by_age$avg_pulse, type="l")
-```
-
-If we want **b**oth points and lines:
-
-```{r}
-plot(by_age$age, by_age$avg_pulse, type="b")
-```
-
-
-## Histogram
-
-Histograms are used to visualize the distribution of a continuous variable.  The function is `hist()`
-
-```{r}
-hist(healthdata$pulse)
-```
-
-You can change the number of bins (bars) with `breaks`
-
-```{r}
-hist(healthdata$pulse, breaks=50)
-```
-
-R doesn't obey `breaks` strictly - think of it as a suggestion. 
-
-
-## TRY IT
-
-Make a plot of `bp_sys1` and `bp_sys2`.
-
-Make a histogram of `income_poverty_ratio`.
-
-```{r}
-
-```
-
-
 # Visualization: ggplot2 Basics
 
 ggplot2 is a package that is part of the Tidyverse set of packages.  Like other Tidyverse packages, it expects your data to be in a data frame.  

@@ -76,10 +76,10 @@ str(healthdata)   # str is short for structure
 
 Core data types are:
 
--   int (integer): whole numbers, positive or negative
--   chr (character): text
--   num (numeric): numbers including decimal values
--   logi (logical): true and false values
+-   `int` (integer): whole numbers, positive or negative
+-   `chr` (character): text
+-   `num` (numeric): numbers including decimal values
+-   `logi` (logical): true and false values
 
 There are additional data types that can result from transforming variables, such as dates and factors for categorical variables.
 
