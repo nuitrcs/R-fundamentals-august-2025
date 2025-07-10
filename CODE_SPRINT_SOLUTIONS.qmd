@@ -1,0 +1,463 @@
+---
+title: "Code Sprint solutions"
+format:
+  html:
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+There are many ways to achieve the same thing in R. This answer key provides one or more solutions aligned with the workshop materials, but there are other ways to successfully complete the exercises.
+
+# Data Analysis
+
+## Exercise: Import the Data
+
+Copy the `gov_env_2015.csv` file from the workshop materials folder to the folder for the new RStudio project you created for the exercises.
+
+Add code to your script to import the data. Make sure to assign the data a name.
+
+Write code to get the dimensions of the data frame and the names of the variables (columns).
+
+```{r}
+# the path to the file may differ for you
+govenv <- read.csv("data/gov_env_2015.csv")
+
+dim(govenv)
+nrow(govenv)
+ncol(govenv)
+
+names(govenv)
+```
+
+## Exercise: Load external packages
+
+Write code to load the `tidyverse` packages into your R session.
+
+```{r}
+library(tidyverse)
+```
+
+## Exercise: Compute Summary Statistics
+
+Compute the average (mean) and median values of `globalization`, `rain_avg`, `temp_avg`, and `co2_per_capita`.
+
+```{r}
+# with base R 
+mean(govenv$globalization)
+mean(govenv$rain_avg)
+mean(govenv$temp_avg)
+mean(govenv$co2_per_capita, na.rm=TRUE)
+
+median(govenv$globalization)
+median(govenv$rain_avg)
+median(govenv$temp_avg)
+median(govenv$co2_per_capita, na.rm=TRUE)
+
+# with tidyverse (simple but doesn't ignore NA values)
+govenv %>% 
+  summarise(across( c(globalization, rain_avg, temp_avg, co2_per_capita),
+                    list( mean = mean, median = median)))
+
+# with tidyverse - advanced, can ignore NA values using anonymous functions
+govenv %>% 
+  summarise(across( c(globalization, rain_avg, temp_avg, co2_per_capita),
+                    list( mean = ~mean(.x, na.rm = TRUE), 
+                          median = ~median(.x, na.rm = TRUE))))
+
+?across # check documentation for more details
+```
+
+## Exercise: Frequency Table
+
+Create a frequency table of the number of natural disasters (`nat_disaster_n`).
+
+Create a frequency table of the number of climate laws/policies (`climate_laws_policies`).
+
+Be sure to include any missing values in the tables.
+
+```{r}
+table(govenv$nat_disaster_n, useNA="ifany")
+table(govenv$climate_laws_policies, useNA="ifany")
+```
+
+## Exercise: Conditional Summary Statistics
+
+Compute the average (mean) of `rain_avg` and `temp_avg` for countries in the region "Eastern Europe/Former USSR".
+
+Challenge: Which country in "Latin America"" had the highest value of `co2_per_capita`?
+
+Challenge: How many countries in "Sub-Saharan Africa" had `co2_per_capita` greater than 1 metric ton?
+
+```{r}
+# base R
+mean(govenv$rain_avg[govenv$region == "Eastern Europe/Former USSR"])
+mean(govenv$temp_avg[govenv$region == "Eastern Europe/Former USSR"])
+
+maxval <- max(govenv$co2_per_capita[govenv$region == "Latin America"])
+govenv$country[govenv$co2_per_capita == maxval]
+
+sum(govenv$co2_per_capita[govenv$region == "Sub-Saharan Africa"] > 1, na.rm=TRUE)
+
+
+# tidyverse
+govenv %>% 
+  filter(region == "Eastern Europe/Former USSR") %>% 
+  summarise(across(c(rain_avg, temp_avg), list(mean = mean)))
+
+govenv %>% 
+  filter(region=="Latin America") %>% 
+  filter(co2_per_capita == max(co2_per_capita, na.rm=T)) %>% 
+  select(country)
+
+govenv %>% 
+  filter(region=="Sub-Saharan Africa", co2_per_capita > 1) %>% 
+  nrow()
+```
+
+## Exercise: Count and Find Missing Data
+
+Which variable(s) have the most missing values?
+
+Challenge: Are democracies or not democracies missing more `co2_per_capita` values?
+
+Challenge: Which countries are missing `co2_growth_rate` values?
+
+```{r}
+colSums(is.na(govenv))
+
+# Challenge
+table(govenv$democracy, is.na(govenv$co2_per_capita))
+# alternative
+sum(is.na(govenv$co2_per_capita[govenv$democracy == 1]))
+sum(is.na(govenv$co2_per_capita[govenv$democracy == 0]))
+
+# Challenge
+govenv$country[is.na(govenv$co2_growth_rate)]
+```
+
+## Exercise: Subset the Data Frame: Compound Conditions
+
+Subset the data frame to only include monarchies in "Western Europe, North America, Australia, New Zealand". Save the subset in a new variable. Which of the countries in the subset has the largest population?
+
+```{r}
+# base R
+west_countries <- govenv[govenv$region == "Western Europe, North America, Australia, New Zealand" & govenv$monarchy == 1,]
+west_countries$country[west_countries$population == max(west_countries$population)]
+
+# tidyverse
+west_countries <- filter(govenv, region == "Western Europe, North America, Australia, New Zealand", monarchy == 1)
+filter(west_countries, population == max(population)) %>%
+  select(country)
+```
+
+## Exercise: Modify Variables
+
+Modify the `monarchy` variable so that the values are "monarchy" and "not monarchy" instead of numeric or logical values.
+
+Convert `rain_avg` to inches instead of mm (multiply by 25.4).
+
+Change country name of "Congo, Democratic Republic" to "DR Congo".
+
+```{r}
+govenv$monarchy <- ifelse(govenv$monarchy == 1, "monarchy", "not monarchy")
+# alternative
+govenv <- mutate(govenv, monarchy = ifelse(monarchy == 1, "monarchy", "not monarchy"))
+
+govenv$rain_avg <- govenv$rain_avg * 25.4
+# alternative
+govenv <- mutate(govenv, rain_avg * 25.4)
+
+govenv$country[govenv$country == "Congo, Democratic Republic"] <- "DR Congo"
+# alternative
+govenv$country <- ifelse(govenv$country == "Congo, Democratic Republic", "DR Congo", govenv$country)
+# alternative
+govenv <- mutate(govenv, country = ifelse(country == "Congo, Democratic Republic", "DR Congo", country))
+```
+
+## Exercise: Change Variable Names
+
+Rename the `ag_land_pct` variable to `agriculture_land_pct`.
+
+```{r}
+govenv <- rename(govenv, agriculture_land_pct = ag_land_pct)
+
+# alternative
+names(govenv)[names(govenv) == "ag_land_pct"] <- "agriculture_land_pct"
+
+# alternative (above options are more robust to changes in the dataset)
+names(govenv) ## check to find position
+names(govenv)[15] <- "agriculture_land_pct"
+```
+
+## Exercise: Modify Variable Types
+
+Change the presidential variable to be of type logical (TRUE/FALSE) instead of numeric.
+
+```{r}
+govenv$presidential <- as.logical(govenv$presidential)
+
+# alternative
+govenv <- mutate(govenv, presidential = as.logical(presidential))
+```
+
+## Exercise: Make a New Variable
+
+Create a new variable in the data frame (make up a name) that is TRUE if any climate laws or policies were passed and FALSE otherwise.
+
+```{r}
+govenv$laws_passed <- govenv$climate_laws_policies > 0
+```
+
+## Exercise: Create a Factor
+
+Modify the presidential variable to have the values "Presidential" and "Not Presidential". Convert the variable to a factor, where the "Presidential" category displays first.
+
+Challenge: Research (or ask a GenAI tool) how to use labels when creating a factor. Create a factor of `electoral_comp`, adding text labels for the categories.
+
+```{r}
+# if presidential is logical (TRUE/FALSE)
+govenv$presidential <- factor(ifelse(govenv$presidential, "Presidential", "Not Presidential"),
+                              levels = c("Presidential", "Not Presidential"))
+
+# if presidential is numeric (0/1)
+# govenv$presidential <- factor(ifelse(govenv$presidential == 1, "Presidential", "Not Presidential"),
+#                               levels = c("Presidential", "Not Presidential"))
+
+# Challenge
+govenv$electoral_comp <- factor(govenv$electoral_comp,
+                                labels=c("No elections", "Single-party elections",
+                                         "Non-democratic multi-party elections",
+                                         "Democratic elections"))
+```
+
+## Exercise: Group Statistics (with dplyr)
+
+Compute the average and maximum of globalization by whether the country is a democracy.
+
+How many deaths were caused by natural disasters by region? (hint: use sum())
+
+Challenge: Compute the mean number of climate_laws_policies grouping countries by whether they have above or below average `co2_per_capita`.
+
+```{r}
+govenv %>%
+  group_by(democracy) %>%
+  summarize(min_global = mean(globalization),
+            max_global = max(globalization))
+
+govenv %>%
+  group_by(region) %>%
+  summarize(nat_disaster_deaths = sum(nat_disaster_deaths, na.rm=TRUE))
+
+govenv %>%
+  mutate(high_co2 = co2_per_capita > mean(co2_per_capita, na.rm=TRUE)) %>%
+  group_by(high_co2) %>%
+  summarize(mean_laws = mean(climate_laws_policies, na.rm=TRUE))
+```
+
+## Exercise: Group Proportions
+
+What proportion of countries are democracies?
+
+How many and what proportion of countries fall into each category of electoral_comp?
+
+Challenge: compute the proportion of countries that are democracies per region.
+
+```{r}
+govenv %>%
+  count(democracy) %>%
+  mutate(prop = n / sum(n))
+# alternative
+library(janitor)
+tabyl(govenv, democracy)
+# alternative
+sum(govenv$democracy == 1)/nrow(govenv)
+# alternative
+prop.table(table(govenv$democracy))
+
+govenv %>%
+  count(electoral_comp) %>%
+  mutate(prop = n / sum(n))
+# alternative
+tabyl(govenv, electoral_comp)
+# alternative
+table(govenv$electoral_comp)
+prop.table(table(govenv$electoral_comp))
+
+# Challenge
+govenv %>%
+  group_by(region) %>%
+  summarize(prop_democracy = sum(democracy == 1)/n())
+```
+
+## Exercise: Test Your Reproducibility
+
+Save your code file, and then close RStudio. If prompted as to whether to save the workspace image, say no. Then restart RStudio (if you created an RStudio project, make sure it's open) and re-run your code file through in order to see if everything still works.
+
+# Data visualization
+
+## Exercise: Examine Variable Distributions with Histograms
+
+Make a histogram of `rain_avg`. Change the number of bins/breaks. Add a title and set the axis labels appropriately.
+
+Make a histogram of `temp_avg` just for Sub-Saharan Africa.
+
+```{r}
+ggplot(govenv, aes(rain_avg)) +
+  geom_histogram(bins = 15) +
+  labs(title = "Average Rainfall",
+       y = "Number of Countries",
+       x = "Annual Rain (mm)")
+
+ggplot(govenv[govenv$region == "Sub-Saharan Africa",], aes(temp_avg)) +
+  geom_histogram()
+
+```
+
+```{r}
+# Alternatives
+hist(govenv$rain_avg, 
+     breaks=15, 
+     main="Average Rainfall", 
+     xlab="Annual Rain (mm)",
+     ylab="Number of Countries")
+
+govenv %>%
+  filter(region == "Sub-Saharan Africa") %>%
+  ggplot(aes(temp_avg)) + 
+  geom_histogram()
+
+hist(govenv$temp_avg[govenv$region == "Sub-Saharan Africa"])
+```
+
+## Exercise: Examine Variable Distributions with Bar Plots
+
+Make a bar plot of `climate_laws_policies`.
+
+Make a bar plot of monarchy status just for democracies.
+
+Challenge: Change the labels for the bar plot of monarchy to be "Monarchy" and "Not Monarchy" instead of 0 and 1.
+
+```{r}
+ggplot(govenv, aes(climate_laws_policies)) +
+  geom_bar()
+
+govenv %>%
+  filter(democracy == 1) %>%
+  ggplot(aes(monarchy)) +
+  geom_bar()
+
+govenv %>%
+  filter(democracy == 1) %>%
+  mutate(monarchy = ifelse(monarchy == 1, "Monarchy", "Not Monarchy")) %>%
+  ggplot(aes(monarchy)) +
+  geom_bar()
+```
+
+## Exercise: Limit Axis Range
+
+Make a scatterplot of `forest_land_pct` and `rain_avg`. Limit the plot to only show `rain_avg` values between 0 and 300.
+
+```{r}
+ggplot(govenv, aes(x=forest_land_pct, y=rain_avg)) + 
+  geom_point() +
+  scale_y_continuous(limits = c(0, 300))
+
+# Alternative
+ggplot(govenv, aes(x=forest_land_pct, y=rain_avg)) + 
+  geom_point() +
+  coord_cartesian(ylim = c(0, 300))
+```
+
+## Exercise: Visualize Groups with Color
+
+Make a scatterplot of `forest_land_pct` and `rain_avg`. Color the points by region.
+
+```{r}
+ggplot(govenv, aes(x=forest_land_pct, y=rain_avg, color=region)) + 
+  geom_point()
+```
+
+## Exercise: Visualize Groups with Facets
+
+Make a histogram of globalization. Create facets of the plot by democracy.
+
+Challenge: Change the facet labels to be "Democracy" and "Not Democracy" instead of 0 and 1.
+
+```{r}
+ggplot(govenv, aes(globalization)) +
+  geom_histogram() + 
+  facet_grid(rows = vars(democracy))
+
+govenv %>%
+  mutate(democracy = ifelse(democracy == 1, "Democracy", "Not Democracy")) %>%
+  ggplot(aes(globalization)) +
+  geom_histogram() + 
+  facet_grid(rows = vars(democracy))
+```
+
+# Statistics
+
+## Exercise: Correlation
+
+Are larger countries more globalized? Compute the correlation between `globalization` and `population`.
+
+Are richer countries more globalized? Compute the correlation between `globalization` and `gdp_per_capita`.
+
+```{r}
+cor(govenv$globalization, govenv$population)
+
+cor(govenv$globalization, govenv$gdp_per_capita, use="pairwise")
+```
+
+## Exercise: t-test
+
+Does the average `co2_per_capita` value differ between democracies and not democracies? Use a t-test to compare the groups.
+
+Are democracies richer (`gdp_per_capita`) than non-democracies? Use a t-test to compare the groups.
+
+```{r}
+t.test(govenv$co2_per_capita ~ govenv$democracy) ## not statistically different
+
+t.test(govenv$gdp_per_capita ~ govenv$democracy) ## not statistically different
+```
+
+## Exercise: Chi-squared test
+
+Is there a relationship between `electoral_comp` and `presidential` systems? First, make a frequency table, and then compute a chi-squared test. Note: you will get a warning message because some of the combinations of these two values are only valid for a few countries.
+
+```{r}
+table(govenv$electoral_comp, govenv$presidential)
+
+chisq.test(table(govenv$electoral_comp, govenv$presidential))
+```
+
+## Exercise: Linear Regression
+
+Run a regression predicting `co2_growth_rate` as a function of `co2_per_capita`, `forest_land_pct`, `ag_land_pct`, `temp_avg`, and `rain_avg`.
+
+Run a regression predicting `globalization` as a function of `population`, `democracy`, and `gdp_per_capita`. Controlling for the other variables, are democracies more globalized or less than other countries?
+
+```{r}
+lm(co2_growth_rate ~ co2_per_capita + forest_land_pct + ag_land_pct + temp_avg + rain_avg,
+   data=govenv) %>%
+  summary()
+
+lm(globalization ~ population + democracy + gdp_per_capita, 
+   data=govenv) %>%
+  summary()
+# democracies are more globalized (coefficient estimate is positive)
+```
+
+## Exercise: Logistic Regression
+
+Make a new variable that indicates whether the country passed any climate laws or policies (`climate_laws_policies`). Run a logistic regression predicting this new variable as a function of `co2_per_capita`, `temp_avg`, `rain_avg`, and `globalization`. Which, if any, of the predictor variables are a statistically significant predictor of climate laws/policies being passed?
+
+```{r}
+govenv$laws_passed <- govenv$climate_laws_policies > 0
+
+glm(laws_passed ~ co2_per_capita + temp_avg + rain_avg + globalization,
+    data = govenv, family="binomial") %>%
+  summary()
+# higher globalization is associated with increased likelihood of climate laws/policies passed
+```

@@ -15,5 +15,3 @@ We will cover the following topics:
 [How to download these materials](https://sites.northwestern.edu/researchcomputing/resources/downloading-from-github/).
 
 [How to set up R and RStudio](https://sites.northwestern.edu/researchcomputing/resources/r-and-rstudio/).
-
-[Feedback form link](https://forms.office.com/Pages/ResponsePage.aspx?id=YdN2fXeCCEekd2ToNmzRvLyGHvv_LeNJmg-cYyReiKxURTZXQ0RUTFQ4VzkxRzZXSFlLRkpYQUE2WC4u)
