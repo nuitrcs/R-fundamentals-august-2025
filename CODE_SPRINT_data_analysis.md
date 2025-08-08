@@ -57,10 +57,6 @@ Add code to your script to import the data. Make sure to assign the data a name.
 
 Write code to get the dimensions of the data frame and the names of the variables (columns).
 
-## Exercise: Load external packages
-
-Write code to load the `tidyverse` packages into your R session.
-
 ## Exercise: Compute Summary Statistics
 
 Compute the average (mean) and median values of `globalization`, `rain_avg`, `temp_avg`, and `co2_per_capita`.
