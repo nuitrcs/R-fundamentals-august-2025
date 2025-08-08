@@ -45,6 +45,10 @@ Create a new RStudio project. When creating the project, choose the option to "O
 
 Create a R script file in the new project where you will write the code for the following exercises.
 
+## Exercise: Load external packages
+
+Write code to load the `tidyverse` packages into your R session.
+
 ## Exercise: Import the Data
 
 Copy the `gov_env_2015.csv` file from the workshop materials folder to the folder for the new RStudio project you created for the exercises.

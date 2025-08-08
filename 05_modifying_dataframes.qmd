@@ -132,6 +132,9 @@ For example, the weight variable in the dataset is in kg.  Multiply all of the v
 
 ```{r}
 healthdata$weight <- healthdata$weight * 2.2
+
+# to change it back to the original weight in kg values, run the code below:
+healthdata$weight <- healthdata$weight / 2.2
 ```
 
 ## Modifying Column Types
@@ -149,20 +152,25 @@ head(healthdata$id)
 
 ## mutate()
 
-We can also change variables with the `mutate()` function from the dplyr package.  `mutate()` returns a copy of the data frame with the modification.  To make this change affect the data frame for future operations, we need to save the result back to the data frame:
+We can also change variables with the `mutate()` function from the dplyr package.  `mutate()` returns a copy of the data frame with the modification. `mutate()` can be used to modify column values, or to create a new column and populate it with values. To make this change affect the data frame for future operations, we need to save the result back to the data frame:
 
 ```{r}
-# just return a modified copy
-mutate(healthdata, height = height / 2.54)  # convert cm to inches
+# just return a modified copy of healthdata
+mutate(healthdata, weight = weight * 2.2)  # convert kgs to lbs
+
+# create a new column to populate with values
+mutate(healthdata, weight_lbs = weight * 2.2) 
 
 # save the change
-healthdata <- mutate(healthdata, height = height / 2.54)
+healthdata <-mutate(healthdata, weight_lbs = weight * 2.2)  
 ```
 
 
 ## TRY IT
 
-Change back the variables we modified above: divide weight by 2.2, multiply height by 2.54, and convert the id variable back to an integer type
+Create a new variable called `height_inches` which divides height values in cm by 2.54 and stores the result.
+
+Change the id variable back to an integer type.
 
 ```{r}
 
